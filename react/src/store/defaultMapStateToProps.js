@@ -10,7 +10,12 @@ function mapStateToProps(state) {
       translate: getTranslate(state.locale),
       currentLanguage: getActiveLanguage(state.locale).code,
       clientType: state.clientType,
-      userSignupForm: state.userSignupForm
+      signupForm: state.signupForm,
+      loginForm: state.loginForm,
+      editProfileForm: state.editProfileForm,
+      editEdgeForm: state.editEdgeForm,
+      editEntityForm: state.editEntityForm,
+      user: state.user
     };
   }
 

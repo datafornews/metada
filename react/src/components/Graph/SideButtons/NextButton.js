@@ -42,7 +42,6 @@ class PreviousButton extends React.Component {
                     <RedoIcon className={this.props.classes.icon} />
                 </Button>
             </Tooltip>)
-        
     }
 }
 

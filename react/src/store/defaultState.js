@@ -3,12 +3,19 @@ const defaultState = {
     dataIsAvailable: false,
     show: {
         howItWorks: true,
-        legend: true
+        legend: true,
+        chips:true
     },
     currentDisplay: -1,
     infoBox: {
         type: '',
         data: []
+    },
+    user: {
+        isLoggedIn: false,
+        isConfirmed: false,
+        isValid: false,
+        data: {}
     }
 };
 

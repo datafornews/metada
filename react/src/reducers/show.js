@@ -10,6 +10,11 @@ function show(state = false, action) {
                 ...state,
                 searchBar: !state.searchBar
             };
+        case 'TOGGLE_PROFILE':
+            return {
+                ...state,
+                profile: !state.profile
+            };
         case 'TOGGLE_CONTACT':
             return {
                 ...state,
@@ -45,12 +50,27 @@ function show(state = false, action) {
                 ...state,
                 legend: !state.legend
             }
+        case 'TOGGLE_CHIPS':
+            return {
+                ...state,
+                chips: !state.chips
+            }
+        case 'TOGGLE_CONTRIB':
+            return {
+                ...state,
+                contrib: !state.contrib
+            }
+        case 'TOGGLE_EDITGRAPH':
+            return {
+                ...state,
+                editGraph: !state.editGraph
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
             }
             for (var i in state) {
-                if (i !== 'legend'){
+                if (i !== 'legend' && i !== 'chips') {
                     newState[i] = false;
                 }
             }

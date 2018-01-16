@@ -7,6 +7,7 @@ const searchBarDivStyle = {
 };
 
 class HomeSearchBar extends Component {
+
     render() {
         return this.props.dataIsAvailable
             ?

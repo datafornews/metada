@@ -5,7 +5,7 @@
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "start": "react-scripts start",
-        "push-extension": "react-scripts build && rm -rf ../Extension/ && mkdir ../Extension/ && cp -r ./build/* ../Extension/ && git add ../Extension/  && git commit -m 'update extension' && git push origin master ",
+        "push-extension": "react-scripts build && rm -rf ../Extension/ && mkdir ../Extension/ &&cp -r ./build/* ../Extension/ && git add ../Extension/  && git commit -m 'update extension' && git push origin master ",
         "push-extension-aws": "yarn push-extension && aws s3 sync ../Extension s3://oop-dev-build"
     },
     "dependencies": {

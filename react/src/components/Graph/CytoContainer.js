@@ -52,7 +52,7 @@ class CytoContainer extends React.Component {
     })
   }
 
-  
+
   componentWillMount() {
     const location = parseInt(this.props.match.params.entityId, 10);
     if (location !== this.props.currentDisplay) {
@@ -60,7 +60,7 @@ class CytoContainer extends React.Component {
       this.props.updateEntityInfoBox(location);
     }
   }
-  
+
 
   renderCytoscapeElement = () => {
     console.log('rendering.')
@@ -124,7 +124,7 @@ class CytoContainer extends React.Component {
     });
     this.renderCytoscapeElement()
   }
-  
+
   componentDidUpdate(prevProps, prevState) {
     const location = parseInt(this.props.match.params.entityId, 10);
     if (location !== this.props.currentDisplay) {

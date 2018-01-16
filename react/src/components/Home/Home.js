@@ -9,8 +9,9 @@ import { check_website } from '../../utils/backgroundUtils';
 
 import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
-import Contact from './Content/Contact/Contact';
+import Contrib from './Content/Contrib/Contrib';
 import Settings from './Content/Settings/Settings';
+import Profile from './Content/Profile/Profile';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
@@ -37,6 +38,11 @@ const homeContentDivStyle = {
 };
 
 class Home extends React.Component {
+
+
+  componentDidMount() {
+    setTimeout(() => { this.props.setUserStatus(this, false) }, 100);
+  }
 
 
   componentWillMount() {
@@ -69,9 +75,10 @@ class Home extends React.Component {
       this.props.toggleSearchBar();
       localStorage['reduxPersist:show'] = JSON.stringify({
         'intent': false,
-        'contact': false,
+        'contrib': false,
         'settings': false,
         'extension': false,
+        'profile': false,
         'searchBar': true
       });
     } else {
@@ -88,7 +95,6 @@ class Home extends React.Component {
     }
   }
 
-
   componentWillReceiveProps(nextProps) {
     const newLocation = nextProps.location.pathname.split('/')[1] || 'search';
     const location = this.props.location.pathname.split('/')[1] || 'search';
@@ -97,7 +103,6 @@ class Home extends React.Component {
       this.props.toggle(newLocation);
     }
   }
-
 
   componentWillUpdate(nextProps, nextState) {
     if (sessionStorage.graphHistory && sessionStorage.graphHistory.length > 2) {
@@ -112,17 +117,19 @@ class Home extends React.Component {
   }
 
 
-
   render() {
     return (
       <div>
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
         <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
+
           <HomeContentTabs {...this.props} />
+
           <HomeSearchBar {...this.props} />
+          <Profile {...this.props} />
           <LearnAbout {...this.props} />
-          <Contact {...this.props} />
+          <Contrib {...this.props} />
           <Settings {...this.props} />
           <Extension {...this.props} />
         </div>

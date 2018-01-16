@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { setActiveLanguage } from 'react-localize-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as toggleActions from '../actions/toggleActions';
+import * as userActions from '../actions/userActions';
 import { actions as rrfActions } from 'react-redux-form';
 
 let renamedActions = {};
@@ -15,6 +16,7 @@ function mapDispatchToProps(dispatch) {
     {
       ...actionCreators,
       ...toggleActions,
+      ...userActions,
       setActiveLanguage,
       ...renamedActions
     },

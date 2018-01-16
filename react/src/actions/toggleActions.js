@@ -28,6 +28,12 @@ export function toggleContact() {
     };
 }
 
+export function toggleProfile() {
+    return {
+        type: 'TOGGLE_PROFILE'
+    };
+}
+
 export function toggleSettings() {
     return {
         type: 'TOGGLE_SETTINGS'
@@ -49,6 +55,24 @@ export function toggleSideButtons() {
 export function toggleLegend() {
     return {
         type: 'TOGGLE_LEGEND'
+    };
+}
+
+export function toggleChips() {
+    return {
+        type: 'TOGGLE_CHIPS'
+    };
+}
+
+export function toggleContrib() {
+    return {
+        type: 'TOGGLE_CONTRIB'
+    };
+}
+
+export function toggleEditGraph() {
+    return {
+        type: 'TOGGLE_EDITGRAPH'
     };
 }
 

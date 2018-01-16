@@ -4,7 +4,7 @@ import ProfilePaper from './ProfilePaper';
 class Profile extends Component {
     render() {
 
-        return this.props.show.Profile
+        return this.props.show.profile
             ?
             <ProfilePaper {...this.props} />
             :

@@ -52,6 +52,10 @@ store.dispatch({
     clientType
 });
 
+if (!localStorage['_jwt']){
+    localStorage['reduxPersist:user'] = '{}';
+}
+
 persistStore(store);
 
 // By default reducers are not hot reloaded, only components

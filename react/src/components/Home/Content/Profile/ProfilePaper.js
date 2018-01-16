@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomePaper from '../../Paper/HomePaper'
-import Auth from './Auth'
+import Auth from './Auth/Auth'
+import EditProfile from './EditProfile/EditProfile';
 
 class ProfilePaper extends Component {
 
@@ -11,8 +12,9 @@ class ProfilePaper extends Component {
                     {...this.props}
                     toggle={this.props.toggleProfile}
                     content={
-                        <div style={{textAlign:'center'}}>
-                            <Auth {...this.props}/>
+                        <div style={{ textAlign: 'center' }}>
+                            <Auth {...this.props} />
+                            {this.props.user.isValid && <EditProfile {...this.props} />}
                         </div>
                     } />
             </div>

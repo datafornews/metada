@@ -34,7 +34,7 @@ function fetchData(force) {
 
     if (fetch || force) {
         console.log('Getting data (Axios)...');
-        axios.get('https://oop-pro.herokuapp.com/public/data').then(
+        axios.get('https://oop-pro.herokuapp.com/data/').then(
             (response) => {
                 console.log('Success (getting data background)');
                 data = formatData(response.data);

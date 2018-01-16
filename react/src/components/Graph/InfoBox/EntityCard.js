@@ -23,7 +23,7 @@ const styles = theme => ({
     pos: {
         marginBottom: 12,
         color: theme.palette.text.secondary,
-    },
+    },  
 });
 
 const wikiCardDivStyle = {

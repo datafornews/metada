@@ -7,10 +7,10 @@ function updateData(component) {
 
     var ts2 = Math.round((new Date()).getTime() / 1000);
     var ts;
+    var checkEvery = 3600 * 24; // 1 day
     // element is the react component
     if (localStorage.dataTime) {
         ts = parseInt(localStorage.dataTime, 10);
-        var checkEvery = 20;//3600 * 24; // 1 day
     } else {
         ts = 0;
     }
@@ -18,13 +18,6 @@ function updateData(component) {
     if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
         localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
-        // if (localStorage.updateFromLocal && localStorage.updateFromLocal === 'true') {
-        //     const data = formatData(JSON.parse(localStorage.data));
-        //     component.props.setData(data);
-        //     component.props.makeDataAvailable();
-        //     localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + '';
-        //     localStorage.updateFromLocal = 'false';
-        // } else {
         Axios.get('https://oop-pro.herokuapp.com/public/update?timestamp=' + ts).then(
             (response) => {
                 if (response.data && (response.data.entities.length > 0 || response.data.shares.length >0)){

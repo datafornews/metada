@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
 import Switch from 'material-ui/Switch';
+import Grid from 'material-ui/Grid';
 
-const labelStyle = {
-    float: 'left',
-    textAlign: 'left',
-    paddingRight: '10px'
-}
-
-const switchStyle = {
-    float: 'right',
-    marginRight: '-14px'
-}
 
 const divStyle = {
-    margin: '10px 0px'
+    margin: '10px 0px',
+    display: 'inline-block'
 }
 
 
@@ -45,26 +37,18 @@ export default class ShowLegend extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <table style={{ margin: 'auto', maxWidth: '250px' }}>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div style={labelStyle}>
-                                    {this.props.translate('home.settings.showLegend')}
-                                    </div>
-                            </td>
-                            <td>
-                                <div style={switchStyle}>
-                                    <Switch
-                                        checked={this.state.checked}
-                                        onChange={this.handleChange}
-                                        aria-label="checked"
-                                    />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <Grid container spacing={16}>
+                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center' }}>
+                        {this.props.translate('home.settings.showLegend')}
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Switch
+                            checked={this.state.checked}
+                            onChange={this.handleChange}
+                            aria-label="checked"
+                        />
+                    </Grid>
+                </Grid>
             </ div>
         )
     }

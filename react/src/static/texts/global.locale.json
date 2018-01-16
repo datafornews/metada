@@ -68,6 +68,10 @@
             "showLegend": [
                 "Show legend in the Graph menu",
                 "L\u00e9gende dans le menu des Graphes"
+            ],
+            "showChips": [
+                "Suggest graphs to explore",
+                "Suggérer des graphes à découvrir"
             ]
         },
         "loadingData": [
@@ -383,6 +387,125 @@
             ]
         },
         "issue": {
+            "dialogTitle": [
+                "Issue with a Graph",
+                "Probl\u00e8me dans le Graphe"
+            ],
+            "dialogContentText": [
+                "Whether you notice something which is plain wrong or just a typo, report it to us! Make sure you include the name of the Graph you are currently looking at (the entity's name will be in bold font).",
+                "Que vous remarquiez quelque chose de compl\u00e8tement faux ou juste une petite erreur, dites-le nous! Pr\u00e9cisez bien le nom du Graphe o\u00f9 il y a une erreur: c'est le nom de l'entit\u00e9 \u00e9crite en gras."
+            ],
+            "form": [
+                "https://goo.gl/forms/Lf9fIFDyV1tGtmmr2",
+                "https://goo.gl/forms/t3xmZGEiuYiPPjKj1"
+            ],
+            "dialogContentText2": [
+                "Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)",
+                "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"
+            ],
+            "closeButton": [
+                "OK",
+                "OK"
+            ]
+        }
+    },
+    "contribute": {
+        "editEntity": {
+            "summaryHeading": [
+                "Edit Entity",
+                "Modifier une Entité"
+            ],
+            "label": {
+                "name": [
+                    "(Usual) Name",
+                    "Nom (usuel)"
+                ],
+                "long_name": [
+                    "Complete Name",
+                    "Nom complet"
+                ],
+                "other_groups": [
+                    "Other Companies",
+                    "Autres entreprises"
+                ],
+                "category": [
+                    "Category",
+                    "Catégorie"
+                ],
+                "website": [
+                    "Website",
+                    "Site Web"
+                ],
+                "wiki_link": [
+                    "Wikipedia",
+                    "Wikipedia"
+                ],
+                "source": [
+                    "Source",
+                    "Source"
+                ],
+                "choice": {
+                    "select": [
+                        "Select an Entity",
+                        "Sélectionnez une Entité"
+                    ],
+                    "create": [
+                        "Create Entity",
+                        "Créer une nouvelle Entité"
+                    ]
+                }
+            },
+            "help": {
+                "name": [
+                    "Usual name, for instance: BBC",
+                    "Nom usuel, par exemple: TMC"
+                ],
+                "long_name": [
+                    "Complete Name, for instance: British Broadcasting Corporation",
+                    "Nom complet, par exemple: Télévision Monte Carlo"
+                ],
+                "other_groups": [
+                    "Comma-separated list of other major companies controled by this entity but not relevant to the Graph",
+                    "Liste (séparée par une virgule) d'autres entreprises ou groupes contrôlés par cette entité mais qui ne sont pas pertinente pour le Graphe"
+                ],
+                "category": [
+                    "Individual (end owner no Entity owns it), Company (an intermediary node, it is owned and owns entities) or Media (an end company, the last in the chain of ownership)",
+                    "Individu (entité qui n'est pas elle-même contrôlée par une entité du Graphe), Compagnie (une entreprise intermédiaire qui est contrôlée et contrôle des entités) ou Média (entité qui est la dernière dans sa lignée de possession)"
+                ],
+                "website": [
+                    "The entity's Website",
+                    "Site Web de l'entité"
+                ],
+                "wiki_link": [
+                    "Link to the entity's Wikipedia article",
+                    "Lien vers l'article Wikipedia de l'entité"
+                ],
+                "source": [
+                    "This is the most important part of your contribution: be accurate and thourough! You HAVE to fill this part, mention any relevant info",
+                    "C'est la partie la plus importante de votre contribution: soyez concis mais précis. Vous DEVEZ remplir cette partie, mentionnez toute information qui vous semble pertinente"
+                ]
+            },
+            "options": {
+                "m": [
+                    "Media",
+                    "Média"
+                ],
+                "i": [
+                    "Individual",
+                    "Individu"
+                ],
+                "c": [
+                    "Company",
+                    "Compagnie"
+                ]
+            },
+            "buttons": {}
+        },
+        "editEdge": {
+            "summaryHeading": [
+                "Edit Edge",
+                "Modifier une Relation"
+            ],
             "dialogTitle": [
                 "Issue with a Graph",
                 "Probl\u00e8me dans le Graphe"
