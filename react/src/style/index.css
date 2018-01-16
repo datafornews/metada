@@ -1,0 +1,82 @@
+body {
+  margin: 20;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  font-weight: 200
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2em;
+  color: #3f51b5;
+}
+h2 {
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+strong{
+  font-weight: 500;
+}
+
+html {
+  background: #ECE9E6;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #ECE9E6, #FFFFFF);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, rgb(236, 233, 230), rgb(255, 255, 255));
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* height: 600px;
+  width: 800px; */
+}
+
+
+/* REACT-SPINNER */
+
+.react-spinner {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  left: 50%;
+}
+
+.react-spinner_bar {
+  -webkit-animation: react-spinner_spin 1.2s linear infinite;
+  -moz-animation: react-spinner_spin 1.2s linear infinite;
+  animation: react-spinner_spin 1.2s linear infinite;
+  border-radius: 5px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  width: 20%;
+  height: 7.8%;
+  top: -3.9%;
+  left: -10%;
+}
+
+@keyframes react-spinner_spin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@-moz-keyframes react-spinner_spin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@-webkit-keyframes react-spinner_spin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}

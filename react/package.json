@@ -1,0 +1,51 @@
+{
+    "private": true,
+    "scripts": {
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "start": "react-scripts start",
+        "push-extension": "react-scripts build && rm -rf ../Extension/ && mkdir ../Extension/ && cp -r ./build/* ../Extension/ && git add ../Extension/  && git commit -m 'update extension' && git push origin master ",
+        "push-extension-aws": "yarn push-extension && aws s3 sync ../Extension s3://oop-dev-build"
+    },
+    "dependencies": {
+        "autosuggest-highlight": "^3.1.1",
+        "axios": "^0.16.2",
+        "cytoscape": "^3.2.4",
+        "cytoscape-dagre": "^2.1.0",
+        "downshift": "^1.22.5",
+        "history": "^4.7.2",
+        "lodash": "^4.17.4",
+        "material-ui": "^1.0.0-beta.22",
+        "material-ui-icons": "^1.0.0-beta.17",
+        "react": "^16.0.0",
+        "react-autosuggest": "^9.3.2",
+        "react-dom": "^16.0.0",
+        "react-icons": "^2.2.7",
+        "react-localize-redux": "^2.13.0",
+        "react-markdown": "^2.5.0",
+        "react-redux": "^5.0.6",
+        "react-redux-form": "^1.16.2",
+        "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2",
+        "react-router-redux": "^5.0.0-alpha.8",
+        "react-scripts": "1.0.14",
+        "react-scroll": "^1.6.4",
+        "react-select": "^1.0.0-rc.10",
+        "react-spinner": "^0.2.7",
+        "redux": "^3.7.2",
+        "redux-form": "^7.2.0",
+        "redux-persist": "4.10.2",
+        "typeface-roboto": "^0.0.43",
+        "validator": "^9.1.2"
+    },
+    "version": "0.1.0",
+    "devDependencies": {
+        "eslint": "4.9.0",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-jsx-a11y": "^6.0.2",
+        "eslint-plugin-react": "^7.4.0"
+    },
+    "name": "create-oop"
+}
