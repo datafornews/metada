@@ -1,8 +1,8 @@
 {
-  "name" :"Open Ownership Graph",
+  "name" :"Metada",
   "manifest_version": 2,
   "version" :"1.0.1",
-  "description" :"À qui appartiennent les médias? Explorez le Graph pour en savoir plus!",
+  "description" :"À qui appartiennent les médias? Explorez le Graphe pour en savoir plus!",
   "browser_action": {
       "default_icon": "icon.png",
       "default_popup": "index.html"
