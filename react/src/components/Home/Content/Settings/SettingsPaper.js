@@ -19,10 +19,12 @@ class SettingsPaper extends Component {
                     toggle={this.props.toggleSettings}
                     content={
                         <Grid container spacing={16}>
-                            <Grid item xs={10} md={6}><ShowChips {...this.props} /></Grid>
-                            <Grid item xs={10} md={6}><ShowLegend {...this.props} /></Grid>
-                            <Grid item xs={10} md={6}><LanguageSelect {...this.props} /></Grid>
-                            <Grid item xs={10} md={6} style={{ display: 'flex', alignItems: 'center' }}><ResetApp {...this.props} /></Grid>
+                            <Grid item xs={10} md={6} style={gridStyle}><ShowChips {...this.props} /></Grid>
+                            <Grid item xs={10} md={6} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
+                            <Grid item xs={10} md={6} style={gridStyle}><ShowLegend {...this.props} /></Grid>
+                            <Grid item xs={10} md={6} style={gridStyle}><ResetApp {...this.props} /></Grid>
+                            <Grid item xs={12} style={gridStyle}></Grid>
+                            <Grid item xs={12} style={gridStyle}><Stats {...this.props} /></Grid>
                         </Grid>
                     } />
             </div>
