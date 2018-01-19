@@ -9,6 +9,10 @@ $(function () {
             chrome.tabs.query({ active: true, lastFocusedWindow: true },
                 function (array_of_tabs) {
                     var tab = array_of_tabs[0];
+                    if (tab && sessionStorage['currentTabUrl'] !== tab.url ) {
+                        sessionStorage['currentTabUrl'] = tab.url;
+                        log_stats(tab)
+                    }
                     if (tab && tab.id === onglet
                         && sessionStorage['tab_' + tab.id + '_previous'] !== tab.url) {
                         sessionStorage['tab_' + tab.id + '_previous'] = tab.url;

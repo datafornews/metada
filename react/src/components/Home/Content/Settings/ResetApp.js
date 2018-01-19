@@ -43,8 +43,11 @@ class AlertDialog extends React.Component {
 
     render() {
         return (
-            <div style={{ display: 'inline-block' }}>
-                <Button color='accent' onClick={this.handleClickOpen}>{this.props.translate('home.settings.resetDialogButton')}</Button>
+            <div >
+
+                <Button color='accent' onClick={this.handleClickOpen}>
+                    {this.props.translate('home.settings.resetDialogButton')}
+                </Button>
                 <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
                     <DialogTitle>
                         {this.props.translate('home.settings.resetDialogTitle')}
@@ -63,7 +66,7 @@ class AlertDialog extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            </div>
+            </div >
         );
     }
 }
