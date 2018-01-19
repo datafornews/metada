@@ -4,17 +4,10 @@ import ResetApp from './ResetApp';
 import ShowLegend from './ShowLegend';
 import ShowChips from './ShowChips';
 import HomePaper from '../../Paper/HomePaper'
+import Stats from './Stats';
 import Grid from 'material-ui/Grid';
 
-// const leftTdStyle = {
-//     width: '50%',
-//     textAlign: 'left'
-// }
-
-// const rightTdStyle = {
-//     ...leftTdStyle,
-//     textAlign: 'right'
-// }
+const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center' }
 
 class SettingsPaper extends Component {
 
