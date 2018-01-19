@@ -14,7 +14,7 @@ class Stats extends Component {
     componentWillMount() {
         const stats = localStorage.stats
         this.setState({
-            stats: stats || {};
+            stats: stats || {}
         })
     }
     
