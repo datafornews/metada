@@ -11,8 +11,11 @@ const styles = theme => ({
         overflowX: 'auto',
     },
     table: {
-        minWidth: 200,
+        minWidth: 100,
     },
+    cell: {
+        padding: "4px 24px 4px 24px"
+    }
 });
 
 function compare(a, b) {
@@ -93,22 +96,22 @@ class BasicTable extends React.Component {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Entity</TableCell>
-                        <TableCell numeric>Total Page Views</TableCell>
-                        <TableCell numeric>Last Month</TableCell>
-                        <TableCell numeric>Last Week</TableCell>
-                        <TableCell numeric>Total Proportion (%)</TableCell>
+                        <TableCell className={classes.cell}>Entity</TableCell>
+                        <TableCell className={classes.cell} numeric>Total Page Views</TableCell>
+                        <TableCell className={classes.cell} numeric>Last Month</TableCell>
+                        <TableCell className={classes.cell} numeric>Last Week</TableCell>
+                        <TableCell className={classes.cell} numeric>Total Proportion (%)</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {this.state.stats.map((n, k) => {
                         return (
                             <TableRow key={k}>
-                                <TableCell>{n.name}</TableCell>
-                                <TableCell numeric>{n.total}</TableCell>
-                                <TableCell numeric>{n.month}</TableCell>
-                                <TableCell numeric>{n.week}</TableCell>
-                                <TableCell numeric>{n.proportion}</TableCell>
+                                <TableCell className={classes.cell}>{n.name}</TableCell>
+                                <TableCell className={classes.cell} numeric>{n.total}</TableCell>
+                                <TableCell className={classes.cell} numeric>{n.month}</TableCell>
+                                <TableCell className={classes.cell} numeric>{n.week}</TableCell>
+                                <TableCell className={classes.cell} numeric>{n.proportion}</TableCell>
                             </TableRow>
                         );
                     })}
