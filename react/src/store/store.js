@@ -34,7 +34,7 @@ store.dispatch(setActiveLanguage(languageToUse));
 // Set Client type
 let clientType, isExtension;
 try{
-    isExtension = window.chrome.tabs !== undefined;
+    isExtension = window.browser.tabs !== undefined;
 } catch (error){
     //Not Chrome browser
     isExtension = false;

@@ -42,7 +42,7 @@ class Home extends React.Component {
   componentWillMount() {
     const component = this;
     if (this.props.clientType === 'extension') {
-      window.chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+      window.browser.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
         if (tabs.length === 0) {
           console.log('tabs.length is 0')
           return;
