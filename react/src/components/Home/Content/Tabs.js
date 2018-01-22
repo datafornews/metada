@@ -20,8 +20,8 @@ const styles = theme => ({
 });
 
 const iconStyle = {
-  width: "20px",
-  height: "20px"
+  width: "15px",
+  height: "15px"
 };
 
 const tabStyle = {
@@ -29,10 +29,10 @@ const tabStyle = {
     minWidth: '100px'
   },
   "mobile": {
-    minWidth: '100px'
+    minWidth: '80px'
   },
   "extension": {
-    minWidth: '140px'
+    minWidth: '80px'
   }
 };
 
@@ -44,11 +44,11 @@ const labelStyle = {
     fontSize: '0.7em'
   },
   "extension": {
-    fontSize: '0.7em'
+    fontSize: '0.5em'
   }
 };
 
-const scrollableTabsMinWidth = 630;
+const scrollableTabsMinWidth = 400;
 
 class HomeContentTabs extends React.Component {
   state = {
