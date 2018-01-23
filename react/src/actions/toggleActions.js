@@ -8,6 +8,12 @@ export function toggleSearchBar() {
     return {
         type: 'TOGGLE_SEARCH'
     };
+
+}
+export function toggleStats() {
+    return {
+        type: 'TOGGLE_STATS'
+    };
 }
 
 export function toggleHowItWorks() {

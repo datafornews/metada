@@ -11,6 +11,7 @@ import ProfileIcon from 'react-icons/lib/fa/space-shuttle';
 import LoginIcon from 'react-icons/lib/md/flight-land';
 import ContribIcon from 'react-icons/lib/md/fitness-center';
 import Typography from 'material-ui/Typography';
+import StatsIcon from 'react-icons/lib/fa/bar-chart';
 
 const styles = threme => ({
   root: {
@@ -96,8 +97,14 @@ class HomeContentTabs extends React.Component {
           "extension",
           ...tabs.slice(3)
         ];
+      } else if (tabs.indexOf("stats") === -1){
+        tabs = [
+          ...tabs.slice(0, 2),
+          "stats",
+          ...tabs.slice(2)
+        ];
       }
-    }
+    } 
 
     if (nextProps.user.isValid && tabs.indexOf("contrib") === -1) {
       tabs = [
@@ -105,7 +112,7 @@ class HomeContentTabs extends React.Component {
         "contrib",
         ...tabs.slice(2)
       ];
-    }
+    } 
 
     if (tabs.length !== this.state.tabs.length) {
       this.setState({
@@ -124,7 +131,8 @@ class HomeContentTabs extends React.Component {
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
       'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle} />,
-      'contrib': <ContribIcon style={iconStyle} />
+      'contrib': <ContribIcon style={iconStyle} />,
+      'stats': <StatsIcon style={iconStyle} />,
     };
 
     return (

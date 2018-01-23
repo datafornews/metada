@@ -5,6 +5,11 @@ function show(state = false, action) {
                 ...state,
                 about: !state.about
             };
+        case 'TOGGLE_STATS':
+            return {
+                ...state,
+                stats: !state.stats
+            };
         case 'TOGGLE_SEARCH':
             return {
                 ...state,

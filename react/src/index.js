@@ -50,6 +50,7 @@ const router = (
                         <Route exact path='/search' component={Home}></Route>
                         <Route exact path='/contrib' component={Home}></Route>
                         <Route exact path='/profile' component={Home}></Route>
+                        <Route exact path='/stats' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
                     </Switch>
                 </div>
