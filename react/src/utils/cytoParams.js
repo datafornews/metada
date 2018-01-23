@@ -131,7 +131,8 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
                 fontSize: v.data.id === sourceId ? '3em' : '2.5em',
                 color: colors[v.data.category],
                 borderOpacity: v.data.id === sourceId ? 1 : 0
-            }
+            },
+            grabbable: false
         }
     });
 
@@ -174,6 +175,8 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
             }
         ],
 
-        layout: layout
+        layout: layout,
+        minZoom: 0.4,
+        maxZoom: 2
     }
 };
