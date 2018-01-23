@@ -75,6 +75,11 @@ function show(state = false, action) {
                 }
             }
             return newState;
+        case 'TOGGLE_FTUX':
+            return {
+                ...state,
+                ftux: !state.ftux
+            };
 
         default:
             return state;
