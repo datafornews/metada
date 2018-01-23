@@ -1,5 +1,7 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
+import {Helmet} from "react-helmet";
+
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
@@ -85,6 +87,7 @@ class CytoContainer extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", this.allowScroll, false);
     document.removeEventListener("keyup", this.preventScroll, false);
+    this.props.show.ftux && this.props.toggleFtux();
   }
 
 
@@ -170,8 +173,14 @@ class CytoContainer extends React.Component {
       defaultStyle.marginTop = '20px'
     }
 
+    const id = this.props.match.params.entityId;
+    const entity = this.props.data.entities.ids[id];
+
     return (
       <div>
+        <Helmet>
+          <title>Metada - {entity.name}</title>
+        </Helmet>
         {
           this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar
             {...this.props}
