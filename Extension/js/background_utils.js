@@ -36,7 +36,7 @@ function check_website(data, url) {
 
 function count_tabs() {
     localStorage['numberTabsOpen'] = 0;
-    window.chrome.windows.getAll({ populate: true }, function (windows) {
+    window.browser.windows.getAll({ populate: true }, function (windows) {
         windows.forEach(function (window) {
             window.tabs.forEach(function (tab) {
                 localStorage['numberTabsOpen'] = parseInt(localStorage['numberTabsOpen']) + 1
@@ -52,6 +52,56 @@ function log_tab(onglet) {
     localStorage['currentTabIsComplete'] = onglet.status === "complete";
 
     notifyMe()
+}
+
+function log_stats(tab) {
+    get_data(function (data) {
+        const entity = check_website(data, tab.url);
+        if (entity) {
+            var stats;
+            const day = new Date().getDay();
+            if (localStorage.stats) {
+                stats = JSON.parse(localStorage.stats);
+                if (stats[entity.name]) {
+                    if (stats[entity.name].month.length === 30) {
+                        if (stats[entity.name].month[29].day === day) {
+                            stats[entity.name].month[29].count += 1;
+                        } else {
+                            let newMonth = stats[entity.name].month.slice(1);
+                            newMonth.push(
+                                { day: day, count: 1 }
+                            )
+                            stats[entity.name].month = newMonth;
+                        }
+                    } else {
+                        if (stats[entity.name].month[stats[entity.name].month.length - 1].day === day) {
+                            stats[entity.name].month[stats[entity.name].month.length - 1].count += 1;
+                        } else {
+                            stats[entity.name].month.push({ day: day, count: 1 });
+                        }
+                    }
+                    stats[entity.name].total += 1;
+                } else {
+                    stats[entity.name] = {
+                        month: [
+                            { day: day, count: 1 }
+                        ],
+                        total: 1
+                    }
+                }
+            } else {
+                stats = {};
+                stats[entity.name] = {
+                    month: [
+                        { day: day, count: 1 }
+                    ],
+                    total: 1
+                }
+            }
+            localStorage.stats = JSON.stringify(stats);
+        }
+    });
+
 }
 
 function setParents(data, entity, parents) {
@@ -122,8 +172,8 @@ function notification(data, entity) {
         type: 'basic',
     };
 
-    var notification = chrome.notifications.create(
-        '' + Math.random(), config, function(notifId){console.log(notifId)}
+    var notification = browser.notifications.create(
+        '' + Math.random(), config, function (notifId) { console.log(notifId) }
     );
 }
 
