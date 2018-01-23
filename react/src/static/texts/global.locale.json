@@ -444,6 +444,10 @@
             "closeButton": [
                 "OK",
                 "OK"
+            ],
+            "object": [
+                "(Include [Issue] in the object of your email)",
+                "(Incluez [Issue] dans l'objet de votre email)"
             ]
         }
     },
