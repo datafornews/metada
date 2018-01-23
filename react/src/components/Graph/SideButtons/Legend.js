@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'material-ui-icons/RadioButtonChecked';
 import Filter from 'material-ui-icons/FilterTiltShift';
+import SideElement from './SideElement';
 
 const colors = {
     m: '#3f51b5',
@@ -8,16 +9,19 @@ const colors = {
     i: 'rgb(1, 41, 71)'
 }
 
-const zoomStyle = {
-    fontSize: '0.6rem',
-    fontWeight: 300,
-}
 
 export default class Legend extends Component {
+
     render() {
-        return (
+
+        const title = this.props.translate('graph.sideButtons.legendTooltip');
+
+        const content = (
             <div style={{ paddingTop: '10px', fontSize: this.props.clientType === 'extension' ? '0.8rem' : '0.7rem' }}>
-                <table style={{ width: "150px" }}>
+                <table style={{ width: "150px" }}
+                    onMouseEnter={() => { this.setState({ open: true }) }}
+                    onMouseLeave={() => { this.setState({ open: false }) }}
+                >
                     <tbody>
                         <tr>
                             <td><Icon style={{ color: colors['i'] }} /></td>
@@ -41,9 +45,16 @@ export default class Legend extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <br/>
-                <div style={zoomStyle}>(press shift to zoom in and out)</div>
             </div>
-        )
+        );
+
+        return <SideElement
+            id="tooltip-Legend"
+            title={title}
+            placement="left"
+            content={content}
+            onClick={() => { }}
+            {...this.props}
+        />
     }
 }

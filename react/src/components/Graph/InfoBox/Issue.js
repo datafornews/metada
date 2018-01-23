@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
 import Dialog, {
     DialogActions,
     DialogContent,
@@ -11,6 +10,10 @@ import Dialog, {
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Icon from 'material-ui-icons/PriorityHigh';
+import Tooltip from 'material-ui/Tooltip';
+import Button from 'material-ui/Button';
+import { SideElement } from '../SideButtons/SideElement';
+
 
 const buttonPosition = {
     'browser': {
@@ -34,18 +37,21 @@ const issueButtonStyle = {
 
 class ResponsiveDialog extends React.Component {
     state = {
-        open: false,
-    };
+        dialogOpen: false,
+    }
 
     handleClickOpen = () => {
-        this.setState({ open: true });
-    };
+        this.setState({ dialogOpen: true });
+    }
 
     handleRequestClose = () => {
-        this.setState({ open: false });
-    };
+        this.setState({ dialogOpen: false });
+    }
 
     render() {
+
+        const title = this.props.translate('graph.sideButtons.issueTooltip')
+
         let { fullScreen } = this.props;
         if (this.props.clientType === 'extension' || window.innerWidth > 650) {
             fullScreen = false;
@@ -53,15 +59,23 @@ class ResponsiveDialog extends React.Component {
 
         return (
             <div style={buttonPosition[this.props.clientType]}>
-                <Button style={issueButtonStyle} onClick={this.handleClickOpen}><Icon style={{ color: '#e68931' }} /></Button>
+                <SideElement
+                    id="tooltip-Issue"
+                    title={title}
+                    placement="left"
+                    content={<Icon style={{ color: '#ff7543' }} />}
+                    onClick={this.handleClickOpen}
+                    {...this.props}
+                    button
+                />
                 <Dialog
                     fullScreen={fullScreen}
-                    open={this.state.open}
-                    onRequestClose={this.handleRequestClose}
+                    open={this.state.dialogOpen}
+                    onClose={this.handleRequestClose}
                 >
                     <DialogTitle>{this.props.translate('graph.issue.dialogTitle')}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
+                        <DialogContentText style={{ fontSize: '0.9rem' }}>
                             {this.props.translate('graph.issue.dialogContentText')}<br /><br />
                             Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
                             Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
@@ -69,7 +83,7 @@ class ResponsiveDialog extends React.Component {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleRequestClose} color="primary">
+                        <Button style={{ fontSize: '0.9rem' }} onClick={this.handleRequestClose} color="primary">
                             {this.props.translate('graph.issue.closeButton')}
                         </Button>
                     </DialogActions>

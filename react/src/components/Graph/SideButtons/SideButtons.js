@@ -6,6 +6,8 @@ import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
 import Legend from './Legend';
+import ShiftToScroll from './ShiftToScroll';
+
 
 const divStyle = {
     browser: {},
@@ -24,6 +26,7 @@ const divStyle = {
 
 
 class SideButtons extends Component {
+
     render() {
 
         if (!sessionStorage.graphHistory || !sessionStorage.location) {
@@ -68,6 +71,8 @@ class SideButtons extends Component {
                 </div>
                 <div style={legendDivStyle}>
                     {this.props.show.sideButtons && this.props.show.legend && <Legend {...this.props} />}
+                    <br/>
+                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && this.props.show.legend && <ShiftToScroll {...this.props} />}
                 </div>
             </div>
         );
