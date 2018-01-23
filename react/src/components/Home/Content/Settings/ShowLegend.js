@@ -3,7 +3,8 @@ import Switch from 'material-ui/Switch';
 
 const labelStyle = {
     float: 'left',
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: '0.8rem'
 }
 
 const switchStyle = {

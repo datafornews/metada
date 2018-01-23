@@ -45,7 +45,7 @@ class AlertDialog extends React.Component {
         return (
             <div >
 
-                <Button color='secondary' onClick={this.handleClickOpen} style={{fontSize:'1rem'}}>
+                <Button color='secondary' onClick={this.handleClickOpen} style={{fontSize:'0.8rem'}}>
                     {this.props.translate('home.settings.resetDialogButton')}
                 </Button>
                 <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
