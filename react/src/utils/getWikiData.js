@@ -8,6 +8,10 @@ export default async function (component, entity) {
         })
         return
     }
+    if (!entity.wiki_link) {
+        noArticle(component);
+        return;
+    }
     const wiki = entity.wiki_link.split('/');
     const pageTitle = wiki[wiki.length - 1];
 
