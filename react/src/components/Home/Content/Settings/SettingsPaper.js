@@ -18,10 +18,10 @@ class SettingsPaper extends Component {
                 toggle={this.props.toggleSettings}
                 content={
                     <Grid container spacing={16}>
-                        <Grid item xs={10} md={6} style={gridStyle}><ShowChips {...this.props} /></Grid>
-                        <Grid item xs={10} md={6} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
-                        <Grid item xs={10} md={6} style={gridStyle}><ShowLegend {...this.props} /></Grid>
-                        <Grid item xs={10} md={6} style={gridStyle}><ResetApp {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowChips {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowLegend {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ResetApp {...this.props} /></Grid>
                         <Grid item xs={12} style={gridStyle}></Grid>
                         {this.props.clientType === 'extension' && <Grid item xs={12} style={gridStyle}><Stats {...this.props} /></Grid>}
                     </Grid>
