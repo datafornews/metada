@@ -9,7 +9,8 @@ const selectStyle = {
   borderRadius: '0px',
   zIndex: 999,
   margin: 'auto',
-  marginBottom: '15px'
+  marginBottom: '15px',
+  fontSize: '1rem'
 };
 
 var searchBarDivStyleDefault = {

@@ -3,8 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-let typoStyle = {
-    fontSize: '1.2em',
+let defaultTypoStyle = {
+    fontSize: '0.8rem',
     textAlign: 'justify',
     textJustify: 'auto',
     fontWeight: 200,
@@ -13,15 +13,13 @@ let typoStyle = {
 
 const typoStyles = {
     'browser': {
-        ...typoStyle,
-        fontSize: '1em',
+        ...defaultTypoStyle,
     },
     'extension': {
-        ...typoStyle
+        ...defaultTypoStyle
     },
     'mobile': {
-        ...typoStyle,
-        fontSize: '0.8em',
+        ...defaultTypoStyle,
         padding: '20px'
     }
 }
@@ -43,6 +41,8 @@ class HomePaper extends Component {
         let browserWidth = navigator.userAgent.toLocaleLowerCase().indexOf('firefox') > -1 ?
             '-moz-available' : '-webkit-fill-available';
 
+        let typoStyle = { ...typoStyles[this.props.clientType] };
+
         if (this.props.clientType === 'browser') {
             typoStyle.padding = '50px 100px';
         }
@@ -54,8 +54,8 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <Paper style={{ width: browserWidth, margin:"15px auto 0px auto" }} className={classes.root} elevation={4}>
-                <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
+            <Paper style={{ width: browserWidth, margin: "15px auto 0px auto" }} className={classes.root} elevation={4}>
+                <Typography type="body1" style={typoStyle} component="div" >
                     {this.props.content}
                 </Typography>
             </Paper>

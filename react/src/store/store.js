@@ -10,6 +10,12 @@ import defaultState from './defaultState';
 
 export const history = createBrowserHistory();
 
+window.browser = (function () {
+    return window.msBrowser ||
+        window.browser ||
+        window.chrome;
+})();
+
 const middleware = routerMiddleware(history);
 
 const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
@@ -21,7 +27,7 @@ const store = createStore(combinedReducer, defaultState, enhancers);
 // Multi-language support
 
 let languageToUse = localStorage.getItem('activeLanguage');
-if (!languageToUse){
+if (!languageToUse) {
     languageToUse = navigator.language || navigator.userLanguage;
     languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
 }
@@ -33,15 +39,15 @@ store.dispatch(setActiveLanguage(languageToUse));
 
 // Set Client type
 let clientType, isExtension;
-try{
-    isExtension = window.chrome.tabs !== undefined;
-} catch (error){
+try {
+    isExtension = window.browser.tabs !== undefined;
+} catch (error) {
     //Not Chrome browser
     isExtension = false;
 }
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     clientType = 'mobile';
-} else if (isExtension){
+} else if (isExtension) {
     clientType = 'extension';
 } else {
     clientType = "browser";

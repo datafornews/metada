@@ -34,14 +34,16 @@ class LanguageSelect extends React.Component {
         return (
             <form className={classes.container} autoComplete="off">
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="age-simple">{this.props.translate('home.settings.languageButton')}</InputLabel>
+                    <InputLabel className={classes.inputLabel} htmlFor="age-simple">
+                        {this.props.translate('home.settings.languageButton')}
+                    </InputLabel>
                     <Select
                         value={this.props.currentLanguage}
-                        onChange={this.handleChange('age')}
+                        onChange={this.handleChange('lang')}
                         input={<Input id="set-language" />}
                     >
-                        <MenuItem value={'en'}>English</MenuItem>
-                        <MenuItem value={'fr'}>Français</MenuItem>
+                        <MenuItem style={{fontSize: '0.9rem'}} value={'en'}>English</MenuItem>
+                        <MenuItem style={{fontSize: '0.9rem'}} value={'fr'}>Français</MenuItem>
                     </Select>
                 </FormControl>
 

@@ -3,7 +3,7 @@ import Tooltip from 'material-ui/Tooltip'
 
 const defaultIntroStyle = {
     textAlign: 'justify',
-    lineHeight: '1.6em'
+    lineHeight: '1.6rem'
 }
 
 const introStyles = {
@@ -16,12 +16,12 @@ const introStyles = {
     },
     'extension': {
         ...defaultIntroStyle,
-        fontSize: '1.15em'
+        fontSize: '1.15rem'
     }
 }
 
 const tooltipDivStyle = {
-    fontSize: '1.3em',
+    fontSize: '1.3rem',
     textAlign: 'center',
     padding: '5px',
 };

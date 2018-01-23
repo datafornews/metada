@@ -11,7 +11,7 @@ const titleStyle = {
     },
     "mobile": {
         ...defaultTitleStyle,
-        fontSize: '0.7em',
+        fontSize: '0.7rem',
         margin: 'auto'
     },
     "extension": {
@@ -43,7 +43,7 @@ export default class Header extends Component {
             <div id='HomeHeader' style={{ ...this.props.style, ...parentDivstyle[this.props.clientType] }}>
                 <div style={titleStyle[this.props.clientType]}>
                     <h1>{title}</h1>
-                    <h2>{this.props.translate('home.subtitle')}</h2>
+                    <h4>{this.props.translate('home.subtitle')}</h4>
                 </div>
                 <HowItWorks {...this.props} />
             </div>

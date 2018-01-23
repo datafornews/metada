@@ -8,11 +8,15 @@ const colors = {
     i: 'rgb(1, 41, 71)'
 }
 
+const zoomStyle = {
+    fontSize: '0.6rem',
+    fontWeight: 300,
+}
 
 export default class Legend extends Component {
     render() {
         return (
-            <div style={{ paddingTop: '10px', fontSize: this.props.clientType === 'extension' ? '0.8em' : '0.7em' }}>
+            <div style={{ paddingTop: '10px', fontSize: this.props.clientType === 'extension' ? '0.8rem' : '0.7rem' }}>
                 <table style={{ width: "150px" }}>
                     <tbody>
                         <tr>
@@ -37,6 +41,8 @@ export default class Legend extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <br/>
+                <div style={zoomStyle}>(press shift to zoom in and out)</div>
             </div>
         )
     }
