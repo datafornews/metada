@@ -9,6 +9,14 @@ import Waiting from '../Waiting';
 
 class _Graph extends React.Component {
 
+  
+  componentWillMount() {
+    if (this.props.clientType === 'mobile' && this.props.show.ftux){
+      this.props.toggleFtux();
+    }
+  }
+  
+
   render() {
 
     return this.props.dataIsAvailable ?
