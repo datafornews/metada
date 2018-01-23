@@ -52,6 +52,12 @@ export function toggleLegend() {
     };
 }
 
+export function toggleFtux() {
+    return {
+        type: 'TOGGLE_FTUX'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'
