@@ -3,17 +3,16 @@ import Switch from 'material-ui/Switch';
 
 const labelStyle = {
     float: 'left',
-    textAlign: 'left',
-    paddingRight: '10px'
+    textAlign: 'left'
 }
 
 const switchStyle = {
-    float: 'right',
-    marginRight: '-14px'
+    float: 'left'
 }
 
 const divStyle = {
-    margin: '10px 0px'
+    display: "flex",
+    alignItems: 'center'
 }
 
 
@@ -45,26 +44,19 @@ export default class ShowLegend extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <table style={{ margin: 'auto', maxWidth: '250px' }}>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div style={labelStyle}>
-                                    {this.props.translate('home.settings.showLegend')}
-                                    </div>
-                            </td>
-                            <td>
-                                <div style={switchStyle}>
-                                    <Switch
-                                        checked={this.state.checked}
-                                        onChange={this.handleChange}
-                                        aria-label="checked"
-                                    />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div style={labelStyle}>
+                    {this.props.translate('home.settings.showLegend')}
+                </div>
+
+                <div style={switchStyle}>
+                    <Switch
+                        checked={this.state.checked}
+                        onChange={this.handleChange}
+                        aria-label="checked"
+                    />
+                </div>
+
             </ div>
         )
     }

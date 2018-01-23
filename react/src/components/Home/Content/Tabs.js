@@ -8,11 +8,12 @@ import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
+import Typography from 'material-ui/Typography';
 
-const styles = theme => ({
+const styles = threme => ({
   root: {
     flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
+    marginTop: threme.spacing.unit * 3,
   },
   indicator: {
     width: '100px'
@@ -26,7 +27,9 @@ const iconStyle = {
 
 const tabStyle = {
   "browser": {
-    minWidth: '100px'
+    minWidth: '100px',
+    minHeight: '30px',
+    height: "50px"
   },
   "mobile": {
     minWidth: '80px'
@@ -38,17 +41,17 @@ const tabStyle = {
 
 const labelStyle = {
   "browser": {
-    fontSize: '0.7em'
+    fontSize: '0.5rem'
   },
   "mobile": {
-    fontSize: '0.7em'
+    fontSize: '0.7rem'
   },
   "extension": {
-    fontSize: '0.5em'
+    fontSize: '0.5rem'
   }
 };
 
-const scrollableTabsMinWidth = 400;
+const scrollableTabsMinWidth = 500;
 
 class HomeContentTabs extends React.Component {
   state = {

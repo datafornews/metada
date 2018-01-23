@@ -105,7 +105,7 @@ function addOneLineBreak(string) {
     }
 }
 
-export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
+export function cytoParamsFromContainer(containerElement, cytoData, sourceId, isMobile) {
     var layout;
     if (cytoData.edges.length < 10) {
         const spacing = 0.8 * Math.pow(cytoData.edges.length, 0.08);
@@ -128,11 +128,11 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
                 widthPx: v.data.category === 's' ? '80px' : v.data.width + 100 + 'px',
                 selectedColor: v.data.id === sourceId ? colors[v.data.category] : 'green',
                 fontWeight: v.data.id === sourceId ? 'bolder' : 'normal',
-                fontSize: v.data.id === sourceId ? '3em' : '2.5em',
+                fontSize: v.data.id === sourceId ? '3rem' : '2.5rem',
                 color: colors[v.data.category],
                 borderOpacity: v.data.id === sourceId ? 1 : 0
             },
-            grabbable: false
+            grabbable: !isMobile
         }
     });
 
@@ -161,7 +161,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
                     'target-arrow-color': 'rgb(190, 190, 190)',
                     'curve-style': 'bezier', // haystack bezier segments unbundled-bezier
                     'label': 'data(label)',
-                    'font-size': '1em',
+                    'font-size': '1rem',
                     'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
                     'arrow-scale': 0.9

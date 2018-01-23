@@ -45,7 +45,7 @@ class AlertDialog extends React.Component {
         return (
             <div >
 
-                <Button color='accent' onClick={this.handleClickOpen}>
+                <Button color='secondary' onClick={this.handleClickOpen} style={{fontSize:'1rem'}}>
                     {this.props.translate('home.settings.resetDialogButton')}
                 </Button>
                 <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
@@ -53,7 +53,7 @@ class AlertDialog extends React.Component {
                         {this.props.translate('home.settings.resetDialogTitle')}
                     </DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
+                        <DialogContentText style={{fontSize:'0.9rem'}}>
                             {this.props.translate('home.settings.resetDialogContent')}
                         </DialogContentText>
                     </DialogContent>

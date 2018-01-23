@@ -5,14 +5,19 @@ body {
   font-weight: 200
 }
 
+
 h1 {
   font-weight: 300;
-  font-size: 2em;
+  font-size: 2rem;
   color: #3f51b5;
 }
 h2 {
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-weight: 400;
 }
 
 strong{

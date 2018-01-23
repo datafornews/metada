@@ -6,7 +6,7 @@ import HomePaper from '../../Paper/HomePaper'
 import Stats from './Stats';
 import Grid from 'material-ui/Grid';
 
-const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '0.7em' }
+const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '0.9rem' }
 
 class SettingsPaper extends Component {
 
@@ -17,11 +17,11 @@ class SettingsPaper extends Component {
                 toggle={this.props.toggleSettings}
                 content={
                     <Grid container spacing={8}>
-                        <Grid item xs={4} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
-                        <Grid item xs={4} style={gridStyle}><ShowLegend {...this.props} /></Grid>
-                        <Grid item xs={4} style={gridStyle}><ResetApp {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowLegend {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ResetApp {...this.props} /></Grid>
                         <Grid item xs={12} style={gridStyle}></Grid>
-                        <Grid item xs={12} style={gridStyle}><Stats {...this.props} /></Grid>
+                        {this.props.clientType === 'extension' && <Grid item xs={12} style={gridStyle}><Stats {...this.props} /></Grid>}
 
                     </Grid>
                 } />

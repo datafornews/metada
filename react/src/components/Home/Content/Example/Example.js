@@ -3,6 +3,10 @@ import Chip from './Chip';
 import logGraph from '../../../../utils/logGraph'
 
 
+const style = {
+    fontSize: '0.9rem'
+}
+
 export default class Example extends Component {
     constructor(props) {
         super(props)
@@ -71,7 +75,9 @@ export default class Example extends Component {
     render() {       
         return (
             <div>
-                {this.props.translate('home.example')} <br />
+                <div style={style}>
+                {this.props.translate('home.example')}
+                </div>
                 {this.state.content}
             </div>
         )

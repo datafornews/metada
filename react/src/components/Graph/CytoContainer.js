@@ -43,7 +43,26 @@ class CytoContainer extends React.Component {
       update: false,
       changeWiki: false,
       focus: 0,
+      scroll: false
     };
+  }
+
+  allowScroll = (event) => {
+    if (event.keyCode === 16) {
+      this.setState({
+        scroll: true
+      });
+      this.cy.userZoomingEnabled(true);
+    }
+  }
+
+  preventScroll = (event) => {
+    if (event.keyCode === 16) {
+      this.setState({
+        scroll: false
+      })
+      this.cy.userZoomingEnabled(false);
+    }
   }
 
   focusSearchBar = () => {
@@ -52,15 +71,23 @@ class CytoContainer extends React.Component {
     })
   }
 
-  
+
   componentWillMount() {
     const location = parseInt(this.props.match.params.entityId, 10);
+    document.addEventListener("keydown", this.allowScroll, false);
+    document.addEventListener("keyup", this.preventScroll, false);
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
     }
   }
-  
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.allowScroll, false);
+    document.removeEventListener("keyup", this.preventScroll, false);
+  }
+
+
 
   renderCytoscapeElement = () => {
     console.log('rendering.')
@@ -90,7 +117,9 @@ class CytoContainer extends React.Component {
       console.timeEnd('      Data Cyto');
       console.time('      Render Cyto');
     }
-    const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData, entity.id));
+    var cyElement = document.getElementById('cy');
+    const isMobile = this.props.clientType === 'mobile'
+    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, isMobile));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
         'tap',
@@ -114,8 +143,9 @@ class CytoContainer extends React.Component {
         console.timeEnd('Full Cyto');
       }
     });
-
+    cy.userZoomingEnabled(this.state.scroll);
     this.cy = cy;
+
   }
 
   componentDidMount() {
@@ -124,7 +154,7 @@ class CytoContainer extends React.Component {
     });
     this.renderCytoscapeElement()
   }
-  
+
   componentDidUpdate(prevProps, prevState) {
     const location = parseInt(this.props.match.params.entityId, 10);
     if (location !== this.props.currentDisplay) {
@@ -154,7 +184,7 @@ class CytoContainer extends React.Component {
           focusSearchBar={this.focusSearchBar}
           reRenderGraph={this.renderCytoscapeElement}
         />
-        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
+        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} cytoScroll={this.state.scroll}/>
       </div>
     );
   }
