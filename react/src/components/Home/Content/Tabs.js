@@ -31,7 +31,7 @@ const tabStyle = {
   "browser": {
     minWidth: '100px',
     minHeight: '30px',
-    height: "50px"
+    height: "60px"
   },
   "mobile": {
     minWidth: '100px'

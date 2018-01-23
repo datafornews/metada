@@ -4,7 +4,8 @@ import Grid from 'material-ui/Grid';
 
 const labelStyle = {
     float: 'left',
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: '0.8rem'
 }
 
 const switchStyle = {

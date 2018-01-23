@@ -10,7 +10,7 @@ const selectStyle = {
   zIndex: 999,
   margin: 'auto',
   marginBottom: '15px',
-  fontSize: '1rem'
+  fontSize: '0.8rem'
 };
 
 var searchBarDivStyleDefault = {
