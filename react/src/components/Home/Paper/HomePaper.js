@@ -44,7 +44,7 @@ class HomePaper extends Component {
         let typoStyle = {...typoStyles[this.props.clientType]};
 
         if (this.props.clientType === 'browser') {
-            typoStyle.padding = '50px 100px';
+            typoStyle.padding = '0px 10%';
         }
 
         if (this.props.clientType === 'mobile') {
