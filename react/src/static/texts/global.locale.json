@@ -102,11 +102,11 @@
                 "Cette Extension affichera une Notification quand vous serez sur le site d'un m\u00e9dia qu'elle connait."
             ],
             "aw": [
-                "Click on \"About\" to know more about Metada and on \"Extension\" to know about its Chrome Extension",
-                "Cliquez sur \"\u00c0 propos\" pour en savoir plus sur notre projet, et sur \"Extension\" ci-dessous pour en savoir plus sur son extension Chrome."
+                "Click on \"About\" to know more about Metada and on \"Extension\" to know about its Browser Extension (Chrome & Firefox)",
+                "Cliquez sur \"\u00c0 propos\" pour en savoir plus sur notre projet, et sur \"Extension\" ci-dessous pour en savoir plus sur son Extension pour Chrome et Firefox."
             ],
             "am": [
-                "You are currently on the mobile version of Metada Chrome Extension. We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). Click on \"About\" to know more about Metada and on \"Extension\" to know about its Chrome Extension",
+                "You are currently on the mobile version of Metada Browser Extension. We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). Click on \"About\" to know more about Metada and on \"Extension\" to know about its Chrome Extension",
                 "Vous \u00eates actuellement sur la version mobile de l'Extension Chrome de Metada. Nous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). Cliquez sur \"\u00c0 propos\" pour en savoir plus sur notre projet, et sur \"Extension\" ci-dessous pour en savoir plus sur son extension Chrome."
             ],
             "b": [
@@ -130,8 +130,8 @@
                 "\u00c0 tout moment vous pouvez rechercher une entit\u00e9 dans le Graphe et explorer son \"Graphe Complet\", c'est \u00e0 dire voir toutes les entreprises que cette entit\u00e9 poss\u00e8de, ainsi que celles qui la contr\u00f4lent. Attention cependant, seuls les acteurs principaux sont pr\u00e9sents dans le Graphe (vous pouvez imaginer la complexit\u00e9 absurde d'afficher tous les actionnaires d'une entreprise cot\u00e9e)."
             ],
             "g": [
-                "On the graph, major shareholders are at the top, in dark blue. Intermediate Companies are in red and end Media are in purple. The entity whose graph you are currently seeing is in bold. When you click on an Entity, it becomes green if you can see it's Complete Graph.",
-                "Dans le graphe, les actionnaires principaux sont en bleu fonc\u00e9, en haut. Les entreprises interm\u00e9diaires sont en rouge et les m\u00e9dias en violet. L'entit\u00e9 dont vous \u00eates en train de voir le graphe est \u00e9crite en gras. Lorsque vous cliquez sur une entit\u00e9, si son nom devient vert alors vous pouvez voir son Graphe Complet."
+                "On the graph, major shareholders are at the top, in dark blue. Intermediate Companies are in red and end Media are in purple. The entity whose graph you are currently seeing is bordered with dashes. When you click on an Entity, it becomes green if you can see it's Complete Graph.",
+                "Dans le graphe, les actionnaires principaux sont en bleu fonc\u00e9, en haut. Les entreprises interm\u00e9diaires sont en rouge et les m\u00e9dias en violet. L'entit\u00e9 dont vous \u00eates en train de voir le graphe est entourée de pointillés. Lorsque vous cliquez sur une entit\u00e9, si son nom devient vert alors vous pouvez voir son Graphe Complet."
             ],
             "closeButton": [
                 "Got it!",
