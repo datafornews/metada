@@ -177,6 +177,5 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, is
 
         layout: layout,
         minZoom: 0.2,
-        maxZoom: 1.4
-    }
+        maxZoom: 1.4    }
 };
