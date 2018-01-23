@@ -15,6 +15,7 @@ import Settings from './Content/Settings/Settings';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
+import Stats from './Content/Stats/Stats';
 import Example from './Content/Example/Example';
 
 import updateData from '../../utils/updateData';
@@ -73,6 +74,7 @@ class Home extends React.Component {
         'contact': false,
         'settings': false,
         'extension': false,
+        'stats': false,
         'searchBar': true
       });
     } else {
@@ -132,6 +134,7 @@ class Home extends React.Component {
           <Contact {...this.props} />
           <Settings {...this.props} />
           <Extension {...this.props} />
+          <Stats {...this.props} />
         </div>
       </div>
     );

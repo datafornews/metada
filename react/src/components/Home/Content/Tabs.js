@@ -8,6 +8,7 @@ import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
+import StatsIcon from 'react-icons/lib/fa/bar-chart';
 
 const styles = threme => ({
   root: {
@@ -86,11 +87,17 @@ class HomeContentTabs extends React.Component {
 
   render() {
 
-    let tabs = ["search", "about", "contact", "settings"];
+    let tabs = ["search", "settings", "contact", "about"];
     if (this.props.clientType !== "extension") {
       tabs = [
         ...tabs.slice(0, 2),
         "extension",
+        ...tabs.slice(2)
+      ];
+    } else {
+      tabs = [
+        ...tabs.slice(0, 2),
+        "stats",
         ...tabs.slice(2)
       ];
     }
@@ -103,6 +110,7 @@ class HomeContentTabs extends React.Component {
       'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
+      'stats': <StatsIcon style={iconStyle} />,
     };
 
     return (
