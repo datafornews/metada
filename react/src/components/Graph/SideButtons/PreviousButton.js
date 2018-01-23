@@ -3,16 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import UndoIcon from 'material-ui-icons/Undo';
-import Tooltip from 'material-ui/Tooltip';
 import sideButtonStyle from './sideButtonStyle';
+import SideElement from './SideElement';
 
 const styles = theme => (sideButtonStyle);
 
 class PreviousButton extends React.Component {
 
-
+    
     handleClick = () => {
         const history = JSON.parse(sessionStorage.graphHistory);
         let location = JSON.parse(sessionStorage.location);
@@ -29,24 +28,17 @@ class PreviousButton extends React.Component {
 
     render() {
         const disabled = JSON.parse(sessionStorage.location) <= 0;
-        
-        return disabled ?
-            (<Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
-                <UndoIcon className={this.props.classes.icon} />
-            </Button>)
-            :
-            (
-                <Tooltip
-                    id="tooltip-ResetButton"
-                    title={this.props.translate('graph.sideButtons.previousTooltip')}
-                    placement="bottom"
-                    style={{ textAlign: 'center' }}
-                >
-                    <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
-                        <UndoIcon className={this.props.classes.icon} />
-                    </Button>
-                </Tooltip>
-            );
+
+        return <SideElement
+            id="tooltip-PreviousButton"
+            title={this.props.translate('graph.sideButtons.previousTooltip')}
+            placement="right"
+            content={<UndoIcon className={this.props.classes.icon} />}
+            onClick={this.handleClick}
+            disabled={disabled}
+            {...this.props}
+            button
+        />
     }
 }
 

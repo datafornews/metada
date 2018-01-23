@@ -3,14 +3,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import ResetIcon from 'material-ui-icons/Autorenew';
-import Tooltip from 'material-ui/Tooltip';
 import sideButtonStyle from './sideButtonStyle';
+import SideElement from './SideElement';
 
 const styles = theme => (sideButtonStyle);
 
 class HomeButton extends React.Component {
+
 
     handleClick = () => {
         this.props.reRenderGraph();
@@ -18,18 +18,15 @@ class HomeButton extends React.Component {
 
     render() {
 
-        return (
-            <Tooltip
-                id="tooltip-ResetButton"
-                title={this.props.translate('graph.sideButtons.resetTooltip')}
-                placement="bottom"
-                style={{ textAlign: 'center' }}
-            >
-                <Button raised fab className={this.props.classes.button} onClick={this.handleClick}>
-                    <ResetIcon className={this.props.classes.icon} />
-                </Button>
-            </Tooltip>
-        );
+        return <SideElement
+            id="tooltip-ResetButton"
+            title={this.props.translate('graph.sideButtons.resetTooltip')}
+            placement="right"
+            content={<ResetIcon className={this.props.classes.icon} />}
+            onClick={this.handleClick}
+            {...this.props}
+            button
+        />
     }
 }
 

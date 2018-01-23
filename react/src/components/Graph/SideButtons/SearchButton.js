@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
-import Tooltip from 'material-ui/Tooltip';
 import Scroll from 'react-scroll';
 import sideButtonStyle from './sideButtonStyle';
+import SideElement from './SideElement';
 
 const styles = theme => (sideButtonStyle);
 
@@ -30,23 +29,20 @@ class SearchButton extends React.Component {
 
     render() {
         const { classes } = this.props
-        return (
-            <Tooltip
-                id="tooltip-SearchButton"
-                title={
-                    this.props.show.searchBar ?
-                        this.props.translate('graph.sideButtons.searchTooltipDisabled')
-                        :
-                        this.props.translate('graph.sideButtons.searchTooltip')
-                }
-                placement="bottom"
-                className={classes.tooltip}
-            >
-                <Button raised fab className={classes.button} onClick={this.handleClick}>
-                    <SearchIcon className={classes.icon} />
-                </Button>
-            </Tooltip>
-        );
+        return <SideElement
+            id="tooltip-SearchButton"
+            title={
+                this.props.show.searchBar ?
+                    this.props.translate('graph.sideButtons.searchTooltipDisabled')
+                    :
+                    this.props.translate('graph.sideButtons.searchTooltip')
+            }
+            placement="right"
+            content={<SearchIcon className={classes.icon} />}
+            onClick={this.handleClick}
+            {...this.props}
+            button
+        />
     }
 }
 

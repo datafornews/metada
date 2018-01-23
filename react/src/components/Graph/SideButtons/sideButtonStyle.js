@@ -1,7 +1,7 @@
 const style = {
     button: {
-        height: '50px',
-        width: '50px',
+        height: '30px',
+        width: '30px',
         display: 'block',
         margin: '15px 20px',
         verticalAlign: 'middle'
