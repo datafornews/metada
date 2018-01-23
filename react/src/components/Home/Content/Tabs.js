@@ -34,10 +34,12 @@ const tabStyle = {
     height: "60px"
   },
   "mobile": {
-    minWidth: '100px'
+    minWidth: '50px',
+    height: "60px"
   },
   "extension": {
-    minWidth: '140px'
+    minWidth: '80px',
+    height: "60px"
   }
 };
 
@@ -46,7 +48,7 @@ const labelStyle = {
     fontSize: '0.5rem'
   },
   "mobile": {
-    fontSize: '0.7rem'
+    fontSize: '0.5rem'
   },
   "extension": {
     fontSize: '0.5rem'
