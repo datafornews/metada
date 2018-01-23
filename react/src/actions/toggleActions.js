@@ -1,4 +1,4 @@
-export function toggle(value){
+export function toggle(value) {
     return {
         type: 'TOGGLE_' + value.toUpperCase()
     }
@@ -73,6 +73,12 @@ export function toggleContrib() {
 export function toggleEditGraph() {
     return {
         type: 'TOGGLE_EDITGRAPH'
+    }
+}
+
+export function toggleFtux() {
+    return {
+        type: 'TOGGLE_FTUX'
     };
 }
 
@@ -82,7 +88,7 @@ export function toggleFocusSearchBar() {
     };
 }
 
-export function closeAll(){
+export function closeAll() {
     return {
         type: 'CLOSE_ALL'
     };
