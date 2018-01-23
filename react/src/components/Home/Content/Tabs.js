@@ -8,7 +8,6 @@ import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
-import Typography from 'material-ui/Typography';
 
 const styles = threme => ({
   root: {
@@ -32,10 +31,12 @@ const tabStyle = {
     height: "60px"
   },
   "mobile": {
-    minWidth: '80px'
+    minWidth: '50px',
+    height: "60px"
   },
   "extension": {
-    minWidth: '80px'
+    minWidth: '80px',
+    height: "60px"
   }
 };
 
@@ -44,7 +45,7 @@ const labelStyle = {
     fontSize: '0.5rem'
   },
   "mobile": {
-    fontSize: '0.7rem'
+    fontSize: '0.5rem'
   },
   "extension": {
     fontSize: '0.5rem'
