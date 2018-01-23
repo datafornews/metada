@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import { check_website } from '../../utils/backgroundUtils';
+import {Helmet} from "react-helmet";
 
 // import Scroll from 'react-scroll';
 
@@ -114,8 +115,14 @@ class Home extends React.Component {
 
 
   render() {
+
+    const location = this.props.location.pathname.split('/')[1] || 'search';
+
     return (
       <div>
+        <Helmet>
+          <title>{this.props.translate('titles.' + location)}</title>
+        </Helmet>
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
         <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
