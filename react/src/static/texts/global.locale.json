@@ -1,8 +1,30 @@
 {
-    "test": [
-        "test_en",
-        "text_fr"
-    ],
+    "titles": {
+        "search": [
+            "Metada - Search",
+            "Metada - Rechercher"
+        ],
+        "about": [
+            "Metada - About",
+            "Metada - À Propos"
+        ],
+        "settings": [
+            "Metada - Settings",
+            "Metada - Paramètres"
+        ],
+        "contact": [
+            "Metada - Contact",
+            "Metada - Contact"
+        ],
+        "profile": [
+            "Metada - Profile",
+            "Metada - Profil"
+        ],
+        "extension": [
+            "Metada - Extension",
+            "Metada - Extension"
+        ]
+    },
     "home": {
         "subtitle": [
             "The Open MetaData Project: gathering metadata about our world.",
@@ -313,9 +335,21 @@
                 "Go home",
                 "Retour \u00e0 l'Accueil"
             ],
+            "legendTooltip": [
+                "Hide this legend in the Settings",
+                "Désactivez cette légende dans vos Paramètres"
+            ],
+            "issueTooltip": [
+                "Something's wrong ?",
+                "Quelque chose ne va pas?"
+            ],
+            "shiftTooltip": [
+                "Want to zoom in or out?",
+                "(Dé-)Zoomez sur le Graphe!"
+            ],
             "searchTooltip": [
                 "Search the Graph",
-                "Rechercher dans le Graphe"
+                "Rechercher une entité"
             ],
             "searchTooltipDisabled": [
                 "Use the Search Bar at the top!",
@@ -340,6 +374,10 @@
             "menuTooltip": [
                 "Menu",
                 "Menu"
+            ],
+            "shift": [
+                " + scroll to zoom in and out",
+                " + molette pour (dé)-zoomer"
             ],
             "legend": {
                 "m": [
