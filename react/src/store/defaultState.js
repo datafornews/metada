@@ -3,7 +3,8 @@ const defaultState = {
     dataIsAvailable: false,
     show: {
         howItWorks: true,
-        legend: true
+        legend: true,
+        ftux: true
     },
     currentDisplay: -1,
     infoBox: {
