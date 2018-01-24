@@ -1,6 +1,6 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
@@ -147,6 +147,12 @@ class CytoContainer extends React.Component {
       }
     });
     cy.userZoomingEnabled(this.state.scroll);
+    cy.on('mouseover', 'node', function (evt) {
+      document.body.style.cursor = 'pointer';
+    });
+    cy.on('mouseout', 'node', function (evt) {
+      document.body.style.cursor = 'default';
+    });
     this.cy = cy;
 
   }
@@ -193,7 +199,7 @@ class CytoContainer extends React.Component {
           focusSearchBar={this.focusSearchBar}
           reRenderGraph={this.renderCytoscapeElement}
         />
-        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} cytoScroll={this.state.scroll}/>
+        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} cytoScroll={this.state.scroll} />
       </div>
     );
   }
