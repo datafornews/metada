@@ -10,7 +10,6 @@ import Dialog, {
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Icon from 'material-ui-icons/PriorityHigh';
-import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 import { SideElement } from '../SideButtons/SideElement';
 
@@ -30,10 +29,6 @@ const buttonPosition = {
     }
 }
 
-const issueButtonStyle = {
-    width: '10px',
-    minWidth: '10px'
-};
 
 class ResponsiveDialog extends React.Component {
     state = {
