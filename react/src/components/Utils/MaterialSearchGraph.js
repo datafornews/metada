@@ -48,10 +48,11 @@ const styles = theme => ({
         color: theme.palette.text.disabled,
     },
     open: {
-        height: 200,
         overflowX: 'hidden',
         overflowY: 'scroll',
-        marginBottom: '8px'
+        marginBottom: '8px',
+        position: 'relative',
+        zIndex: 1000
     },
     closed: {
         height: 0
@@ -109,11 +110,12 @@ function renderSuggestion(params) {
 }
 
 function renderSuggestionsContainer(options) {
-    const { containerProps, children, classes } = options;
+    const { containerProps, children, classes, height } = options;
     const paper = (
         <Paper
             {...containerProps}
             className={classes.open}
+            style={{ height }}
             square
         >
             {children}
@@ -187,7 +189,7 @@ class IntegrationAutosuggest extends React.Component {
     render() {
         const { classes, theme, onChange, onInputValueChange, placeholder, suggestions, propsValue } = this.props;
         return (
-            <div style={{ width: '100%' }}>
+            <div style={{ width: '100%', height: '50px' }}>
                 <Downshift
                     onChange={onChange}
                     onStateChange={this.handleStateChange}
@@ -226,7 +228,8 @@ class IntegrationAutosuggest extends React.Component {
                                                     selectedItem
                                                 }),
                                             ),
-                                            classes
+                                            classes,
+                                            height: 150
                                         })
                                         : null}
                                 </div>
