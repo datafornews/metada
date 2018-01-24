@@ -70,7 +70,7 @@ class Login extends Component {
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
-                    onRequestClose={this.handleRequestClose}
+                    onClose={this.handleRequestClose}
                 >
                     <DialogTitle>{this.props.translate('home.profile.login.button')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>

@@ -81,7 +81,7 @@ class Register extends Component {
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
-                    onRequestClose={this.handleRequestClose}
+                    onClose={this.handleRequestClose}
                 >
                     <DialogTitle>{this.props.translate('home.profile.registerTitle')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>

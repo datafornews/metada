@@ -69,7 +69,7 @@ class EditProfile extends Component {
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
-                    onRequestClose={this.handleRequestClose}
+                    onClose={this.handleRequestClose}
                 >
                     <DialogTitle>{this.props.translate('home.profile.edit.title')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
