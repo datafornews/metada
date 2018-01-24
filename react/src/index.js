@@ -18,6 +18,14 @@ import Header from './components/Header/Header';
 
 import './style/index.css';
 
+
+window.browser = (function () {
+    return window.msBrowser ||
+      window.browser ||
+      window.chrome;
+  })();
+  
+
 const defaultStyle = {
 
 };
@@ -50,6 +58,7 @@ const router = (
                         <Route exact path='/search' component={Home}></Route>
                         <Route exact path='/contrib' component={Home}></Route>
                         <Route exact path='/profile' component={Home}></Route>
+                        <Route exact path='/contact' component={Home}></Route>
                         <Route exact path='/stats' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
                     </Switch>
@@ -63,7 +72,7 @@ ReactDOM.render(router, document.getElementById('root'));
 
 let isExtension;
 try{
-    isExtension = window.chrome.tabs !== undefined;
+    isExtension = window.browser.tabs !== undefined;
 } catch (error){
     //Not Chrome browser
     isExtension = false;

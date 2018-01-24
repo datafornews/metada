@@ -1,3 +1,10 @@
+window.browser = (function () {
+    return window.msBrowser ||
+        window.browser ||
+        window.chrome;
+})();
+
+
 fetchData();
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-110264616-1']);
@@ -15,11 +22,15 @@ $(function () {
     localStorage["newProfile"] = false;
     console.log('Running Background JS');
 
-    chrome.tabs.onUpdated.addListener(function (onglet) {
+    window.browser.tabs.onUpdated.addListener(function (onglet) {
         if (!isNaN(onglet)) {
-            chrome.tabs.query({ active: true, lastFocusedWindow: true },
+            window.browser.tabs.query({ active: true, lastFocusedWindow: true },
                 function (array_of_tabs) {
                     var tab = array_of_tabs[0];
+                    if (tab && sessionStorage['currentTabUrl'] !== tab.url) {
+                        sessionStorage['currentTabUrl'] = tab.url;
+                        log_stats(tab)
+                    }
                     if (tab && tab.id === onglet
                         && sessionStorage['tab_' + tab.id + '_previous'] !== tab.url) {
                         sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
@@ -30,14 +41,14 @@ $(function () {
         };
     });
 
-    chrome.tabs.onCreated.addListener(function (tab) {
+    window.browser.tabs.onCreated.addListener(function (tab) {
         sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
         log_tab(tab);
         count_tabs()
     });
 
 
-    chrome.tabs.onRemoved.addListener(function (tab) {
+    window.browser.tabs.onRemoved.addListener(function (tab) {
         count_tabs();
         if (localStorage['numberTabsOpen'] === "0") {
             localStorage['currentTabUrl'] = "";

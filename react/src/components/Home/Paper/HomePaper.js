@@ -41,7 +41,7 @@ class HomePaper extends Component {
         let browserWidth = navigator.userAgent.toLocaleLowerCase().indexOf('firefox') > -1 ?
             '-moz-available' : '-webkit-fill-available';
 
-        let typoStyle = { ...typoStyles[this.props.clientType] };
+        let typoStyle = {...typoStyles[this.props.clientType]};
 
         if (this.props.clientType === 'browser') {
             typoStyle.padding = '0px 10%';
@@ -54,7 +54,7 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <Paper style={{ width: browserWidth, margin: "15px auto 0px auto" }} className={classes.root} elevation={4}>
+            <Paper style={{ width: browserWidth }} className={classes.root} elevation={4}>
                 <Typography type="body1" style={typoStyle} component="div" >
                     {this.props.content}
                 </Typography>

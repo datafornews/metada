@@ -36,7 +36,7 @@ function check_website(data, url) {
 
 function count_tabs() {
     localStorage['numberTabsOpen'] = 0;
-    window.chrome.windows.getAll({ populate: true }, function (windows) {
+    window.browser.windows.getAll({ populate: true }, function (windows) {
         windows.forEach(function (window) {
             window.tabs.forEach(function (tab) {
                 localStorage['numberTabsOpen'] = parseInt(localStorage['numberTabsOpen']) + 1
@@ -172,7 +172,7 @@ function notification(data, entity) {
         type: 'basic',
     };
 
-    var notification = chrome.notifications.create(
+    var notification = window.browser.notifications.create(
         '' + Math.random(), config, function (notifId) { console.log(notifId) }
     );
 }

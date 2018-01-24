@@ -24,8 +24,8 @@ const styles = threme => ({
 });
 
 const iconStyle = {
-  width: "20px",
-  height: "20px"
+  width: "15px",
+  height: "15px"
 };
 
 const tabStyle = {
@@ -118,7 +118,7 @@ class HomeContentTabs extends React.Component {
       this.setState({
         tabs
       });
-    }
+    } 
   }
 
   render() {
