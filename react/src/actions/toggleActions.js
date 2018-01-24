@@ -1,4 +1,4 @@
-export function toggle(value){
+export function toggle(value) {
     return {
         type: 'TOGGLE_' + value.toUpperCase()
     }
@@ -8,8 +8,14 @@ export function toggleSearchBar() {
     return {
         type: 'TOGGLE_SEARCH'
     };
-
 }
+
+export function toggleChips() {
+    return {
+        type: 'TOGGLE_CHIPS'
+    };
+}
+
 export function toggleStats() {
     return {
         type: 'TOGGLE_STATS'
@@ -70,7 +76,7 @@ export function toggleFocusSearchBar() {
     };
 }
 
-export function closeAll(){
+export function closeAll() {
     return {
         type: 'CLOSE_ALL'
     };
