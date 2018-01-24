@@ -21,6 +21,7 @@ export default async function (component, entity) {
     let queryUrl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&titles=";
     queryUrl += escapedTitle + "&sites=enwiki|frwiki&origin=*";
 
+    // console.log('Wikidata URL', queryUrl);
 
     try {
         const response = await fetch(queryUrl);
@@ -28,15 +29,26 @@ export default async function (component, entity) {
         // console.log(entity.name, data);
         if (data.entities) {
             const wikiEntities = data.entities;
+            // console.log('Wikientities', wikiEntities);
 
             let key, str;
             for (let k of Object.keys(wikiEntities)) {
                 str = '' + k;
                 if (str.length > 3) {
                     key = k;
-                    break;
+                    if (wikiEntities[k].descriptions
+                        &&
+                        wikiEntities[k].descriptions.en
+                        &&
+                        wikiEntities[k].descriptions.en.value !== "Wikipedia disambiguation page"
+                        &&
+                        wikiEntities[k].descriptions.en.value !== "Wikimedia disambiguation page") {
+                        break;
+                    }
                 }
             }
+
+            // console.log('Key', key);
 
             if (key === undefined) {
                 noArticle(component);
@@ -44,12 +56,17 @@ export default async function (component, entity) {
             }
 
             const wikiEntity = wikiEntities[key];
+            // console.log('wikiEntity', wikiEntity);
             if (wikiEntity) {
                 const lang = component.props.currentLanguage;
+                // console.log('lang', lang);
                 const langLink = wikiEntity.sitelinks[lang + 'wiki']
+                // console.log('LangLink', langLink);
                 if (langLink) {
                     let query_url = 'https://' + lang + '.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
-                    query_url += langLink.title;
+                    query_url += encodeURIComponent(langLink.title);
+                    query_url += '&redirects=1';
+                    // console.log('Wikipedia URL', query_url);
                     getExtract(component, query_url, entity.id)
                 } else {
                     noArticle(component);
