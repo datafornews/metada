@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid';
 
 
 const divStyle = {
-    margin: '10px 0px',
+    // margin: '10px 0px',
     display: 'inline-block'
 }
 
@@ -37,11 +37,11 @@ export default class ShowChips extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <Grid container spacing={16}>
-                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem' }}>
+                <Grid container spacing={0}>
+                    <Grid item xs={10} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem' }}>
                         {this.props.translate('home.settings.showChips')}
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
                         <Switch
                             checked={this.state.checked}
                             onChange={this.handleChange}
