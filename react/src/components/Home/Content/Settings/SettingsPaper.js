@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LanguageSelect from './LanguageSelect';
 import ResetApp from './ResetApp';
 import ShowLegend from './ShowLegend';
+import ShowChips from './ShowChips';
 import HomePaper from '../../Paper/HomePaper'
 import Grid from 'material-ui/Grid';
 
@@ -18,6 +19,7 @@ class SettingsPaper extends Component {
                     <Grid container spacing={8}>
                         <Grid item xs={12} sm={6} md={4} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
                         <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowLegend {...this.props} /></Grid>
+                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowChips {...this.props} /></Grid>
                         <Grid item xs={12} sm={6} md={4} style={gridStyle}><ResetApp {...this.props} /></Grid>
                     </Grid>
                 } />
