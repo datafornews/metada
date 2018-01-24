@@ -263,9 +263,9 @@ class EditEntityForm extends Component {
                 <Grid container spacing={16}>
                     <Grid item xs={12}> {choice} </Grid>
                     {this.state.radio === "modify" && <Grid container spacing={16}>
-                        <Grid item xs={0} sm={1} md={3} />
+                        <Grid item xs={12} sm={1} md={3} />
                         <Grid item xs={12} sm={10} md={6} style={{ marginBottom: '8px' }}> {selectEntity} </Grid>
-                        <Grid item xs={0} sm={1} md={3} />
+                        <Grid item xs={12} sm={1} md={3} />
                     </Grid>}
                     {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {name} </Grid>}
                     {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {category} </Grid>}
@@ -284,7 +284,7 @@ class EditEntityForm extends Component {
             form={this.props.editEntityForm.forms}
             buttonText={'Entity Submit Text'}
             model={'editEntityForm.entity'}
-            errorsLocation={'graph.editEntity.errors'}
+            errorsLocation={'errors'}
             onSubmit={this.handleSubmit}
             fields={grid}
             reset={<Button onClick={this.reset}>Reset Form</Button>}
