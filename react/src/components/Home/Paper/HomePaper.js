@@ -29,7 +29,6 @@ const styles = theme => ({
         padding: 30,
         marginTop: theme.spacing.unit * 3,
         display: 'inline-block',
-        marginBottom: '30px'
     }),
 });
 
