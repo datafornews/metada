@@ -203,7 +203,7 @@ function notifyMe() {
             else if (!current_session && current_local) {
                 sessionStorage[current_name] = 1;
                 localStorage[current_name] = parseInt(current_local) + 1;
-                notification(entity)
+                notification(data, entity)
             }
             else if (!current_session && !current_local) {
                 sessionStorage['current_' + entity.name] = 1;
