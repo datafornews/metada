@@ -60,7 +60,7 @@ function show(state = false, action) {
                 ...state
             }
             for (var i in state) {
-                if (i !== 'legend'){
+                if (i !== 'legend' && i !== 'chips'){
                     newState[i] = false;
                 }
             }
