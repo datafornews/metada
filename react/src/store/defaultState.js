@@ -4,6 +4,7 @@ const defaultState = {
     show: {
         howItWorks: true,
         legend: true,
+        chips: true,
         ftux: true
     },
     currentDisplay: -1,

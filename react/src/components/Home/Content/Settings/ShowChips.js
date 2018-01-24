@@ -38,7 +38,7 @@ export default class ShowChips extends Component {
         return (
             <div style={divStyle} >
                 <Grid container spacing={16}>
-                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem' }}>
                         {this.props.translate('home.settings.showChips')}
                     </Grid>
                     <Grid item xs={4}>

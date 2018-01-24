@@ -90,6 +90,10 @@
             "showLegend": [
                 "Show legend in the Graph menu",
                 "L\u00e9gende dans le menu des Graphes"
+            ],
+            "showChips": [
+                "Suggest graphs to explore",
+                "Suggérer des graphes à découvrir"
             ]
         },
         "loadingData": [

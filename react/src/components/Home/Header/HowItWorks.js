@@ -55,7 +55,7 @@ class ResponsiveDialog extends React.Component {
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
         >
           <DialogTitle>{this.props.translate('home.intro.dialogButton')}</DialogTitle>
           <DialogContent>
