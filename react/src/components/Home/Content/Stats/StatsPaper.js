@@ -5,7 +5,6 @@ import StatsTable from './StatsTable';
 class ContactPaper extends Component {
 
     render() {
-        const extra = this.props.clientType === 'extension' ? this.props.translate('home.contactNewLink') : '';
         return (
             <HomePaper
                 {...this.props}
