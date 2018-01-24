@@ -103,7 +103,7 @@ function getExtract(component, queryUrl, entityId) {
         console.log('Get Wiki Javascript Caught Error', error)
         component.setState(
             {
-                extract: component.translate('graph.wiki.jsError')
+                extract: component.translate('errors.jsError')
             }
         );
     })

@@ -109,7 +109,7 @@ class RegisterForm extends React.Component {
                             }
                         </div>
 
-                        {this.state.submitError && this.props.translate('home.profile.errors.' + this.state.submitError)}
+                        {this.state.submitError && this.props.translate('errors.' + this.state.submitError)}
                     </Grid>
                 </Grid>
             </Form>

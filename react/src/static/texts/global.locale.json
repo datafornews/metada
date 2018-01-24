@@ -178,6 +178,10 @@
             "login": [
                 "Log in",
                 "S'inscrire"
+            ],
+            "contrib": [
+                "Contribute",
+                "Contribuer"
             ]
         },
         "extensionPaperMd": [
@@ -197,46 +201,6 @@
                 "You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ",
                 "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "
             ],
-            "registerErrors": {
-                "submit": {
-                    "invalidForm": [
-                        "The form is not valid.",
-                        "Formulaire d'inscription invalide."
-                    ],
-                    "emailExists": [
-                        "This email address is already associated with an account.",
-                        "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."
-                    ],
-                    "usernameExists": [
-                        "This username is taken.",
-                        "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."
-                    ],
-                    "error": [
-                        "Server-side error. Sorry, we're fixing this. Retry soon!",
-                        "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."
-                    ]
-                },
-                "form": {
-                    "invalidEmail": [
-                        "Invalid email address",
-                        "Adresse mail invalide"
-                    ],
-                    "passwordTooShort": [
-                        "The password is too short. Use at least 6 characters",
-                        "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"
-                    ],
-                    "passwordsDontMatch": [
-                        "The passwords don't match",
-                        "Les mots de passe ne correspondent pas"
-                    ]
-                }
-            },
-            "loginErrors": {
-                "invalidUser": [
-                    "Invalid Email address or password",
-                    "Adresse mail ou mot de passe invalide"
-                ]
-            },
             "resend": {
                 "confirm": [
                     "Confirm you account by clicking on the link in the email we sent you.",
@@ -251,6 +215,24 @@
                 "Logout",
                 "D\u00e9connexion"
             ],
+            "edit": {
+                "button": [
+                    "Edit Profile",
+                    "Modifier le Profil"
+                ],
+                "password": [
+                    "Password",
+                    "Mot de passe"
+                ],
+                "confirmPassword": [
+                    "Confirm Password",
+                    "Confirmer le Mot de passe"
+                ],
+                "oldPassword": [
+                    "Mot de passe actuel",
+                    "Current password"
+                ]
+            },
             "login": {
                 "button": [
                     "Log in",
@@ -276,43 +258,37 @@
             "label": [
                 "Fristname ",
                 "Pr\u00e9nom "
-            ],
-            "errors": {}
+            ]
         },
-        "lastName": {
+        "last_name": {
             "label": [
                 "Lastname ",
                 "Nom "
-            ],
-            "errors": {}
+            ]
         },
         "email": {
             "label": [
                 "Email address * ",
                 "Adresse mail * "
-            ],
-            "errors": {}
+            ]
         },
         "password": {
             "label": [
                 "Password * ",
                 "Mot de passe * "
-            ],
-            "errors": {}
+            ]
         },
         "confirmPassword": {
             "label": [
                 "Confirm password * ",
                 "Confirmez le mot de passe * "
-            ],
-            "errors": {}
+            ]
         },
         "form": {
             "label": [
                 "Login ",
                 "Inscription "
             ],
-            "errors": {},
             "submit": [
                 "Submit ",
                 "Go! "
@@ -422,10 +398,6 @@
             "cannotConnect": [
                 "Could not connect to Wikipedia",
                 "Connexion \u00e0 Wikipedia impossible"
-            ],
-            "jsError": [
-                "Internal error. Sorry :(",
-                "Erreur interne. D\u00e9sol\u00e9 :("
             ]
         },
         "issue": {
@@ -577,5 +549,75 @@
                 "(Incluez [Issue] dans l'objet de votre email)"
             ]
         }
+    },
+    "errors": {
+        "jsError": [
+            "Internal error. Sorry :(",
+            "Erreur interne. D\u00e9sol\u00e9 :("
+        ],
+        "serverError": [
+            "Server-side error. Sorry, we're fixing this. Retry soon!",
+            "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."
+        ],
+        "invalidUser": [
+            "Invalid Email address or password",
+            "Adresse mail ou mot de passe invalide"
+        ],
+        "invalidForm": [
+            "The form is not valid.",
+            "Formulaire d'inscription invalide."
+        ],
+        "emailExists": [
+            "This email address is already associated with an account.",
+            "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."
+        ],
+        "usernameExists": [
+            "This username is taken.",
+            "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."
+        ],
+        "invalidEmail": [
+            "Invalid email address",
+            "Adresse mail invalide"
+        ],
+        "passwordTooShort":[
+            "The password is too short. Use at least 6 characters",
+            "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"
+        ],
+        "passwordsDontMatch":[
+            "The passwords don't match",
+            "Les mots de passe ne correspondent pas"
+        ],
+        "noUser": [
+            "Invalid User, Log In again",
+            "Utilisateur invalide, connectez-vous à nouveau"
+        ],
+        "wrongPassword": [
+            "Wrong password",
+            "Mot de passe invalide"
+        ],
+        "blacklisted": [
+            "Invalid authentification, log in again",
+            "Authentification invalide, connectez-vous à nouveau"
+        ],
+        "expired": [
+            "Expired authentification: log in again",
+            "Authentification expirée: connectez-vous à nouveau"
+        ],
+        "invalid": [
+            "Invalid authentification: log in again",
+            "Authentification invalide: connectez-vous à nouveau"
+        ],
+        "malformed": [
+            "Authentification issue",
+            "Erreur d'authentification"
+        ],
+        "noAuthHeader": [
+            "Request error",
+            "Erreur de requête"
+        ],
+        "userNotConfirmed": [
+            "Your email address is not confirmed yet. Check your spams or send a new confirmation email.",
+            "Votre adresse mail n'est pas confirmée. Vérifiez vos spams ou envoyez un nouveau mail de confirmation"
+        ]
     }
 }
