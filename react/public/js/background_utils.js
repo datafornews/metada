@@ -257,6 +257,3 @@ function parse_long_url(url) {
     }
     return path_name.length <= 1 ? new_url : new_url + '/' + path_name
 }
-
-url = "https://www.tf1.fr/tmc/les-mysteres-de-l-amour";
-check_website(data, url)
