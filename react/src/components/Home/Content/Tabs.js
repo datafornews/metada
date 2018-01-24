@@ -18,8 +18,7 @@ const styles = threme => ({
     marginTop: threme.spacing.unit * 3,
   },
   indicator: {
-    width: '80px'
-  }
+    minWidth: '20px'  }
 });
 
 const iconStyle = {
@@ -29,33 +28,33 @@ const iconStyle = {
 
 const tabStyle = {
   "browser": {
-    minWidth: '100px',
     minHeight: '30px',
     height: "60px"
   },
   "mobile": {
-    minWidth: '50px',
     height: "60px"
   },
   "extension": {
-    minWidth: '80px',
     height: "60px"
   }
 };
 
 const labelStyle = {
   "browser": {
-    fontSize: '0.5rem'
+    fontSize: '0.5rem',
+    padding: '0px'
   },
   "mobile": {
-    fontSize: '0.5rem'
+    fontSize: '0.5rem',
+    padding: '0px'
   },
   "extension": {
-    fontSize: '0.5rem'
+    fontSize: '0.5rem',
+    padding: '0px'
   }
 };
 
-const scrollableTabsMinWidth = 500;
+const scrollableTabsMinWidth = 550;
 
 class HomeContentTabs extends React.Component {
   state = {

@@ -8,8 +8,14 @@ export function toggleSearchBar() {
     return {
         type: 'TOGGLE_SEARCH'
     };
-
 }
+
+export function toggleChips() {
+    return {
+        type: 'TOGGLE_CHIPS'
+    };
+}
+
 export function toggleStats() {
     return {
         type: 'TOGGLE_STATS'

@@ -13,10 +13,10 @@ const styles = theme => ({
     },
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 120,
+        minWidth: 100,
     },
     selectEmpty: {
-        marginTop: theme.spacing.unit * 2,
+        marginTop: theme.spacing.unit,
     },
 });
 

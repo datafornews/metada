@@ -6,21 +6,40 @@ import ShowChips from './ShowChips';
 import HomePaper from '../../Paper/HomePaper'
 import Grid from 'material-ui/Grid';
 
-const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '0.9rem' }
+const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '0.9rem', padding: '5px 20px' }
 
 class SettingsPaper extends Component {
 
     render() {
+
+        const gridItems = this.props.clientType === 'mobile' ?
+            [<LanguageSelect {...this.props} />,
+            <ShowChips {...this.props} />,
+            <ShowLegend {...this.props} />,
+            <ResetApp {...this.props} />]
+            :
+            [<LanguageSelect {...this.props} />,
+            <ShowChips {...this.props} />,
+            <ResetApp {...this.props} />,
+            <ShowLegend {...this.props} />];
+
         return (
             <HomePaper
                 {...this.props}
                 toggle={this.props.toggleSettings}
                 content={
-                    <Grid container spacing={16}>
-                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowChips {...this.props} /></Grid>
-                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><LanguageSelect {...this.props} /></Grid>
-                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ShowLegend {...this.props} /></Grid>
-                        <Grid item xs={12} sm={6} md={4} style={gridStyle}><ResetApp {...this.props} /></Grid>
+                    <Grid container spacing={40}>
+                        {
+                            gridItems.map(
+                                (gridItem, k) => {
+                                    return (
+                                        <Grid key={k} item xs={12} sm={6} style={gridStyle}>
+                                            {gridItem}
+                                        </Grid>
+                                    );
+                                }
+                            )
+                        }
                     </Grid>
                 } />
         );
