@@ -10,7 +10,6 @@ import ExtensionIcon from 'react-icons/lib/go/package';
 import ProfileIcon from 'react-icons/lib/fa/space-shuttle';
 import LoginIcon from 'react-icons/lib/md/flight-land';
 import ContribIcon from 'react-icons/lib/md/fitness-center';
-import Typography from 'material-ui/Typography';
 import StatsIcon from 'react-icons/lib/fa/bar-chart';
 
 const styles = threme => ({

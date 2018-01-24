@@ -9,16 +9,6 @@ import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import { isInRange, isPositiveNumber } from "../../../../../utils/formValidators";
 
 
-const leftTdStyle = {
-    // width: '45%',
-    textAlign: 'left'
-}
-
-const rightTdStyle = {
-    ...leftTdStyle,
-    textAlign: 'right'
-}
-
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -171,7 +161,7 @@ class EditEdgeForm extends Component {
             form={this.props.editEdgeForm.forms}
             buttonText={'Edge Submit Text'}
             model={'editEdgeForm.edge'}
-            errorsLocation={'graph.editEdge.errors'}
+            errorsLocation={'errors'}
             onSubmit={this.handleSubmit}
             fields={grid}
             reset={<Button onClick={this.reset}>Reset Form</Button>}
