@@ -10,13 +10,18 @@ const iconStyle = {
 export default class Logout extends Component {
 
     handleClick = (event) => {
-        this.props.userLogOut()
+        this.props.userLogOut();
+        if (this.props.clientType === 'extension') {
+            window.browser.runtime.reload();
+        } else {
+            window.location.reload();
+        }
     }
 
     render() {
         return (
             <div>
-                <Button color='accent' onClick={this.handleClick}>
+                <Button color='secondary' onClick={this.handleClick}>
                     {this.props.translate('home.profile.logout')} &nbsp; <Icon style={iconStyle} />
                 </Button>
             </div>
