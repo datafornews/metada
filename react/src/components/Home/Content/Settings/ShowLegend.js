@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 import Switch from 'material-ui/Switch';
 import Grid from 'material-ui/Grid';
 
-const labelStyle = {
-    float: 'left',
-    textAlign: 'left',
-    fontSize: '0.8rem'
-}
-
-const switchStyle = {
-    float: 'left'
-}
 
 const divStyle = {
     display: "flex",
@@ -47,7 +38,7 @@ export default class ShowLegend extends Component {
         return (
             <div style={divStyle} >
                 <Grid container spacing={16}>
-                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid item xs={8} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem' }}>
                         {this.props.translate('home.settings.showLegend')}
                     </Grid>
                     <Grid item xs={4}>
