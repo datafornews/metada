@@ -6,7 +6,7 @@ import logGraph from '../../../utils/logGraph';
 
 
 const iconStyle = {
-  height: '30px',
+  height: '20px',
   width: '30px'
 }
 
@@ -17,7 +17,7 @@ class InfoBoxEntity extends React.Component {
     const entity = this.props.data.entities.ids[
       this.props.idToDisplay
     ];
-    
+
     logGraph(entity.id);
     this.props.history.push(`/graph/${entity.id}`);
   };
@@ -27,9 +27,10 @@ class InfoBoxEntity extends React.Component {
       this.props.idToDisplay
     ];
     let graphButton;
+    const name = entity.name.length < 11 || entity.name.split(' ').length == 1 ? entity.name : entity.name.slice(0, 10) + '...'
     if (entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
-      graphButton = (<Button style={{ color: 'green' }} onClick={this.handleClick}>
-        {this.props.translate('graph.seeGraphButton')} &nbsp; &nbsp;<Timeline style={iconStyle}/>
+      graphButton = (<Button style={{ color: 'green', fontSize: '0.8rem' }} onClick={this.handleClick}>
+        {this.props.translate('graph.seeGraphButton') + ' (' + name + ')'} &nbsp;<Timeline style={iconStyle} />
       </Button>);
     } else {
       graphButton = undefined;
