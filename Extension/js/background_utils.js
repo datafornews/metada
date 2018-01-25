@@ -19,18 +19,59 @@ function get_data(next) {
 }
 
 function check_website(data, url) {
-    var e;
-    for (var entity in data.entities.ids) {
-        e = data.entities.ids[entity];
+    var e, website, entity, entityId, simplifiedCurrentUrl;
+    var foundEntities = [];
+    for (entityId in data.entities.ids) {
+        e = data.entities.ids[entityId];
         if (e.website) {
-            var website = parse_url(e.website);
+            website = parse_url(e.website);
             if (url.indexOf(website) !== -1) {
-                console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + e.name);
-                return e
+                foundEntities.push(e);
             }
         }
     }
-    return false
+
+    // console.log(foundEntities);
+
+    if (foundEntities.length > 1) {
+        let parser;
+        let shortest = {
+            pathName: ' '.repeat(100),
+            entity: null
+        };
+
+        for (entity of foundEntities) {
+            if (entity.website) {
+
+                parser = document.createElement('a');
+                parser.href = entity.website;
+                if (parser.pathname.length < shortest.pathName.length) {
+                    shortest = {
+                        pathName: parser.pathname,
+                        entity: entity
+                    }
+                }
+
+
+                simplifiedCurrentUrl = parse_long_url(url);
+                // console.log('Parsed URL', simplifiedCurrentUrl, entity.website);
+                if (entity.website.indexOf(simplifiedCurrentUrl) !== -1) {
+                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
+                    return entity;
+                }
+            }
+        }
+        if (shortest.entity) {
+            console.log('Found ' + shortest.entity.website + ' in ' + url.slice(0, 30) + ' -> ' + shortest.entity.name);
+        }
+        return shortest.entity
+    } else if (foundEntities.length === 1) {
+        entity = foundEntities[0];
+        console.log('Found ' + website + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
+        return entity;
+    }
+
+    return null;
 }
 
 
@@ -45,16 +86,18 @@ function count_tabs() {
     });
 }
 
-function log_tab(onglet) {
+function log_tab(onglet, foundEntity) {
+
+
     localStorage['currentTabUrl'] = onglet.url;
     localStorage['currentTabTitle'] = onglet.title;
     localStorage['currentTabDomain'] = parse_url(onglet.url);
     localStorage['currentTabIsComplete'] = onglet.status === "complete";
 
-    notifyMe()
+    notifyMe(foundEntity)
 }
 
-function log_stats(tab) {
+function log_stats(tab, loggAndCount) {
     get_data(function (data) {
         const entity = check_website(data, tab.url);
         if (entity) {
@@ -99,6 +142,11 @@ function log_stats(tab) {
                 }
             }
             localStorage.stats = JSON.stringify(stats);
+            if (loggAndCount) {
+                sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
+                log_tab(tab, entity);
+                count_tabs()
+            }
         }
     });
 
@@ -164,33 +212,36 @@ function notification(data, entity) {
     } else {
         body = ' appartient à ';
     }
-    body = entity.name + body + getOwners(data, entity).join(', ');
+    // body = entity.name + body + getOwners(data, entity).join(', ');
+    body = getOwners(data, entity).join(', ');
     let config = {
         iconUrl: '/icon.png',
         message: body,
-        title: 'Open Ownership Project',
+        title: '(Metada)  ' + entity.name,
         type: 'basic',
     };
 
-    var notification = browser.notifications.create(
+    var notification = window.browser.notifications.create(
         '' + Math.random(), config, function (notifId) { console.log(notifId) }
     );
 }
 
 
-function notifyMe() {
+function notifyMe(foundEntity) {
 
 
     // browser allows notifications
     get_data(function (data) {
 
-        var entity = check_website(data, localStorage['currentTabUrl']);
-
-        var current_name = 'current_' + entity.name;
-        var current_session = sessionStorage[current_name];
-        var current_local = localStorage[current_name];
+        const entity = typeof foundEntity === 'undefined' ?
+            check_website(data, localStorage['currentTabUrl'])
+            :
+            foundEntity;
 
         if (entity) {
+            var current_name = 'current_' + entity.name;
+            var current_session = sessionStorage[current_name];
+            var current_local = localStorage[current_name];
             // the website is known
             if (current_session && current_local) {
                 sessionStorage[current_name] = parseInt(current_session) + 1;
@@ -203,7 +254,7 @@ function notifyMe() {
             else if (!current_session && current_local) {
                 sessionStorage[current_name] = 1;
                 localStorage[current_name] = parseInt(current_local) + 1;
-                notification(entity)
+                notification(data, entity)
             }
             else if (!current_session && !current_local) {
                 sessionStorage['current_' + entity.name] = 1;
@@ -226,4 +277,17 @@ function parse_url(url) {
         new_url = new_url.substring(4, new_url.length)
     }
     return new_url
+}
+
+function parse_long_url(url) {
+    var parser = document.createElement('a');
+    parser.href = url;
+    var new_url = parser.hostname;
+    var path_name = parser.pathname;
+    path_name = path_name.split('/')[1];
+
+    if (new_url.indexOf("www.") === 0) {
+        new_url = new_url.substring(4, new_url.length)
+    }
+    return path_name.length <= 1 ? new_url : new_url + '/' + path_name
 }

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
 
+
 class WikiCard extends Component {
     constructor(props) {
         super(props);
@@ -11,12 +12,12 @@ class WikiCard extends Component {
         }
     }
 
-    
+
     componentDidMount() {
         const entity = this.props.data.entities.ids[this.props.infoBox.data];
         getWikiData(this, entity);
     }
-    
+
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.infoBox.data === this.props.infoBox.data) {
@@ -31,10 +32,22 @@ class WikiCard extends Component {
     }
 
     render() {
+        let extractStyle;
+        if (this.props.clientType === 'browser') {
+            extractStyle = {
+                height: '180px',
+                overflowY: 'scroll'
+            }
+        } else {
+            extractStyle = {
+                position: 'inherit'
+            }
+        }
+
         return (
-            <span>
+            <div style={extractStyle}>
                 {this.state.extract}
-            </span>
+            </div>
         );
     }
 }

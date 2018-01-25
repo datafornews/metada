@@ -19,31 +19,55 @@ function get_data(next) {
 }
 
 function check_website(data, url) {
-    var e, website, entity;
-    var entities = [];
-    for (entity in data.entities.ids) {
-        e = data.entities.ids[entity];
+    var e, website, entity, entityId, simplifiedCurrentUrl;
+    var foundEntities = [];
+    for (entityId in data.entities.ids) {
+        e = data.entities.ids[entityId];
         if (e.website) {
             website = parse_url(e.website);
             if (url.indexOf(website) !== -1) {
-                entities.push(e);
+                foundEntities.push(e);
             }
         }
     }
 
-    if (entities.length > 1) {
-        for (entity of entities) {
+    // console.log(foundEntities);
+
+    if (foundEntities.length > 1) {
+        let parser;
+        let shortest = {
+            pathName: ' '.repeat(100),
+            entity: null
+        };
+
+        for (entity of foundEntities) {
             if (entity.website) {
-                website = parse_long_url(url);
-                if (entity.website.indexOf(website) !== -1) {
-                    console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
+
+                parser = document.createElement('a');
+                parser.href = entity.website;
+                if (parser.pathname.length < shortest.pathName.length) {
+                    shortest = {
+                        pathName: parser.pathname,
+                        entity: entity
+                    }
+                }
+
+
+                simplifiedCurrentUrl = parse_long_url(url);
+                // console.log('Parsed URL', simplifiedCurrentUrl, entity.website);
+                if (entity.website.indexOf(simplifiedCurrentUrl) !== -1) {
+                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
                     return entity;
                 }
             }
         }
-    } else if (entities.length === 1) {
-        entity = entities[0];
-        console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
+        if (shortest.entity) {
+            console.log('Found ' + shortest.entity.website + ' in ' + url.slice(0, 30) + ' -> ' + shortest.entity.name);
+        }
+        return shortest.entity
+    } else if (foundEntities.length === 1) {
+        entity = foundEntities[0];
+        console.log('Found ' + website + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
         return entity;
     }
 
@@ -62,16 +86,18 @@ function count_tabs() {
     });
 }
 
-function log_tab(onglet) {
+function log_tab(onglet, foundEntity) {
+
+
     localStorage['currentTabUrl'] = onglet.url;
     localStorage['currentTabTitle'] = onglet.title;
     localStorage['currentTabDomain'] = parse_url(onglet.url);
     localStorage['currentTabIsComplete'] = onglet.status === "complete";
 
-    notifyMe()
+    notifyMe(foundEntity)
 }
 
-function log_stats(tab) {
+function log_stats(tab, loggAndCount) {
     get_data(function (data) {
         const entity = check_website(data, tab.url);
         if (entity) {
@@ -116,6 +142,11 @@ function log_stats(tab) {
                 }
             }
             localStorage.stats = JSON.stringify(stats);
+            if (loggAndCount) {
+                sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
+                log_tab(tab, entity);
+                count_tabs()
+            }
         }
     });
 
@@ -181,11 +212,12 @@ function notification(data, entity) {
     } else {
         body = ' appartient à ';
     }
-    body = entity.name + body + getOwners(data, entity).join(', ');
+    // body = entity.name + body + getOwners(data, entity).join(', ');
+    body = getOwners(data, entity).join(', ');
     let config = {
         iconUrl: '/icon.png',
         message: body,
-        title: 'Open Ownership Project',
+        title: '(Metada)  ' + entity.name,
         type: 'basic',
     };
 
@@ -195,19 +227,21 @@ function notification(data, entity) {
 }
 
 
-function notifyMe() {
+function notifyMe(foundEntity) {
 
 
     // browser allows notifications
     get_data(function (data) {
 
-        var entity = check_website(data, localStorage['currentTabUrl']);
-
-        var current_name = 'current_' + entity.name;
-        var current_session = sessionStorage[current_name];
-        var current_local = localStorage[current_name];
+        const entity = typeof foundEntity === 'undefined' ?
+            check_website(data, localStorage['currentTabUrl'])
+            :
+            foundEntity;
 
         if (entity) {
+            var current_name = 'current_' + entity.name;
+            var current_session = sessionStorage[current_name];
+            var current_local = localStorage[current_name];
             // the website is known
             if (current_session && current_local) {
                 sessionStorage[current_name] = parseInt(current_session) + 1;

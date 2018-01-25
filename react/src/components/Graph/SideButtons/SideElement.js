@@ -22,28 +22,25 @@ export class SideElement extends React.Component {
         const nextLocation = parseInt(nextProps.match.params.entityId, 10);
         const location = parseInt(this.props.match.params.entityId, 10);
         if (location && nextLocation !== location) {
-
             this.setState({
                 open: false
             });
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this._mounted = true;
-        if (this.props.show.ftux) {
+        if (JSON.parse(localStorage['reduxPersist:show']).ftux) {
             this.setState({
                 open: true
             });
             setTimeout(() => {
-                console.log('Timeout');
-                if (this._mounted && this.props.show.sideButtons && this.props.show.ftux) {
-                    console.log('Setting');
+                if (this._mounted && this.state.open) {
                     this.setState({
                         open: false
                     })
                 }
-            }, 50000000)
+            }, 10000)
         }
     }
 

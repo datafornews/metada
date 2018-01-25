@@ -1,28 +1,52 @@
 export function check_website(data, url) {
-    var e, website, entity;
-    var entities = [];
-    for (entity in data.entities.ids) {
-        e = data.entities.ids[entity];
+    var e, website, entity, entityId, simplifiedCurrentUrl;
+    var foundEntities = [];
+    for (entityId in data.entities.ids) {
+        e = data.entities.ids[entityId];
         if (e.website) {
             website = parse_url(e.website);
             if (url.indexOf(website) !== -1) {
-                entities.push(e);
+                foundEntities.push(e);
             }
         }
     }
 
-    if (entities.length > 1) {
-        for (entity of entities) {
+    // console.log(foundEntities);
+
+    if (foundEntities.length > 1) {
+        let parser;
+        let shortest = {
+            pathName: ' '.repeat(100),
+            entity: null
+        };
+
+        for (entity of foundEntities) {
             if (entity.website) {
-                website = parse_long_url(url);
-                if (entity.website.indexOf(website) !== -1) {
-                    console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
+
+                parser = document.createElement('a');
+                parser.href = entity.website;
+                if (parser.pathname.length < shortest.pathName.length) {
+                    shortest = {
+                        pathName: parser.pathname,
+                        entity: entity
+                    }
+                }
+
+
+                simplifiedCurrentUrl = parse_long_url(url);
+                // console.log('Parsed URL', simplifiedCurrentUrl, entity.website);
+                if (entity.website.indexOf(simplifiedCurrentUrl) !== -1) {
+                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url + ' leading to entity : ' + entity.name);
                     return entity;
                 }
             }
         }
-    } else if (entities.length === 1) {
-        entity = entities[0];
+        if (shortest.entity) {
+            console.log('Found ' + shortest.entity.website + ' in ' + url + ' leading to entity : ' + shortest.entity.name);
+        }
+        return shortest.entity
+    } else if (foundEntities.length === 1) {
+        entity = foundEntities[0];
         console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
         return entity;
     }
