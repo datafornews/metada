@@ -9,7 +9,8 @@ const iconStyle = {
 
 const textStyle = {
     fontSize: '0.6rem',
-    padding: '8px'
+    padding: '8px',
+    fontWeight: 'bold'
 }
 
 export default class WebsiteButton extends Component {

@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
 
+const extractStyle = {
+    height: '180px',
+    overflowY: 'scroll'
+}
+
 class WikiCard extends Component {
     constructor(props) {
         super(props);
@@ -32,9 +37,9 @@ class WikiCard extends Component {
 
     render() {
         return (
-            <span>
+            <div style={extractStyle}>
                 {this.state.extract}
-            </span>
+            </div>
         );
     }
 }
