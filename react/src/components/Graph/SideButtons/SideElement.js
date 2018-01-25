@@ -28,14 +28,14 @@ export class SideElement extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this._mounted = true;
-        if (this.props.show.ftux) {
+        if (JSON.parse(localStorage['reduxPersist:show']).ftux) {
             this.setState({
                 open: true
             });
             setTimeout(() => {
-                if (this._mounted &&  this.props.show.ftux) {
+                if (this._mounted && this.state.open) {
                     this.setState({
                         open: false
                     })
