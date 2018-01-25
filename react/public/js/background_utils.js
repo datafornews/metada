@@ -202,12 +202,10 @@ function notifyMe() {
     get_data(function (data) {
 
         var entity = check_website(data, localStorage['currentTabUrl']);
-
-        var current_name = 'current_' + entity.name;
-        var current_session = sessionStorage[current_name];
-        var current_local = localStorage[current_name];
-
         if (entity) {
+            var current_name = 'current_' + entity.name;
+            var current_session = sessionStorage[current_name];
+            var current_local = localStorage[current_name];
             // the website is known
             if (current_session && current_local) {
                 sessionStorage[current_name] = parseInt(current_session) + 1;
