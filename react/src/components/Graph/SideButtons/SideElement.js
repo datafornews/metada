@@ -22,7 +22,6 @@ export class SideElement extends React.Component {
         const nextLocation = parseInt(nextProps.match.params.entityId, 10);
         const location = parseInt(this.props.match.params.entityId, 10);
         if (location && nextLocation !== location) {
-
             this.setState({
                 open: false
             });
@@ -36,14 +35,12 @@ export class SideElement extends React.Component {
                 open: true
             });
             setTimeout(() => {
-                console.log('Timeout');
-                if (this._mounted && this.props.show.sideButtons && this.props.show.ftux) {
-                    console.log('Setting');
+                if (this._mounted &&  this.props.show.ftux) {
                     this.setState({
                         open: false
                     })
                 }
-            }, 50000000)
+            }, 10000)
         }
     }
 
