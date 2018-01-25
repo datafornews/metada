@@ -86,16 +86,18 @@ function count_tabs() {
     });
 }
 
-function log_tab(onglet) {
+function log_tab(onglet, foundEntity) {
+
+
     localStorage['currentTabUrl'] = onglet.url;
     localStorage['currentTabTitle'] = onglet.title;
     localStorage['currentTabDomain'] = parse_url(onglet.url);
     localStorage['currentTabIsComplete'] = onglet.status === "complete";
 
-    notifyMe()
+    notifyMe(foundEntity)
 }
 
-function log_stats(tab) {
+function log_stats(tab, loggAndCount) {
     get_data(function (data) {
         const entity = check_website(data, tab.url);
         console.log('Stats found: ', entity);
@@ -141,6 +143,11 @@ function log_stats(tab) {
                 }
             }
             localStorage.stats = JSON.stringify(stats);
+            if (loggAndCount) {
+                sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
+                log_tab(tab, entity);
+                count_tabs()
+            }
         }
     });
 
@@ -220,13 +227,17 @@ function notification(data, entity) {
 }
 
 
-function notifyMe() {
+function notifyMe(foundEntity) {
 
 
     // browser allows notifications
     get_data(function (data) {
 
-        var entity = check_website(data, localStorage['currentTabUrl']);
+        const entity = typeof foundEntity === 'undefined' ?
+            check_website(data, localStorage['currentTabUrl'])
+            :
+            foundEntity;
+
         if (entity) {
             var current_name = 'current_' + entity.name;
             var current_session = sessionStorage[current_name];
