@@ -66,7 +66,7 @@ function check_website(data, url) {
         }
         return shortest.entity
     } else if (foundEntities.length === 1) {
-        entity = entities[0];
+        entity = foundEntities[0];
         console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
         return entity;
     }
