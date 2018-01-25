@@ -123,7 +123,7 @@ class Home extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>{this.props.translate('titles.' + location)}</title>
+          <title>Metada - {this.props.translate('home.tabs.' + location)}</title>
         </Helmet>
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
         <div style={homeContentDivStyle[this.props.clientType]}>
