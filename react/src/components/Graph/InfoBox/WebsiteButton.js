@@ -8,12 +8,12 @@ const iconStyle = {
 }
 
 const textStyle = {
-    fontSize: '0.6rem'
+    fontSize: '0.6rem',
+    padding: '8px'
 }
 
 export default class WebsiteButton extends Component {
     render() {
-        const { classes } = this.props;
         return this.props.entity.website && (
             <Button target='_blank' style={textStyle} href={this.props.entity.website}>
                 {this.props.translate('graph.websiteButton')} &nbsp; <OpenInNew style={iconStyle}/>
