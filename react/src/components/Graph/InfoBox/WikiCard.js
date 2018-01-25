@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
 
-const extractStyle = {
-    height: '180px',
-    overflowY: 'scroll'
-}
 
 class WikiCard extends Component {
     constructor(props) {
@@ -16,12 +12,12 @@ class WikiCard extends Component {
         }
     }
 
-    
+
     componentDidMount() {
         const entity = this.props.data.entities.ids[this.props.infoBox.data];
         getWikiData(this, entity);
     }
-    
+
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.infoBox.data === this.props.infoBox.data) {
@@ -36,6 +32,18 @@ class WikiCard extends Component {
     }
 
     render() {
+        let extractStyle;
+        if (this.props.clientType === 'browser') {
+            extractStyle = {
+                height: '180px',
+                overflowY: 'scroll'
+            }
+        } else {
+            extractStyle = {
+                position: 'inherit'
+            }
+        }
+
         return (
             <div style={extractStyle}>
                 {this.state.extract}
