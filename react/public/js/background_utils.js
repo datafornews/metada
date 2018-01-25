@@ -56,18 +56,18 @@ function check_website(data, url) {
                 simplifiedCurrentUrl = parse_long_url(url);
                 // console.log('Parsed URL', simplifiedCurrentUrl, entity.website);
                 if (entity.website.indexOf(simplifiedCurrentUrl) !== -1) {
-                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url + ' leading to entity : ' + entity.name);
+                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url.slice(0,30) + ' leading to entity : ' + entity.name);
                     return entity;
                 }
             }
         }
         if (shortest.entity) {
-            console.log('Found ' + shortest.entity.website + ' in ' + url + ' leading to entity : ' + shortest.entity.name);
+            console.log('Found ' + shortest.entity.website + ' in ' + url.slice(0,30) + ' leading to entity : ' + shortest.entity.name);
         }
         return shortest.entity
     } else if (foundEntities.length === 1) {
         entity = foundEntities[0];
-        console.log('Found ' + website + ' in ' + url + ' leading to entity : ' + entity.name);
+        console.log('Found ' + website + ' in ' + url.slice(0,30) + ' leading to entity : ' + entity.name);
         return entity;
     }
 
@@ -100,7 +100,6 @@ function log_tab(onglet, foundEntity) {
 function log_stats(tab, loggAndCount) {
     get_data(function (data) {
         const entity = check_website(data, tab.url);
-        console.log('Stats found: ', entity);
         if (entity) {
             var stats;
             const day = new Date().getDay();
