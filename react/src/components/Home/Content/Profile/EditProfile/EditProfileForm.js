@@ -37,19 +37,22 @@ class EditProfileForm extends React.Component {
 
     formErrors = form => {
         if (!this.state.usernameIsAvailable) {
-            return this.props.translate('home.profile.errors.usernameExists');
+            return this.props.translate('errors.usernameExists');
+        }
+        if (!(form.user.username.value && form.user.username.value.length >= 3 && form.user.username.value.length <= 25)) {
+            return this.props.translate('errors.invalidUsernameLength');
         }
         if (!isEmail(form.user.email.value) && form.user.email.value.length !== 0) {
-            return this.props.translate('home.profile.errors.invalidEmail');
+            return this.props.translate('errors.invalidEmail');
         }
         if (!this.state.emailIsAvailable) {
-            return this.props.translate('home.profile.errors.emailExists');
+            return this.props.translate('errors.emailExists');
         }
         if (!checkPass(form.user.password.value) && form.user.password.value.length !== 0) {
-            return this.props.translate('home.profile.errors.passwordTooShort');
+            return this.props.translate('errors.passwordTooShort');
         }
         if (!this.state.passwordsMatch) {
-            return this.props.translate('home.profile.errors.passwordsDontMatch');
+            return this.props.translate('errors.passwordsDontMatch');
         }
         return ''
 
@@ -82,7 +85,7 @@ class EditProfileForm extends React.Component {
 
 
     asyncCheckUsername = (username) => {
-        return Axios.get('http://localhost:5000/auth/new_username?username=' + username, {
+        return Axios.get('http://localhost:5000/public/exists/username?username=' + username, {
             headers: {
                 Authorization: 'Bearer: ' + localStorage['_jwt']
             }
@@ -105,12 +108,12 @@ class EditProfileForm extends React.Component {
                     usernameIsAvailable: false
                 })
             }
-            console.log('Username Error: ', err.response.data.message)
+            console.log('Username Error: ', err.response)
             done(false);
         })
 
     asyncCheckEmail = (email) => {
-        return Axios.get('http://localhost:5000/auth/new_email?email=' + email, {
+        return Axios.get('http://localhost:5000/public/exists/email?email=' + email, {
             headers: {
                 Authorization: 'Bearer ' + localStorage['_jwt']
             }
@@ -120,11 +123,11 @@ class EditProfileForm extends React.Component {
     emailAsyncValidator = (val, done) => {
         this.asyncCheckEmail(val)
             .then(res => {
-                if (!this.state.emailIsAvailable) {
+                if (res.data){
                     this.setState({
-                        emailIsAvailable: true
+                        emailIsAvailable: res.data.exists ? val === this.props.user.data.email : true
                     })
-                }
+                } 
                 done(true);
             },
             err => {
@@ -173,24 +176,33 @@ class EditProfileForm extends React.Component {
                 }}
             >
                 <Grid container spacing={16}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             model=".username"
+                            validators={{
+                                minThree: (val) => {
+                                    return val && val.length > 3
+                                },
+                                maxTwentyFive: (val) => {
+                                    return val && val.length < 25
+                                }
+                            }}
                             asyncValidators={{
                                 available: this.usernameAsyncValidator
                             }}
                             asyncValidateOn="blur"
+                            validateOn="change"
                             component={TextInput}
                             controlProps={{
                                 model: this.props.editProfileForm.user,
                                 label: this.props.translate('login.username.label'),
                                 id: 'username',
-                                valid: this.state.usernameIsAvailable
+                                valid: this.state.usernameIsAvailable && form.user.username.valid
                             }}
                         />
                     </Grid>
-                    
-                    <Grid item xs={12} md={6}>
+
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             model=".email"
                             validators={{
@@ -212,7 +224,7 @@ class EditProfileForm extends React.Component {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             model=".first_name"
                             component={TextInput}
@@ -224,7 +236,7 @@ class EditProfileForm extends React.Component {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             model=".last_name"
                             component={TextInput}
@@ -236,7 +248,7 @@ class EditProfileForm extends React.Component {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             validators={{
                                 newPassCheck
@@ -255,7 +267,7 @@ class EditProfileForm extends React.Component {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <Control.text
                             validators={{
                                 newPassCheck
@@ -312,7 +324,7 @@ class EditProfileForm extends React.Component {
                             }
                         </div>
                         <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
-                            {/* {this.formErrors(form)} */}
+                            {this.formErrors(form)}
                             {this.props.submitError}
                         </div>
                     </Grid>

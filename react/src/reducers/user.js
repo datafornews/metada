@@ -42,7 +42,7 @@ function user(state = {}, action) {
                 }
             }).then(
                 resp => {
-                    console.log('EDIT SUCCESS RESPONSE', resp)
+                    console.log('EDIT SUCCESS', resp)
                     let closed = false;
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {

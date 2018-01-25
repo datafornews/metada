@@ -221,16 +221,24 @@
                     "Modifier le Profil"
                 ],
                 "password": [
-                    "Password",
-                    "Mot de passe"
+                    "New Password (or leave blank)",
+                    "Nouveau Mot de passe (ou laissez vide)"
                 ],
                 "confirmPassword": [
                     "Confirm Password",
                     "Confirmer le Mot de passe"
                 ],
                 "oldPassword": [
-                    "Mot de passe actuel",
-                    "Current password"
+                    "Mot de passe actuel *",
+                    "Current password *"
+                ],
+                "content": [
+                    "Please enter your password to confirm any modification",
+                    "Entrez votre mot de passe pour confirmer toute modification"
+                ],
+                "title": [
+                    "Edit your profile",
+                    "Mofifier le profil"
                 ]
             },
             "login": {
@@ -579,11 +587,11 @@
             "Invalid email address",
             "Adresse mail invalide"
         ],
-        "passwordTooShort":[
+        "passwordTooShort": [
             "The password is too short. Use at least 6 characters",
             "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"
         ],
-        "passwordsDontMatch":[
+        "passwordsDontMatch": [
             "The passwords don't match",
             "Les mots de passe ne correspondent pas"
         ],
@@ -618,6 +626,10 @@
         "userNotConfirmed": [
             "Your email address is not confirmed yet. Check your spams or send a new confirmation email.",
             "Votre adresse mail n'est pas confirmée. Vérifiez vos spams ou envoyez un nouveau mail de confirmation"
+        ],
+        "invalidUsernameLength": [
+            "Username should be 3 to 25 characters long",
+            "Le nom d'utilisateur doit avoir entre 3 et 25 charactères"
         ]
     }
 }

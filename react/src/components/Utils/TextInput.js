@@ -100,7 +100,7 @@ class CustomInput extends React.Component {
         return (
             <FormControl className={classes.formControl} >
                 <InputLabel error={error} FormControlClasses={{ focused: classes.primaryLabel }} htmlFor={id}>
-                    {label}
+                    <div style={{ fontSize: '0.8rem' }}>{label}</div>
                 </InputLabel>
                 <Input
                     id={id}

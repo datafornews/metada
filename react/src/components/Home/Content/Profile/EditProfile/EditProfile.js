@@ -3,18 +3,26 @@ import EditProfileForm from './EditProfileForm';
 import Dialog, {
     DialogContent,
     DialogTitle,
-    DialogActions,
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import ClearIcon from 'material-ui-icons/Clear';
 import Typography from 'material-ui/Typography';
+import withStyles from 'material-ui/styles/withStyles';
 
 const fullScreenMinWidth = 650;
 
 const dialogContentStyle = {
     textAlign: 'center'
 };
+
+const clearButtonStyle = {
+    position: 'absolute',
+    'right': '10px',
+    'top': '10px'
+};
+
 
 class EditProfile extends Component {
 
@@ -59,7 +67,7 @@ class EditProfile extends Component {
     }
 
     render() {
-        let { fullScreen } = this.props;
+        let { fullScreen, classes } = this.props;
         if (this.props.clientType === 'extension' || window.innerWidth > fullScreenMinWidth) {
             fullScreen = false;
         }
@@ -73,7 +81,7 @@ class EditProfile extends Component {
                 >
                     <DialogTitle>{this.props.translate('home.profile.edit.title')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
-                        <Typography type="body1">
+                        <Typography color="primary" type="body1">
                             {this.props.translate('home.profile.edit.content')}
                         </Typography>
                         <br /><br />
@@ -86,16 +94,17 @@ class EditProfile extends Component {
                             pending={this.state.pending}
                         />
                     </DialogContent>
-                    <DialogActions >
-                        <Button onClick={this.handleRequestClose}>
-                            <ClearIcon />
-                        </Button>
-                    </DialogActions>
+
+                    <IconButton style={clearButtonStyle} onClick={this.handleRequestClose}>
+                        <ClearIcon />
+                    </IconButton>
+
                 </Dialog>
             </div>
         )
     }
 }
 
+const EditDialog = withStyles()(EditProfile);
 
-export default withMobileDialog()(EditProfile);
+export default withMobileDialog()(EditDialog);
