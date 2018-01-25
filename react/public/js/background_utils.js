@@ -56,18 +56,18 @@ function check_website(data, url) {
                 simplifiedCurrentUrl = parse_long_url(url);
                 // console.log('Parsed URL', simplifiedCurrentUrl, entity.website);
                 if (entity.website.indexOf(simplifiedCurrentUrl) !== -1) {
-                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url.slice(0,30) + ' -> ' + entity.name);
+                    console.log('Found ' + simplifiedCurrentUrl + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
                     return entity;
                 }
             }
         }
         if (shortest.entity) {
-            console.log('Found ' + shortest.entity.website + ' in ' + url.slice(0,30) + ' -> ' + shortest.entity.name);
+            console.log('Found ' + shortest.entity.website + ' in ' + url.slice(0, 30) + ' -> ' + shortest.entity.name);
         }
         return shortest.entity
     } else if (foundEntities.length === 1) {
         entity = foundEntities[0];
-        console.log('Found ' + website + ' in ' + url.slice(0,30) + ' -> ' + entity.name);
+        console.log('Found ' + website + ' in ' + url.slice(0, 30) + ' -> ' + entity.name);
         return entity;
     }
 
@@ -212,11 +212,12 @@ function notification(data, entity) {
     } else {
         body = ' appartient à ';
     }
-    body = entity.name + body + getOwners(data, entity).join(', ');
+    // body = entity.name + body + getOwners(data, entity).join(', ');
+    body = getOwners(data, entity).join(', ');
     let config = {
         iconUrl: '/icon.png',
         message: body,
-        title: 'Open Ownership Project',
+        title: '(Metada)  ' + entity.name,
         type: 'basic',
     };
 
