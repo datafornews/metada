@@ -18,6 +18,7 @@ $(function () {
                     var tab = array_of_tabs[0];
                     if (tab && sessionStorage['currentTabUrl'] !== tab.url) {
                         sessionStorage['currentTabUrl'] = tab.url;
+                        console.log('Checking for stats');
                         log_stats(tab)
                     }
                     if (tab && tab.id === onglet
