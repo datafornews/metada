@@ -221,7 +221,7 @@ function notification(data, entity) {
         type: 'basic',
     };
 
-    var notification = browser.notifications.create(
+    var notification = window.browser.notifications.create(
         '' + Math.random(), config, function (notifId) { console.log(notifId) }
     );
 }
