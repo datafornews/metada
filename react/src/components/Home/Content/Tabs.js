@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SearchIcon from 'material-ui-icons/Search';
 import SettingsIcon from 'react-icons/lib/go/settings';
@@ -15,10 +16,12 @@ import StatsIcon from 'react-icons/lib/fa/bar-chart';
 const styles = threme => ({
   root: {
     flexGrow: 1,
-    marginTop: threme.spacing.unit * 3,
+    marginTop: threme.spacing.unit * 1,
   },
   indicator: {
-    minWidth: '20px'  }
+    minWidth: '20px',
+    height: "3px"
+  }
 });
 
 const iconStyle = {
@@ -28,13 +31,16 @@ const iconStyle = {
 
 const tabStyle = {
   "browser": {
-    minHeight: '30px',
-    height: "60px"
+    minWidth: "100px",
+    width: "40px",
+
   },
   "mobile": {
+    minWidth: "100px",
     height: "60px"
   },
   "extension": {
+    minWidth: "100px",
     height: "60px"
   }
 };
@@ -60,7 +66,7 @@ class HomeContentTabs extends React.Component {
   state = {
     value: 'search',
     update: 0,
-    tabs: ["search", "profile", "about", "settings"]
+    tabs: ["search", "about", "settings"]
   };
 
   handleChange = (event, value) => {
@@ -95,14 +101,14 @@ class HomeContentTabs extends React.Component {
           "extension",
           ...tabs.slice(3)
         ];
-      } else if (tabs.indexOf("stats") === -1){
+      } else if (tabs.indexOf("stats") === -1) {
         tabs = [
           ...tabs.slice(0, 2),
           "stats",
           ...tabs.slice(2)
         ];
       }
-    } 
+    }
 
     if (nextProps.user.isValid && tabs.indexOf("contrib") === -1) {
       tabs = [
@@ -110,13 +116,13 @@ class HomeContentTabs extends React.Component {
         "contrib",
         ...tabs.slice(2)
       ];
-    } 
+    }
 
     if (tabs.length !== this.state.tabs.length) {
       this.setState({
         tabs
       });
-    } 
+    }
   }
 
   render() {
@@ -128,7 +134,6 @@ class HomeContentTabs extends React.Component {
       'about': <AboutIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
-      'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle} />,
       'contrib': <ContribIcon style={iconStyle} />,
       'stats': <StatsIcon style={iconStyle} />,
     };
@@ -149,16 +154,20 @@ class HomeContentTabs extends React.Component {
             (v, k) => {
               const translate = v === 'profile' && !this.props.user.isLoggedIn ? 'login' : v;
 
-              return <Tab
-                className={classes.labelContainer}
-                key={'tab' + k}
-                label={
-                  <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>{this.props.translate("home.tabs." + translate)}</span>
-                }
-                icon={icons[v]}
-                value={v}
-                style={tabStyle[this.props.clientType]}
-              />;
+              return (
+                <Tab
+                  className={classes.labelContainer}
+                  key={'tab' + k}
+                  label={
+                    <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>
+                      {this.props.translate("home.tabs." + translate)}
+                    </span>
+                  }
+                  icon={icons[v]}
+                  value={v}
+                  style={tabStyle[this.props.clientType]}
+                />
+              );
             }
           )}
         </Tabs>

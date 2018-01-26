@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HowItWorks from "./HowItWorks";
+import Profile from "../Content/Profile/Profile";
 
 const defaultTitleStyle = {
     display: 'inline-block',
@@ -18,6 +19,14 @@ const titleStyle = {
         ...defaultTitleStyle,
     },
 };
+
+const topOptions = {
+    position: 'absolute',
+    top: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    right: '6%'
+}
 
 const defaultParentDivStyle = {
     marginBottom: '20px'
@@ -45,7 +54,11 @@ export default class Header extends Component {
                     <h1>{title}</h1>
                     <h4>{this.props.translate('home.subtitle')}</h4>
                 </div>
-                <HowItWorks {...this.props} />
+
+                <div style={topOptions}>
+                    <Profile {...this.props} />
+                    <HowItWorks {...this.props} />
+                </div>
             </div>
         )
     }

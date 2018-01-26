@@ -12,7 +12,6 @@ import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
 import Contrib from './Content/Contrib/Contrib';
 import Settings from './Content/Settings/Settings';
-import Profile from './Content/Profile/Profile';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
@@ -136,7 +135,6 @@ class Home extends React.Component {
           <HomeContentTabs {...this.props} />
 
           <HomeSearchBar {...this.props} />
-          <Profile {...this.props} />
           <LearnAbout {...this.props} />
           <Contrib {...this.props} />
           <Settings {...this.props} />

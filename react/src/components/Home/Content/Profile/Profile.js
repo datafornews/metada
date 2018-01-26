@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import ProfilePaper from './ProfilePaper';
+import ProfileDialog from './ProfileDialog';
+import Auth from './Auth/Auth';
 
 class Profile extends Component {
     render() {
 
-        return this.props.show.profile
-            ?
-            <ProfilePaper {...this.props} />
-            :
-            ''
+        return <ProfileDialog {...this.props} />
+
 
     }
 }

@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -16,18 +17,15 @@ import Icon from 'material-ui-icons/HelpOutline';
 const fullScreenMinWidth = 650;
 
 const buttonDivPositionStyle = {
-  position: 'absolute',
-  right: '24px',
-  top: '10px'
 };
 const buttonStyle = {
-  width: '40px',
-  minWidth: '40px'
+  width: '10',
+  minWidth: '10'
 };
 
 const iconStyle = {
-  width: '30px',
-  height: '30px'
+  width: '20px',
+  height: '20px'
 }
 
 class ResponsiveDialog extends React.Component {
@@ -51,7 +49,10 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={buttonDivPositionStyle}>
-        <Button style={buttonStyle} onClick={this.handleClickOpen}><Icon style={iconStyle} /></Button>
+
+        <div style={{ display: 'flex', "alignItems": 'center' }}>
+          <IconButton style={buttonStyle} onClick={this.handleClickOpen}><Icon style={iconStyle} /></IconButton>
+        </div >
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
