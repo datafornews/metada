@@ -79,7 +79,6 @@ class Home extends React.Component {
         'contrib': false,
         'settings': false,
         'extension': false,
-        'profile': false,
         'stats': false,
         'searchBar': true
       });

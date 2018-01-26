@@ -34,12 +34,6 @@ export function toggleContact() {
     };
 }
 
-export function toggleProfile() {
-    return {
-        type: 'TOGGLE_PROFILE'
-    };
-}
-
 export function toggleSettings() {
     return {
         type: 'TOGGLE_SETTINGS'

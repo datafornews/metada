@@ -15,11 +15,6 @@ function show(state = false, action) {
                 ...state,
                 searchBar: !state.searchBar
             };
-        case 'TOGGLE_PROFILE':
-            return {
-                ...state,
-                profile: !state.profile
-            };
         case 'TOGGLE_CONTACT':
             return {
                 ...state,
