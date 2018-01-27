@@ -161,71 +161,7 @@
         "extensionPaperMd": [
             "#### Hi!\n\nYou are currently on the web version of the Metada Chrome Extension. The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. You can install it right now from the official Chrome and Firefox stores! (see hereunder)\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). \n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!\n\n\n##### Installation\n\nYou can download and install the extension from there: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n",
             "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension de Metada. Le but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Vous pouvez l'installer sur votre ordinateur d\u00e8s maintenant depuis les sites offciels de Chrome et Firefox! (voir plus bas)\n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n\n#### Installation\n\nT\u00e9l\u00e9charger et installer l'Extension : [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\n"
-        ],
-        "profile": {
-            "register": [
-                "Register",
-                "S'inscrire"
-            ],
-            "registerTitle": [
-                "Register on Metada",
-                "Cr\u00e9er un compte Metada"
-            ],
-            "registerContent": [
-                "You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ",
-                "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "
-            ],
-            "resend": {
-                "confirm": [
-                    "Confirm you account by clicking on the link in the email we sent you.",
-                    "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoy\u00e9."
-                ],
-                "notReceived": [
-                    "Email not received? Check your spams! Otherwise, resend a confirmation email here",
-                    "Vous n'avez pas re\u00e7u notre email? V\u00e9rifiez vos spams. Sinon, cliquez l\u00e0 "
-                ]
-            },
-            "logout": [
-                "Logout",
-                "D\u00e9connexion"
-            ],
-            "edit": {
-                "button": [
-                    "Edit Profile",
-                    "Modifier le Profil"
-                ],
-                "password": [
-                    "New Password (or leave blank)",
-                    "Nouveau Mot de passe (ou laissez vide)"
-                ],
-                "confirmPassword": [
-                    "Confirm Password",
-                    "Confirmer le Mot de passe"
-                ],
-                "oldPassword": [
-                    "Mot de passe actuel *",
-                    "Current password *"
-                ],
-                "content": [
-                    "Please enter your password to confirm any modification",
-                    "Entrez votre mot de passe pour confirmer toute modification"
-                ],
-                "title": [
-                    "Edit your profile",
-                    "Mofifier le profil"
-                ]
-            },
-            "login": {
-                "button": [
-                    "Log in",
-                    "Connexion"
-                ],
-                "dialogContent": [
-                    "Welcome Back!",
-                    "Bienvenue!"
-                ]
-            }
-        }
+        ]
     },
     "login": {
         "username": {
@@ -532,6 +468,90 @@
             ]
         }
     },
+    "profile": {
+        "register": [
+            "Register",
+            "S'inscrire"
+        ],
+        "registerTitle": [
+            "Register on Metada",
+            "Cr\u00e9er un compte Metada"
+        ],
+        "registerContent": [
+            "You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ",
+            "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "
+        ],
+        "resend": {
+            "confirm": [
+                "Confirm you account by clicking on the link in the email we sent you.",
+                "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoy\u00e9."
+            ],
+            "notReceived": [
+                "Email not received? Check your spams! Otherwise, resend a confirmation email here",
+                "Vous n'avez pas re\u00e7u notre email? V\u00e9rifiez vos spams. Sinon, cliquez l\u00e0 "
+            ]
+        },
+        "logout": [
+            "Logout",
+            "D\u00e9connexion"
+        ],
+        "edit": {
+            "button": [
+                "Edit Profile",
+                "Modifier le Profil"
+            ],
+            "password": [
+                "New Password (or leave blank)",
+                "Nouveau Mot de passe (ou laissez vide)"
+            ],
+            "confirmPassword": [
+                "Confirm Password",
+                "Confirmer le Mot de passe"
+            ],
+            "oldPassword": [
+                "Mot de passe actuel *",
+                "Current password *"
+            ],
+            "content": [
+                "Please enter your password to confirm any modification",
+                "Entrez votre mot de passe pour confirmer toute modification"
+            ],
+            "title": [
+                "Edit your profile",
+                "Mofifier le profil"
+            ]
+        },
+        "login": {
+            "button": [
+                "Log in",
+                "Connexion"
+            ],
+            "dialogContent": [
+                "Welcome Back!",
+                "Bienvenue!"
+            ]
+        },
+        "dialog": {
+            "title": {
+                "loggedIn": [
+                    "Hi, ",
+                    "Bonjour, "
+                ],
+                "notLoggedIn": [
+                    "Hi!",
+                    "Bonjour!"
+                ]
+            },
+            "login":[
+                "Already have an account?",
+                "Vous avez déjà un compte?"
+            ],
+            "register":[
+                "New? Let's register!",
+                "Nouveau? Allez, on se crée un compte!"
+            ]
+        }
+    },
     "errors": {
         "jsError": [
             "Internal error. Sorry :(",
@@ -604,6 +624,10 @@
         "invalidUsernameLength": [
             "Username should be 3 to 25 characters long",
             "Le nom d'utilisateur doit avoir entre 3 et 25 charactères"
+        ],
+        "noUserForEmail": [
+            "Incorrect email address or password",
+            "Mot de passe ou adresse mail incorrects"
         ]
     }
 }

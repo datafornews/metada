@@ -13,7 +13,9 @@ export default class ResendEmail extends Component {
 
     state = {
         refreshStatusDisabled: false,
-        resendDisabled: false
+        resendDisabled: false,
+        resendTimeOut: null,
+        refreshTimeOut: null
     }
 
     handleResendClick = (event) => {
@@ -21,10 +23,13 @@ export default class ResendEmail extends Component {
         this.setState({
             resendDisabled: true
         });
-        setTimeout(
+        const resendTimeOut = setTimeout(
             () => {
                 this.setState({ resendDisabled: false })
-            }, 1500)
+            }, 2000);
+        this.setState({
+            resendTimeOut
+        })
     }
 
     handleRefreshStatusClick = (event) => {
@@ -32,23 +37,35 @@ export default class ResendEmail extends Component {
         this.setState({
             refreshStatusDisabled: true
         });
-        setTimeout(
+        const refreshTimeOut = setTimeout(
             () => {
                 if (!JSON.parse(localStorage['reduxPersist:user']).isConfirmed) {
                     this.setState({ refreshStatusDisabled: false })
                 }
-            }, 10000)
+            }, 2000)
+        this.setState({
+            refreshTimeOut
+        })
+    }
+
+    componentWillUnmount() {
+        if (this.state.refreshTimeOut) {
+            clearTimeout(this.state.refreshTimeOut)
+        }
+        if (this.state.resendTimeOut) {
+            clearTimeout(this.state.resendTimeOut)
+        }
     }
 
     render() {
         return (
             <div>
-                {this.props.translate('home.profile.resend.confirm')}
+                {this.props.translate('profile.resend.confirm')}
                 <IconButton onClick={this.handleRefreshStatusClick} style={buttonStyle} disabled={this.state.refreshStatusDisabled}>
                     <RefreshIcon />
                 </IconButton>
                 <br /><br />
-                {this.props.translate('home.profile.resend.notReceived')}
+                {this.props.translate('profile.resend.notReceived')}
 
                 <IconButton onClick={this.handleResendClick} style={buttonStyle} disabled={this.state.resendDisabled}>
                     <Icon />

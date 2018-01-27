@@ -12,9 +12,9 @@ export default class Auth extends React.Component {
         return (
             <div>
                 {!this.props.user.isLoggedIn && <Register {...this.props} />}
-                {!this.props.user.isLoggedIn && <Login {...this.props} />}
+                {!this.props.user.isLoggedIn && <div><br /><Login {...this.props} /></div>}
                 {this.props.user.isLoggedIn && <Logout {...this.props} />}
-                {this.props.user.isLoggedIn && !this.props.user.isConfirmed && <div><br/><br/><ResendEmail {...this.props} /></div>}
+                {this.props.user.isLoggedIn && !this.props.user.isConfirmed && <div><br /><br /><ResendEmail {...this.props} /></div>}
             </div>
         );
     }

@@ -67,22 +67,28 @@ class EditProfile extends Component {
     }
 
     render() {
-        let { fullScreen, classes } = this.props;
+        let { fullScreen } = this.props;
         if (this.props.clientType === 'extension' || window.innerWidth > fullScreenMinWidth) {
             fullScreen = false;
         }
         return (
             <div>
-                <Button onClick={this.handleClickOpen} color="primary">{this.props.translate('home.profile.edit.button')}</Button>
+                <Button onClick={this.handleClickOpen} color="primary">
+                    {this.props.translate('profile.edit.button')}
+                </Button>
+
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onClose={this.handleRequestClose}
                 >
-                    <DialogTitle>{this.props.translate('home.profile.edit.title')}</DialogTitle>
+                    <DialogTitle>
+                        {this.props.translate('profile.edit.title')}
+                    </DialogTitle>
+                    
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography color="primary" type="body1">
-                            {this.props.translate('home.profile.edit.content')}
+                            {this.props.translate('profile.edit.content')}
                         </Typography>
                         <br /><br />
                         <EditProfileForm

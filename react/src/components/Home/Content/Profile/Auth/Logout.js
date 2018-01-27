@@ -22,7 +22,7 @@ export default class Logout extends Component {
         return (
             <div>
                 <Button color='secondary' onClick={this.handleClick}>
-                    {this.props.translate('home.profile.logout')} &nbsp; <Icon style={iconStyle} />
+                    {this.props.translate('profile.logout')} &nbsp; <Icon style={iconStyle} />
                 </Button>
             </div>
         )

@@ -217,7 +217,7 @@ class RegisterForm extends React.Component {
 
                 <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
                     {this.formErrors(form)}
-                    {/* {this.props.submitError && this.props.translate('home.profile.registerErrors.submit.' + this.props.submitError)} */}
+                    {/* {this.props.submitError && this.props.translate('profile.registerErrors.submit.' + this.props.submitError)} */}
                 </div>
 
             </Form>

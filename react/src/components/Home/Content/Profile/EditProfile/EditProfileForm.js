@@ -259,7 +259,7 @@ class EditProfileForm extends React.Component {
                             component={TextInput}
                             controlProps={{
                                 model: this.props.editProfileForm.user,
-                                label: this.props.translate('home.profile.edit.password'),
+                                label: this.props.translate('profile.edit.password'),
                                 id: 'password',
                                 type: "password",
                                 valid: this.state.passwordsMatch && form.user.password.valid
@@ -278,7 +278,7 @@ class EditProfileForm extends React.Component {
                             component={TextInput}
                             controlProps={{
                                 model: this.props.editProfileForm.user,
-                                label: this.props.translate('home.profile.edit.confirmPassword'),
+                                label: this.props.translate('profile.edit.confirmPassword'),
                                 id: 'confirmPassword',
                                 type: "password",
                                 valid: this.state.passwordsMatch && form.user.password.valid
@@ -301,7 +301,7 @@ class EditProfileForm extends React.Component {
                             component={TextInput}
                             controlProps={{
                                 model: this.props.editProfileForm.user,
-                                label: this.props.translate('home.profile.edit.oldPassword'),
+                                label: this.props.translate('profile.edit.oldPassword'),
                                 id: 'oldPassword',
                                 type: "password",
                                 valid: form.user.oldPassword && form.user.oldPassword.valid
