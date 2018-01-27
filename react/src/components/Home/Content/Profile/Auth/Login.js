@@ -7,6 +7,7 @@ import Dialog, {
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import ClearIcon from 'material-ui-icons/Clear';
 
@@ -17,6 +18,12 @@ const dialogContentStyle = {
     textAlign: 'center',
     minWidth: 400,
     maxWidth: 800
+};
+
+const clearButtonStyle = {
+    position: 'absolute',
+    'right': '10px',
+    'top': '10px'
 };
 
 class Login extends Component {
@@ -62,20 +69,21 @@ class Login extends Component {
         }
 
         return (
-            <div>
+            <div style={{fontSize: '0.8rem'}}>
+                {this.props.translate('profile.dialog.login')}
+                <br/>
                 <Button onClick={this.handleClickOpen} color="primary">
-                    {/* {this.props.translate('home.profile.register')} */}
-                    {this.props.translate('home.profile.login.button')}
+                    {this.props.translate('profile.login.button')}
                 </Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onClose={this.handleRequestClose}
                 >
-                    <DialogTitle>{this.props.translate('home.profile.login.button')}</DialogTitle>
+                    <DialogTitle>{this.props.translate('profile.login.button')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography type="body1">
-                            {this.props.translate('home.profile.login.dialogContent')}
+                            {this.props.translate('profile.login.dialogContent')}
                         </Typography>
                         <br /><br />
                         <LoginForm
@@ -87,11 +95,11 @@ class Login extends Component {
                             makeNotPending={this.makeNotPending}
                         />
                     </DialogContent>
-                    <DialogActions >
-                        <Button onClick={this.handleRequestClose}>
+
+                        <IconButton onClick={this.handleRequestClose} style={clearButtonStyle}>
                             <ClearIcon />
-                        </Button>
-                    </DialogActions>
+                        </IconButton>
+
                 </Dialog>
             </div>
         )

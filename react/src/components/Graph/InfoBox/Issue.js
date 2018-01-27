@@ -29,6 +29,12 @@ const buttonPosition = {
     }
 }
 
+const clearButtonStyle = {
+    position: 'absolute',
+    'right': '10px',
+    'top': '10px'
+};
+
 
 class ResponsiveDialog extends React.Component {
     state = {
