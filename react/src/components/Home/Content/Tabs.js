@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SearchIcon from 'material-ui-icons/Search';
 import SettingsIcon from 'react-icons/lib/go/settings';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
-import LoginIcon from 'react-icons/lib/md/flight-land';
 import ContribIcon from 'react-icons/lib/md/fitness-center';
 import StatsIcon from 'react-icons/lib/fa/bar-chart';
 
