@@ -12,6 +12,9 @@ import Dialog, {
 import Icon from 'material-ui-icons/PriorityHigh';
 import Button from 'material-ui/Button';
 import { SideElement } from '../SideButtons/SideElement';
+import EditGraph from '../../Home/Content/Contrib/EditGraph/EditGraph'
+import IconButton from 'material-ui/IconButton';
+import ClearIcon from 'material-ui-icons/Clear';
 
 
 const buttonPosition = {
@@ -73,21 +76,26 @@ class ResponsiveDialog extends React.Component {
                     fullScreen={fullScreen}
                     open={this.state.dialogOpen}
                     onClose={this.handleRequestClose}
+                    maxWidth={'md'}
                 >
-                    <DialogTitle>{this.props.translate('graph.issue.dialogTitle')}</DialogTitle>
+                    <DialogTitle>
+                        {this.props.translate('graph.issue.dialogTitle') + '  '}
+                        ({this.props.data.entities.ids[this.props.infoBox.data].name})
+                        </DialogTitle>
                     <DialogContent>
-                        <DialogContentText style={{ fontSize: '0.9rem' }}>
+                        <DialogContentText style={{ fontSize: '0.9rem', width:'80%' }}>
                             {this.props.translate('graph.issue.dialogContentText')}<br /><br />
                             Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
                             Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
                             {this.props.translate('graph.issue.dialogContentText2')}
                         </DialogContentText>
+                        <EditGraph {...this.props} entityId={this.props.infoBox.data} />
                     </DialogContent>
-                    <DialogActions>
-                        <Button style={{ fontSize: '0.9rem' }} onClick={this.handleRequestClose} color="primary">
-                            {this.props.translate('graph.issue.closeButton')}
-                        </Button>
-                    </DialogActions>
+
+                    <IconButton onClick={this.handleRequestClose} style={clearButtonStyle}>
+                        <ClearIcon />
+                    </IconButton>
+
                 </Dialog>
             </div>
         );
