@@ -4,7 +4,6 @@ import Radio from 'material-ui/Radio';
 import { Control } from 'react-redux-form';
 import { isURL } from 'validator';
 import Grid from 'material-ui/Grid';
-import { withStyles } from 'material-ui/styles';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
 import SelectInput from '../../../../Utils/SelectInput'
@@ -21,16 +20,13 @@ const selectStyle = {
     textAlign: 'center'
 };
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        background: theme.palette.background.paper,
-        width: '100%'
-    }
-});
+const gridStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    width: '100%',
+    overflow: 'visible'
+};
 
 class EditEntityForm extends Component {
 
@@ -68,6 +64,14 @@ class EditEntityForm extends Component {
     }
 
 
+    componentWillMount() {
+        if (this.props.entityId) {
+            const values = { id: this.props.entityId };
+            this.handleEntityChange(values)
+        }
+    }
+
+
     handleSubmit = (component, form) => {
         form && console.log('Entity submitted: ', form.entity);
         setTimeout(() => { component && component.makeNotPending() }, 1000)
@@ -96,6 +100,7 @@ class EditEntityForm extends Component {
                 this.props.rrfChange('editEntityForm.entity.wiki_link', entity.wiki_link);
                 this.props.rrfChange('editEntityForm.entity.website', entity.website);
                 this.props.rrfChange('editEntityForm.entity.category', entity.category);
+                this.props.rrfChange('editEntityForm.entity.selectedEntity', entity.category);
             }
             this.setState({
                 showForm: true
@@ -112,6 +117,15 @@ class EditEntityForm extends Component {
         options[m] = "m";
         options[i] = "i";
         options[c] = "c";
+
+        let selectEntityInivialValue;
+        if (this.props.editEntityForm.entity.name) {
+            selectEntityInivialValue = this.props.editEntityForm.entity.name;
+        } else if (this.props.entityId) {
+            selectEntityInivialValue = this.props.data.entities.ids[this.props.entityId].name;
+        } else {
+            selectEntityInivialValue = ''
+        }
 
         const choice = (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             {_tr("contribute.editEntity.label.choice.select")}
@@ -140,7 +154,7 @@ class EditEntityForm extends Component {
                 ...this.props,
                 clear: this.state.clearParent,
                 style: selectStyle,
-                initialValue: this.props.editEntityForm.entity.name || '',
+                initialValue: selectEntityInivialValue,
                 data: this.props.data
             }}
             onChange={this.handleEntityChange}
@@ -259,7 +273,7 @@ class EditEntityForm extends Component {
         />;
 
         const grid = (
-            <div className={this.props.classes.root} style={{overflow: 'visible'}}>
+            <div style={gridStyle} >
                 <Grid container spacing={16}>
                     <Grid item xs={12}> {choice} </Grid>
                     {this.state.radio === "modify" && <Grid container spacing={16}>
@@ -267,12 +281,12 @@ class EditEntityForm extends Component {
                         <Grid item xs={12} sm={10} md={6} style={{ marginBottom: '8px' }}> {selectEntity} </Grid>
                         <Grid item xs={12} sm={1} md={3} />
                     </Grid>}
-                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {name} </Grid>}
-                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {category} </Grid>}
-                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {longName} </Grid>}
-                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {website} </Grid>}
-                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {otherGroups} </Grid>}
-                    {this.state.showForm && <Grid item xs={12} lg={8}> {wikiLink} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {name} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {category} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {longName} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {website} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {otherGroups} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} sm={6} lg={4}> {wikiLink} </Grid>}
                     <br />
                     {this.state.showForm && <Grid item xs={12}> {source} </Grid>}
                 </Grid>
@@ -293,4 +307,4 @@ class EditEntityForm extends Component {
     }
 }
 
-export default withStyles(styles)(EditEntityForm);
+export default EditEntityForm;

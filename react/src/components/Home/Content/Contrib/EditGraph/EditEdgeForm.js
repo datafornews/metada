@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Grid from 'material-ui/Grid';
 import { Control } from 'react-redux-form';
-import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
@@ -9,16 +8,13 @@ import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import { isInRange, isPositiveNumber } from "../../../../../utils/formValidators";
 
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        background: theme.palette.background.paper,
-        width: '100%'
-    }
-});
+const gridStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    width: '100%'
+};
 
 
 class EditEdgeForm extends Component {
@@ -143,7 +139,7 @@ class EditEdgeForm extends Component {
 
 
         const grid = (
-            <div className={this.props.classes.root}>
+            <div style={gridStyle}>
                 <Grid container spacing={16}>
                     <Grid item xs={12} md={6} > {parentEntity} </Grid>
                     <Grid item xs={12} md={6} > {childEntity} </Grid>
@@ -170,4 +166,4 @@ class EditEdgeForm extends Component {
     }
 }
 
-export default withStyles(styles)(EditEdgeForm);
+export default EditEdgeForm;
