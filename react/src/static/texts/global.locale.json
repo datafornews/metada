@@ -335,10 +335,6 @@
                 "Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)",
                 "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"
             ],
-            "closeButton": [
-                "OK",
-                "OK"
-            ],
             "object": [
                 "(Include [Issue] in the object of your email)",
                 "(Incluez [Issue] dans l'objet de votre email)"
@@ -470,8 +466,8 @@
     },
     "profile": {
         "register": [
-            "Register",
-            "S'inscrire"
+            "➤ Register",
+            "➤ S'inscrire"
         ],
         "registerTitle": [
             "Register on Metada",
@@ -518,13 +514,13 @@
             ],
             "title": [
                 "Edit your profile",
-                "Mofifier le profil"
+                "Modifier le profil"
             ]
         },
         "login": {
             "button": [
-                "Log in",
-                "Connexion"
+                "➤ Log in",
+                "➤ Connexion"
             ],
             "dialogContent": [
                 "Welcome Back!",

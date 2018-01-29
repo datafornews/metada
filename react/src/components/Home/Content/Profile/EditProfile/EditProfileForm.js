@@ -39,16 +39,16 @@ class EditProfileForm extends React.Component {
         if (!this.state.usernameIsAvailable) {
             return this.props.translate('errors.usernameExists');
         }
-        if (!(form.user.username.value && form.user.username.value.length >= 3 && form.user.username.value.length <= 25)) {
+        if (!(form.user.username.value && form.user && form.user.username.value.length >= 3 && form.user && form.user.username.value.length <= 25)) {
             return this.props.translate('errors.invalidUsernameLength');
         }
-        if (!isEmail(form.user.email.value) && form.user.email.value.length !== 0) {
+        if (!isEmail(form.user.email.value) && form.user && form.user.email.value.length !== 0) {
             return this.props.translate('errors.invalidEmail');
         }
         if (!this.state.emailIsAvailable) {
             return this.props.translate('errors.emailExists');
         }
-        if (!checkPass(form.user.password.value) && form.user.password.value.length !== 0) {
+        if (!checkPass(form.user.password.value) && form.user && form.user.password.value.length !== 0) {
             return this.props.translate('errors.passwordTooShort');
         }
         if (!this.state.passwordsMatch) {
@@ -197,7 +197,7 @@ class EditProfileForm extends React.Component {
                                 model: this.props.editProfileForm.user,
                                 label: this.props.translate('login.username.label'),
                                 id: 'username',
-                                valid: this.state.usernameIsAvailable && form.user.username.valid
+                                valid: this.state.usernameIsAvailable && form.user && form.user.username.valid
                             }}
                         />
                     </Grid>
@@ -219,7 +219,7 @@ class EditProfileForm extends React.Component {
                                 model: this.props.editProfileForm.user,
                                 label: this.props.translate('login.email.label'),
                                 id: 'email',
-                                valid: this.state.emailIsAvailable && form.user.email.valid
+                                valid: this.state.emailIsAvailable && form.user && form.user.email.valid
                             }}
                         />
                     </Grid>
@@ -262,7 +262,7 @@ class EditProfileForm extends React.Component {
                                 label: this.props.translate('profile.edit.password'),
                                 id: 'password',
                                 type: "password",
-                                valid: this.state.passwordsMatch && form.user.password.valid
+                                valid: this.state.passwordsMatch && form.user && form.user.password.valid
                             }}
                         />
                     </Grid>
@@ -281,7 +281,7 @@ class EditProfileForm extends React.Component {
                                 label: this.props.translate('profile.edit.confirmPassword'),
                                 id: 'confirmPassword',
                                 type: "password",
-                                valid: this.state.passwordsMatch && form.user.password.valid
+                                valid: this.state.passwordsMatch && form.user && form.user.password.valid
                             }}
                         />
                     </Grid>
@@ -304,7 +304,7 @@ class EditProfileForm extends React.Component {
                                 label: this.props.translate('profile.edit.oldPassword'),
                                 id: 'oldPassword',
                                 type: "password",
-                                valid: form.user.oldPassword && form.user.oldPassword.valid
+                                valid: form.user.oldPassword && form.user && form.user.oldPassword.valid
                             }}
                         />
                     </Grid>

@@ -3,7 +3,6 @@ import LoginForm from './LoginForm';
 import Dialog, {
     DialogContent,
     DialogTitle,
-    DialogActions,
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
@@ -17,7 +16,7 @@ const fullScreenMinWidth = 650;
 const dialogContentStyle = {
     textAlign: 'center',
     minWidth: 400,
-    maxWidth: 800
+    maxWidth: 800,
 };
 
 const clearButtonStyle = {
@@ -69,10 +68,10 @@ class Login extends Component {
         }
 
         return (
-            <div style={{fontSize: '0.8rem'}}>
+            <div style={{ fontSize: '0.8rem' }}>
                 {this.props.translate('profile.dialog.login')}
-                <br/>
-                <Button onClick={this.handleClickOpen} color="primary">
+                <br />
+                <Button onClick={this.handleClickOpen} color="primary" style={{ fontSize: '0.7rem' }}>
                     {this.props.translate('profile.login.button')}
                 </Button>
                 <Dialog
@@ -96,9 +95,9 @@ class Login extends Component {
                         />
                     </DialogContent>
 
-                        <IconButton onClick={this.handleRequestClose} style={clearButtonStyle}>
-                            <ClearIcon />
-                        </IconButton>
+                    <IconButton onClick={this.handleRequestClose} style={clearButtonStyle}>
+                        <ClearIcon />
+                    </IconButton>
 
                 </Dialog>
             </div>

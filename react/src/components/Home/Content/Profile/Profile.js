@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Dialog, {
-    DialogActions,
     DialogContent,
     DialogTitle,
     withMobileDialog,
@@ -10,13 +9,17 @@ import Auth from './Auth/Auth';
 import EditProfile from './EditProfile/EditProfile';
 import IconButton from 'material-ui/IconButton';
 import ClearIcon from 'material-ui-icons/Clear';
+import SignInIcon from 'react-icons/lib/fa/sign-in';
+import UserIcon from 'react-icons/lib/fa/user';
+import Divider from 'material-ui/Divider';
+
 
 const fullScreenMinWidth = 550;
 
 const profileStyle = {
     position: 'relative',
     fontSize: '0.8em',
-    borderBottom: '1px solid grey'
+    cursor: 'pointer'
 }
 
 const contentDivStyle = {
@@ -57,14 +60,15 @@ class ProfileDialog extends Component {
         return (
             <div>
                 {
-                    user.isLoggedIn && <div style={profileStyle} onClick={this.handleClickOpen}>
-                        Hi, {user.data.first_name || user.data.username}
-                    </div>
+                    user.isLoggedIn && <Button style={profileStyle} onClick={this.handleClickOpen}>
+                        Hi, {user.data.first_name || user.data.username} &nbsp; <UserIcon />
+                    </Button>
                 }
                 {
-                    !user.isLoggedIn && <div style={profileStyle} onClick={this.handleClickOpen}>
-                        Log in or Signup
-                    </div>
+                    !user.isLoggedIn &&
+                    <Button onClick={this.handleClickOpen} style={profileStyle}>
+                        Log in or Signup &nbsp; <SignInIcon />
+                    </Button>
                 }
                 <Dialog
                     fullScreen={fullScreen}
@@ -80,8 +84,9 @@ class ProfileDialog extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <div style={contentDivStyle}>
-                            <Auth {...this.props} />
                             {this.props.user.isLoggedIn && <EditProfile {...this.props} />}
+                            <Divider style={{margin: '8px 0px'}}/>
+                            <Auth {...this.props} />
                         </div>
                     </DialogContent>
 

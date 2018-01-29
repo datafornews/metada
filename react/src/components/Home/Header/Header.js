@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import HowItWorks from "./HowItWorks";
 import Profile from "../Content/Profile/Profile";
 
 const defaultTitleStyle = {
@@ -57,7 +56,6 @@ export default class Header extends Component {
 
                 <div style={topOptions}>
                     <Profile {...this.props} />
-                    <HowItWorks {...this.props} />
                 </div>
             </div>
         )
