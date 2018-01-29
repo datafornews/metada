@@ -14,6 +14,7 @@ import store, { history } from './store/store';
 import Home from './components/Home/Home';
 import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 
 import './style/index.css';
@@ -61,6 +62,7 @@ const router = (
                         <Route exact path='/stats' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
                     </Switch>
+                    <Footer history={history} />
                 </div>
             </MuiThemeProvider>
         </ConnectedRouter>
