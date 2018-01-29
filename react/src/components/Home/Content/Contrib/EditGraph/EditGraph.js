@@ -12,7 +12,7 @@ export default class EditGraph extends React.Component {
 
     handleChange = panel => (event, expanded) => {
         if (panel === this.state.expanded) {
-            expanded && this.setState({
+            !expanded && this.setState({
                 expanded: ''
             });
         } else {
