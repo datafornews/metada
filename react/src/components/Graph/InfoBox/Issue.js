@@ -18,14 +18,12 @@ const buttonPosition = {
     'browser': {
         position: 'absolute',
         right: '16%',
-        top: '40%',
         border: '2px #ff7543 solid',
         borderRadius: '50px'
     },
     'extension': {
         position: 'absolute',
         right: '70px',
-        top: '40%',
     },
     'mobile': {
         position: 'absolute',

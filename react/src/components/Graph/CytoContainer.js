@@ -7,6 +7,8 @@ import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 import SearchBar from '../Search/SearchBar';
+import ShiftToScroll from './SideButtons/ShiftToScroll';
+
 
 let defaultStyle = {
   margin: 'auto',
@@ -45,8 +47,29 @@ class CytoContainer extends React.Component {
       update: false,
       changeWiki: false,
       focus: 0,
-      scroll: false
+      scroll: false,
+      shiftToScroll: false
     };
+  }
+
+  showShiftToScroll = (event) => {
+    if (this.state.scroll) {
+      this.setState({
+        shiftToScroll: false
+      });
+      clearTimeout(this.timeout)
+    } else {
+      this.setState({
+        shiftToScroll: true
+      });
+      this.timeout = setTimeout(() => {
+        this.setState({
+          shiftToScroll: false
+        });
+      }, 2000);
+    }
+
+
   }
 
   allowScroll = (event) => {
@@ -54,6 +77,7 @@ class CytoContainer extends React.Component {
       this.setState({
         scroll: true
       });
+      this.cy.userPanningEnabled(true);
       this.cy.userZoomingEnabled(true);
     }
   }
@@ -63,6 +87,7 @@ class CytoContainer extends React.Component {
       this.setState({
         scroll: false
       })
+      this.cy.userPanningEnabled(false);
       this.cy.userZoomingEnabled(false);
     }
   }
@@ -78,6 +103,7 @@ class CytoContainer extends React.Component {
     const location = parseInt(this.props.match.params.entityId, 10);
     document.addEventListener("keydown", this.allowScroll, false);
     document.addEventListener("keyup", this.preventScroll, false);
+    document.addEventListener("wheel", this.showShiftToScroll, false)
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
@@ -88,6 +114,7 @@ class CytoContainer extends React.Component {
     document.removeEventListener("keydown", this.allowScroll, false);
     document.removeEventListener("keyup", this.preventScroll, false);
     this.props.show.ftux && this.props.toggleFtux();
+    this.timeout !== undefined && clearTimeout(this.timeout);
   }
 
 
@@ -154,7 +181,6 @@ class CytoContainer extends React.Component {
       document.body.style.cursor = 'default';
     });
     this.cy = cy;
-
   }
 
   componentDidMount() {
@@ -194,10 +220,12 @@ class CytoContainer extends React.Component {
             width={cyStyles[this.props.clientType].width} />
         }
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
+        {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
         <SideButtons
           {...this.props}
           focusSearchBar={this.focusSearchBar}
           reRenderGraph={this.renderCytoscapeElement}
+          shiftToScroll={this.state.shiftToScroll}
         />
         <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} cytoScroll={this.state.scroll} />
       </div>

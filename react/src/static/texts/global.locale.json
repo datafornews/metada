@@ -354,8 +354,16 @@
                 "Menu"
             ],
             "shift": [
-                " + scroll to zoom in and out",
-                " + molette pour (dé)-zoomer"
+                "then ",
+                "puis "
+            ],
+            "shift2": [
+                " + scroll",
+                " + molette"
+            ],
+            "shift3": [
+                "to zoom in and out",
+                "pour (dé)-zoomer"
             ],
             "legend": {
                 "m": [
