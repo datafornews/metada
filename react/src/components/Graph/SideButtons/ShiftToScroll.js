@@ -3,11 +3,10 @@ import SideElement from './SideElement';
 
 
 const zoomStyle = {
-    fontSize: '0.6rem',
-    fontWeight: 300,
+    fontSize: '0.8rem',
+    fontWeight: 400,
     maxWidth: "140px",
     fontStyle: "italic",
-    color: 'dimgray'
 }
 
 class ShiftToScroll extends Component {
