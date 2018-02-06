@@ -28,6 +28,19 @@ function updateData(component) {
         Axios.get('https://oop-pro.herokuapp.com/public/update?timestamp=' + ts).then(
             (response) => {
                 if (response.data && (response.data.entities.length > 0 || response.data.shares.length >0)){
+                    response.data.entities.map((v, k) => {
+                        localStorage.removeItem('cytoData_' + v.id)
+                        localStorage.removeItem('wiki_' + v.id + '_fr')
+                        localStorage.removeItem('wiki_' + v.id + '_en')
+                    })
+                    response.data.shares.map((v, k) => {
+                        localStorage.removeItem('cytoData_' + v.child.id)
+                        localStorage.removeItem('cytoData_' + v.parent.id)
+                        localStorage.removeItem('wiki_' + v.child_id + '_fr')
+                        localStorage.removeItem('wiki_' + v.parent_id + '_fr')
+                        localStorage.removeItem('wiki_' + v.child_id + '_en')
+                        localStorage.removeItem('wiki_' + v.parent_id + '_en')
+                    })
                     const updatedServerData = formatUpdateData(component.props.data, response.data);
                     const updatedData = formatData(updatedServerData);
                     component.props.setData(updatedData);
