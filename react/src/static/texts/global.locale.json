@@ -318,8 +318,8 @@
                 "Désactivez cette légende dans vos Paramètres"
             ],
             "issueTooltip": [
-                "Something's wrong ?",
-                "Quelque chose ne va pas?"
+                "A piece of information is wrong ?",
+                "Une information est fausse?"
             ],
             "shiftTooltip": [
                 "Want to zoom in or out?",
