@@ -6,11 +6,10 @@ const style = {
     fontSize: '0.9rem',
     fontWeight: 200,
     color: 'rgba(100, 100, 100, 0.4)',
-    maxWidth: '150px',
     textAlign: 'center',
+    margin: 'auto',
     position: 'absolute',
-    right: '16%',
-    top: '40%'
+    bottom: '0'
 }
 
 class ShiftToScroll extends Component {
@@ -21,9 +20,11 @@ class ShiftToScroll extends Component {
 
         const content = (
             <div style={style}>
-                {'click ' + this.props.translate('graph.sideButtons.shift') + shiftUnicode + this.props.translate('graph.sideButtons.shift2')}
+                {this.props.translate('graph.sideButtons.shift') + shiftUnicode + this.props.translate('graph.sideButtons.shift2')}
                 <br />
                 {this.props.translate('graph.sideButtons.shift3')}
+                &nbsp;
+                {this.props.translate('graph.sideButtons.shift4')}
             </div>);
 
         return content

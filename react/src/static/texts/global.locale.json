@@ -354,16 +354,20 @@
                 "Menu"
             ],
             "shift": [
-                "then ",
-                "puis "
+                "Press ",
+                "Appuyez sur "
             ],
             "shift2": [
-                " + scroll",
-                " + molette"
+                " (shift)",
+                " (majuscule)"
             ],
             "shift3": [
-                "to zoom in and out",
-                "pour (dé)-zoomer"
+                "to move the graph around",
+                "pour déplacer le graphe"
+            ],
+            "shift4": [
+                "and to zoom in and out",
+                "et pour (dé)-zoomer"
             ],
             "legend": {
                 "m": [

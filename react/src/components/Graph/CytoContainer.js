@@ -14,6 +14,9 @@ let defaultStyle = {
   margin: 'auto',
   width: '70%',
   height: parseInt(window.screen.availHeight / 2, 10) + 'px',
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center'
 };
 
 const cyStyles = {
@@ -66,7 +69,7 @@ class CytoContainer extends React.Component {
         this.setState({
           shiftToScroll: false
         });
-      }, 2000);
+      }, 2500);
     }
 
 
@@ -219,8 +222,9 @@ class CytoContainer extends React.Component {
             focus={this.state.focus}
             width={cyStyles[this.props.clientType].width} />
         }
-        <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
-        {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
+        <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} >
+          {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
+        </div>
         <SideButtons
           {...this.props}
           focusSearchBar={this.focusSearchBar}
