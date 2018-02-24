@@ -129,7 +129,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, is
                 height: v.data.name.length > 15 ? '40px' : '30px',
                 widthPx: v.data.category === 's' ? '80px' : v.data.width + 100 + 'px',
 
-                selectedColor: v.data.id === sourceId ? colors[v.data.category] : 'green',
+                selectedColor: v.data.id === sourceId ? "white" : 'green',
                 color: v.data.id === sourceId ? "white" : colors[v.data.category],
                 backgroundColor: colors[v.data.category],
                 backgroundOpacity: v.data.id === sourceId ? 1 : 0,
