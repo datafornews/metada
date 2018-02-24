@@ -383,16 +383,16 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Complete Graph available",
-                    "Graphe Complet disponible"
+                    "Complete Graph: click on the green \"See Graph\" button to view this entity's complete graph",
+                    "Graphe Complet: cliquez sur le boutton \"Voir ce Graphe\" vert pour voir le Graphe Complet de cette entité"
                 ],
                 "boldLabel": [
                     "bold",
                     "en gras"
                 ],
                 "boldText": [
-                    "Current Graph",
-                    "Graphe courrant"
+                    "Current Graph: this is the entity which generated the current Graph you're seeing",
+                    "Graphe courrant: c'est l'entité qui a généré le graphe courant que vous voyez"
                 ]
             }
         },

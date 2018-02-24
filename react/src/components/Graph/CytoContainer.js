@@ -65,6 +65,7 @@ class CytoContainer extends React.Component {
       this.setState({
         shiftToScroll: true
       });
+      clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         this.setState({
           shiftToScroll: false

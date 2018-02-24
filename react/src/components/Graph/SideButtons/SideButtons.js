@@ -11,7 +11,7 @@ import Legend from './Legend';
 const defaultMetaDivStyle = {
     browser: {},
     mobile: {
-        background: "linear-gradient(to left, rgba(236, 233, 230, 0.7), rgba(255, 255, 255, 0.8))",
+        background: "linear-gradient(to left, rgba(236, 233, 230, 0.82), rgba(255, 255, 255, 1))",
         zIndex: "1000",
         position: "fixed",
         width: "100%",

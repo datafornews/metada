@@ -21,7 +21,7 @@ class ShiftToScroll extends Component {
         const content = (
             <div style={style}>
                 {this.props.translate('graph.sideButtons.shift') + shiftUnicode + this.props.translate('graph.sideButtons.shift2')}
-                <br />
+                &nbsp;
                 {this.props.translate('graph.sideButtons.shift3')}
                 &nbsp;
                 {this.props.translate('graph.sideButtons.shift4')}
