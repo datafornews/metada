@@ -20,7 +20,9 @@ import ClearIcon from 'material-ui-icons/Clear';
 const buttonPosition = {
     'browser': {
         position: 'absolute',
-        right: '15%',
+        right: '16%',
+        border: '2px #ff7543 solid',
+        borderRadius: '50px'
     },
     'extension': {
         position: 'absolute',

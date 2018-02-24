@@ -80,6 +80,11 @@ function show(state = false, action) {
                 ...state,
                 ftux: !state.ftux
             };
+        case 'TOGGLE_GRAPH_BUTTON_BLINK':
+            return {
+                ...state,
+                graphButtonBlink: !state.graphButtonBlink
+            }
 
         default:
             return state;

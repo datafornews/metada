@@ -58,7 +58,7 @@ const colors = {
 }
 
 const nodeBaseStyle = {
-    'background-opacity': 0,
+    'background-opacity': 'data(backgroundOpacity)',
     'label': 'data(name)',
     'shape': 'roundrectangle',
     'font-weight': 'data(fontWeight)',
@@ -73,7 +73,8 @@ const nodeBaseStyle = {
     'border-style': 'dashed',
     'border-opacity': 'data(borderOpacity)',
     'border-color': 'data(color)',
-    'border-width': '2px'
+    'border-width': '0px',
+    'background-color': 'data(backgroundColor)',
 
 };
 
@@ -124,15 +125,21 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, is
             data: {
                 ...v.data,
                 name: v.data.name.length > 15 ? addOneLineBreak(v.data.name) : v.data.name,
+
                 height: v.data.name.length > 15 ? '40px' : '30px',
                 widthPx: v.data.category === 's' ? '80px' : v.data.width + 100 + 'px',
-                selectedColor: v.data.id === sourceId ? colors[v.data.category] : 'green',
+
+                selectedColor: v.data.id === sourceId ? "white" : 'green',
+                color: v.data.id === sourceId ? "white" : colors[v.data.category],
+                backgroundColor: colors[v.data.category],
+                backgroundOpacity: v.data.id === sourceId ? 1 : 0,
+
                 fontWeight: v.data.id === sourceId ? 'bolder' : 'normal',
                 fontSize: v.data.id === sourceId ? '3rem' : '2.5rem',
-                color: colors[v.data.category],
+
                 borderOpacity: v.data.id === sourceId ? 1 : 0
             },
-            grabbable: !isMobile
+            grabbable: false,
         }
     });
 
@@ -150,7 +157,6 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, is
                 style: {
                     ...nodeBaseStyle
                 },
-                // boxSelectionEnabled: false
             },
             {
                 selector: 'edge',
@@ -177,6 +183,8 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, is
 
         layout: layout,
         minZoom: 0.2,
-        maxZoom: 1.4
+        maxZoom: 1.4,
+        userPanningEnabled: false,
+        boxSelectionEnabled: false
     }
 };

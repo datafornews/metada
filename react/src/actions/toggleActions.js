@@ -88,6 +88,12 @@ export function toggleFocusSearchBar() {
     };
 }
 
+export function toggleGraphButtonBlink() {
+    return {
+        type: 'TOGGLE_GRAPH_BUTTON_BLINK'
+    };
+}
+
 export function closeAll() {
     return {
         type: 'CLOSE_ALL'

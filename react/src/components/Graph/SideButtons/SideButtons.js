@@ -6,26 +6,52 @@ import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
 import Legend from './Legend';
-import ShiftToScroll from './ShiftToScroll';
 
 
-const divStyle = {
+const defaultMetaDivStyle = {
     browser: {},
     mobile: {
-        background: "linear-gradient(to left, rgba(236, 233, 230, 0.7), rgba(255, 255, 255, 0.7))",
+        background: "linear-gradient(to left, rgba(236, 233, 230, 0.82), rgba(255, 255, 255, 1))",
         zIndex: "1000",
         position: "fixed",
         width: "100%",
         left: "0",
         top: "0px",
         height: "100%",
-        touchAction: 'none'
+        touchAction: 'none',
+        overflow: 'hidden'
     },
     extension: {}
 }
 
+function disableScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+function enableScroll() {
+    document.body.style.overflow = 'unset';
+}
+
 
 class SideButtons extends Component {
+
+    componentWillUnmount() {
+        enableScroll();
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+
+        if (window.innerWidth <= 870) {
+            if (nextProps.show.sideButtons || nextProps.show.sideButtons === undefined) {
+                disableScroll();
+            } else {
+                enableScroll();
+            }
+        }
+    }
+
+
 
     render() {
 
@@ -59,8 +85,14 @@ class SideButtons extends Component {
 
         delete legendDivStyle.left;
 
+        let metaDivStyle = defaultMetaDivStyle[this.props.clientType];
+
+        if (window.innerWidth <= 870) {
+            metaDivStyle = defaultMetaDivStyle['mobile'];
+        }
+
         return (
-            <div style={this.props.show.sideButtons && this.props.show.legend ? divStyle[this.props.clientType] : {}}>
+            <div style={(this.props.show.sideButtons && this.props.show.legend) ? metaDivStyle : {}}>
                 <div style={sideButtonDivStyle}>
                     <HideSideButton {...this.props} />
                     {this.props.show.sideButtons && <HomeButton {...this.props} />}
@@ -71,8 +103,6 @@ class SideButtons extends Component {
                 </div>
                 <div style={legendDivStyle}>
                     {this.props.show.sideButtons && this.props.show.legend && <Legend {...this.props} />}
-                    <br/>
-                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && this.props.show.legend && <ShiftToScroll {...this.props} />}
                 </div>
             </div>
         );

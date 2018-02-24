@@ -2,34 +2,32 @@ import React, { Component } from 'react';
 import SideElement from './SideElement';
 
 
-const zoomStyle = {
-    fontSize: '0.6rem',
-    fontWeight: 300,
-    maxWidth: "140px",
-    fontStyle: "italic",
-    color: 'dimgray'
+const style = {
+    fontSize: '0.9rem',
+    fontWeight: 200,
+    color: 'rgba(100, 100, 100, 0.4)',
+    textAlign: 'center',
+    margin: 'auto',
+    position: 'absolute',
+    bottom: '0'
 }
 
 class ShiftToScroll extends Component {
 
     render() {
 
-        const title = this.props.translate('graph.sideButtons.shiftTooltip');
-
         const shiftUnicode = '\u21E7'
 
-        const content = <div style={zoomStyle}>
-            {shiftUnicode + this.props.translate('graph.sideButtons.shift')}
-        </div>;
+        const content = (
+            <div style={style}>
+                {this.props.translate('graph.sideButtons.shift') + shiftUnicode + this.props.translate('graph.sideButtons.shift2')}
+                &nbsp;
+                {this.props.translate('graph.sideButtons.shift3')}
+                &nbsp;
+                {this.props.translate('graph.sideButtons.shift4')}
+            </div>);
 
-        return <SideElement
-            id="tooltip-ShiftScroll"
-            title={title}
-            placement="left"
-            content={content}
-            onClick={() => { }}
-            {...this.props}
-        />
+        return content
     }
 }
 

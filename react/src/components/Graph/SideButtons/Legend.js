@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Icon from 'material-ui-icons/RadioButtonChecked';
-import Filter from 'material-ui-icons/FilterTiltShift';
+import Icon from 'material-ui-icons/LabelOutline';
+import Filter from 'material-ui-icons/Label';
 import SideElement from './SideElement';
 
 const colors = {
@@ -16,42 +16,66 @@ export default class Legend extends Component {
 
         const title = this.props.translate('graph.sideButtons.legendTooltip');
 
+        let completeGraph = this.props.translate('graph.sideButtons.legend.cg').split(':');
+        completeGraph = <span>
+            <span style={{ color: 'green', fontWeight: 500 }}>{completeGraph[0]}</span>
+            : {completeGraph[1]}</span>
+        let currentGraph = this.props.translate('graph.sideButtons.legend.boldText').split(':');
+        currentGraph = <span>
+            <span style={{ fontWeight: 500 }}>{currentGraph[0]}</span>
+            : {currentGraph[1]}</span>
+
+
         const content = (
-            <div style={{ paddingTop: '10px', fontSize: this.props.clientType === 'extension' ? '0.8rem' : '0.7rem' }}>
-                <table style={{ width: "150px" }}
-                    onMouseEnter={() => { this.setState({ open: true }) }}
-                    onMouseLeave={() => { this.setState({ open: false }) }}
-                >
+            <div
+                style={
+                    {
+                        paddingTop: '15px',
+                        fontSize: this.props.clientType === 'extension' ? '0.9rem' : '0.8rem'
+                    }
+                }
+                onMouseEnter={() => { this.setState({ open: true }) }}
+                onMouseLeave={() => { this.setState({ open: false }) }}
+            >
+                <h3 style={{ marginTop: 0, textAlign: 'center' }}>Legend:</h3>
+
+                <table style={{ width: "350px", marginBottom: '30px' }}>
                     <tbody>
                         <tr>
-                            <td><Icon style={{ color: colors['i'] }} /></td>
-                            <td>{this.props.translate('graph.sideButtons.legend.i')}</td>
-                        </tr>
-                        <tr>
-                            <td><Icon style={{ color: colors['c'] }} /></td>
-                            <td>{this.props.translate('graph.sideButtons.legend.c')}</td>
-                        </tr>
-                        <tr>
-                            <td><Icon style={{ color: colors['m'] }} /></td>
-                            <td>{this.props.translate('graph.sideButtons.legend.m')}</td>
-                        </tr>
-                        <tr>
-                            <td><Icon style={{ color: 'green' }} /></td>
-                            <td>{this.props.translate('graph.sideButtons.legend.cg')}</td>
-                        </tr>
-                        <tr>
-                            <td><Filter /></td>
-                            <td>{this.props.translate('graph.sideButtons.legend.boldText')}</td>
+                            <td><Icon style={{ width: "40px", color: colors['m'] }} /></td>
+                            <th style={{ color: colors['m'] }}>{this.props.translate('graph.sideButtons.legend.m')}</th>
+                            <td></td>
+                            <td><Icon style={{ width: "40px", color: colors['c'] }} /></td>
+                            <th style={{ color: colors['c'] }}>{this.props.translate('graph.sideButtons.legend.c')}</th>
+                            <td></td>
+                            <td><Icon style={{ width: "40px", color: colors['i'] }} /></td>
+                            <th style={{ color: colors['i'] }}>{this.props.translate('graph.sideButtons.legend.i')}</th>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+
+                <table style={{ width: "350px" }}>
+                    <tbody>
+                        <tr>
+                            <td><Icon style={{ width: "40px", color: 'green' }} /></td>
+                            <td >{completeGraph}</td>
+                        </tr>
+                        <tr>
+                            <td><br /></td>
+                        </tr>
+                        <tr>
+                            <td><Filter style={{ width: "40px", color: 'grey' }} /></td>
+                            <td >{currentGraph}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div >
         );
 
         return <SideElement
             id="tooltip-Legend"
             title={title}
-            placement="left"
+            placement="bottom"
             content={content}
             onClick={() => { }}
             {...this.props}

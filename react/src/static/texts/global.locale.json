@@ -238,8 +238,8 @@
                 "Désactivez cette légende dans vos Paramètres"
             ],
             "issueTooltip": [
-                "Something's wrong ?",
-                "Quelque chose ne va pas?"
+                "A piece of information is wrong ?",
+                "Une information est fausse?"
             ],
             "shiftTooltip": [
                 "Want to zoom in or out?",
@@ -274,8 +274,20 @@
                 "Menu"
             ],
             "shift": [
-                " + scroll to zoom in and out",
-                " + molette pour (dé)-zoomer"
+                "Press ",
+                "Appuyez sur "
+            ],
+            "shift2": [
+                " (shift)",
+                " (majuscule)"
+            ],
+            "shift3": [
+                "to move the graph around",
+                "pour déplacer le graphe"
+            ],
+            "shift4": [
+                "and to zoom in and out",
+                "et pour (dé)-zoomer"
             ],
             "legend": {
                 "m": [
@@ -291,16 +303,16 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Complete Graph available",
-                    "Graphe Complet disponible"
+                    "Complete Graph: click on the green \"See Graph\" button to view this entity's complete graph",
+                    "Graphe Complet: cliquez sur le boutton \"Voir ce Graphe\" vert pour voir le Graphe Complet de cette entité"
                 ],
                 "boldLabel": [
                     "bold",
                     "en gras"
                 ],
                 "boldText": [
-                    "Current Graph",
-                    "Graphe courrant"
+                    "Current Graph: this is the entity which generated the current Graph you're seeing",
+                    "Graphe courrant: c'est l'entité qui a généré le graphe courant que vous voyez"
                 ]
             }
         },
