@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 const divStyle = {
     display: 'inline-block',
     verticalAlign: 'top',
+    zIndex: 999
 }
 const buttonStyle = {
     verticalAlign: 'middle',

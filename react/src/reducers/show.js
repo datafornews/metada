@@ -43,7 +43,8 @@ function show(state = false, action) {
         case 'TOGGLE_SIDEBUTTONS':
             return {
                 ...state,
-                sideButtons: !state.sideButtons
+                sideButtons: !state.sideButtons,
+                searchBar: false
             }
         case 'TOGGLE_LEGEND':
             return {
@@ -60,7 +61,7 @@ function show(state = false, action) {
                 ...state
             }
             for (var i in state) {
-                if (i !== 'legend' && i !== 'chips'){
+                if (i !== 'legend' && i !== 'chips') {
                     newState[i] = false;
                 }
             }

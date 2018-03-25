@@ -24,10 +24,14 @@ const buttonPosition = {
     'extension': {
         position: 'absolute',
         right: '70px',
+        border: '2px #ff7543 solid',
+        borderRadius: '50px'
     },
     'mobile': {
         position: 'absolute',
         right: '1%',
+        border: '2px #ff7543 solid',
+        borderRadius: '50px'
     }
 }
 

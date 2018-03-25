@@ -31,6 +31,7 @@ class SearchBar extends React.Component {
           this.props.updateEntityInfoBox(val.id);
 
           logGraph(val.id);
+          this.props.show.sideButtons && this.props.toggleSideButtons();
           this.props.history.push(`/graph/${val.id}`);
         }
       }
@@ -55,7 +56,6 @@ class SearchBar extends React.Component {
     } else {
       searchBarDivStyle.width = this.props.width;
       searchBarDivStyle.margin = 'auto';
-
     }
 
     const selectDivStyle = {
@@ -73,7 +73,7 @@ class SearchBar extends React.Component {
             ignoreCase
             ignoreAccents
             style={selectStyle}
-            menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)' }}
+            menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)', zIndex:1000 }}
             placeholder={this.props.translate('search.searchPlaceholder')}
             arrowRenderer={() => null}
             autoBlur
@@ -82,7 +82,7 @@ class SearchBar extends React.Component {
             ref={(select) => { this.select = select; }}
           />
         </div>
-        {!this.props.hideButton && <HideSearchBar {...this.props} />}
+        {/* {!this.props.hideButton && <HideSearchBar {...this.props} />} */}
       </div>
     );
   }

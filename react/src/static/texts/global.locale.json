@@ -383,16 +383,16 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Complete Graph: click on the green \"See Graph\" button to view this entity's complete graph",
-                    "Graphe Complet: cliquez sur le boutton \"Voir ce Graphe\" vert pour voir le Graphe Complet de cette entité"
+                    "Active Entity: (other than the Mapped Entity) see its available Wikipedia extract and click on the green @@ button to view its complete graph",
+                    "Entité Active: (autre que l'Entité Représentée) un extrait de sa page Wikipédia est affiché et vous pouvez voir son Graphe Complet en cliquant sur"
                 ],
                 "boldLabel": [
                     "bold",
                     "en gras"
                 ],
                 "boldText": [
-                    "Current Graph: this is the entity which generated the current Graph you're seeing",
-                    "Graphe courrant: c'est l'entité qui a généré le graphe courant que vous voyez"
+                    "Mapped Entity: this is the entity which generated the current Graph you're seeing",
+                    "Entité Représentée: c'est l'entité qui a généré le graphe courant que vous voyez"
                 ]
             }
         },

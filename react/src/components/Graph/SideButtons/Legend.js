@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Icon from 'material-ui-icons/LabelOutline';
 import Filter from 'material-ui-icons/Label';
 import SideElement from './SideElement';
+import GraphIcon from 'react-icons/lib/fa/chevron-circle-right';
 
 const colors = {
     m: '#3f51b5',
@@ -17,9 +18,12 @@ export default class Legend extends Component {
         const title = this.props.translate('graph.sideButtons.legendTooltip');
 
         let completeGraph = this.props.translate('graph.sideButtons.legend.cg').split(':');
-        completeGraph = <span>
-            <span style={{ color: 'green', fontWeight: 500 }}>{completeGraph[0]}</span>
-            : {completeGraph[1]}</span>
+        completeGraph = (<span>
+            <span style={{ color: 'green', fontWeight: 500 }}>
+                {completeGraph[0]}
+            </span>
+            : {completeGraph[1].split('@@')[0]} <GraphIcon style={{ color: 'green' }} /> {completeGraph[1].split('@@')[1]}
+        </span>);
         let currentGraph = this.props.translate('graph.sideButtons.legend.boldText').split(':');
         currentGraph = <span>
             <span style={{ fontWeight: 500 }}>{currentGraph[0]}</span>
