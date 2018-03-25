@@ -15,7 +15,8 @@ class SearchButton extends React.Component {
 
     handleClick = () => {
         if (!this.props.show.searchBar) {
-            this.props.toggleSearchBar()
+            // this.props.toggleSideButtons();
+            this.props.toggleSearchBar();
             this.props.clientType === 'mobile' && this.props.toggleSideButtons();
         } else {
             Scroll.animateScroll.scrollToTop({

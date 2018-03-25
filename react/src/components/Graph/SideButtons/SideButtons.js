@@ -6,13 +6,14 @@ import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
 import Legend from './Legend';
+import SearchBar from '../../Search/SearchBar';
 
 
 const defaultMetaDivStyle = {
     browser: {},
     mobile: {
-        background: "linear-gradient(to left, rgba(236, 233, 230, 0.82), rgba(255, 255, 255, 1))",
-        zIndex: "1000",
+        background: "linear-gradient(to left, rgba(236, 233, 230, 0.95), rgba(255, 255, 255, 1))",
+        zIndex: "100",
         position: "fixed",
         width: "100%",
         left: "0",
@@ -74,7 +75,7 @@ class SideButtons extends Component {
         }
         else {
             const left = this.props.clientType === 'browser' ? 0.15 * window.innerWidth - 20 + 8 + 'px' : '6%';
-            sideButtonDivStyle.top = '40px';
+            sideButtonDivStyle.top = '70px';
             sideButtonDivStyle.left = left
             sideButtonDivStyle.position = 'absolute'
         }
@@ -87,19 +88,29 @@ class SideButtons extends Component {
 
         let metaDivStyle = defaultMetaDivStyle[this.props.clientType];
 
-        if (window.innerWidth <= 870) {
+        if (window.innerWidth <= 2870) {
             metaDivStyle = defaultMetaDivStyle['mobile'];
         }
 
         return (
             <div style={(this.props.show.sideButtons && this.props.show.legend) ? metaDivStyle : {}}>
+                <div style={{ position: 'absolute', width: '100%', top: 0 }}>
+                    <div style={{ maxWidth: '300px', margin: '16px auto' }}>
+                        {
+                            this.props.show.sideButtons && this.props.dataIsAvailable && <SearchBar
+                                {...this.props} />
+                        }
+
+                    </div>
+                </div>
+
                 <div style={sideButtonDivStyle}>
                     <HideSideButton {...this.props} />
                     {this.props.show.sideButtons && <HomeButton {...this.props} />}
                     {this.props.show.sideButtons && <SearchButton {...this.props} />}
                     {this.props.show.sideButtons && <RefreshButton {...this.props} />}
-                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <PreviousButton {...this.props} />}
-                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <NextButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <PreviousButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <NextButton {...this.props} />}
                 </div>
                 <div style={legendDivStyle}>
                     {this.props.show.sideButtons && this.props.show.legend && <Legend {...this.props} />}
