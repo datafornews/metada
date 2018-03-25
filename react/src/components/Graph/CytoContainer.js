@@ -56,24 +56,24 @@ class CytoContainer extends React.Component {
   }
 
   showShiftToScroll = (event) => {
-    if (this.state.scroll) {
-      this.setState({
-        shiftToScroll: false
-      });
-      clearTimeout(this.timeout)
-    } else {
-      this.setState({
-        shiftToScroll: true
-      });
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
+    if (event.target.tagName === "CANVAS"){
+      if (this.state.scroll) {
         this.setState({
           shiftToScroll: false
         });
-      }, 2500);
+        clearTimeout(this.timeout)
+      } else {
+        this.setState({
+          shiftToScroll: true
+        });
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          this.setState({
+            shiftToScroll: false
+          });
+        }, 1500);
+      }
     }
-
-
   }
 
   allowScroll = (event) => {
@@ -117,6 +117,7 @@ class CytoContainer extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", this.allowScroll, false);
     document.removeEventListener("keyup", this.preventScroll, false);
+    document.removeEventListener("wheel", this.showShiftToScroll, false)
     this.props.show.ftux && this.props.toggleFtux();
     this.timeout !== undefined && clearTimeout(this.timeout);
   }
@@ -217,12 +218,6 @@ class CytoContainer extends React.Component {
         <Helmet>
           <title>Metada - {entity.name}</title>
         </Helmet>
-        {
-          this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar
-            {...this.props}
-            focus={this.state.focus}
-            width={cyStyles[this.props.clientType].width} />
-        }
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} >
           {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
         </div>
