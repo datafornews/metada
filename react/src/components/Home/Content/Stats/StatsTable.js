@@ -49,13 +49,11 @@ function getTableArray(stats) {
     }
     let tableArray = [];
     for (const entityName of Object.keys(table)) {
-        table[entityName].proportion = Math.round(table[entityName].total / total * 100);
+        table[entityName].proportion = Math.round(table[entityName].total / total * 1000) / 10;
         tableArray.push(table[entityName]);
     }
 
-    console.log(tableArray);
     tableArray.sort(compare);
-    console.log(tableArray);
 
     return tableArray;
 }
@@ -89,11 +87,11 @@ class BasicTable extends React.Component {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell className={classes.cell}>Entity</TableCell>
-                        <TableCell className={classes.cell} numeric>Last Week</TableCell>
-                        <TableCell className={classes.cell} numeric>Last Month</TableCell>
-                        <TableCell className={classes.cell} numeric>Total Page Views</TableCell>
-                        <TableCell className={classes.cell} numeric>Total Proportion (%)</TableCell>
+                        <TableCell className={classes.cell}>{this.props.translate('home.stats.entity')}</TableCell>
+                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.week')}</TableCell>
+                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.month')}</TableCell>
+                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.total')}</TableCell>
+                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.proportion')}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -104,7 +102,7 @@ class BasicTable extends React.Component {
                                 <TableCell className={classes.cell} numeric>{n.week}</TableCell>
                                 <TableCell className={classes.cell} numeric>{n.month}</TableCell>
                                 <TableCell className={classes.cell} numeric>{n.total}</TableCell>
-                                <TableCell className={classes.cell} numeric>{n.proportion}</TableCell>
+                                <TableCell className={classes.cell} numeric>{`${n.proportion} %`}</TableCell>
                             </TableRow>
                         );
                     })}
