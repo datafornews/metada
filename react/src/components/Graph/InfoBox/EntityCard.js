@@ -5,6 +5,7 @@ import WikiCard from './WikiCard';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
 import Issue from './Issue'
+import StatTitle from './StatTitle';
 
 const styles = theme => ({
     card: {
@@ -42,6 +43,8 @@ const entityLongNameTypoStyle = {
 
 class EntityCard extends Component {
 
+
+
     componentWillMount() {
         const location = parseInt(this.props.match.params.entityId, 10);
         const persistedInfoBox = JSON.parse(localStorage.getItem('reduxPersist:infoBox'))
@@ -73,6 +76,7 @@ class EntityCard extends Component {
                     <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
                         {this.props.entity.long_name}
                     </Typography>
+                    <StatTitle {...this.props} ></StatTitle>
                 </div>
 
                 <WikiButton {...this.props} />
