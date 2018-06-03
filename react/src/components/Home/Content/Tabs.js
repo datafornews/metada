@@ -95,9 +95,9 @@ class HomeContentTabs extends React.Component {
       ];
     } else {
       tabs = [
-        ...tabs.slice(0, 2),
+        ...tabs.slice(0, 1),
         "stats",
-        ...tabs.slice(2)
+        ...tabs.slice(1)
       ];
     }
 
