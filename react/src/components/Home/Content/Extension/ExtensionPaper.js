@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MarkdownPaper from '../../Paper/MarkdownPaper';
 
-class ContactPaper extends Component {
+class ExtensionPaper extends Component {
 
     
 
@@ -18,4 +18,4 @@ class ContactPaper extends Component {
     }
 }
 
-export default ContactPaper;
+export default ExtensionPaper;
