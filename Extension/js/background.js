@@ -6,9 +6,9 @@ window.browser = (function () {
 
 
 fetchData();
-console.log('Background Analytics')
+// console.log('Background Analytics');
 $(function () {
-    localStorage["newProfile"] = false;
+    localStorage.newProfile = false;
     console.log('Running Background JS');
 
     window.browser.tabs.onUpdated.addListener(function (onglet) {
@@ -17,45 +17,45 @@ $(function () {
             window.browser.tabs.query({ active: true, lastFocusedWindow: true },
                 function (array_of_tabs) {
                     var tab = array_of_tabs[0];
-                    if (tab && sessionStorage['currentTabUrl'] !== tab.url) {
-                        sessionStorage['currentTabUrl'] = tab.url;
+                    if (tab && sessionStorage.currentTabUrl !== tab.url) {
+                        sessionStorage.currentTabUrl = tab.url;
                         console.log('Checking for stats');
-                        if (tab.id === onglet
-                            && sessionStorage['tab_' + tab.id + '_previous'] !== tab.url) {
+                        if (tab.id === onglet &&
+                            sessionStorage['tab_' + tab.id + '_previous'] !== tab.url) {
 
                             logAndCount = true;
                             logged = true;
 
                         } else {
-                            logAndCount = false
+                            logAndCount = false;
                         }
-                        log_stats(tab, logAndCount)
+                        logStats2(tab, logAndCount);
                     }
-                    if (tab
-                        && tab.id === onglet
-                        && sessionStorage['tab_' + tab.id + '_previous'] !== tab.url
-                        && !logged) {
-                            
+                    if (tab &&
+                        tab.id === onglet &&
+                        sessionStorage['tab_' + tab.id + '_previous'] !== tab.url &&
+                        !logged) {
+
                         sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
                         log_tab(tab);
-                        count_tabs()
+                        count_tabs();
                     }
                 });
-        };
+        }
     });
 
     window.browser.tabs.onCreated.addListener(function (tab) {
         sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
         log_tab(tab);
-        count_tabs()
+        count_tabs();
     });
 
 
     window.browser.tabs.onRemoved.addListener(function (tab) {
         count_tabs();
-        if (localStorage['numberTabsOpen'] === "0") {
-            localStorage['currentTabUrl'] = "";
-            localStorage['currentTabTitle'] = ""
+        if (localStorage.numberTabsOpen === "0") {
+            localStorage.currentTabUrl = "";
+            localStorage.currentTabTitle = "";
         }
     });
 
