@@ -1,8 +1,20 @@
 #### Hi!
 
-You are currently on the web version of the Metada Chrome Extension. The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. You can install it right now from the official Chrome and Firefox stores! (see hereunder)
+You are currently on the web version of the Metada Extension. 
 
-We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). 
+##### Installation
+
+You are only 2 clicks away from getting the extension! Install the extension from the official stores: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)
+
+
+The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. It will allow you to:
+
+* Access the graph anytime (including offline)
+* Get a notification about the media's ownership when visiting its website
+* Gather a few statistics about your news consumption
+
+
+We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!).
 
 #### About the Extension
 
@@ -10,9 +22,3 @@ The extension is currently under development. For the first version only the Fre
 
 
 If you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see "Contact")!
-
-
-##### Installation
-
-You can download and install the extension from there: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)
-

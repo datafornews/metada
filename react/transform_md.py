@@ -43,6 +43,9 @@ def update_locale(file_sets):
 
 if __name__ == '__main__':
 
+    # Warning: this.props.translate does not deal well with inline html
+    # This would trigger errors
+
     file_sets = [
         {
             'names': ['intent/intentEn.md', 'intent/intentFr.md'],
