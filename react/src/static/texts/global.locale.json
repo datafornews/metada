@@ -26,7 +26,7 @@
         ],
         "contactPaperMd": [
             "**Get in touch** and suggest anything:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Suggest an edit to the Graph**:\n [(Google Form)](https://goo.gl/forms/Lf9fIFDyV1tGtmmr2) or send us an email\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)",
-            "**Contactez-nous** et partagez vos pistes d'amélioration:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1) ou adresse mail ci-dessus\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)"
+            "**Contactez-nous** et partagez vos pistes d'am\u00e9lioration:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1) ou adresse mail ci-dessus\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)"
         ],
         "contactNewLink": [
             " \n\n (Links must be openned in new tabs: right click > \"open in new tab\")",
@@ -67,7 +67,7 @@
             ],
             "showChips": [
                 "Suggest graphs to explore",
-                "Suggérer des graphes à découvrir"
+                "Sugg\u00e9rer des graphes \u00e0 d\u00e9couvrir"
             ]
         },
         "loadingData": [
@@ -109,7 +109,7 @@
             ],
             "g": [
                 "On the graph, major shareholders are at the top, in dark blue. Intermediate Companies are in red and end Media are in purple. The entity whose graph you are currently seeing is bordered with dashes. When you click on an Entity, it becomes green if you can see it's Complete Graph.",
-                "Dans le graphe, les actionnaires principaux sont en bleu fonc\u00e9, en haut. Les entreprises interm\u00e9diaires sont en rouge et les m\u00e9dias en violet. L'entit\u00e9 dont vous \u00eates en train de voir le graphe est entourée de pointillés. Lorsque vous cliquez sur une entit\u00e9, si son nom devient vert alors vous pouvez voir son Graphe Complet."
+                "Dans le graphe, les actionnaires principaux sont en bleu fonc\u00e9, en haut. Les entreprises interm\u00e9diaires sont en rouge et les m\u00e9dias en violet. L'entit\u00e9 dont vous \u00eates en train de voir le graphe est entour\u00e9e de pointill\u00e9s. Lorsque vous cliquez sur une entit\u00e9, si son nom devient vert alors vous pouvez voir son Graphe Complet."
             ],
             "closeButton": [
                 "Got it!",
@@ -155,8 +155,8 @@
             ]
         },
         "extensionPaperMd": [
-            "#### Hi!\n\nYou are currently on the web version of the Metada Chrome Extension. The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. You can install it right now from the official Chrome and Firefox stores! (see hereunder)\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). \n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!\n\n\n##### Installation\n\nYou can download and install the extension from there: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n",
-            "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension de Metada. Le but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Vous pouvez l'installer sur votre ordinateur d\u00e8s maintenant depuis les sites offciels de Chrome et Firefox! (voir plus bas)\n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n\n#### Installation\n\nT\u00e9l\u00e9charger et installer l'Extension : [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\n"
+            "#### Hi!\n\nYou are currently on the web version of the Metada Extension. \n\n##### Installation\n\nYou are only 2 clicks away from getting the extension! Install the extension from the official stores: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nThe Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. It will allow you to:\n\n* Access the graph anytime (including offline)\n* Get a notification about the media's ownership when visiting its website\n* Gather a few statistics about your news consumption\n\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!).\n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!",
+            "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension Metada.\n\n#### Installation\n\nInstallez l'Extension depuis les sites officiels en juste 2 clics: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nLe but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Elle vous permettra :\n\n* D'acc\u00e9der au graphe \u00e0 tout moment (y compris hors connexion)\n* De recevoir une notification vous rappelant \u00e0 qui appartient le m\u00e9dia en visitant son site internet\n* De suivre quelques statistiques sur votre consommation d'information \n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n"
         ],
         "profile": {
             "register": [
@@ -235,6 +235,28 @@
                     "Bienvenue!"
                 ]
             }
+        },
+        "stats": {
+            "entity": [
+                "Entity",
+                "Entit\u00e9"
+            ],
+            "week": [
+                "Last 7 days",
+                "7 derniers jours"
+            ],
+            "month": [
+                "Last 30 days",
+                "30 derniers jours"
+            ],
+            "total": [
+                "All time",
+                "Depuis toujours"
+            ],
+            "proportion": [
+                "All time proportion",
+                "Proportion totale"
+            ]
         }
     },
     "login": {
@@ -315,7 +337,7 @@
             ],
             "legendTooltip": [
                 "Hide this legend in the Settings",
-                "Désactivez cette légende dans vos Paramètres"
+                "D\u00e9sactivez cette l\u00e9gende dans vos Param\u00e8tres"
             ],
             "issueTooltip": [
                 "A piece of information is wrong ?",
@@ -323,11 +345,11 @@
             ],
             "shiftTooltip": [
                 "Want to zoom in or out?",
-                "(Dé-)Zoomez sur le Graphe!"
+                "(D\u00e9-)Zoomez sur le Graphe!"
             ],
             "searchTooltip": [
                 "Search the Graph",
-                "Rechercher une entité"
+                "Rechercher une entit\u00e9"
             ],
             "searchTooltipDisabled": [
                 "Use the Search Bar at the top!",
@@ -363,11 +385,11 @@
             ],
             "shift3": [
                 "to move the graph around",
-                "pour déplacer le graphe"
+                "pour d\u00e9placer le graphe"
             ],
             "shift4": [
                 "and to zoom in and out",
-                "et pour (dé)-zoomer"
+                "et pour (d\u00e9)-zoomer"
             ],
             "legend": {
                 "m": [
@@ -383,8 +405,8 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Active Entity: (other than the Mapped Entity) see its available Wikipedia extract and click on the green @@ button to view its complete graph",
-                    "Entité Active: (autre que l'Entité Représentée) un extrait de sa page Wikipédia est affiché et vous pouvez voir son Graphe Complet en cliquant sur"
+                    "Selected Entity: (other than the Mapped Entity) see its available Wikipedia extract and click on the green @@ button to view its complete graph",
+                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) un extrait de sa page Wikip\u00e9dia est affich\u00e9 et vous pouvez voir son Graphe Complet en cliquant sur"
                 ],
                 "boldLabel": [
                     "bold",
@@ -392,18 +414,18 @@
                 ],
                 "boldText": [
                     "Mapped Entity: this is the entity which generated the current Graph you're seeing",
-                    "Entité Représentée: c'est l'entité qui a généré le graphe courant que vous voyez"
+                    "Entit\u00e9 Repr\u00e9sent\u00e9e: c'est l'entit\u00e9 qui a g\u00e9n\u00e9r\u00e9 le graphe courant que vous voyez"
                 ]
             }
         },
         "wiki": {
             "loading": [
-                "Looking for a Wikipedia Summary...",
+                "Looking for a Wikipedia extract...",
                 "En attente d'un r\u00e9sum\u00e9 de Wikipedia..."
             ],
             "noData": [
-                "Could not find data on Wikipedia",
-                "Nous n'avons pas trouv\u00e9 d'information sur Wikipedia"
+                "No Wikipedia extract is evailable for this entity.",
+                "Wikipedia ne dispose pas de r\u00e9sum\u00e9 pour cette entit\u00e9."
             ],
             "cannotConnect": [
                 "Could not connect to Wikipedia",
@@ -439,6 +461,10 @@
                 "(Include [Issue] in the object of your email)",
                 "(Incluez [Issue] dans l'objet de votre email)"
             ]
-        }
+        },
+        "infoBoxStat": [
+            "of your views",
+            "de vos consultations"
+        ]
     }
 }
