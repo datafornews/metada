@@ -15,7 +15,7 @@ export default class StatTitle extends Component {
                 if (stats.counts.total.hasOwnProperty(this.props.entity.name)) {
                     const count = stats.counts.total[this.props.entity.name];
                     const total = Object.values(stats.counts.total).reduce((a, b) => a + b);
-                    return Math.round(count / total * 100);
+                    return Math.round(count / total * 1000) / 10;
                 }
             }
         }
