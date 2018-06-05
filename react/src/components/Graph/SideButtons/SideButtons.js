@@ -81,8 +81,14 @@ class SideButtons extends Component {
         }
 
         let legendDivStyle = { ...sideButtonDivStyle };
-        legendDivStyle.right = legendDivStyle.left;
-        legendDivStyle.width = this.props.clientType === 'mobile' ? '125px' : sideButtonDivStyle.width;
+        if (this.props.clientType !== 'mobile') {
+            legendDivStyle.right = legendDivStyle.left;
+        } else {
+            legendDivStyle.marginTop = this.props.show.sideButtons ? '50%' : '0%';
+            legendDivStyle.width = '100%';
+            legendDivStyle.position = 'inherit';
+        }
+
 
         delete legendDivStyle.left;
 

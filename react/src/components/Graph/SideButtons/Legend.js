@@ -29,6 +29,14 @@ export default class Legend extends Component {
             <span style={{ fontWeight: 500 }}>{currentGraph[0]}</span>
             : {currentGraph[1]}</span>
 
+        let table1Style = { width: "350px"};
+        let table2Style = { width: "350px" };
+        if (this.props.clientType === 'mobile') {
+            table1Style.width = '80%';
+            table1Style.margin = '0px auto 30px auto';
+            table2Style.width = '80%';
+            table2Style.margin = 'auto';
+        }
 
         const content = (
             <div
@@ -41,9 +49,9 @@ export default class Legend extends Component {
                 onMouseEnter={() => { this.setState({ open: true }) }}
                 onMouseLeave={() => { this.setState({ open: false }) }}
             >
-                <h3 style={{ marginTop: 0, textAlign: 'center' }}>Legend:</h3>
+                <h3 style={{ marginTop: 0, textAlign: 'center' }}>{this.props.translate('graph.sideButtons.legend.title')}:</h3>
 
-                <table style={{ width: "350px", marginBottom: '30px' }}>
+                <table style={table1Style}>
                     <tbody>
                         <tr>
                             <td><Icon style={{ width: "40px", color: colors['m'] }} /></td>
@@ -58,18 +66,18 @@ export default class Legend extends Component {
                     </tbody>
                 </table>
 
-                <table style={{ width: "350px" }}>
+                <table style={table2Style}>
                     <tbody>
                         <tr>
-                            <td><Icon style={{ width: "40px", color: 'green' }} /></td>
-                            <td >{completeGraph}</td>
+                            <td><Filter style={{ width: "40px", color: 'grey' }} /></td>
+                            <td >{currentGraph}</td>
                         </tr>
                         <tr>
                             <td><br /></td>
                         </tr>
                         <tr>
-                            <td><Filter style={{ width: "40px", color: 'grey' }} /></td>
-                            <td >{currentGraph}</td>
+                            <td><Icon style={{ width: "40px", color: 'green' }} /></td>
+                            <td >{completeGraph}</td>
                         </tr>
                     </tbody>
                 </table>
