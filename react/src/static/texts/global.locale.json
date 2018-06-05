@@ -352,12 +352,12 @@
                 "Rechercher une entit\u00e9"
             ],
             "searchTooltipDisabled": [
-                "Use the Search Bar at the top!",
-                "Utilisez la Barre de Recherche en haut!"
+                "Search: use the Search Bar at the top!",
+                "Rechercher: utilisez la Barre de Recherche en haut!"
             ],
             "resetTooltip": [
                 "Reset Graph",
-                "Rafra\u00eechir"
+                "Remettre le graphe dans sa position initiale"
             ],
             "previousTooltip": [
                 "Previous Graph",
@@ -405,8 +405,8 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Selected Entity: (other than the Mapped Entity) see its available Wikipedia extract and click on the green @@ button to view its complete graph",
-                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) un extrait de sa page Wikip\u00e9dia est affich\u00e9 et vous pouvez voir son Graphe Complet en cliquant sur"
+                    "Selected Entity: (other than the Mapped Entity) you clicked on this entity, it will show you a Wikipedia extract and you may click on the green @@ button to view its complete graph",
+                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqué dessus, un extrait de sa page Wikip\u00e9dia est affich\u00e9 et vous pouvez voir son Graphe Complet en cliquant sur"
                 ],
                 "boldLabel": [
                     "bold",
@@ -415,7 +415,8 @@
                 "boldText": [
                     "Mapped Entity: this is the entity which generated the current Graph you're seeing",
                     "Entit\u00e9 Repr\u00e9sent\u00e9e: c'est l'entit\u00e9 qui a g\u00e9n\u00e9r\u00e9 le graphe courant que vous voyez"
-                ]
+                ],
+                "title":["Legend", "Légende"]
             }
         },
         "wiki": {
