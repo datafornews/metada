@@ -43,7 +43,29 @@ const entityLongNameTypoStyle = {
 
 class EntityCard extends Component {
 
+    state = {
+        paddingRight: 'unset',
+        windowWidth: window.innerWidth
+    };
 
+    updateWidth = () => {
+
+        var w = window,
+            d = document,
+            documentElement = d.documentElement,
+            body = d.getElementsByTagName('body')[0],
+            width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+
+        if (width < 950 || this.props.clientType === "extension") {
+            this.setState({
+                paddingRight: '55px',
+            })
+        } else {
+            this.setState({
+                paddingRight: 'unset',
+            })
+        }
+    }
 
     componentWillMount() {
         const location = parseInt(this.props.match.params.entityId, 10);
@@ -55,21 +77,39 @@ class EntityCard extends Component {
                 data: location
             }))
         }
+
+        this.updateWidth();
     }
+
+    componentWillMount = () => {
+        this.updateWidth();
+    }
+
+
+    componentDidMount() {
+        window.addEventListener("resize", this.updateWidth);
+    }
+
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWidth);
+    }
+
 
     render() {
 
         const { classes } = this.props;
 
         const style = {
-            marginTop: this.props.clientType === 'mobile' ? '0px' : '8px'
+            marginTop: this.props.clientType === 'mobile' ? '0px' : '8px',
+            position: this.props.clientType === 'mobile' ? 'relative' : 'inherit'
         };
 
         return (
             <div style={style}>
                 <Issue {...this.props} />
 
-                <div>
+                <div style={{ paddingRight: this.state.paddingRight }}>
                     <Typography type="headline" style={entityNameTypoStyle}>
                         {this.props.entity.name}
                     </Typography>
