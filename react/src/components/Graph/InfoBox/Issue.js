@@ -30,6 +30,7 @@ const buttonPosition = {
     'mobile': {
         position: 'absolute',
         right: '1%',
+        top: '-10%',
         border: '2px #ff7543 solid',
         borderRadius: '50px'
     }
