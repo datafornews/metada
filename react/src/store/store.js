@@ -29,7 +29,7 @@ const store = createStore(combinedReducer, defaultState, enhancers);
 let languageToUse = localStorage.getItem('activeLanguage');
 if (!languageToUse) {
     languageToUse = navigator.language || navigator.userLanguage;
-    languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
+    languageToUse = languageToUse.indexOf('fr') > -1 ? 'fr' : 'en';
 }
 const languages = ['en', 'fr'];
 store.dispatch(initialize(languages));//, { defaultLanguage: 'fr' }));
