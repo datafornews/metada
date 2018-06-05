@@ -46,17 +46,22 @@ class CytoContainer extends React.Component {
       this.props.toggle('sideButtons');
     }
 
+    let scroll = false;
+    if (this.props.clientType === 'mobile') {
+      scroll = true;
+    }
+
     this.state = {
       update: false,
       changeWiki: false,
       focus: 0,
-      scroll: false,
+      scroll: scroll,
       shiftToScroll: false
     };
   }
 
   showShiftToScroll = (event) => {
-    if (event.target.tagName === "CANVAS"){
+    if (event.target.tagName === "CANVAS") {
       if (this.state.scroll) {
         this.setState({
           shiftToScroll: false
@@ -105,9 +110,11 @@ class CytoContainer extends React.Component {
 
   componentWillMount() {
     const location = parseInt(this.props.match.params.entityId, 10);
-    document.addEventListener("keydown", this.allowScroll, false);
-    document.addEventListener("keyup", this.preventScroll, false);
-    document.addEventListener("wheel", this.showShiftToScroll, false)
+    if (this.props.clientType !== 'mobile') {
+      document.addEventListener("keydown", this.allowScroll, false);
+      document.addEventListener("keyup", this.preventScroll, false);
+      document.addEventListener("wheel", this.showShiftToScroll, false)
+    }
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
@@ -115,9 +122,11 @@ class CytoContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.allowScroll, false);
-    document.removeEventListener("keyup", this.preventScroll, false);
-    document.removeEventListener("wheel", this.showShiftToScroll, false)
+    if (this.props.clientType !== 'mobile') {
+      document.removeEventListener("keydown", this.allowScroll, false);
+      document.removeEventListener("keyup", this.preventScroll, false);
+      document.removeEventListener("wheel", this.showShiftToScroll, false)
+    }
     this.props.show.ftux && this.props.toggleFtux();
     this.timeout !== undefined && clearTimeout(this.timeout);
   }
@@ -186,6 +195,7 @@ class CytoContainer extends React.Component {
       document.body.style.cursor = 'default';
     });
     this.cy = cy;
+    console.log(this.cy.userZoomingEnabled());
   }
 
   componentDidMount() {
@@ -193,6 +203,9 @@ class CytoContainer extends React.Component {
       update: true
     });
     this.renderCytoscapeElement()
+    if (this.props.clientType === 'mobile') {
+      this.cy.userZoomingEnabled(true);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
