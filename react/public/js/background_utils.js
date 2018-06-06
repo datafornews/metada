@@ -97,12 +97,23 @@ function log_tab(onglet, foundEntity) {
     notifyMe(foundEntity);
 }
 
-function purgeStats(stats) {
+function purgeStats(stats, data) {
+    // delete data over 30 days old
+    // also update wiki extract data if online
     const nowTimestamp = new Date().getTime();
     const oneMonthInMilliSecs = 1000 * 60 * 60 * 24 * 30;
     for (const d of Object.keys(stats.days)) {
         const dayTimestamp = Date.parse(d);
         if (nowTimestamp - dayTimestamp > oneMonthInMilliSecs) {
+            if (navigator.onLine) {
+                for (const name of stats.days[d]) {
+                    if (data.entities.names.hasOwnProperty(name)) {
+                        const ent = data.entities.names[name];
+                        localStorage.removeItem('wiki_' + ent.id + '_fr');
+                        localStorage.removeItem('wiki_' + ent.id + '_en');
+                    }
+                }
+            }
             delete stats.days[d];
         }
     }
@@ -136,13 +147,13 @@ function updateCounts(stats, entity) {
     stats.counts.total[entity.name] = sct ? sct + 1 : 1;
 }
 
-function updateStats(entity) {
+function updateStats(entity, data) {
     var stats;
     const date = new Date();
     if (localStorage.stats) {
         stats = JSON.parse(localStorage.stats);
         // Remove entries older than 30 days
-        stats = purgeStats(stats);
+        stats = purgeStats(stats, data);
         let updated = false;
         for (const d of Object.keys(stats.days)) {
             // Find out if the user has visited a know entity today
@@ -193,7 +204,7 @@ function logStats2(tab, loggAndCount) {
         const entity = check_website(data, tab.url);
 
         if (entity) {
-            updateStats(entity);
+            updateStats(entity, data);
             console.log('logstats2', entity);
             if (loggAndCount) {
                 sessionStorage['tab_' + tab.id + '_previous'] = tab.url;
