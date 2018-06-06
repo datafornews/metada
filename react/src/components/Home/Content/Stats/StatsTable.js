@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Table, { TableBody, TableCell, TableHead, TableRow, Sort, TableSortLabel } from 'material-ui/Table';
 
 
 const styles = theme => ({
@@ -18,11 +18,17 @@ const styles = theme => ({
     }
 });
 
-function compare(a, b) {
-    if (a.total < b.total)
-        return 1;
-    if (a.total > b.total)
-        return -1;
+const spanStyle = {
+    float: "left",
+    width: "10px",
+    display: "contents"
+}
+
+function compare(a, b, attr, asc) {
+    if (a[attr] < b[attr])
+        return asc ? -1 : 1;
+    if (a[attr] > b[attr])
+        return asc ? 1 : -1;
     return 0;
 }
 
@@ -53,7 +59,10 @@ function getTableArray(stats) {
         tableArray.push(table[entityName]);
     }
 
-    tableArray.sort(compare);
+    tableArray.sort((a, b) => {
+        return compare(a, b, 'total', false);
+
+    });
 
     return tableArray;
 }
@@ -62,7 +71,9 @@ class BasicTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stats: []
+            stats: [],
+            sort: 3,
+            asc: false
         };
     }
 
@@ -79,18 +90,102 @@ class BasicTable extends React.Component {
         }
     }
 
+    handleHeadClick = (id) => (event) => {
+        let data = [...this.state.stats];
+        let asc = false;
+        if (this.state.sort === id) {
+            asc = !this.state.asc
+        }
+        switch (id) {
+            case 0:
+                data.sort((a, b) => {
+                    return compare(a, b, 'name', asc)
+                });
+                break;
+
+            case 1:
+                data.sort((a, b) => {
+                    return compare(a, b, 'week', asc)
+                });
+                break;
+
+            case 2:
+                data.sort((a, b) => {
+                    return compare(a, b, 'month', asc)
+                });
+                break;
+
+            case 3:
+                data.sort((a, b) => {
+                    return compare(a, b, 'total', asc)
+                });
+                break;
+
+            default:
+                break;
+        }
+
+        this.setState({
+            stats: data,
+            sort: id,
+            asc
+        });
+    }
+
 
     render() {
         const { classes } = this.props;
+
+        const asc = <span style={spanStyle}>↑</span>
+        const desc = <span style={spanStyle}>↓</span>
+        const empty = <span style={spanStyle}></span>
+        // const asc = <span style={spanStyle}>↑</span>
+        // const desc = <span style={spanStyle}>↓</span>
+        // const empty = <span style={spanStyle}></span>
 
         return (
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell className={classes.cell}>{this.props.translate('home.stats.entity')}</TableCell>
-                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.week')}</TableCell>
-                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.month')}</TableCell>
-                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.total')}</TableCell>
+                        <TableCell className={classes.cell}>
+                            <TableSortLabel
+                                active={this.state.sort === 0}
+                                direction={this.state.asc ? 'asc' : 'desc'}
+                                onClick={this.handleHeadClick(0)}
+                            >
+                                {this.props.translate('home.stats.entity')}
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                            <TableSortLabel
+                                active={this.state.sort === 1}
+                                direction={this.state.asc ? 'asc' : 'desc'}
+                                onClick={this.handleHeadClick(1)}
+                            >
+                                {this.props.translate('home.stats.week')}
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                            <TableSortLabel
+                                active={this.state.sort === 2}
+                                direction={this.state.asc ? 'asc' : 'desc'}
+                                onClick={this.handleHeadClick(2)}
+                            >
+                                {this.props.translate('home.stats.month')}
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                            <TableSortLabel
+                                active={this.state.sort === 3}
+                                direction={this.state.asc ? 'asc' : 'desc'}
+                                onClick={this.handleHeadClick(3)}
+                            >
+                                {this.props.translate('home.stats.total')}
+                            </TableSortLabel>
+                        </TableCell>
+                        {/* <TableCell onClick={this.handleHeadClick(1)} className={classes.cell} numeric>{this.state.sort == 1 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.week')}</TableCell>
+                        <TableCell onClick={this.handleHeadClick(2)} className={classes.cell} numeric>{this.state.sort == 2 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.month')}</TableCell>
+                        <TableCell onClick={this.handleHeadClick(3)} className={classes.cell} numeric>{this.state.sort == 3 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.total')}</TableCell> */}
                         <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.proportion')}</TableCell>
                     </TableRow>
                 </TableHead>
