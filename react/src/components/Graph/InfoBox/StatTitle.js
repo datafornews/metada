@@ -27,7 +27,8 @@ export default class StatTitle extends Component {
         let text = ""
         if (percent > 0) {
             text = `(${percent}% ${this.props.translate('graph.infoBoxStat')})`;
+            return <span style={textStyle}>{text}</span>
         }
-        return <span style={textStyle}>{text}</span>
+        return ''
     }
 }

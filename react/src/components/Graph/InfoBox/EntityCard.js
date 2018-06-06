@@ -33,12 +33,12 @@ const wikiCardDivStyle = {
 };
 
 const entityNameTypoStyle = {
-    display: 'inline-block'
+    display: 'inline-block',
+    marginRight: '10px'
 };
 
 const entityLongNameTypoStyle = {
     display: 'inline-block',
-    marginLeft: '20px'
 };
 
 class EntityCard extends Component {
