@@ -1,7 +1,7 @@
 {
     "name" :"Metada",
     "manifest_version": 2,
-    "version" :"1.1.0",
+    "version" :"1.2.0",
     "description" :"À qui appartiennent les médias? Explorez le Graphe pour en savoir plus!",
     "browser_action": {
         "default_icon": "icon.png",
