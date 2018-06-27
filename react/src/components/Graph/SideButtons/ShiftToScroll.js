@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideElement from './SideElement';
+// import SideElement from './SideElement';
 
 
 const style = {

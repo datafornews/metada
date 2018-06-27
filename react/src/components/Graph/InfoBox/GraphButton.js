@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Button from 'material-ui/Button';
 import Icon from 'react-icons/lib/fa/chevron-circle-right';
 // import { withStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
+// import IconButton from 'material-ui/IconButton';
+// import Tooltip from 'material-ui/Tooltip';
 
 const graphButtonStyle = {
     color: 'green',

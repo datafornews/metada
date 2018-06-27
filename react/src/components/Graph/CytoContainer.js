@@ -6,7 +6,7 @@ import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
-import SearchBar from '../Search/SearchBar';
+// import SearchBar from '../Search/SearchBar';
 import ShiftToScroll from './SideButtons/ShiftToScroll';
 
 
@@ -119,6 +119,7 @@ class CytoContainer extends React.Component {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
     }
+    console.log(this.props.show);
   }
 
   componentWillUnmount() {
@@ -134,7 +135,6 @@ class CytoContainer extends React.Component {
 
 
   renderCytoscapeElement = () => {
-    console.log('rendering.')
 
     const time = false;
     if (time) {
@@ -195,7 +195,6 @@ class CytoContainer extends React.Component {
       document.body.style.cursor = 'default';
     });
     this.cy = cy;
-    console.log(this.cy.userZoomingEnabled());
   }
 
   componentDidMount() {

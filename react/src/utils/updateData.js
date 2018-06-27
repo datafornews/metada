@@ -32,6 +32,7 @@ function updateData(component) {
                         localStorage.removeItem('cytoData_' + v.id)
                         localStorage.removeItem('wiki_' + v.id + '_fr')
                         localStorage.removeItem('wiki_' + v.id + '_en')
+                        return null
                     })
                     response.data.shares.map((v, k) => {
                         localStorage.removeItem('cytoData_' + v.child.id)
@@ -40,6 +41,7 @@ function updateData(component) {
                         localStorage.removeItem('wiki_' + v.parent_id + '_fr')
                         localStorage.removeItem('wiki_' + v.child_id + '_en')
                         localStorage.removeItem('wiki_' + v.parent_id + '_en')
+                        return null
                     })
                     const updatedServerData = formatUpdateData(component.props.data, response.data);
                     const updatedData = formatData(updatedServerData);

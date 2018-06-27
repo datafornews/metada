@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow, Sort, TableSortLabel } from 'material-ui/Table';
+import Table, { TableBody, TableCell, TableHead, TableRow, TableSortLabel } from 'material-ui/Table';
 
 
 const styles = theme => ({
@@ -18,11 +18,6 @@ const styles = theme => ({
     }
 });
 
-const spanStyle = {
-    float: "left",
-    width: "10px",
-    display: "contents"
-}
 
 function compare(a, b, attr, asc) {
     if (a[attr] < b[attr])
@@ -135,13 +130,6 @@ class BasicTable extends React.Component {
 
     render() {
         const { classes } = this.props;
-
-        const asc = <span style={spanStyle}>↑</span>
-        const desc = <span style={spanStyle}>↓</span>
-        const empty = <span style={spanStyle}></span>
-        // const asc = <span style={spanStyle}>↑</span>
-        // const desc = <span style={spanStyle}>↓</span>
-        // const empty = <span style={spanStyle}></span>
 
         return (
             <Table className={classes.table}>
