@@ -60,8 +60,9 @@ function show(state = false, action) {
             let newState = {
                 ...state
             }
+            const dont_close = ['legend', 'chips', 'ftux'];
             for (var i in state) {
-                if (i !== 'legend' && i !== 'chips') {
+                if (dont_close.indexOf(i) === -1) {
                     newState[i] = false;
                 }
             }
