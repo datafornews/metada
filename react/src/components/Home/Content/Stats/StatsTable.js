@@ -78,9 +78,14 @@ class BasicTable extends React.Component {
         if (localStorage.stats) {
             const stats = JSON.parse(localStorage.stats);
             if (stats) {
-                this.setState({
-                    stats: getTableArray(stats)
-                });
+                console.log(stats);
+                if (!stats.counts){ // legacy stats
+                    localStorage.removeItem('stats');
+                } else {
+                    this.setState({
+                        stats: getTableArray(stats)
+                    });
+                }
             }
         }
     }
@@ -144,6 +149,7 @@ class BasicTable extends React.Component {
                                 {this.props.translate('home.stats.entity')}
                             </TableSortLabel>
                         </TableCell>
+
                         <TableCell className={classes.cell}>
                             <TableSortLabel
                                 active={this.state.sort === 1}
@@ -153,6 +159,7 @@ class BasicTable extends React.Component {
                                 {this.props.translate('home.stats.week')}
                             </TableSortLabel>
                         </TableCell>
+
                         <TableCell className={classes.cell}>
                             <TableSortLabel
                                 active={this.state.sort === 2}
@@ -162,6 +169,7 @@ class BasicTable extends React.Component {
                                 {this.props.translate('home.stats.month')}
                             </TableSortLabel>
                         </TableCell>
+
                         <TableCell className={classes.cell}>
                             <TableSortLabel
                                 active={this.state.sort === 3}
@@ -171,12 +179,11 @@ class BasicTable extends React.Component {
                                 {this.props.translate('home.stats.total')}
                             </TableSortLabel>
                         </TableCell>
-                        {/* <TableCell onClick={this.handleHeadClick(1)} className={classes.cell} numeric>{this.state.sort == 1 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.week')}</TableCell>
-                        <TableCell onClick={this.handleHeadClick(2)} className={classes.cell} numeric>{this.state.sort == 2 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.month')}</TableCell>
-                        <TableCell onClick={this.handleHeadClick(3)} className={classes.cell} numeric>{this.state.sort == 3 ? this.state.asc ? asc : desc : empty}{this.props.translate('home.stats.total')}</TableCell> */}
+                        
                         <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.proportion')}</TableCell>
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
                     {this.state.stats.map((n, k) => {
                         return (
@@ -190,6 +197,7 @@ class BasicTable extends React.Component {
                         );
                     })}
                 </TableBody>
+
             </Table>
         );
     }
