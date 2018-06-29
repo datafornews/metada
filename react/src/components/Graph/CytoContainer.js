@@ -119,7 +119,6 @@ class CytoContainer extends React.Component {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
     }
-    console.log(this.props.show);
   }
 
   componentWillUnmount() {
@@ -162,8 +161,7 @@ class CytoContainer extends React.Component {
       console.time('      Render Cyto');
     }
     var cyElement = document.getElementById('cy');
-    const isMobile = this.props.clientType === 'mobile'
-    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, isMobile));
+    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
         'tap',
@@ -203,7 +201,9 @@ class CytoContainer extends React.Component {
     });
     this.renderCytoscapeElement()
     if (this.props.clientType === 'mobile') {
+      this.cy.panningEnabled(true);
       this.cy.userZoomingEnabled(true);
+      this.cy.zoomingEnabled(true);
     }
   }
 
@@ -221,6 +221,9 @@ class CytoContainer extends React.Component {
     if (!this.props.show.searchBar) {
       defaultStyle.marginTop = '20px'
     }
+
+    this.cy && console.log(this.cy.userPanningEnabled());
+    this.cy && console.log(this.cy.userZoomingEnabled());
 
     const id = this.props.match.params.entityId;
     const entity = this.props.data.entities.ids[id];

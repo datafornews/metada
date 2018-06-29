@@ -106,7 +106,7 @@ function addOneLineBreak(string) {
     }
 }
 
-export function cytoParamsFromContainer(containerElement, cytoData, sourceId, isMobile) {
+export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
     var layout;
     if (cytoData.edges.length < 10) {
         const spacing = 0.8 * Math.pow(cytoData.edges.length, 0.08);
