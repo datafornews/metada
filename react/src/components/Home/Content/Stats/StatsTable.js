@@ -78,8 +78,7 @@ class BasicTable extends React.Component {
         if (localStorage.stats) {
             const stats = JSON.parse(localStorage.stats);
             if (stats) {
-                console.log(stats);
-                if (!stats.counts){ // legacy stats
+                if (!stats.counts){ // legacy stats don't have a count attribute
                     localStorage.removeItem('stats');
                 } else {
                     this.setState({
