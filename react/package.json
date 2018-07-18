@@ -10,6 +10,7 @@
         "push-extension-aws": "yarn push-extension && aws s3 sync ../Extension s3://oop-dev-build"
     },
     "dependencies": {
+        "@material-ui/core": "^1.4.0",
         "autosuggest-highlight": "^3.1.1",
         "axios": "^0.16.2",
         "cytoscape": "^3.2.4",
@@ -19,7 +20,7 @@
         "history": "^4.7.2",
         "jshint": "^2.9.5",
         "lodash": "^4.17.4",
-        "material-ui": "^1.0.0-beta.30",
+        "material-ui": "^0.20.1",
         "material-ui-icons": "^1.0.0-beta.17",
         "react": "^16.0.0",
         "react-autosuggest": "^9.3.2",
