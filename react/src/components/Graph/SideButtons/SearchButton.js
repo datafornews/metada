@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import SearchIcon from 'material-ui-icons/Search';
+import { withStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 import Scroll from 'react-scroll';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';

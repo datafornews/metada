@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Icon from 'material-ui-icons/LabelOutline';
-import Filter from 'material-ui-icons/Label';
+import Icon from '@material-ui/icons/LabelOutline';
+import Filter from '@material-ui/icons/Label';
 import SideElement from './SideElement';
 import GraphIcon from 'react-icons/lib/fa/chevron-circle-right';
 

@@ -2,16 +2,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  withMobileDialog,
-} from 'material-ui/Dialog';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
+
 import HowItWorksText from './HowItWorksText'
-import Icon from 'material-ui-icons/HelpOutline';
 
 const fullScreenMinWidth = 650;
 
@@ -51,7 +53,11 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={buttonDivPositionStyle}>
-        <Button style={buttonStyle} onClick={this.handleClickOpen}><Icon style={iconStyle} /></Button>
+        <IconButton style={buttonStyle} onClick={this.handleClickOpen}>
+          <HelpOutlineIcon
+            style={iconStyle}
+          />
+        </IconButton>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}

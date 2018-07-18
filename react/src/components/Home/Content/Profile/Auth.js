@@ -5,14 +5,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
-import Dialog, {
-    DialogContent,
-    DialogTitle,
-    withMobileDialog,
-} from 'material-ui/Dialog';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
+
 import Register from './Register'
-import Icon from 'material-ui-icons/HelpOutline';
-import Button from 'material-ui/Button';
+import Icon from '@material-ui/icons/HelpOutline';
+import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 
 

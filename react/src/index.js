@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
 
-import metadaTheme from './theme/metadaTheme'
+// import metadaTheme from './theme/metadaTheme'
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
 import store, { history } from './store/store';
@@ -46,10 +46,14 @@ const styles = {
     }
 }
 
+const theme = createMuiTheme();
+
+
 const router = (
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <MuiThemeProvider theme={metadaTheme}>
+            <MuiThemeProvider theme={theme}>
+                {/* <V0MuiThemeProvider theme={metadaTheme}> */}
                     <div id='index' style={styles[store.getState().clientType]}>
                         <Header history={history} />
                         <Switch>
@@ -63,6 +67,7 @@ const router = (
                             <Route path='/graph/:entityId' component={Graph}></Route>
                         </Switch>
                     </div>
+                {/* </V0MuiThemeProvider> */}
             </MuiThemeProvider>
         </ConnectedRouter>
     </Provider>

@@ -4,7 +4,7 @@ import ResetApp from './ResetApp';
 import ShowLegend from './ShowLegend';
 import ShowChips from './ShowChips';
 import HomePaper from '../../Paper/HomePaper'
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 
 const gridStyle = { display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '0.9rem', padding: '5px 20px' }
 

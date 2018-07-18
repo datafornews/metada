@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Switch from 'material-ui/Switch';
-import Grid from 'material-ui/Grid';
+import Switch from '@material-ui/core/Switch';
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -47,6 +47,7 @@ export default class ShowLegend extends Component {
                             checked={this.state.checked}
                             onChange={this.handleChange}
                             aria-label="checked"
+                            color="primary"
                         />
                     </Grid>
                     

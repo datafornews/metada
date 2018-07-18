@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import SearchIcon from 'material-ui-icons/Search';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
@@ -122,7 +122,7 @@ class HomeContentTabs extends React.Component {
           centered
           scrollable={window.innerWidth < scrollableTabsMinWidth}
           scrollButtons="auto"
-          indicatorClassName={classes.indicator}
+          indicatorclassname={classes.indicator}
         >
           {tabs.map(
             (v, k) => {

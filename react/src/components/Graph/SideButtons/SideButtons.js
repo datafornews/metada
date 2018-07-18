@@ -6,7 +6,7 @@ import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
 import Legend from './Legend';
-import SearchBar from '../../Search/SearchBar';
+import SearchBar from '../../Search/SearchBarV2';
 
 
 const defaultMetaDivStyle = {

@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import ResetIcon from 'material-ui-icons/Autorenew';
+import { withStyles } from '@material-ui/core/styles';
+import ResetIcon from '@material-ui/icons/Autorenew';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

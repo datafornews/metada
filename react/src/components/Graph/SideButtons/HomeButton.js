@@ -2,8 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import HomeIcon from 'material-ui-icons/Home';
+import { withStyles } from '@material-ui/core/styles';
+
+import HomeIcon from '@material-ui/icons/Home';
+
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

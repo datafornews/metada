@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import UndoIcon from 'material-ui-icons/Undo';
+import { withStyles } from '@material-ui/core/styles';
+import UndoIcon from '@material-ui/icons/Undo';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

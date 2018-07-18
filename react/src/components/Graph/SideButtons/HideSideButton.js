@@ -2,9 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import MenuIcon from 'material-ui-icons/Menu';
-import ClearIcon from 'material-ui-icons/Clear';
+import { withStyles } from '@material-ui/core/styles';
+
+import MenuIcon from '@material-ui/icons/Menu';
+import ClearIcon from '@material-ui/icons/Clear';
+
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

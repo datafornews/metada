@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import Icon from 'react-icons/lib/fa/chevron-circle-right';
-// import { withStyles } from 'material-ui/styles';
-// import IconButton from 'material-ui/IconButton';
-// import Tooltip from 'material-ui/Tooltip';
+// import { withStyles } from '@material-ui/core/styles';
+// import IconButton from '@material-ui/core/IconButton';
+// import Tooltip from '@material-ui/core/Tooltip';;
 
 const graphButtonStyle = {
     color: 'green',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Icon from 'material-ui-icons/Clear';
-import Button from 'material-ui/Button';
+import Icon from '@material-ui/icons/Clear';
+import Button from '@material-ui/core/Button';
 
 const divStyle = {
     display: 'inline-block',

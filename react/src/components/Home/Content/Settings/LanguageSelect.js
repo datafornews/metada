@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
-import Select from 'material-ui/Select';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
     container: {
@@ -41,10 +42,10 @@ class LanguageSelect extends React.Component {
                         value={this.props.currentLanguage}
                         onChange={this.handleChange('lang')}
                         input={<Input id="set-language" />}
-                        style={{fontSize: '0.8rem'}}
+                        style={{ fontSize: '0.8rem' }}
                     >
-                        <MenuItem style={{fontSize: '0.8rem'}} value={'en'}>English</MenuItem>
-                        <MenuItem style={{fontSize: '0.8rem'}} value={'fr'}>Français</MenuItem>
+                        <MenuItem style={{ fontSize: '0.8rem' }} value='en'>English</MenuItem>
+                        <MenuItem style={{ fontSize: '0.8rem' }} value='fr'>Français</MenuItem>
                     </Select>
                 </FormControl>
 

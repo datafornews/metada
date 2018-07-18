@@ -2,15 +2,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    withMobileDialog,
-} from 'material-ui/Dialog';
-import Icon from 'material-ui-icons/PriorityHigh';
-import Button from 'material-ui/Button';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
+
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+import Button from '@material-ui/core/Button';
 import { SideElement } from '../SideButtons/SideElement';
 
 
@@ -65,7 +66,7 @@ class ResponsiveDialog extends React.Component {
                     id="tooltip-Issue"
                     title={title}
                     placement="left"
-                    content={<Icon style={{ color: '#ff7543' }} />}
+                    content={<PriorityHighIcon style={{ color: '#ff7543' }} />}
                     onClick={this.handleClickOpen}
                     {...this.props}
                     button

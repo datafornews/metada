@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import OpenInNew from 'material-ui-icons/OpenInNew';
-import Button from 'material-ui/Button';
+import OpenInNew from '@material-ui/icons/OpenInNew';
+import Button from '@material-ui/core/Button';
 
 const iconStyle = {
     height: '15px',

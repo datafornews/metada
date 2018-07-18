@@ -1,7 +1,7 @@
-import { createMuiTheme } from 'material-ui/styles';
-// import grey from 'material-ui/colors/grey';
-// import deepPurple from 'material-ui/colors/deepPurple';
-// import red from 'material-ui/colors/red';
+import { createMuiTheme } from '@material-ui/core/styles';
+// import grey from '@material-ui/core/colors/grey';
+// import deepPurple from '@material-ui/core/colors/deepPurple';
+// import red from '@material-ui/core/colors/red';
 
 
 // All the following keys are optional.

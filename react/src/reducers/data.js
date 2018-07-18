@@ -9,6 +9,16 @@ function dataToOptions(data) {
   });
 }
 
+function dataToOptionsV2(data) {
+  const dict = data.entities.ids;
+  return Object.keys(dict).map((k) => {
+    const label = dict[k].name;
+    const value = k;
+    const className = 'select-options';
+    return { label, value, className };
+  });
+}
+
 function getIdSet(data) {
   const s = new Set(Object.keys(data.entities.ids).map(k => parseInt(k, 10)));
   return Array.from(s);

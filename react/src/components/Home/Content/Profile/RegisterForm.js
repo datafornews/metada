@@ -3,9 +3,9 @@ import { Control, Form } from 'react-redux-form';
 import validator from 'validator';
 import Axios from 'axios';
 import TextInput from './TextInput';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import {InputAdornment } from 'material-ui/Input';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import {InputAdornment } from '@material-ui/core/Input';
 import Shuffle from 'react-icons/lib/ti/arrow-shuffle';
 
 const isEmail = (val) => {
