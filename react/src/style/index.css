@@ -1,8 +1,10 @@
 body {
-  margin: 20;
-  padding: 0;
+  /* margin: 20; */
+  padding: 20;
   font-family: Roboto, sans-serif;
-  font-weight: 200
+  font-weight: 200;
+  height: 100%;
+  margin:0;
 }
 
 
@@ -33,6 +35,7 @@ html {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* height: 600px;
   width: 800px; */
+  height: 100%;
 }
 
 
@@ -84,4 +87,18 @@ html {
   100% {
     opacity: 0.15;
   }
+}
+
+#root{
+  /* border: 4px solid red; */
+  max-height: 100%;
+  overflow: scroll;
+  height: 100%;
+}
+
+#mainDrawerContent{
+  max-height: 100%;
+  max-height: -moz-available;          /* WebKit-based browsers will ignore this. */
+  max-height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  max-height: fill-available;
 }

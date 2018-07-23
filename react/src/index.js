@@ -15,6 +15,7 @@ import store, { history } from './store/store';
 import Home from './components/Home/Home';
 import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
+import Drawer from './components/Header/Drawer';
 
 
 import './style/index.css';
@@ -53,7 +54,7 @@ const router = (
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <MuiThemeProvider theme={theme}>
-                {/* <V0MuiThemeProvider theme={metadaTheme}> */}
+                    {/* <V0MuiThemeProvider theme={metadaTheme}> */}
                     <div id='index' style={styles[store.getState().clientType]}>
                         <Header history={history} />
                         <Switch>
@@ -67,7 +68,7 @@ const router = (
                             <Route path='/graph/:entityId' component={Graph}></Route>
                         </Switch>
                     </div>
-                {/* </V0MuiThemeProvider> */}
+                    {/* </V0MuiThemeProvider> */}
             </MuiThemeProvider>
         </ConnectedRouter>
     </Provider>

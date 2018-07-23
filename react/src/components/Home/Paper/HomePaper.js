@@ -54,7 +54,7 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <Paper style={{ width: browserWidth }} className={classes.root} elevation={4}>
+            <Paper style={{ width: browserWidth }} className={classes.root} elevation={12}>
                 <Typography type="body1" style={typoStyle} component="div" >
                     {this.props.content}
                 </Typography>

@@ -106,7 +106,7 @@ function addOneLineBreak(string) {
     }
 }
 
-export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
+export function cytoParamsFromContainer(containerElement, cytoData, sourceId, clientType) {
     var layout;
     if (cytoData.edges.length < 10) {
         const spacing = 0.8 * Math.pow(cytoData.edges.length, 0.08);
@@ -118,7 +118,8 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
         layout.spacingFactor = spacing;
     }
 
-    layout.padding = Math.floor(150 * Math.exp(-cytoData.edges.length / 5))
+    console.log(clientType);
+    layout.padding = clientType === "mobile" ? 5 : Math.floor(500 * Math.exp(-cytoData.edges.length / 5));
 
     const nodes = cytoData.nodes.map((v, k) => {
         return {

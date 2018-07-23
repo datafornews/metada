@@ -13,6 +13,10 @@ import ClearIcon from "@material-ui/icons/Clear";
 import Chip from "@material-ui/core/Chip";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+
 
 import logGraph from '../../utils/logGraph';
 
@@ -243,6 +247,11 @@ class IntegrationReactSelect extends React.Component {
                         // simpleValue: true,
                         options: this.props.data.optionsData
                     }}
+                    startAdornment={
+                        <InputAdornment position="start">
+                            <SearchIcon />
+                        </InputAdornment>
+                    }
                 />
             </div>
         );

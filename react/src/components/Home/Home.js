@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import { check_website } from '../../utils/backgroundUtils';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 // import Scroll from 'react-scroll';
 
@@ -17,6 +17,8 @@ import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
 import Stats from './Content/Stats/Stats';
 import Example from './Content/Example/Example';
+
+import Drawer from '../Header/Drawer';
 
 import updateData from '../../utils/updateData';
 
@@ -118,25 +120,31 @@ class Home extends React.Component {
 
   render() {
 
-    const location = this.props.location.pathname.split('/')[1] || 'search';
+    const location = this.props.location.pathname.split('/')[1];
+
+    console.log(location);
 
     return (
-      <div>
-        <Helmet>
-          <title>Metada - {this.props.translate('home.tabs.' + location)}</title>
-        </Helmet>
-        <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
-        <div style={homeContentDivStyle[this.props.clientType]}>
-          <Example {...this.props} />
-          <HomeContentTabs {...this.props} />
-          <HomeSearchBar {...this.props} />
-          <LearnAbout {...this.props} />
-          <Contact {...this.props} />
-          <Settings {...this.props} />
-          <Extension {...this.props} />
-          <Stats {...this.props} />
+      <Drawer {...this.props}>
+        <div style={{ margin: 'auto' }}>
+
+
+          <Helmet>
+            <title>Metada - {this.props.translate('home.tabs.' + location)}</title>
+          </Helmet>
+          {location ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
+          <div style={homeContentDivStyle[this.props.clientType]}>
+            {location ? '' : <Example {...this.props} />}
+            {/* <HomeContentTabs {...this.props} /> */}
+            {/* <HomeSearchBar {...this.props} /> */}
+            <LearnAbout {...this.props} />
+            <Contact {...this.props} />
+            <Settings {...this.props} />
+            <Extension {...this.props} />
+            <Stats {...this.props} />
+          </div>
         </div>
-      </div>
+      </Drawer>
     );
   }
 }

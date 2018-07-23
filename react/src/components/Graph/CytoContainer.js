@@ -1,6 +1,7 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
+import { withStyles } from '@material-ui/core/styles';
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
@@ -9,33 +10,29 @@ import SideButtons from './SideButtons/SideButtons';
 // import SearchBar from '../Search/SearchBar';
 import ShiftToScroll from './SideButtons/ShiftToScroll';
 
+const styles = theme => ({
+  cytoContainer: {
+    height: "100%",
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
+    // border: "black 2px solid"
+  },
+  cyDiv: {
+    height: "100%",
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
+    // border: "grey 2px solid"
+  }
+})
+
 
 let defaultStyle = {
   margin: 'auto',
   width: '70%',
-  height: parseInt(window.screen.availHeight / 2, 10) + 'px',
+  height: "100%",
   position: 'relative',
   display: 'flex',
   justifyContent: 'center'
 };
 
-const cyStyles = {
-  'browser': {
-    ...defaultStyle,
-  },
-  'extension': {
-    ...defaultStyle,
-    height: '400px',
-    width: '700px',
-    padding: '0px',
-    // float: 'right'
-  },
-  'mobile': {
-    ...defaultStyle,
-    width: '98%',
-    minHeight: '300px'
-  }
-};
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -72,11 +69,11 @@ class CytoContainer extends React.Component {
           shiftToScroll: true
         });
         clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-          this.setState({
-            shiftToScroll: false
-          });
-        }, 1500);
+        // this.timeout = setTimeout(() => {
+        //   this.setState({
+        //     shiftToScroll: false
+        //   });
+        // }, 1500);
       }
     }
   }
@@ -135,6 +132,7 @@ class CytoContainer extends React.Component {
 
   renderCytoscapeElement = () => {
 
+    console.log("renderCytoscapeElement");
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -161,11 +159,15 @@ class CytoContainer extends React.Component {
       console.time('      Render Cyto');
     }
     var cyElement = document.getElementById('cy');
-    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id));
+    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
         'tap',
         (event) => {
+
+          if (!this.props.show.drawer) {
+            container.props.toggleDrawer();
+          }
           this.setState({
             changeWiki: true
           });
@@ -213,8 +215,17 @@ class CytoContainer extends React.Component {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
       this.renderCytoscapeElement();
+      return
     }
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.show.drawer !== this.props.show.drawer) {
+      console.log(" nextProps resize render");
+      setTimeout(this.renderCytoscapeElement, 300);
+    }
+  }
+
 
   render() {
 
@@ -222,31 +233,29 @@ class CytoContainer extends React.Component {
       defaultStyle.marginTop = '20px'
     }
 
-    this.cy && console.log(this.cy.userPanningEnabled());
-    this.cy && console.log(this.cy.userZoomingEnabled());
-
     const id = this.props.match.params.entityId;
     const entity = this.props.data.entities.ids[id];
 
+    const { classes, ...noClassProps } = this.props;
+
     return (
-      <div>
+      <div id="cytoContainer" className={classes.cytoContainer}>
         <Helmet>
           <title>Metada - {entity.name}</title>
         </Helmet>
-        <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} >
+        <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
           {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
         </div>
         <SideButtons
-          {...this.props}
+          {...noClassProps}
           focusSearchBar={this.focusSearchBar}
           reRenderGraph={this.renderCytoscapeElement}
           shiftToScroll={this.state.shiftToScroll}
         />
-        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} cytoScroll={this.state.scroll} />
       </div>
     );
   }
 }
 
 
-export default CytoContainer;
+export default withStyles(styles)(CytoContainer);

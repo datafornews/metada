@@ -29,6 +29,7 @@ class Header extends React.Component {
     this.props.history.push(`/graph/${val.id}`);
   }
   render() {
+
     return (
       <div id='headerDiv'>
       </div>

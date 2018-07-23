@@ -20,6 +20,7 @@ const styles = theme => ({
         marginBottom: 16,
         fontSize: 14,
         color: theme.palette.text.secondary,
+        display: "inline-block"
     },
     pos: {
         marginBottom: 12,
@@ -107,7 +108,7 @@ class EntityCard extends Component {
 
         return (
             <div style={style}>
-                <Issue {...this.props} />
+
 
                 <div style={{ paddingRight: this.state.paddingRight }}>
                     <Typography type="headline" style={entityNameTypoStyle}>
@@ -125,10 +126,10 @@ class EntityCard extends Component {
 
                 <div style={wikiCardDivStyle}>
                     <Typography type="body1" className={classes.title} component='div'>
-                        <WikiCard {...this.props} />
+                        <WikiCard {...this.props} maxLength={30} />
                     </Typography>
                 </div>
-
+                <Issue {...this.props} />
             </div>
         );
 

@@ -12,28 +12,24 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
-import { SideElement } from '../SideButtons/SideElement';
 
 
 const buttonPosition = {
     'browser': {
-        position: 'absolute',
-        right: '16%',
-        border: '2px #ff7543 solid',
-        borderRadius: '50px'
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: 8
     },
     'extension': {
-        position: 'absolute',
-        right: '70px',
-        border: '2px #ff7543 solid',
-        borderRadius: '50px'
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: 8
     },
     'mobile': {
-        position: 'absolute',
-        right: '1%',
-        top: '-10%',
-        border: '2px #ff7543 solid',
-        borderRadius: '50px'
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: 8
     }
 }
 
@@ -61,16 +57,16 @@ class ResponsiveDialog extends React.Component {
         }
 
         return (
-            <div style={buttonPosition[this.props.clientType]}>
-                <SideElement
-                    id="tooltip-Issue"
-                    title={title}
-                    placement="left"
-                    content={<PriorityHighIcon style={{ color: '#ff7543' }} />}
+            <div
+                style={buttonPosition[this.props.clientType]}
+            >
+                <Button
                     onClick={this.handleClickOpen}
-                    {...this.props}
-                    button
-                />
+                    variant="fab"
+                    style={{ backgroundColor: '#ff7543' }}
+                >
+                    <PriorityHighIcon style={{ color: 'white' }} />
+                </Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.dialogOpen}

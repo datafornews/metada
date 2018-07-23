@@ -70,6 +70,12 @@ export function toggleFtux() {
     };
 }
 
+export function toggleDrawer() {
+    return {
+        type: 'TOGGLE_DRAWER'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'

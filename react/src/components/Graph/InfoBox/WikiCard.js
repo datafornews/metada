@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
-
+import IconButton from '@material-ui/core/IconButton';
+import MoreIcon from '@material-ui/icons/More';
 
 class WikiCard extends Component {
     constructor(props) {
@@ -46,7 +47,15 @@ class WikiCard extends Component {
 
         return (
             <div style={extractStyle}>
-                {this.state.extract}
+                {(typeof this.state.extract === 'string' || this.state.extract instanceof String) ?
+                    <div>
+                        {this.state.extract.split(' ').slice(0, this.props.maxLength).join(" ")} ...
+                        <IconButton><MoreIcon /></IconButton>
+                    </div>
+                    :
+                    this.state.extract
+                }
+
             </div>
         );
     }

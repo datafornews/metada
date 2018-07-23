@@ -72,6 +72,11 @@ function show(state = false, action) {
                 ...state,
                 ftux: !state.ftux
             };
+        case 'TOGGLE_DRAWER':
+            return {
+                ...state,
+                drawer: !state.drawer
+            };
         case 'TOGGLE_GRAPH_BUTTON_BLINK':
             return {
                 ...state,
