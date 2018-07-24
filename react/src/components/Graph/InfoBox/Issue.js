@@ -12,6 +12,7 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
+import LegendDialog from './LegendDialog';
 
 
 const buttonPosition = {
@@ -39,7 +40,7 @@ const buttonPosition = {
 }
 
 
-class ResponsiveDialog extends React.Component {
+class IssueDialog extends React.Component {
     state = {
         dialogOpen: false,
     }
@@ -52,9 +53,12 @@ class ResponsiveDialog extends React.Component {
         this.setState({ dialogOpen: false });
     }
 
-    render() {
+    openHelp = () => {
+        this.props.startHelp()
+        setTimeout(this.props.reRenderGraph, 300)
+    }
 
-        const title = this.props.translate('graph.sideButtons.issueTooltip')
+    render() {
 
         let { fullScreen } = this.props;
         if (this.props.clientType === 'extension' || window.innerWidth > 650) {
@@ -72,6 +76,11 @@ class ResponsiveDialog extends React.Component {
                 >
                     <PriorityHighIcon style={{ color: 'white' }} />
                 </Button>
+
+                <Button onClick={this.openHelp}>
+                    Help
+                </Button>
+                <LegendDialog translate={this.props.translate} />
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.dialogOpen}
@@ -97,8 +106,8 @@ class ResponsiveDialog extends React.Component {
     }
 }
 
-ResponsiveDialog.propTypes = {
+IssueDialog.propTypes = {
     fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withMobileDialog()(ResponsiveDialog);
+export default withMobileDialog()(IssueDialog);

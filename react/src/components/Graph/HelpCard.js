@@ -7,10 +7,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grow from '@material-ui/core/Grow';
+import classNames from 'classnames';
 
 const styles = theme => ({
     card: {
-        minWidth: 275,
+        // minWidth: 275,
+        pointerEvents: "all"
+    },
+    noClick:{
+        pointerEvents: "none"
     },
     bullet: {
         display: 'inline-block',
@@ -42,9 +47,9 @@ class HelpCard extends Component {
             grow: false
         })
         this.props.stopHelp();
-        if (!this.props.show.legend){
-            setTimeout(this.props.reRenderGraph, 300)
-        }
+
+        setTimeout(this.props.reRenderGraph, 300)
+
     }
 
 
@@ -80,7 +85,7 @@ class HelpCard extends Component {
 
         return (
             <Grow in={this.state.grow}>
-                <Card className={classes.card} elevation={24}>
+                <Card className={classNames(classes.card, !this.state.grow && classes.noClick)} elevation={24}>
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary">
                             Help

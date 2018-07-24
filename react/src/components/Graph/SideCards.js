@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 
 import HelpCard from './HelpCard';
-import LegendCard from './LegendCard';
 
 const styles = theme => ({
     divContainer: {
         position: "absolute",
         top: theme.spacing.unit * 3 * 4,
-        right: theme.spacing.unit * 3
+        right: 16,
+        pointerEvents: "none",
+        maxWidth: "70%"
     },
     toolbar: theme.mixins.toolbar
 });
@@ -19,8 +20,6 @@ class SideCards extends Component {
         return (
             <div  className={classes.divContainer}>
                 <HelpCard {...noClassProps} />
-                <div className={classes.toolbar}></div>
-                <LegendCard {...noClassProps} />
             </div>
         )
     }

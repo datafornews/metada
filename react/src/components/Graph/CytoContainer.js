@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
-import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 // import SearchBar from '../Search/SearchBar';
 import ShiftToScroll from './SideButtons/ShiftToScroll';
@@ -113,7 +112,6 @@ class CytoContainer extends React.Component {
 
 
   renderCytoscapeElement = () => {
-    console.log('rendering');
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -235,7 +233,7 @@ class CytoContainer extends React.Component {
 
     const { classes, ...noClassProps } = this.props;
 
-    const pad = this.props.show.legend || this.props.show.help;
+    const pad = this.props.show.help && this.props.clientType !== "mobile";
 
     return (
       <div>

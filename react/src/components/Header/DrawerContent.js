@@ -29,7 +29,7 @@ class DrawerContent extends Component {
 
         return (
                 <div className={classes.container}>
-                    <div className={classes.toolbar} />
+                    {/* <div className={classes.toolbar} /> */}
 
                     <InfoBoxEntityUI {...noClassProps} />
                     <Issue {...noClassProps} />

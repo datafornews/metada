@@ -126,7 +126,7 @@ class EntityCard extends Component {
 
                 <div style={wikiCardDivStyle}>
                     <Typography type="body1" className={classes.title} component='div'>
-                        <WikiCard {...this.props} maxLength={100} />
+                        <WikiCard {...this.props} maxLength={this.props.clientType === "mobile"? 30 : 50} />
                     </Typography>
                 </div>
             </div>

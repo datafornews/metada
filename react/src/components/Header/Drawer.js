@@ -23,7 +23,6 @@ let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10
 if (drawerWidth < 50){
     drawerWidth = 300;
 }
-console.log(drawerWidth, window.innerWidth);
 
 const styles = theme => (
     {

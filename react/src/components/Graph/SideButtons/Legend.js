@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Icon from '@material-ui/icons/LabelOutline';
 import Filter from '@material-ui/icons/Label';
-import SideElement from './SideElement';
+import Grid from '@material-ui/core/Grid';
 import GraphIcon from 'react-icons/lib/fa/chevron-circle-right';
 
 const colors = {
@@ -27,7 +27,7 @@ export default class Legend extends Component {
             <span style={{ fontWeight: 500 }}>{currentGraph[0]}</span>
             : {currentGraph[1]}</span>
 
-        let table1Style = { width: "350px"};
+        let table1Style = { width: "350px" };
         let table2Style = { width: "350px" };
         if (this.props.clientType === 'mobile') {
             table1Style.width = '80%';
@@ -48,36 +48,48 @@ export default class Legend extends Component {
                 onMouseLeave={() => { this.setState({ open: false }) }}
             >
 
-                <table style={table1Style}>
-                    <tbody>
-                        <tr>
-                            <td><Icon style={{ width: "40px", color: colors['m'] }} /></td>
-                            <th style={{ color: colors['m'] }}>{this.props.translate('graph.sideButtons.legend.m')}</th>
-                            <td></td>
-                            <td><Icon style={{ width: "40px", color: colors['c'] }} /></td>
-                            <th style={{ color: colors['c'] }}>{this.props.translate('graph.sideButtons.legend.c')}</th>
-                            <td></td>
-                            <td><Icon style={{ width: "40px", color: colors['i'] }} /></td>
-                            <th style={{ color: colors['i'] }}>{this.props.translate('graph.sideButtons.legend.i')}</th>
-                        </tr>
-                    </tbody>
-                </table>
+                <Grid container justify='space-around' direction="row" spacing={0}>
 
-                <table style={table2Style}>
-                    <tbody>
-                        <tr>
-                            <td><Filter style={{ width: "40px", color: 'grey' }} /></td>
-                            <td >{currentGraph}</td>
-                        </tr>
-                        <tr>
-                            <td><br /></td>
-                        </tr>
-                        <tr>
-                            <td><Icon style={{ width: "40px", color: 'green' }} /></td>
-                            <td >{completeGraph}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <Grid item >
+                        <Grid container alignItems='center'>
+                            <Grid xs={5} item><Icon style={{ width: "40px", color: colors['m'] }} /></Grid>
+                            <Grid xs={7} item style={{ color: colors['m'] }}>{this.props.translate('graph.sideButtons.legend.m')}</Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item >
+                        <Grid container alignItems='center'>
+                            <Grid xs={5} item><Icon style={{ width: "40px", color: colors['c'] }} /></Grid>
+                            <Grid xs={7} item style={{ color: colors['c'] }}>{this.props.translate('graph.sideButtons.legend.c')}</Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item >
+                        <Grid container alignItems='center'>
+                            <Grid xs={5} item><Icon style={{ width: "40px", color: colors['i'] }} /></Grid>
+                            <Grid xs={7} item style={{ color: colors['i'] }}>{this.props.translate('graph.sideButtons.legend.i')}</Grid>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+
+                <Grid container justify='space-around' direction="row" spacing={0} style={{ marginTop: 40 }}>
+
+                    <Grid item >
+                        <Grid container alignItems='center'>
+                            <Grid xs={5} item><Filter style={{ width: "40px", color: 'grey' }} /></Grid>
+                            <Grid xs={7} item>{currentGraph}</Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid container justify='space-around' direction="row" spacing={0} style={{ marginTop: 40 }}>
+                    <Grid item >
+                        <Grid container alignItems='center'>
+                            <Grid xs={5} item><Icon style={{ width: "40px", color: 'green' }} /></Grid>
+                            <Grid xs={7} item >{completeGraph}</Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </div >
         );
 

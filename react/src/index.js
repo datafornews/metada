@@ -20,7 +20,6 @@ import Drawer from './components/Header/Drawer';
 
 import './style/index.css';
 
-console.log('prout');
 
 window.browser = (function () {
     return window.msBrowser ||
