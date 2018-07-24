@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
-import Icon from 'react-icons/lib/fa/chevron-circle-right';
+import Icon from '@material-ui/icons/CenterFocusStrong';
+
 // import { withStyles } from '@material-ui/core/styles';
 // import IconButton from '@material-ui/core/IconButton';
 // import Tooltip from '@material-ui/core/Tooltip';;
@@ -13,8 +14,8 @@ const graphButtonStyle = {
 }
 
 const iconStyle = {
-    height: '20px',
-    width: '30px'
+    height: '40px',
+    width: '40px'
 }
 
 export default class GraphButton extends Component {
@@ -60,7 +61,7 @@ export default class GraphButton extends Component {
                 }}
                 onClick={this.props.handleClick}
             >
-                {this.props.translate('graph.seeGraphButton') + ' (' + this.props.name + ')'} &nbsp;<Icon style={iconStyle} />
+                <span>{this.props.translate('graph.seeGraphButton')} <br/> {'(' + this.props.name + ')'}</span> &nbsp; &nbsp; <Icon style={iconStyle} />
             </Button>
 
         )

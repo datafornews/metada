@@ -14,6 +14,8 @@ class HomeButton extends React.Component {
 
     handleClick = () => {
         this.props.reRenderGraph();
+        this.props.startHelp()
+        !this.props.show.legend && this.props.toggleLegend()
     }
 
     render() {

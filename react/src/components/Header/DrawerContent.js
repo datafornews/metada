@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 
 import InfoBoxEntityUI from '../Graph/InfoBox/InfoBoxEntityUI';
 
-import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
+import Issue from '../Graph/InfoBox/Issue'
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -12,7 +11,8 @@ const styles = theme => (
     {
         toolbar: theme.mixins.toolbar,
         container: {
-            position: "relative"
+            position: "relative",
+            height: "100%"
         }
     }
 );
@@ -31,7 +31,8 @@ class DrawerContent extends Component {
                 <div className={classes.container}>
                     <div className={classes.toolbar} />
 
-                    <InfoBoxEntityUI {...this.props} />
+                    <InfoBoxEntityUI {...noClassProps} />
+                    <Issue {...noClassProps} />
                 </div>
         )
     }

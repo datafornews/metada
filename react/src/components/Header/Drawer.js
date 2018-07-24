@@ -19,7 +19,11 @@ import Menu from './Menu';
 import SearchBar from '../Search/SearchBar';
 
 
-const drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
+let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
+if (drawerWidth < 50){
+    drawerWidth = 300;
+}
+console.log(drawerWidth, window.innerWidth);
 
 const styles = theme => (
     {
@@ -63,7 +67,8 @@ const styles = theme => (
             transition: theme.transitions.create('margin', {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
-            })
+            }),
+            position: "relative"
         },
         'content-right': {
             marginRight: -drawerWidth,
@@ -128,7 +133,7 @@ class ClippedDrawer extends Component {
                         <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
                             Metada
                             </Button>
-                        <div style={{ width: "70%" }}>
+                        <div style={{ width: "70%", margin: "auto" }}>
 
 
                             <SearchBar

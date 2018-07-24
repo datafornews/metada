@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import SearchButton from './SearchButton';
-import HomeButton from './HomeButton';
+
 import RefreshButton from './RefreshButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
-import HideSideButton from './HideSideButton';
-import Legend from './Legend';
-import SearchBar from '../../Search/SearchBarV2';
+import GoToGraphButton from './GoToGraphButton';
+import InfoDrawerButton from './InfoDrawerButton';
+
 
 
 const defaultMetaDivStyle = {
@@ -39,7 +38,6 @@ class SideButtons extends Component {
     componentWillUnmount() {
         enableScroll();
     }
-
 
     componentWillReceiveProps(nextProps) {
 
@@ -74,52 +72,23 @@ class SideButtons extends Component {
             sideButtonDivStyle.position = 'fixed';
         }
         else {
-            const left = this.props.clientType === 'browser' ? 0.15 * window.innerWidth - 20 + 8 + 'px' : '6%';
-            sideButtonDivStyle.top = '70px';
+            const left = '4%';
+            sideButtonDivStyle.top = '100px';
             sideButtonDivStyle.left = left
             sideButtonDivStyle.position = 'absolute'
         }
 
-        let legendDivStyle = { ...sideButtonDivStyle };
-        if (this.props.clientType !== 'mobile') {
-            legendDivStyle.right = legendDivStyle.left;
-        } else {
-            legendDivStyle.marginTop = this.props.show.sideButtons ? '50%' : '0%';
-            legendDivStyle.width = '100%';
-            legendDivStyle.position = 'inherit';
-        }
-
-
-        delete legendDivStyle.left;
-
-        let metaDivStyle = defaultMetaDivStyle[this.props.clientType];
-
-        if (window.innerWidth <= 2870) {
-            metaDivStyle = defaultMetaDivStyle['mobile'];
-        }
+        const showNext = !JSON.parse(sessionStorage.graphHistory).length - 1 === JSON.parse(sessionStorage.location);
+        const showPrevious = !JSON.parse(sessionStorage.location) <= 0;
 
         return (
-            <div style={(this.props.show.sideButtons && this.props.show.legend) ? metaDivStyle : {}}>
-                <div style={{ position: 'absolute', width: '100%', top: 0 }}>
-                    <div style={{ maxWidth: '300px', margin: '16px auto' }}>
-                        {
-                            this.props.show.sideButtons && this.props.dataIsAvailable && <SearchBar
-                                {...this.props} />
-                        }
-
-                    </div>
-                </div>
-
+            <div >
                 <div style={sideButtonDivStyle}>
-                    <HideSideButton {...this.props} />
-                    {this.props.show.sideButtons && <HomeButton {...this.props} />}
-                    {this.props.show.sideButtons && <SearchButton {...this.props} />}
-                    {this.props.show.sideButtons && <RefreshButton {...this.props} />}
-                    {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <PreviousButton {...this.props} />}
-                    {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <NextButton {...this.props} />}
-                </div>
-                <div style={legendDivStyle}>
-                    {this.props.show.sideButtons && this.props.show.legend && <Legend {...this.props} />}
+                    {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <RefreshButton {...this.props} />}
+                    <GoToGraphButton {...this.props} />
+                    <InfoDrawerButton {...this.props} />
+                    {this.props.clientType !== 'mobile' && showNext && <PreviousButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && showPrevious && <NextButton {...this.props} />}
                 </div>
             </div>
         );

@@ -12,7 +12,7 @@ const styles = {
     },
     'extension': {
         ...defaultStyle,
-        width: '634px'
+        width: '70%'
     },
     'mobile': {
         ...defaultStyle

@@ -16,20 +16,25 @@ import Button from '@material-ui/core/Button';
 
 const buttonPosition = {
     'browser': {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: 8
+        position: "absolute",
+        width: "56px",
+        bottom: "8px",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
     },
     'extension': {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: 8
+        position: "absolute",
+        width: "56px",
+        bottom: "8px",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
     },
     'mobile': {
-        position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: 8
+        position: "absolute",
+        width: "56px",
+        bottom: "8px",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
     }
 }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
@@ -9,6 +11,7 @@ import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 // import SearchBar from '../Search/SearchBar';
 import ShiftToScroll from './SideButtons/ShiftToScroll';
+import SideCards from './SideCards';
 
 const styles = theme => ({
   cytoContainer: {
@@ -20,6 +23,9 @@ const styles = theme => ({
     height: "100%",
     minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
     // border: "grey 2px solid"
+  },
+  pad: {
+    paddingRight: "250px"
   }
 })
 
@@ -53,29 +59,8 @@ class CytoContainer extends React.Component {
       changeWiki: false,
       focus: 0,
       scroll: scroll,
-      shiftToScroll: false
+      lastTap: new Date().getTime()
     };
-  }
-
-  showShiftToScroll = (event) => {
-    if (event.target.tagName === "CANVAS") {
-      if (this.state.scroll) {
-        this.setState({
-          shiftToScroll: false
-        });
-        clearTimeout(this.timeout)
-      } else {
-        this.setState({
-          shiftToScroll: true
-        });
-        clearTimeout(this.timeout);
-        // this.timeout = setTimeout(() => {
-        //   this.setState({
-        //     shiftToScroll: false
-        //   });
-        // }, 1500);
-      }
-    }
   }
 
   allowScroll = (event) => {
@@ -110,7 +95,6 @@ class CytoContainer extends React.Component {
     if (this.props.clientType !== 'mobile') {
       document.addEventListener("keydown", this.allowScroll, false);
       document.addEventListener("keyup", this.preventScroll, false);
-      document.addEventListener("wheel", this.showShiftToScroll, false)
     }
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
@@ -122,17 +106,14 @@ class CytoContainer extends React.Component {
     if (this.props.clientType !== 'mobile') {
       document.removeEventListener("keydown", this.allowScroll, false);
       document.removeEventListener("keyup", this.preventScroll, false);
-      document.removeEventListener("wheel", this.showShiftToScroll, false)
     }
-    this.props.show.ftux && this.props.toggleFtux();
-    this.timeout !== undefined && clearTimeout(this.timeout);
+    // this.props.show.help && this.props.stopHelp();
   }
 
 
 
   renderCytoscapeElement = () => {
-
-    console.log("renderCytoscapeElement");
+    console.log('rendering');
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -159,19 +140,33 @@ class CytoContainer extends React.Component {
       console.time('      Render Cyto');
     }
     var cyElement = document.getElementById('cy');
-    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType));
+    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.data));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
         'tap',
         (event) => {
 
-          if (!this.props.show.drawer) {
-            container.props.toggleDrawer();
+          // if (!this.props.show.drawer) {
+          //   container.props.toggleDrawer();
+          // }
+          const now = new Date().getTime();
+          var timesince = now - this.state.lastTap;
+          if ((timesince < 600) && (timesince > 0)) {
+            // double tap
+            this.props.history.push(`/graph/${event.target.id()}`);
+            document.body.style.cursor = 'default';
+
+          } else {
+            // too much time to be a doubletap
+            this.setState({
+              changeWiki: true
+            });
+            container.props.updateEntityInfoBox(event.target.id());
           }
+
           this.setState({
-            changeWiki: true
-          });
-          container.props.updateEntityInfoBox(event.target.id());
+            lastTap: new Date().getTime()
+          })
         },
       );
       cy.elements('node').on(
@@ -221,8 +216,10 @@ class CytoContainer extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.show.drawer !== this.props.show.drawer) {
-      console.log(" nextProps resize render");
       setTimeout(this.renderCytoscapeElement, 300);
+      if (!nextProps.show.drawer) {
+        this.props.updateEntityInfoBox(parseInt(this.props.match.params.entityId, 10))
+      }
     }
   }
 
@@ -238,21 +235,26 @@ class CytoContainer extends React.Component {
 
     const { classes, ...noClassProps } = this.props;
 
+    const pad = this.props.show.legend || this.props.show.help;
+
     return (
-      <div id="cytoContainer" className={classes.cytoContainer}>
-        <Helmet>
-          <title>Metada - {entity.name}</title>
-        </Helmet>
-        <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
-          {this.props.clientType !== 'mobile' && this.state.shiftToScroll && <ShiftToScroll {...this.props} />}
+      <div>
+        <div id="cytoContainer" className={classNames(classes.cytoContainer, pad && classes.pad)}>
+          <Helmet>
+            <title>Metada - {entity.name}</title>
+          </Helmet>
+          <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
+          </div>
+          {this.props.clientType !== 'mobile' && <ShiftToScroll translate={this.props.translate} />}
+          <SideButtons
+            {...noClassProps}
+            focusSearchBar={this.focusSearchBar}
+            reRenderGraph={this.renderCytoscapeElement}
+          />
         </div>
-        <SideButtons
-          {...noClassProps}
-          focusSearchBar={this.focusSearchBar}
-          reRenderGraph={this.renderCytoscapeElement}
-          shiftToScroll={this.state.shiftToScroll}
-        />
+        <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement}/>
       </div>
+
     );
   }
 }

@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import WikiCard from './WikiCard';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
-import Issue from './Issue'
 import StatTitle from './StatTitle';
 
 const styles = theme => ({
@@ -35,7 +34,8 @@ const wikiCardDivStyle = {
 
 const entityNameTypoStyle = {
     display: 'inline-block',
-    marginRight: '10px'
+    marginRight: '10px',
+    fontSize: 26
 };
 
 const entityLongNameTypoStyle = {
@@ -126,10 +126,9 @@ class EntityCard extends Component {
 
                 <div style={wikiCardDivStyle}>
                     <Typography type="body1" className={classes.title} component='div'>
-                        <WikiCard {...this.props} maxLength={30} />
+                        <WikiCard {...this.props} maxLength={100} />
                     </Typography>
                 </div>
-                <Issue {...this.props} />
             </div>
         );
 

@@ -30,7 +30,7 @@ export class SideElement extends React.Component {
 
     componentDidMount() {
         this._mounted = true;
-        if (JSON.parse(localStorage['reduxPersist:show']).ftux) {
+        if (JSON.parse(localStorage['reduxPersist:show']).help) {
             this.setState({
                 open: true
             });

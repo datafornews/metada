@@ -5,7 +5,7 @@ const defaultState = {
         howItWorks: true,
         legend: true,
         chips: true,
-        ftux: true,
+        help: true,
         graphButtonBlink: true
     },
     currentDisplay: -1,

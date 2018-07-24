@@ -18,7 +18,7 @@ class HideButton extends React.Component {
 
 
     handleClick = () => {
-        this.props.show.sideButtons && this.props.show.ftux && this.props.toggleFtux();
+        this.props.show.sideButtons && this.props.show.help && this.props.stopHelp();
         this.props.toggleSideButtons();
     }
 

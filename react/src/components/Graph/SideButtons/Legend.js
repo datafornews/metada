@@ -15,8 +15,6 @@ export default class Legend extends Component {
 
     render() {
 
-        const title = this.props.translate('graph.sideButtons.legendTooltip');
-
         let completeGraph = this.props.translate('graph.sideButtons.legend.cg').split(':');
         completeGraph = (<span>
             <span style={{ color: 'green', fontWeight: 500 }}>
@@ -49,7 +47,6 @@ export default class Legend extends Component {
                 onMouseEnter={() => { this.setState({ open: true }) }}
                 onMouseLeave={() => { this.setState({ open: false }) }}
             >
-                <h3 style={{ marginTop: 0, textAlign: 'center' }}>{this.props.translate('graph.sideButtons.legend.title')}:</h3>
 
                 <table style={table1Style}>
                     <tbody>
@@ -84,13 +81,6 @@ export default class Legend extends Component {
             </div >
         );
 
-        return <SideElement
-            id="tooltip-Legend"
-            title={title}
-            placement="bottom"
-            content={content}
-            onClick={() => { }}
-            {...this.props}
-        />
+        return content
     }
 }

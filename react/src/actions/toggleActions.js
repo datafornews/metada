@@ -64,9 +64,15 @@ export function toggleLegend() {
     };
 }
 
-export function toggleFtux() {
+export function stopHelp() {
     return {
-        type: 'TOGGLE_FTUX'
+        type: 'STOP_HELP'
+    };
+}
+
+export function startHelp() {
+    return {
+        type: 'START_HELP'
     };
 }
 

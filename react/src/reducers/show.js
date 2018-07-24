@@ -60,17 +60,22 @@ function show(state = false, action) {
             let newState = {
                 ...state
             }
-            const dont_close = ['legend', 'chips', 'ftux'];
+            const dont_close = ['legend', 'chips', 'help'];
             for (var i in state) {
                 if (dont_close.indexOf(i) === -1) {
                     newState[i] = false;
                 }
             }
             return newState;
-        case 'TOGGLE_FTUX':
+        case 'STOP_HELP':
             return {
                 ...state,
-                ftux: !state.ftux
+                help: false
+            };
+        case 'START_HELP':
+            return {
+                ...state,
+                help: true
             };
         case 'TOGGLE_DRAWER':
             return {
