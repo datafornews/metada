@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Icon from '@material-ui/icons/LabelOutline';
 import Filter from '@material-ui/icons/Label';
 import Grid from '@material-ui/core/Grid';
-import GraphIcon from 'react-icons/lib/fa/chevron-circle-right';
+import GraphIcon from '@material-ui/icons/CenterFocusStrong';
 
 const colors = {
     m: '#3f51b5',
@@ -20,7 +20,7 @@ export default class Legend extends Component {
             <span style={{ color: 'green', fontWeight: 500 }}>
                 {completeGraph[0]}
             </span>
-            : {completeGraph[1].split('@@')[0]} <GraphIcon style={{ color: 'green' }} /> {completeGraph[1].split('@@')[1]}
+            : {completeGraph[1]}
         </span>);
         let currentGraph = this.props.translate('graph.sideButtons.legend.boldText').split(':');
         currentGraph = <span>
@@ -72,24 +72,28 @@ export default class Legend extends Component {
 
                 </Grid>
 
-                <Grid container justify='space-around' direction="row" spacing={0} style={{ marginTop: 40 }}>
+                <div style={{ maxWidth: "500px", margin: "auto" }}>
 
-                    <Grid item >
-                        <Grid container alignItems='center'>
-                            <Grid xs={5} item><Filter style={{ width: "40px", color: 'grey' }} /></Grid>
-                            <Grid xs={7} item>{currentGraph}</Grid>
+
+                    <Grid container direction="row" spacing={0} style={{ marginTop: 40 }}>
+
+                        <Grid item >
+                            <Grid container alignItems='center'>
+                                <Grid xs={5} item><Filter style={{ width: "40px", color: 'grey' }} /></Grid>
+                                <Grid xs={7} item>{currentGraph}</Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
 
-                <Grid container justify='space-around' direction="row" spacing={0} style={{ marginTop: 40 }}>
-                    <Grid item >
-                        <Grid container alignItems='center'>
-                            <Grid xs={5} item><Icon style={{ width: "40px", color: 'green' }} /></Grid>
-                            <Grid xs={7} item >{completeGraph}</Grid>
+                    <Grid container direction="row" spacing={0} style={{ marginTop: 40 }}>
+                        <Grid item >
+                            <Grid container alignItems='center'>
+                                <Grid xs={5} item><Icon style={{ width: "40px", color: 'green' }} /></Grid>
+                                <Grid xs={7} item >{completeGraph}</Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
+                </div>
             </div >
         );
 

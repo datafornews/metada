@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
 import classNames from 'classnames';
 import ClearIcon from '@material-ui/icons/Clear';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 
 import PropTypes from 'prop-types';
@@ -136,7 +136,7 @@ class ClippedDrawer extends Component {
                 }
                     position="absolute">
                     <Toolbar>
-                        <div style={{ width: "25%", margin: "auto" }} className={this.props.clientType === "mobile" && classes.mobileToolbar}>
+                        <div style={{ width: "25%", margin: "auto" }} className={this.props.clientType === "mobile" ? classes.mobileToolbar : undefined}>
 
                             <Menu history={this.props.history} />
                             <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
@@ -161,8 +161,11 @@ class ClippedDrawer extends Component {
                         </div>
                         <div style={{ width: "25%", margin: "auto" }}>
                             {!this.props.show.drawer && this.props.history.location.pathname.startsWith("/graph/") &&
-                                <IconButton onClick={this.props.toggleDrawer} style={{ position: "absolute", right: "8px", color: "white" }}>
-                                    <ChevronLeftIcon />
+                                <IconButton
+                                    onClick={this.props.toggleDrawer}
+                                    style={{ position: "absolute", right: "8px", top: "8px", color: "white" }}
+                                >
+                                    <DescriptionIcon />
                                 </IconButton>
                             }
                         </div>
@@ -171,7 +174,7 @@ class ClippedDrawer extends Component {
                 </AppBar>
                 <main className={classNames(
                     classes.content,
-                    classes['content-right'],
+                    this.props.history.location.pathname.startsWith('/graph/') && classes['content-right'],
                     {
                         [classes.contentShift]: this.props.show.drawer,
                         [classes["contentShift-right"]]: this.props.show.drawer,
@@ -181,7 +184,7 @@ class ClippedDrawer extends Component {
                     {this.props.children}
                 </main>
 
-                <Drawer
+                {this.props.history.location.pathname.startsWith('/graph/') && <Drawer
                     variant="persistent"
                     classes={{
                         paper: classes.drawerPaper,
@@ -199,6 +202,7 @@ class ClippedDrawer extends Component {
                     </div>
                     {drawerContent}
                 </Drawer>
+                }
             </div>
         );
     }

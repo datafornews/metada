@@ -32,12 +32,16 @@ export default class Example extends Component {
     getRandomEntities = (props, nb, indexes) => {
         let index, id;
         let entities = [];
+        let company = false;
         for (let i = 0; i < nb; i++) {
             index = Math.floor(Math.random() * props.data.idSet.length);
             id = props.data.idSet[index];
-            while (indexes.indexOf(id) > -1) {
+            while (indexes.indexOf(id) > -1 || !company) {
                 index = Math.floor(Math.random() * props.data.idSet.length);
                 id = props.data.idSet[index];
+                if (props.data.entities.ids[id].category === "c") {
+                    company = true;
+                }
             }
             indexes.push(id);
             entities.push(props.data.entities.ids[props.data.idSet[index]]);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames'
 
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
@@ -22,6 +23,12 @@ const styles = theme => ({
     wiki: {
         fontSize: theme.typography.pxToRem(11),
         fontStyle: "italic"
+    },
+    noPadding: {
+        padding: "0px"
+    },
+    expandIcon: {
+        right: "-8px"
     }
 })
 
@@ -82,17 +89,17 @@ class WikiCard extends Component {
                 <div className={classes.root}>
                     <ExpansionPanel elevation={0}>
 
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography className={classes.heading}>
+                        <ExpansionPanelSummary className={classNames(classes.noPadding)} classes={{ expandIcon: classes.expandIcon }} expandIcon={<ExpandMoreIcon />}>
+                            <Typography color="textSecondary" className={classes.heading}>
                                 {summary}
                             </Typography>
                         </ExpansionPanelSummary>
 
-                        <ExpansionPanelDetails>
-                            <Typography className={classes.heading} component="div">
+                        <ExpansionPanelDetails className={classes.noPadding} >
+                            <Typography className={classes.heading} component="div" color="textSecondary">
 
                                 {dots + this.state.extract.split(' ').slice(this.props.maxLength).join(" ")}
-                                <br />
+                                <br /><br />
                                 <Typography color="textSecondary" className={classes.wiki}>
                                     {this.props.translate("graph.wiki.isExtract")}
                                 </Typography>
@@ -105,7 +112,7 @@ class WikiCard extends Component {
             ) : <div className={classes.root}>
 
                     <Paper elevation={0} component="div">
-                        <Typography className={classes.heading}>
+                        <Typography color="textSecondary" className={classes.heading}>
                             {summary}
                         </Typography>
                         <br />

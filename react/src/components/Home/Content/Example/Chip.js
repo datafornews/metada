@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
-import Badge from '@material-ui/core/Badge';
+import Divider from '@material-ui/core/Divider';
 
 import classNames from 'classnames';
 
@@ -25,12 +25,16 @@ const colors = {
 const styles = theme => ({
     card: {
         maxWidth: 275,
+        minHeight: 240,
+        display: "flex",
+        flexFlow: "column",
+        height: "100%",
     },
     margin: {
         margin: theme.spacing.unit * 2,
     },
     title: {
-        fontSize: 18,
+        fontSize: 22,
     },
     subtitle: {
         marginBottom: 8,
@@ -41,9 +45,16 @@ const styles = theme => ({
         fontWeight: 200
     },
     actions: {
-        display: 'flex',
-        justifyContent: "center",
-        paddingTop: 0
+        paddingTop: 0,
+        position: "absolute",
+        left: "50%",
+        bottom: "20px",
+        transform: "translate(-50%, 30%)",
+        margin: "0 auto",
+    },
+    actionsContainer: {
+        position: "relative",
+        flex: '1 1 auto',
     },
     chip: {
         position: "absolute",
@@ -87,6 +98,7 @@ class HomeCard extends Component {
                         <Typography className={classes.title}>
                             {entity.name}
                         </Typography>
+                        <Divider />
                         <Typography className={classes.subtitle} variant="subheading" component="h4" color="textSecondary">
                             {entity.long_name || ""}
                         </Typography>
@@ -104,14 +116,17 @@ class HomeCard extends Component {
                             <WebsiteButton {...this.props} />
                         </Typography>
                     </CardContent>
-                    <CardActions className={classes.actions}>
-                        <GraphButton
-                            // name={entity.name} 
-                            handleClick={this.handleClick}
-                            show={{ graphButtonBlink: false }}
-                            translate={this.props.translate}
-                        />
-                    </CardActions>
+                    
+                    <div className={classes.actionsContainer}>
+                        <CardActions className={classes.actions}>
+                            <GraphButton
+                                // name={entity.name} 
+                                handleClick={this.handleClick}
+                                show={{ graphButtonBlink: false }}
+                                translate={this.props.translate}
+                            />
+                        </CardActions>
+                    </div>
                 </Card>
             </div>
         )

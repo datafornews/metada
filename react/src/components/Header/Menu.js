@@ -22,6 +22,7 @@ const styles = theme => ({
             '& $primary, & $icon': {
                 color: theme.palette.common.white,
             },
+            outline: "none"
         },
     },
     primary: {},
@@ -29,6 +30,9 @@ const styles = theme => ({
         height: 30,
         width: 30
     },
+    menuList: {
+        outline: "none"
+    }
 });
 
 
@@ -72,7 +76,7 @@ class FadeMenu extends React.Component {
                     onClose={this.handleClose}
                     TransitionComponent={Fade}
                 >
-                    <MenuList>
+                    <MenuList className={classes.menuList}>
                         <MenuItem onClick={this.goTo('/')}>
                             <ListItemIcon className={classes.icon}>
                                 <HomeIcon />

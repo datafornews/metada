@@ -259,10 +259,19 @@
             ]
         },
         "cards": {
-            "category":{
-                "m": ["Media", "M\u00e9dia"],
-                "c": ["Intermediary", "Intermédiaire"],
-                "i": ["End Owner", "Propri\u00e9taire"]
+            "category": {
+                "m": [
+                    "Media",
+                    "M\u00e9dia"
+                ],
+                "c": [
+                    "Intermediary",
+                    "Intermédiaire"
+                ],
+                "i": [
+                    "End Owner",
+                    "Propri\u00e9taire"
+                ]
             }
         }
     },
@@ -329,6 +338,62 @@
         ]
     },
     "graph": {
+        "helpCard": {
+            "title": [
+                "Help",
+                "Aide"
+            ],
+            "descriptionPannel": {
+                "title": [
+                    "Description Pannel",
+                    "Onglet de Desctiption"
+                ],
+                "intro": [
+                    "Additionnaly to details about the Selected Entity, you'll find:",
+                    "En plus d'informations à propos de l'Entité Sélectionnée, vous trouverez:"
+                ],
+                "help": [
+                    "A button to show this help",
+                    "Un bouton pour afficher cette aide"
+                ],
+                "legend": [
+                    "A button to display the graph's legend",
+                    "Un bouton pour afficher la légende du graphe"
+                ],
+                "issue": [
+                    "A button to raise an issue",
+                    "Un boutton pour signaler un problème"
+                ]
+            },
+            "buttons": [
+                "Buttons",
+                "Boutons"
+            ],
+            "reset": [
+                "Redraw the graph",
+                "Redessiner le graphe"
+            ],
+            "description": [
+                "Open the Description Pannel",
+                "Ouvrir l'onglet de description"
+            ],
+            "focus": [
+                "Focus the graph on this entity",
+                "Voir le graphe de cette entité"
+            ],
+            "doubleTap": [
+                "Double clicking",
+                "double cliquant"
+            ],
+            "doubleTapBefore": [
+                "",
+                "Vous pouvez aussi voir le graphe de l'entité en "
+            ],
+            "doubleTapAfter": [
+                " is a shortcut to the focus button",
+                " dessus"
+            ]
+        },
         "websiteButton": [
             "Website",
             "Site Web"
@@ -412,8 +477,8 @@
                     "Entreprise"
                 ],
                 "cg": [
-                    "Selected Entity: (other than the Mapped Entity) you clicked on this entity, it will show you a Wikipedia extract and you may click on the green @@ button to view its complete graph",
-                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqué dessus, un extrait de sa page Wikip\u00e9dia est affich\u00e9 et vous pouvez voir son Graphe Complet en cliquant sur"
+                    "Selected Entity: (other than the Mapped Entity) you clicked on this entity, a Wikipedia extract about it is displayed in the description pannel",
+                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqué dessus, un extrait de sa page Wikip\u00e9dia s' affich\u00e9 dans l'onglet de description"
                 ],
                 "boldLabel": [
                     "bold",
