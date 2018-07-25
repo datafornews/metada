@@ -213,7 +213,7 @@ class CytoContainer extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.show.drawer !== this.props.show.drawer) {
+    if (nextProps.show.drawer !== this.props.show.drawer || nextProps.renderStatus !== this.props.renderStatus) {
       setTimeout(this.renderCytoscapeElement, 300);
       if (!nextProps.show.drawer) {
         this.props.updateEntityInfoBox(parseInt(this.props.match.params.entityId, 10))

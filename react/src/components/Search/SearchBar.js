@@ -17,7 +17,6 @@ var searchBarDivStyleDefault = {
   margin: 'auto',
   // marginTop: '15px',
   // textAlign: 'center',
-  width: '50%',
   // float: 'right'
 };
 

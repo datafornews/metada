@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Chip from './Chip';
 import logGraph from '../../../../utils/logGraph'
+import Grid from '@material-ui/core/Grid';
 
 
 const style = {
@@ -49,19 +50,23 @@ export default class Example extends Component {
         const leMonde = props.data.entities.ids[1];
         const patrickDrahi = props.data.entities.ids[149]
         const entities = [leMonde, patrickDrahi].concat(this.getRandomEntities(
-            props, 2, indexes
+            props, props.nb, indexes
         ));
         const component = this;
 
         const content = (
-            <div style={{ textAlign: 'center' }}>
-                {entities.map((v, k) => {
-                    return <Chip
-                        key={k}
-                        handleChipClick={component.handleChipClick}
-                        entity={v}
-                    />
-                })}
+            <div style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
+                <Grid container spacing={32} alignItems="stretch">
+                    {entities.map((v, k) => {
+                        return <Grid key={k} item xs={12} sm={6} md={4} >
+                            <Chip
+                                handleChipClick={component.handleChipClick}
+                                entity={v}
+                                translate={component.props.translate}
+                            />
+                        </Grid>
+                    })}
+                </Grid>
             </div>
         );
         if (this.state.content.length === 0) {
@@ -71,16 +76,16 @@ export default class Example extends Component {
         }
     }
 
-    render() {    
+    render() {
         return this.props.show.chips ? (
             <div>
                 <div style={style}>
-                {this.props.translate('home.example')}
+                    {this.props.translate('home.example')}
                 </div>
                 {this.state.content}
             </div>
         )
-        :
-        ''
+            :
+            ''
     }
 }

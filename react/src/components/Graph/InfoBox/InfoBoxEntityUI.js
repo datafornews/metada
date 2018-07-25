@@ -8,11 +8,11 @@ const defaultStyle = {
 const styles = {
     'browser': {
         ...defaultStyle,
-        width: '70%'    
+        width: '90%'    
     },
     'extension': {
         ...defaultStyle,
-        width: '70%'
+        width: '90%'
     },
     'mobile': {
         ...defaultStyle

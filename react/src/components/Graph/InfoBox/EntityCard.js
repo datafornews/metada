@@ -99,7 +99,7 @@ class EntityCard extends Component {
 
     render() {
 
-        const { classes } = this.props;
+        const { classes, ...noClassProps } = this.props;
 
         const style = {
             marginTop: this.props.clientType === 'mobile' ? '0px' : '8px',
@@ -117,17 +117,15 @@ class EntityCard extends Component {
                     <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
                         {this.props.entity.long_name}
                     </Typography>
-                    <StatTitle {...this.props} ></StatTitle>
+                    <StatTitle {...noClassProps} ></StatTitle>
                 </div>
 
-                <WikiButton {...this.props} />
-                <WebsiteButton {...this.props} />
+                <WikiButton {...noClassProps} />
+                <WebsiteButton {...noClassProps} />
                 {this.props.graphButton}
 
                 <div style={wikiCardDivStyle}>
-                    <Typography type="body1" className={classes.title} component='div'>
-                        <WikiCard {...this.props} maxLength={this.props.clientType === "mobile"? 30 : 50} />
-                    </Typography>
+                        <WikiCard {...noClassProps} maxLength={this.props.clientType === "mobile"? 15 : 30} />
                 </div>
             </div>
         );

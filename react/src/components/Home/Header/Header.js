@@ -42,7 +42,7 @@ export default class Header extends Component {
         return (
             <div id='HomeHeader' style={{ ...this.props.style, ...parentDivstyle[this.props.clientType] }}>
                 <div style={titleStyle[this.props.clientType]}>
-                    <h1>{title}</h1>
+                    {/* <h1>{title}</h1> */}
                     <h4>{this.props.translate('home.subtitle')}</h4>
                 </div>
                 <HowItWorks {...this.props} />

@@ -53,6 +53,8 @@ export default class GraphButton extends Component {
 
     render() {
 
+        const name = this.props.name ? <span><br /> {'(' + this.props.name + ')'}</span> : ""
+
         return (
             <Button
                 style={{
@@ -61,7 +63,7 @@ export default class GraphButton extends Component {
                 }}
                 onClick={this.props.handleClick}
             >
-                <span>{this.props.translate('graph.seeGraphButton')} <br/> {'(' + this.props.name + ')'}</span> &nbsp; &nbsp; <Icon style={iconStyle} />
+                <span>{this.props.translate('graph.seeGraphButton')} {name} </span> &nbsp; &nbsp; <Icon style={iconStyle} />
             </Button>
 
         )

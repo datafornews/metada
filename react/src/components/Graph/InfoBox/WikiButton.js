@@ -15,9 +15,14 @@ const textStyle = {
 
 export default class WikiButton extends Component {
     render() {
+        let style = textStyle;
+        if (this.props.small) {
+            style.padding = 4;
+            style.fontSize = "0.4rem"
+        }
         return this.props.entity.wiki_link ?
-            (<Button target='_blank' color="primary" style={textStyle} href={this.props.entity.wiki_link}>
-                Wikipedia &nbsp;<OpenInNew style={iconStyle}/>
+            (<Button target='_blank' color="primary" style={style} href={this.props.entity.wiki_link}>
+                Wikipedia &nbsp;<OpenInNew style={iconStyle} />
             </Button>)
             :
             ''

@@ -39,3 +39,9 @@ export function setActiveLanguage(languageCode) {
     payload: { languageCode: languageCode }
   };
 }
+
+export function reRenderGraph() {
+  return {
+    type: "UPDATE_RENDER_STATUS"
+  }
+}

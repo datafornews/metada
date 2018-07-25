@@ -30,11 +30,13 @@ const homeContentDivStyle = {
   },
   "browser": {
     textAlign: 'unset',
+    maxWidth: "900px",
     width: '70%',
     margin: 'auto'
   },
   "extension": {
     textAlign: 'unset',
+    maxWidth: "900px",
     width: '80%',
     margin: 'auto'
   }
@@ -134,7 +136,7 @@ class Home extends React.Component {
           </Helmet>
           {location ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
           <div style={homeContentDivStyle[this.props.clientType]}>
-            {location ? '' : <Example {...this.props} />}
+            {location ? '' : <Example {...this.props} nb={4}/>}
             {/* <HomeContentTabs {...this.props} /> */}
             {/* <HomeSearchBar {...this.props} /> */}
             <LearnAbout {...this.props} />

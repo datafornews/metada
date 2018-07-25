@@ -15,8 +15,13 @@ const textStyle = {
 
 export default class WebsiteButton extends Component {
     render() {
+        let style = textStyle;
+        if (this.props.small) {
+            style.padding = 4;
+            style.fontSize = "0.4rem"
+        }
         return this.props.entity.website && (
-            <Button target='_blank' style={textStyle} href={this.props.entity.website}>
+            <Button target='_blank' style={style} href={this.props.entity.website}>
                 {this.props.translate('graph.websiteButton')} &nbsp; <OpenInNew style={iconStyle}/>
             </Button>)
     }

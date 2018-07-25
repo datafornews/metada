@@ -11,6 +11,7 @@ import infoBox from './infoBox';
 import clientType from './clientType';
 import currentDisplay from './currentDisplay';
 import dataIsAvailable from './dataIsAvailable';
+import renderStatus from './renderStatus';
 
 const initialUserState = {
     firstName: 'Jane',
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
     locale,
     router: routerReducer,
     show,
+    renderStatus,
     userSignupForm: combineForms({
         user: initialUserState,
       }, 'userSignupForm')

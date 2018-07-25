@@ -2,8 +2,28 @@ import React, { Component } from 'react';
 
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
-import Button from '@material-ui/core/Button';
-import MoreIcon from '@material-ui/icons/More';
+import Paper from '@material-ui/core/Paper';
+
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(13),
+        fontWeight: theme.typography.fontWeightRegular,
+    },
+    wiki: {
+        fontSize: theme.typography.pxToRem(11),
+        fontStyle: "italic"
+    }
+})
 
 class WikiCard extends Component {
     constructor(props) {
@@ -45,27 +65,64 @@ class WikiCard extends Component {
             }
         }
 
-        let div;
+        const { classes } = this.props;
+
+        let div, dots;
         if (typeof this.state.extract === 'string' || this.state.extract instanceof String) {
-            const toWrite = this.state.extract.split(' ').slice(0, this.props.maxLength).join(" ");
-            if (toWrite.length < this.props.maxLength) {
-                div = <div>{toWrite}</div>
+            let summary = this.state.extract.split(' ');
+            if (summary.length > this.props.maxLength) {
+                summary = summary.slice(0, this.props.maxLength).join(" ") + " ...";
+                dots = "..."
             } else {
-                div = <div>{toWrite}<Button>...</Button></div>
+                summary = summary.slice(0, this.props.maxLength).join(" ");
+                dots = "";
             }
+
+            div = dots ? (
+                <div className={classes.root}>
+                    <ExpansionPanel elevation={0}>
+
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography className={classes.heading}>
+                                {summary}
+                            </Typography>
+                        </ExpansionPanelSummary>
+
+                        <ExpansionPanelDetails>
+                            <Typography className={classes.heading} component="div">
+
+                                {dots + this.state.extract.split(' ').slice(this.props.maxLength).join(" ")}
+                                <br />
+                                <Typography color="textSecondary" className={classes.wiki}>
+                                    {this.props.translate("graph.wiki.isExtract")}
+                                </Typography>
+
+                            </Typography>
+                        </ExpansionPanelDetails>
+
+                    </ExpansionPanel>
+                </div>
+            ) : <div className={classes.root}>
+
+                    <Paper elevation={0} component="div">
+                        <Typography className={classes.heading}>
+                            {summary}
+                        </Typography>
+                        <br />
+                        <Typography color="textSecondary" className={classes.wiki}>
+                            {this.props.translate("graph.wiki.isExtract")}
+                        </Typography>
+                    </Paper>
+
+                </div>;
         }
 
-        return (
-            <div style={extractStyle}>
-                {(typeof this.state.extract === 'string' || this.state.extract instanceof String) ?
-                    div
-                    :
-                    this.state.extract
-                }
+        return (typeof this.state.extract === 'string' || this.state.extract instanceof String) ?
+            div
+            :
+            this.state.extract
 
-            </div>
-        );
     }
 }
 
-export default WikiCard;
+export default withStyles(styles)(WikiCard);

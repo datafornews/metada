@@ -12,7 +12,7 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
-import LegendDialog from './LegendDialog';
+
 
 
 const buttonPosition = {
@@ -53,11 +53,6 @@ class IssueDialog extends React.Component {
         this.setState({ dialogOpen: false });
     }
 
-    openHelp = () => {
-        this.props.startHelp()
-        setTimeout(this.props.reRenderGraph, 300)
-    }
-
     render() {
 
         let { fullScreen } = this.props;
@@ -76,11 +71,7 @@ class IssueDialog extends React.Component {
                 >
                     <PriorityHighIcon style={{ color: 'white' }} />
                 </Button>
-
-                <Button onClick={this.openHelp}>
-                    Help
-                </Button>
-                <LegendDialog translate={this.props.translate} />
+                
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.dialogOpen}

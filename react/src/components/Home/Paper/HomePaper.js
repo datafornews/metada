@@ -27,7 +27,7 @@ const typoStyles = {
 const styles = theme => ({
     root: theme.mixins.gutters({
         padding: 30,
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 4,
         display: 'inline-block',
         marginBottom: '30px'
     }),
@@ -44,7 +44,7 @@ class HomePaper extends Component {
         let typoStyle = {...typoStyles[this.props.clientType]};
 
         if (this.props.clientType === 'browser') {
-            typoStyle.padding = '0px 10%';
+            typoStyle.padding = '5% 10%';
         }
 
         if (this.props.clientType === 'mobile') {
@@ -54,7 +54,7 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <Paper style={{ width: browserWidth }} className={classes.root} elevation={12}>
+            <Paper style={{ width: browserWidth}} className={classes.root} elevation={18}>
                 <Typography type="body1" style={typoStyle} component="div" >
                     {this.props.content}
                 </Typography>

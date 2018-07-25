@@ -257,6 +257,13 @@
                 "All time proportion",
                 "Proportion totale"
             ]
+        },
+        "cards": {
+            "category":{
+                "m": ["Media", "M\u00e9dia"],
+                "c": ["Intermediary", "Intermédiaire"],
+                "i": ["End Owner", "Propri\u00e9taire"]
+            }
         }
     },
     "login": {
@@ -416,7 +423,10 @@
                     "Mapped Entity: this is the entity which generated the current Graph you're seeing",
                     "Entit\u00e9 Repr\u00e9sent\u00e9e: c'est l'entit\u00e9 qui a g\u00e9n\u00e9r\u00e9 le graphe courant que vous voyez"
                 ],
-                "title":["Legend", "Légende"]
+                "title": [
+                    "Legend",
+                    "Légende"
+                ]
             }
         },
         "wiki": {
@@ -435,6 +445,10 @@
             "jsError": [
                 "Internal error. Sorry :(",
                 "Erreur interne. D\u00e9sol\u00e9 :("
+            ],
+            "isExtract": [
+                "(Extract from Wikipedia)",
+                "(Extrait de Wikipédia)"
             ]
         },
         "issue": {

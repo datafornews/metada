@@ -20,7 +20,7 @@ import SearchBar from '../Search/SearchBar';
 
 
 let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
-if (drawerWidth < 50){
+if (drawerWidth < 50) {
     drawerWidth = 300;
 }
 
@@ -67,7 +67,8 @@ const styles = theme => (
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
-            position: "relative"
+            position: "relative",
+            overflow: "scroll"
         },
         'content-right': {
             marginRight: -drawerWidth,
@@ -88,6 +89,13 @@ const styles = theme => (
             justifyContent: 'space-evenly',
             padding: '0 8px',
             ...theme.mixins.toolbar,
+        },
+        noPadding: {
+            padding: "48px 0px"
+        },
+        mobileToolbar: {
+            marginBottom: "8px !important",
+            textAlign: "center"
         }
     }
 );
@@ -128,11 +136,14 @@ class ClippedDrawer extends Component {
                 }
                     position="absolute">
                     <Toolbar>
-                        <Menu history={this.props.history} />
-                        <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
-                            Metada
+                        <div style={{ width: "25%", margin: "auto" }} className={this.props.clientType === "mobile" && classes.mobileToolbar}>
+
+                            <Menu history={this.props.history} />
+                            <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
+                                Metada
                             </Button>
-                        <div style={{ width: "70%", margin: "auto" }}>
+                        </div>
+                        <div style={{ width: "50%", margin: "auto" }}>
 
 
                             <SearchBar
@@ -148,11 +159,14 @@ class ClippedDrawer extends Component {
                                 updateEntityInfoBox={this.props.updateEntityInfoBox}
                             />
                         </div>
-                        {!this.props.show.drawer && this.props.history.location.pathname.startsWith("/graph/") &&
-                            <IconButton onClick={this.props.toggleDrawer} style={{ position: "absolute", right: "8px", color: "white" }}>
-                                <ChevronLeftIcon />
-                            </IconButton>
-                        }
+                        <div style={{ width: "25%", margin: "auto" }}>
+                            {!this.props.show.drawer && this.props.history.location.pathname.startsWith("/graph/") &&
+                                <IconButton onClick={this.props.toggleDrawer} style={{ position: "absolute", right: "8px", color: "white" }}>
+                                    <ChevronLeftIcon />
+                                </IconButton>
+                            }
+                        </div>
+
                     </Toolbar>
                 </AppBar>
                 <main className={classNames(
@@ -161,7 +175,8 @@ class ClippedDrawer extends Component {
                     {
                         [classes.contentShift]: this.props.show.drawer,
                         [classes["contentShift-right"]]: this.props.show.drawer,
-                    }
+                    },
+                    this.props.clientType === "mobile" && classes.noPadding
                 )}>
                     {this.props.children}
                 </main>
