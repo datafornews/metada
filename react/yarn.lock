@@ -2035,6 +2035,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+cytoscape-cxtmenu@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/cytoscape-cxtmenu/-/cytoscape-cxtmenu-3.0.1.tgz#28cd60d7ab23dd31ced2b52d2a772677b39b3317"
+
 cytoscape-dagre@^2.1.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/cytoscape-dagre/-/cytoscape-dagre-2.2.1.tgz#22d59b1127b3a65e129c4a9c0b2934d2f54f644d"
@@ -2042,8 +2046,8 @@ cytoscape-dagre@^2.1.0:
     dagre "^0.7.4"
 
 cytoscape@^3.2.4:
-  version "3.2.14"
-  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.2.14.tgz#78ad92e0195541228b78a6252cea2a0b0b12f59e"
+  version "3.2.15"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.2.15.tgz#6ce49340b29f0a22267667d9ca842d5d0b6f4eed"
   dependencies:
     heap "^0.2.6"
     lodash.debounce "^4.0.8"
@@ -3162,6 +3166,10 @@ follow-redirects@^1.0.0, follow-redirects@^1.2.3:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.1.tgz#67a8f14f5a1f67f962c2c46469c79eaec0a90291"
   dependencies:
     debug "^3.1.0"
+
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"

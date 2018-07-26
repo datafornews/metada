@@ -6,6 +6,7 @@ import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import Drawer from '../Header/Drawer';
 
 import CytoContainer from './CytoContainer';
+import Issue from './InfoBox/Issue';
 
 import Waiting from '../Waiting';
 
@@ -24,6 +25,12 @@ class _Graph extends React.Component {
     return this.props.dataIsAvailable ?
       <Drawer {...this.props}>
         <CytoContainer {...this.props} />
+        <Issue
+          translate={this.props.translate}
+          clientType={this.props.clientType}
+          show={this.props.show}
+          toggleIssue={this.props.toggleIssue}
+        />
       </Drawer>
       :
       <Waiting translate={this.props.translate} toTranslate='home.loadingData' />;

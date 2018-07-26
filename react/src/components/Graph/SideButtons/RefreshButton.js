@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ResetIcon from '@material-ui/icons/Autorenew';
+import ResetIcon from 'react-icons/lib/fa/refresh';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 
@@ -14,7 +14,6 @@ class HomeButton extends React.Component {
 
     handleClick = () => {
         this.props.reRenderGraph();
-        this.props.startHelp()
     }
 
     render() {

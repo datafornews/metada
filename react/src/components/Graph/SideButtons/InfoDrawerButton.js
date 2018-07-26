@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import DescriptionIcon from '@material-ui/icons/Description';
+import DescriptionIcon from 'react-icons/lib/fa/file-text';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

@@ -64,6 +64,12 @@ export function toggleLegend() {
     };
 }
 
+export function toggleIssue() {
+    return {
+        type: 'TOGGLE_ISSUE'
+    };
+}
+
 export function stopHelp() {
     return {
         type: 'STOP_HELP'

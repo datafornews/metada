@@ -82,6 +82,11 @@ function show(state = false, action) {
                 ...state,
                 drawer: !state.drawer
             };
+        case 'TOGGLE_ISSUE':
+            return {
+                ...state,
+                issue: !state.issue
+            };
         case 'TOGGLE_GRAPH_BUTTON_BLINK':
             return {
                 ...state,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Icon from '@material-ui/icons/LabelOutline';
 import Filter from '@material-ui/icons/Label';
 import Grid from '@material-ui/core/Grid';
-import GraphIcon from '@material-ui/icons/CenterFocusStrong';
+import GraphIcon from 'react-icons/lib/fa/sitemap';
 
 const colors = {
     m: '#3f51b5',

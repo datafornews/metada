@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CenterFocusStrongIcon from '@material-ui/icons/CenterFocusStrong';
+import CenterFocusStrongIcon from 'react-icons/lib/fa/sitemap';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 

@@ -2,20 +2,19 @@ import React, { Component } from 'react'
 import InfoBoxEntity from './InfoBoxEntity';
 
 const defaultStyle = {
-    margin: 'auto'
+    margin: 'auto',
+    width: '90%'
 };
 
 const styles = {
     'browser': {
         ...defaultStyle,
-        width: '90%'    
     },
     'extension': {
         ...defaultStyle,
-        width: '90%'
     },
     'mobile': {
-        ...defaultStyle
+        ...defaultStyle,
     }
 }
 

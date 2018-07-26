@@ -1,5 +1,8 @@
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
+import cxtmenu from 'cytoscape-cxtmenu';
+
+cytoscape.use(cxtmenu);
 
 cytoscape.use(dagre);
 
@@ -176,7 +179,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
                     'font-size': '10rem',
                     'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
-                    'arrow-scale': 0.9
+                    'arrow-scale': 0.9,
                 }
             },
             {

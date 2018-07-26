@@ -3,6 +3,8 @@ import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import DescriptionIcon from 'react-icons/lib/fa/file-text';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
@@ -36,6 +38,25 @@ let defaultStyle = {
   position: 'relative',
   display: 'flex',
   justifyContent: 'center'
+};
+
+// the default values of each option are outlined below:
+let defaultMenu = {
+  menuRadius: 70, // the radius of the circular menu in pixels
+  selector: 'node', // elements matching this Cytoscape.js selector will trigger cxtmenus
+  fillColor: 'rgba(0, 0, 0, 0.1)', // the background colour of the menu
+  activeFillColor: '#3f51b5', // the colour used to indicate the selected command
+  activePadding: 5, // additional size in pixels for the active command
+  indicatorSize: 0, // the size in pixels of the pointer to the active command
+  separatorWidth: 0, // the empty spacing in pixels between successive commands
+  spotlightPadding: 0, // extra spacing in pixels between the element and the spotlight
+  minSpotlightRadius: 0, // the minimum radius in pixels of the spotlight
+  maxSpotlightRadius: 20, // the maximum radius in pixels of the spotlight
+  openMenuEvents: 'cxttapstart taphold', // space-separated cytoscape events that will open the menu; only `cxttapstart` and/or `taphold` work here
+  itemColor: 'white', // the colour of text in the command's content
+  itemTextShadowColor: 'transparent', // the text shadow colour of the command's content
+  zIndex: 9999, // the z-index of the ui div
+  atMouse: false // draw menu at mouse position
 };
 
 
@@ -179,6 +200,68 @@ class CytoContainer extends React.Component {
         console.timeEnd('      Render Cyto');
         console.timeEnd('Full Cyto');
       }
+      let commands = [{
+        fillColor: 'rgba(10, 10, 10, 0.85)',
+        content: '<i style="font-size:20px" class="fa fa-sitemap"></i>',
+        contentStyle: {},
+        select: function (ele) {
+          container.props.history.push('/graph/' + ele.id())
+        },
+        enabled: true
+      },
+      {
+        fillColor: '#ff7543',
+        content: '<i style="font-size:20px" class="fa fa-exclamation-circle"></i>',
+        contentStyle: {},
+        select: function (ele) {
+          container.props.toggleIssue()
+        },
+        enabled: true
+      }
+      ]
+      if (!container.props.show.drawer) {
+        commands.push(
+          {
+            fillColor: 'rgba(10, 10, 10, 0.85)',
+            content: '<i style="font-size:20px" class="fa fa-file-text"></i>',
+            contentStyle: {},
+            select: function (ele) {
+              container.props.toggleDrawer();
+            },
+            enabled: true
+          },
+        )
+      }
+
+      if (!container.props.show.help) {
+        commands.push({
+          fillColor: 'rgba(10, 10, 10, 0.85)',
+          content: '<i style="font-size:20px" class="fa fa-question-circle"></i>',
+          contentStyle: {},
+          select: function (ele) {
+            container.props.startHelp()
+          },
+          enabled: true
+        }, )
+      }
+      commands.push(
+        {
+          fillColor: 'rgba(90, 90, 90, 0.85)',
+          content: '<i style="font-size:20px" class="fa fa-ban"></i>',
+          contentStyle: {},
+          select: function (ele) {
+            // container.props.startHelp()
+          },
+          enabled: false
+        }
+      )
+      const menuRadius = parseInt(150 * Math.pow(cytoData.edges.length, -0.25), 10);
+      let menu = cy.cxtmenu({
+        ...defaultMenu,
+        commands,
+        menuRadius
+      });
+      console.log(menuRadius);
     });
     cy.userZoomingEnabled(this.state.scroll);
     cy.on('mouseover', 'node', function (evt) {
@@ -250,7 +333,7 @@ class CytoContainer extends React.Component {
             reRenderGraph={this.renderCytoscapeElement}
           />
         </div>
-        <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement}/>
+        <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
       </div>
 
     );

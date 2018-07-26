@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Slide from '@material-ui/core/Slide';
 import classNames from 'classnames';
 import ClearIcon from '@material-ui/icons/Clear';
-import DescriptionIcon from '@material-ui/icons/Description';
+import DescriptionIcon from 'react-icons/lib/fa/file-text';
+import HelpIcon from 'react-icons/lib/fa/question-circle';
 
 
 import PropTypes from 'prop-types';
@@ -113,6 +113,11 @@ class ClippedDrawer extends Component {
         }
     }
 
+    toggleHelp = () => {
+        this.props.show.help ? this.props.stopHelp() : this.props.startHelp();
+        this.props.clientType !== "mobile" && setTimeout(this.props.reRenderGraph, 300)
+    }
+
     goHome = () => {
         this.props.show.drawer && this.props.toggleDrawer();
         this.props.history.push('/');
@@ -136,14 +141,14 @@ class ClippedDrawer extends Component {
                 }
                     position="absolute">
                     <Toolbar>
-                        <div style={{ width: "25%", margin: "auto" }} className={this.props.clientType === "mobile" ? classes.mobileToolbar : undefined}>
+                        <div style={{ width: "30%", margin: "auto" }} className={this.props.clientType === "mobile" ? classes.mobileToolbar : undefined}>
 
                             <Menu history={this.props.history} />
                             <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
                                 Metada
                             </Button>
                         </div>
-                        <div style={{ width: "50%", margin: "auto" }}>
+                        {(this.props.clientType !== "mobile" || !this.props.show.drawer) && <div style={{ width: "50%", margin: "auto" }}>
 
 
                             <SearchBar
@@ -158,15 +163,17 @@ class ClippedDrawer extends Component {
                                 preventAutofocus={this.props.preventAutofocus}
                                 updateEntityInfoBox={this.props.updateEntityInfoBox}
                             />
-                        </div>
-                        <div style={{ width: "25%", margin: "auto" }}>
+                        </div>}
+                        <div style={{ width: "20%", margin: "auto" }}>
                             {!this.props.show.drawer && this.props.history.location.pathname.startsWith("/graph/") &&
-                                <IconButton
-                                    onClick={this.props.toggleDrawer}
-                                    style={{ position: "absolute", right: "8px", top: "8px", color: "white" }}
-                                >
-                                    <DescriptionIcon />
-                                </IconButton>
+                                <div style={{display:"flex", justifyContent:'flex-end'}}>
+                                    <IconButton
+                                        onClick={this.toggleHelp}
+                                        style={{color: "white" }}
+                                    >
+                                        <HelpIcon />
+                                    </IconButton>
+                                </div>
                             }
                         </div>
 

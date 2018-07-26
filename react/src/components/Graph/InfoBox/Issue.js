@@ -50,7 +50,7 @@ class IssueDialog extends React.Component {
     }
 
     handleRequestClose = () => {
-        this.setState({ dialogOpen: false });
+        this.props.show.issue && this.props.toggleIssue();
     }
 
     render() {
@@ -61,38 +61,26 @@ class IssueDialog extends React.Component {
         }
 
         return (
-            <div
-                style={buttonPosition[this.props.clientType]}
+            <Dialog
+                fullScreen={fullScreen}
+                open={this.props.show.issue ? true : false}
+                onClose={this.handleRequestClose}
             >
-                <Button
-                    onClick={this.handleClickOpen}
-                    variant="fab"
-                    style={{ backgroundColor: '#ff7543' }}
-                >
-                    <PriorityHighIcon style={{ color: 'white' }} />
-                </Button>
-                
-                <Dialog
-                    fullScreen={fullScreen}
-                    open={this.state.dialogOpen}
-                    onClose={this.handleRequestClose}
-                >
-                    <DialogTitle>{this.props.translate('graph.issue.dialogTitle')}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText style={{ fontSize: '0.9rem' }}>
-                            {this.props.translate('graph.issue.dialogContentText')}<br /><br />
-                            Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
-                            Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
-                            {this.props.translate('graph.issue.dialogContentText2')}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button style={{ fontSize: '0.9rem' }} onClick={this.handleRequestClose} color="primary">
-                            {this.props.translate('graph.issue.closeButton')}
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
+                <DialogTitle>{this.props.translate('graph.issue.dialogTitle')}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText style={{ fontSize: '0.9rem' }}>
+                        {this.props.translate('graph.issue.dialogContentText')}<br /><br />
+                        Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
+                        Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
+                        {this.props.translate('graph.issue.dialogContentText2')}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button style={{ fontSize: '0.9rem' }} onClick={this.handleRequestClose} color="primary">
+                        {this.props.translate('graph.issue.closeButton')}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         );
     }
 }

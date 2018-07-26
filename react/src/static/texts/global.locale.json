@@ -343,26 +343,14 @@
                 "Help",
                 "Aide"
             ],
-            "descriptionPannel": {
+            "legend": {
                 "title": [
-                    "Description Pannel",
-                    "Onglet de Desctiption"
+                    "Legend",
+                    "Légende"
                 ],
                 "intro": [
-                    "Additionnaly to details about the Selected Entity, you'll find:",
-                    "En plus d'informations à propos de l'Entité Sélectionnée, vous trouverez:"
-                ],
-                "help": [
-                    "A button to show this help",
-                    "Un bouton pour afficher cette aide"
-                ],
-                "legend": [
-                    "A button to display the graph's legend",
-                    "Un bouton pour afficher la légende du graphe"
-                ],
-                "issue": [
-                    "A button to raise an issue",
-                    "Un boutton pour signaler un problème"
+                    "There are 3 types of entities:",
+                    "Il y a 3 sortes d'entitées:"
                 ]
             },
             "buttons": [
@@ -381,6 +369,14 @@
                 "Focus the graph on this entity",
                 "Voir le graphe de cette entité"
             ],
+            "issue": [
+                "Issue with a Graph",
+                "Probl\u00e8me dans le Graphe"
+            ],
+            "help": [
+                "Show this help",
+                "Afficher cette aide"
+            ],
             "doubleTap": [
                 "Double clicking",
                 "double cliquant"
@@ -392,6 +388,38 @@
             "doubleTapAfter": [
                 " is a shortcut to the focus button",
                 " dessus"
+            ],
+            "selected": [
+                "green entity",
+                "entité verte"
+            ],
+            "selectedBefore": [
+                "The ",
+                "L'"
+            ],
+            "selectedAfter": [
+                " is the currently selected one, about which you may read more in the description.",
+                " est celle actuellement sélectionnée: vous pouvez en savoir plus dans la description."
+            ],
+            "contextual": [
+                "Stay clicked on an entity",
+                "Restez appuyé sur une entité"
+            ],
+            "contextualAfter": [
+                " to show a contextual menu.",
+                " pour afficher un menu contextuel."
+            ],
+            "represented": [
+                "highlighted entity",
+                "entité entourée"
+            ],
+            "representedBefore": [
+                "The ",
+                "L'"
+            ],
+            "representedAfter": [
+                " is the currently represented one: you are viewing its graph.",
+                " est celle qui est représentée: vous voyez actuellement son graphe."
             ]
         },
         "websiteButton": [

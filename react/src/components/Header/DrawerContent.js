@@ -37,7 +37,8 @@ class DrawerContent extends Component {
                     clientType={this.props.clientType}
                     startHelp={this.props.startHelp}
                     reRenderGraph={this.props.reRenderGraph}
-
+                    show={this.props.show}
+                    toggleIssue={this.props.toggleIssue}
                     />
                 </div>
         )
