@@ -46,7 +46,8 @@
         "redux-form": "^7.2.0",
         "redux-persist": "4.10.2",
         "typeface-roboto": "^0.0.43",
-        "validator": "^9.1.2"
+        "validator": "^9.1.2",
+        "wtf_wikipedia": "^5.0.1"
     },
     "version": "0.1.0",
     "devDependencies": {
