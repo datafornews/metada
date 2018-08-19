@@ -6,7 +6,7 @@ import HelpCard from './HelpCard';
 const styles = theme => ({
     divContainer: {
         position: "absolute",
-        top: theme.spacing.unit * 3 * 4,
+        top: theme.spacing.unit * 3 * 3,
         right: 32,
         pointerEvents: "none",
         maxWidth: "70%"

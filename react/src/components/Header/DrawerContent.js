@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import InfoBoxEntityUI from '../Graph/InfoBox/InfoBoxEntityUI';
 
-import DrawerBottom from './DrawerBottom';
+// import DrawerBottom from './DrawerBottom';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -32,14 +32,14 @@ class DrawerContent extends Component {
                     {/* <div className={classes.toolbar} /> */}
 
                     <InfoBoxEntityUI {...noClassProps} />
-                    <DrawerBottom 
+                    {/* <DrawerBottom 
                     translate={this.props.translate}
                     clientType={this.props.clientType}
                     startHelp={this.props.startHelp}
                     reRenderGraph={this.props.reRenderGraph}
                     show={this.props.show}
                     toggleIssue={this.props.toggleIssue}
-                    />
+                    /> */}
                 </div>
         )
     }

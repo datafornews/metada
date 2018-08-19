@@ -37,7 +37,7 @@ const styles = {
     },
     'extension': {
         ...defaultStyle,
-        height: '600px',
+        // height: '600px',
         width: '754px',
     },
     'mobile': {

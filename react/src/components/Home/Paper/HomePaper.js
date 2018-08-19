@@ -44,11 +44,11 @@ class HomePaper extends Component {
         let typoStyle = {...typoStyles[this.props.clientType]};
 
         if (this.props.clientType === 'browser') {
-            typoStyle.padding = '5% 10%';
-        }
-
-        if (this.props.clientType === 'mobile') {
+            typoStyle.padding = this.props.noPadding ? "0px 0px" : '5% 10%';
+        } else if (this.props.clientType === 'mobile') {
             typoStyle.fontWeight = 400;
+        } else {
+            typoStyle.padding = this.props.noPadding ? "0px 0px" : '5% 10%';
         }
 
         const { classes } = this.props;

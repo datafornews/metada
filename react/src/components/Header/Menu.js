@@ -83,23 +83,29 @@ class FadeMenu extends React.Component {
                             </ListItemIcon>
                             <ListItemText classes={{ primary: classes.primary }} inset primary="Home" />
                         </MenuItem>
+                        {this.props.clientType === "extension" && <MenuItem onClick={this.goTo('/stats')}>
+                            <ListItemIcon className={classes.icon}>
+                                <StatsIcon />
+                            </ListItemIcon>
+                            <ListItemText classes={{ primary: classes.primary }} inset primary="Stats" />
+                        </MenuItem>}
                         <MenuItem onClick={this.goTo('/about')}>
                             <ListItemIcon className={classes.icon}>
                                 <AboutIcon />
                             </ListItemIcon>
                             <ListItemText classes={{ primary: classes.primary }} inset primary="About" />
                         </MenuItem>
+                        {this.props.clientType !== "extension" && <MenuItem onClick={this.goTo('/extension')}>
+                            <ListItemIcon className={classes.icon}>
+                                <ExtensionIcon />
+                            </ListItemIcon>
+                            <ListItemText classes={{ primary: classes.primary }} inset primary="Extension" />
+                        </MenuItem>}
                         <MenuItem onClick={this.goTo('/contact')}>
                             <ListItemIcon className={classes.icon}>
                                 <ContactIcon />
                             </ListItemIcon>
                             <ListItemText classes={{ primary: classes.primary }} inset primary="Contact" />
-                        </MenuItem>
-                        <MenuItem onClick={this.goTo('/extension')}>
-                            <ListItemIcon className={classes.icon}>
-                                <ExtensionIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Extension" />
                         </MenuItem>
                         <MenuItem onClick={this.goTo('/settings')}>
                             <ListItemIcon className={classes.icon}>

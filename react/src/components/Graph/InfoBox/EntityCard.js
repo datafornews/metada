@@ -6,6 +6,12 @@ import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
 import StatTitle from './StatTitle';
 
+const maxLengths = {
+    extension: 100,
+    mobile: 50,
+    browser: 150
+}
+
 const styles = theme => ({
     card: {
         minWidth: 275,
@@ -125,7 +131,7 @@ class EntityCard extends Component {
                 {this.props.graphButton}
 
                 <div style={wikiCardDivStyle}>
-                        <WikiCard {...noClassProps} maxLength={this.props.clientType === "mobile"? 15 : 30} />
+                        <WikiCard {...noClassProps} maxLength={maxLengths[this.props.clientType]} />
                 </div>
             </div>
         );

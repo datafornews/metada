@@ -8,6 +8,11 @@ import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 
 const styles = theme => (sideButtonStyle);
+const colors = {
+    m: '#3f51b5',
+    c: 'rgb(187, 45, 45)',
+    i: 'rgb(1, 41, 71)'
+}
 
 class InfoDrawerButton extends React.Component {
 
@@ -20,12 +25,18 @@ class InfoDrawerButton extends React.Component {
         const entity = this.props.data.entities.ids[
             this.props.infoBox.data
         ];
-        if (entity && entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
+        if (entity && entity.category !== 's') {
+
+            const selectedIsRepresented = parseInt(this.props.infoBox.data, 10) === parseInt(this.props.match.params.entityId, 10);
+            console.log(this.props.match.entityId);
+
+            let title = this.props.translate('graph.sideButtons.openDescription').split("@@");
+            title = title[0] + entity.name + title[1];
             return <SideElement
                 id="tooltip-ResetButton"
-                title={this.props.translate('graph.sideButtons.nextTooltip')}
+                title={title}
                 placement="right"
-                content={<DescriptionIcon style={{ color: "green" }} className={this.props.classes.icon} />}
+                content={<DescriptionIcon style={{ color: selectedIsRepresented ? colors[entity.category] : "green" }} className={this.props.classes.icon} />}
                 onClick={this.handleClick}
                 // disabled={disabled}
                 {...this.props}

@@ -9,6 +9,12 @@ import SideElement from './SideElement';
 
 const styles = theme => (sideButtonStyle);
 
+const colors = {
+    m: '#3f51b5',
+    c: 'rgb(187, 45, 45)',
+    i: 'rgb(1, 41, 71)'
+};
+
 class HomeButton extends React.Component {
 
 
@@ -17,12 +23,12 @@ class HomeButton extends React.Component {
     }
 
     render() {
-
+        const entity = this.props.data.entities.ids[parseInt(this.props.match.params.entityId, 10)];
         return <SideElement
             id="tooltip-ResetButton"
             title={this.props.translate('graph.sideButtons.resetTooltip')}
             placement="right"
-            content={<ResetIcon className={this.props.classes.icon} />}
+            content={<ResetIcon className={this.props.classes.icon} style={{ color: colors[entity.category] }} />}
             onClick={this.handleClick}
             {...this.props}
             button

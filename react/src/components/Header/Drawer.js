@@ -143,7 +143,7 @@ class ClippedDrawer extends Component {
                     <Toolbar>
                         <div style={{ width: "30%", margin: "auto" }} className={this.props.clientType === "mobile" ? classes.mobileToolbar : undefined}>
 
-                            <Menu history={this.props.history} />
+                            <Menu history={this.props.history} clientType={this.props.clientType}/>
                             <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
                                 Metada
                             </Button>

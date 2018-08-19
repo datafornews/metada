@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CenterFocusStrongIcon from 'react-icons/lib/fa/sitemap';
+import SitemapIcon from 'react-icons/lib/fa/sitemap';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 
@@ -57,12 +57,16 @@ class GoToGraphButton extends React.Component {
         const entity = this.props.data.entities.ids[
             this.props.infoBox.data
         ];
+
         if (entity && entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
+            let title = this.props.translate('graph.sideButtons.goToGraph').split("@@");
+            title = title[0] + entity.name + title[1];
+            
             return <SideElement
                 id="tooltip-ResetButton"
-                title={this.props.translate('graph.sideButtons.nextTooltip')}
+                title={title}
                 placement="right"
-                content={<CenterFocusStrongIcon style={{ color: "green" }} className={this.props.classes.icon} />}
+                content={<SitemapIcon style={{ color: "green" }} className={this.props.classes.icon} />}
                 onClick={this.handleClick(entity.id)}
                 // disabled={disabled}
                 {...this.props}

@@ -46,7 +46,8 @@ const styles = theme => ({
         fontSize: 14,
     },
     pos: {
-        marginBottom: 12,
+        marginBottom: 8,
+        fontSize:12
     },
     actions: {
         display: 'flex',
@@ -213,7 +214,7 @@ class HelpCard extends Component {
                         </Typography>
                     </CardContent>
                     <CardActions className={classes.actions}>
-                        <Button onClick={this.close} size="small">Learn More</Button>
+                        <Button onClick={this.close} size="small">Ok</Button>
                     </CardActions>
                 </Card>
             </Slide>

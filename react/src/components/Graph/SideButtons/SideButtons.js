@@ -85,8 +85,8 @@ class SideButtons extends Component {
             <div >
                 <div style={sideButtonDivStyle}>
                     {this.props.clientType !== 'mobile' && !this.props.show.sideButtons && <RefreshButton {...this.props} />}
-                    <GoToGraphButton {...this.props} />
                     <InfoDrawerButton {...this.props} />
+                    <GoToGraphButton {...this.props} />
                     {this.props.clientType !== 'mobile' && showNext && <PreviousButton {...this.props} />}
                     {this.props.clientType !== 'mobile' && showPrevious && <NextButton {...this.props} />}
                 </div>

@@ -256,6 +256,22 @@
             "proportion": [
                 "All time proportion",
                 "Proportion totale"
+            ],
+            "labelDisplayedRows":[
+                "of",
+                "sur"
+            ],
+            "labelRowsPerPage":[
+                "Rows per page:",
+                "Lignes par page:"
+            ],
+            "ownersTitle":[
+                "Statistics: end owners of your past media readings",
+                "Statistiques: propriétaires des médias que vous consultez"
+            ],
+            "entitesTitle":[
+                "Statistics: the media you read",
+                "Statistiques: quels médias lisez vous?"
             ]
         },
         "cards": {
@@ -431,6 +447,14 @@
             "Voir ce Graphe"
         ],
         "sideButtons": {
+            "goToGraph": [
+                "See @@'s graph",
+                "Voir le graphe de @@ "
+            ],
+            "openDescription": [
+                "See @@'s description",
+                "Voir la descrition de @@ "
+            ],
             "homeTooltip": [
                 "Go home",
                 "Retour \u00e0 l'Accueil"

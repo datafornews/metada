@@ -1,7 +1,94 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@material-ui/core/Table';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
+import IconButton from '@material-ui/core/IconButton';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import TextField from '@material-ui/core/TextField';
+
+
+const actionsStyles = theme => ({
+    root: {
+        flexShrink: 0,
+        color: theme.palette.text.secondary,
+        marginLeft: theme.spacing.unit * 2.5,
+    },
+});
+
+class TablePaginationActions extends Component {
+
+    handleFirstPageButtonClick = event => {
+        this.props.onChangePage(event, 0);
+    };
+
+    handleBackButtonClick = event => {
+        this.props.onChangePage(event, this.props.page - 1);
+    };
+
+    handleNextButtonClick = event => {
+        this.props.onChangePage(event, this.props.page + 1);
+    };
+
+    handleLastPageButtonClick = event => {
+        this.props.onChangePage(
+            event,
+            Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
+        );
+    };
+
+    render() {
+
+        const { classes, count, page, rowsPerPage, theme } = this.props;
+
+
+        return <div className={classes.root}>
+            <IconButton
+                onClick={this.handleFirstPageButtonClick}
+                disabled={page === 0}
+                aria-label="First Page"
+            >
+                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+            </IconButton>
+            <IconButton
+                onClick={this.handleBackButtonClick}
+                disabled={page === 0}
+                aria-label="Previous Page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            </IconButton>
+            <IconButton
+                onClick={this.handleNextButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="Next Page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </IconButton>
+            <IconButton
+                onClick={this.handleLastPageButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="Last Page"
+            >
+                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+            </IconButton>
+        </div>
+    }
+}
+
+const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
+    TablePaginationActions,
+);
+
+
 
 
 const styles = theme => ({
@@ -9,12 +96,20 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+        flexShrink: 0,
+        color: theme.palette.text.secondary,
+        marginLeft: theme.spacing.unit * 2.5,
     },
     table: {
         minWidth: 100,
     },
     cell: {
         padding: "4px"
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
     }
 });
 
@@ -27,67 +122,79 @@ function compare(a, b, attr, asc) {
     return 0;
 }
 
-function getTableArray(stats) {
-    let table = {};
-    let total = 0;
-    for (const entityName of Object.keys(stats.counts.total)) {
-        let n = {
-            name: entityName,
-            total: stats.counts.total[entityName],
-            month: 0,
-            week: 0,
-            proportion: 0
-        };
-        total += n.total;
-
-        if (stats.counts.month[entityName]) {
-            n.month = stats.counts.month[entityName];
-            if (stats.counts.week[entityName]) {
-                n.week = stats.counts.week[entityName];
-            }
-        }
-        table[entityName] = n;
-    }
-    let tableArray = [];
-    for (const entityName of Object.keys(table)) {
-        table[entityName].proportion = Math.round(table[entityName].total / total * 1000) / 10;
-        tableArray.push(table[entityName]);
-    }
-
-    tableArray.sort((a, b) => {
-        return compare(a, b, 'total', false);
-
-    });
-
-    return tableArray;
-}
-
 class BasicTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stats: [],
+            stats: [], // displayed stats
+            data: [], // full stats
             sort: 3,
-            asc: false
+            asc: false,
+            page: 0,
+            rowsPerPage: 5,
+            search: ""
         };
     }
 
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+    };
 
-    componentWillMount() {
+    handleChangeRowsPerPage = event => {
+        this.setState({ rowsPerPage: event.target.value });
+    };
 
-        if (localStorage.stats) {
-            const stats = JSON.parse(localStorage.stats);
-            if (stats) {
-                if (!stats.counts){ // legacy stats don't have a count attribute
-                    localStorage.removeItem('stats');
-                } else {
-                    this.setState({
-                        stats: getTableArray(stats)
-                    });
-                }
-            }
+    handleFirstPageButtonClick = event => {
+        this.handleChangePage(event, 0);
+    };
+
+    handleBackButtonClick = event => {
+        this.handleChangePage(event, this.state.page - 1);
+    };
+
+    handleNextButtonClick = event => {
+        this.handleChangePage(event, this.state.page + 1);
+    };
+
+    handleLastPageButtonClick = event => {
+        this.handleChangePage(
+            event,
+            Math.max(0, Math.ceil(this.state.stats.length / this.state.rowsPerPage) - 1),
+        );
+    };
+
+    handleTextChange = name => event => {
+        console.log(event.target.value);
+        if (!event.target.value) {
+            this.setState({
+                stats: this.state.data
+            })
+        } else {
+            this.setState({
+                stats: this.state.stats.filter((stat) => {
+                    return stat.name.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
+                })
+            })
+        }
+        this.setState({
+            [name]: event.target.value,
+        });
+    };
+
+    goTo = (name) => () => {
+        const entity = this.props.data.entities.names[name];
+        if (entity){
+            this.props.history.push(`/graph/${entity.id}`)
         }
     }
+
+    componentDidMount() {
+        this.setState({
+            stats: this.props.tableData,
+            data: this.props.tableData
+        })
+    }
+
 
     handleHeadClick = (id) => (event) => {
         let data = [...this.state.stats];
@@ -133,78 +240,124 @@ class BasicTable extends React.Component {
 
 
     render() {
-        const { classes } = this.props;
+        const { classes, theme } = this.props;
+
+        const { rowsPerPage, page } = this.state;
+
+        const count = this.state.stats.length;
+
+        const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.state.stats.length - page * rowsPerPage);
 
         return (
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.cell}>
-                            <TableSortLabel
-                                active={this.state.sort === 0}
-                                direction={this.state.asc ? 'asc' : 'desc'}
-                                onClick={this.handleHeadClick(0)}
-                            >
-                                {this.props.translate('home.stats.entity')}
-                            </TableSortLabel>
-                        </TableCell>
+            <div style={{width: '95%'}}>
+                <div className={classes.container} noValidate autoComplete="off">
+                    <TextField
+                        id="search"
+                        label="Search"
+                        className={classes.textField}
+                        value={this.state.name}
+                        onChange={this.handleTextChange('search')}
+                        margin="normal"
+                    />
+                </div>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.cell}>
+                                <TableSortLabel
+                                    active={this.state.sort === 0}
+                                    direction={this.state.asc ? 'asc' : 'desc'}
+                                    onClick={this.handleHeadClick(0)}
+                                >
+                                    {this.props.translate('home.stats.entity')}
+                                </TableSortLabel>
+                            </TableCell>
 
-                        <TableCell className={classes.cell}>
-                            <TableSortLabel
-                                active={this.state.sort === 1}
-                                direction={this.state.asc ? 'asc' : 'desc'}
-                                onClick={this.handleHeadClick(1)}
-                            >
-                                {this.props.translate('home.stats.week')}
-                            </TableSortLabel>
-                        </TableCell>
+                            <TableCell className={classes.cell}>
+                                <TableSortLabel
+                                    active={this.state.sort === 1}
+                                    direction={this.state.asc ? 'asc' : 'desc'}
+                                    onClick={this.handleHeadClick(1)}
+                                >
+                                    {this.props.translate('home.stats.week')}
+                                </TableSortLabel>
+                            </TableCell>
 
-                        <TableCell className={classes.cell}>
-                            <TableSortLabel
-                                active={this.state.sort === 2}
-                                direction={this.state.asc ? 'asc' : 'desc'}
-                                onClick={this.handleHeadClick(2)}
-                            >
-                                {this.props.translate('home.stats.month')}
-                            </TableSortLabel>
-                        </TableCell>
+                            <TableCell className={classes.cell}>
+                                <TableSortLabel
+                                    active={this.state.sort === 2}
+                                    direction={this.state.asc ? 'asc' : 'desc'}
+                                    onClick={this.handleHeadClick(2)}
+                                >
+                                    {this.props.translate('home.stats.month')}
+                                </TableSortLabel>
+                            </TableCell>
 
-                        <TableCell className={classes.cell}>
-                            <TableSortLabel
-                                active={this.state.sort === 3}
-                                direction={this.state.asc ? 'asc' : 'desc'}
-                                onClick={this.handleHeadClick(3)}
-                            >
-                                {this.props.translate('home.stats.total')}
-                            </TableSortLabel>
-                        </TableCell>
-                        
-                        <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.proportion')}</TableCell>
-                    </TableRow>
-                </TableHead>
+                            <TableCell className={classes.cell}>
+                                <TableSortLabel
+                                    active={this.state.sort === 3}
+                                    direction={this.state.asc ? 'asc' : 'desc'}
+                                    onClick={this.handleHeadClick(3)}
+                                >
+                                    {this.props.translate('home.stats.total')}
+                                </TableSortLabel>
+                            </TableCell>
 
-                <TableBody>
-                    {this.state.stats.map((n, k) => {
-                        return (
-                            <TableRow key={k}>
-                                <TableCell className={classes.cell}>{n.name}</TableCell>
-                                <TableCell className={classes.cell} numeric>{n.week}</TableCell>
-                                <TableCell className={classes.cell} numeric>{n.month}</TableCell>
-                                <TableCell className={classes.cell} numeric>{n.total}</TableCell>
-                                <TableCell className={classes.cell} numeric>{`${n.proportion} %`}</TableCell>
+                            <TableCell className={classes.cell} numeric>{this.props.translate('home.stats.proportion')}</TableCell>
+                        </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                        {this.state.stats.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((n, k) => {
+                            return (
+                                <TableRow key={k}>
+                                    <TableCell className={classes.cell}>
+                                        <span style={{ cursor: 'pointer' }} onClick={this.goTo(n.name)}>
+                                            {n.name}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell className={classes.cell} numeric>{n.week}</TableCell>
+                                    <TableCell className={classes.cell} numeric>{n.month}</TableCell>
+                                    <TableCell className={classes.cell} numeric>{n.total}</TableCell>
+                                    <TableCell className={classes.cell} numeric>{`${n.proportion} %`}</TableCell>
+                                </TableRow>
+                            );
+                        })}
+                        {emptyRows > 0 && (
+                            <TableRow style={{ height: 48 * emptyRows }}>
+                                <TableCell colSpan={6} />
                             </TableRow>
-                        );
-                    })}
-                </TableBody>
+                        )}
+                    </TableBody>
 
-            </Table>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                colSpan={3}
+                                count={this.state.stats.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onChangePage={this.handleChangePage}
+                                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActionsWrapped}
+                                labelRowsPerPage={this.props.translate('home.stats.labelRowsPerPage')}
+                                rowsPerPageOptions={[5, 10, 20]}
+                                labelDisplayedRows={({ from, to, count }) => { return `${from}-${to} ${this.props.translate('home.stats.labelDisplayedRows')} ${count}` }}
+                            />
+                        </TableRow>
+                    </TableFooter>
+
+                </Table>
+            </div>
         );
     }
 }
+
+
 
 
 BasicTable.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BasicTable);
+export default withStyles(styles, { withTheme: true })(BasicTable);
