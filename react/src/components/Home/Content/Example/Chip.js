@@ -16,6 +16,9 @@ import GraphButton from '../../../Graph/InfoBox/GraphButton';
 import WikiButton from '../../../Graph/InfoBox/WikiButton';
 import WebsiteButton from '../../../Graph/InfoBox/WebsiteButton';
 
+import getImage from '../../../../utils/getWikiImage';
+
+
 const colors = {
     m: '#3f51b5',
     c: 'rgb(187, 45, 45)',
@@ -73,10 +76,21 @@ const styles = theme => ({
     },
     container: {
         position: "relative"
+    },
+    img: {
+        maxWidth: "-webkit-fill-available"
     }
 });
 
 class HomeCard extends Component {
+
+    state = {
+        image: null
+    }
+
+    componentWillMount() {
+        getImage(this, this.props.entity)
+    }
 
     handleClick = () => {
         this.props.handleChipClick(this.props.entity)
@@ -95,10 +109,12 @@ class HomeCard extends Component {
                 />
                 <Card className={classes.card} elevation={12}>
                     <CardContent>
+
                         <Typography className={classes.title}>
                             {entity.name}
                         </Typography>
-                        <Divider />
+                        {this.state.image ? <img src={this.state.image} alt={`${entity.name}-logo`} className={classes.img} /> : <Divider />}
+
                         <Typography className={classes.subtitle} variant="subheading" component="h4" color="textSecondary">
                             {entity.long_name || ""}
                         </Typography>
@@ -116,7 +132,6 @@ class HomeCard extends Component {
                             <WebsiteButton {...this.props} />
                         </Typography>
                     </CardContent>
-                    
                     <div className={classes.actionsContainer}>
                         <CardActions className={classes.actions}>
                             <GraphButton

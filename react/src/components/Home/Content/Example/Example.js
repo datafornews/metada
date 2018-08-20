@@ -12,7 +12,7 @@ export default class Example extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: ''
+            content: null
         };
     }
 
@@ -23,7 +23,7 @@ export default class Example extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if (!nextProps.dataIsAvailable || nextState.content.length > 0) {
+        if (!nextProps.dataIsAvailable || nextState.content) {
             return;
         }
         this.showChips(nextProps);
@@ -73,7 +73,7 @@ export default class Example extends Component {
                 </Grid>
             </div>
         );
-        if (this.state.content.length === 0) {
+        if (!this.state.content) {
             this.setState({
                 content
             })

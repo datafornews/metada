@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import { check_website } from '../../utils/backgroundUtils';
+import wtf_wikipedia from 'wtf_wikipedia';
 import { Helmet } from "react-helmet";
 
 // import Scroll from 'react-scroll';
@@ -44,6 +45,9 @@ const homeContentDivStyle = {
 
 class Home extends React.Component {
 
+  state = {
+    wiki: null
+  }
 
   componentWillMount() {
     const component = this;
@@ -90,9 +94,9 @@ class Home extends React.Component {
           ...this.props.show,
           location: true
         })
-
       };
     }
+
   }
 
 
@@ -136,7 +140,7 @@ class Home extends React.Component {
           </Helmet>
           {location ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
           <div style={homeContentDivStyle[this.props.clientType]}>
-            {location ? '' : <Example {...this.props} nb={4}/>}
+            {location ? '' : <Example {...this.props} nb={4} />}
             {/* <HomeContentTabs {...this.props} /> */}
             {/* <HomeSearchBar {...this.props} /> */}
             <LearnAbout {...this.props} />
@@ -144,6 +148,7 @@ class Home extends React.Component {
             <Settings {...this.props} />
             <Extension {...this.props} />
             <Stats {...this.props} />
+            {/* {this.state.wiki &&} */}
           </div>
         </div>
       </Drawer>
