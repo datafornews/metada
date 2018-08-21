@@ -124,7 +124,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
     const edgeLength = Math.exp(-cytoData.edges.length / 5)
 
     layout.padding = clientType === "mobile" ?
-        5 : Math.floor(150 * edgeLength)
+        0 : Math.floor(150 * edgeLength)
 
     console.log('layout padding', layout.padding);
 
@@ -172,12 +172,12 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
                 style: {
                     'width': 4,
                     'target-arrow-shape': 'triangle',
-                    'line-color': 'rgb(225, 225, 225)',
+                    'line-color': 'rgb(205, 205, 205)',
                     'target-arrow-color': 'rgb(190, 190, 190)',
                     'curve-style': 'bezier', // haystack bezier segments unbundled-bezier
                     'label': 'data(label)',
                     'font-size': '10rem',
-                    'color': 'rgb(140, 140, 140)',
+                    'color': 'rgb(80, 80, 80)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
                     'arrow-scale': 0.9,
                 }

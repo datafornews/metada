@@ -123,15 +123,16 @@ class EntityCard extends Component {
                     <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
                         {this.props.entity.long_name}
                     </Typography>
+                    <br />
                     <StatTitle {...noClassProps} ></StatTitle>
                 </div>
 
                 <WikiButton {...noClassProps} />
                 <WebsiteButton {...noClassProps} />
-                {this.props.graphButton}
+                {/* {this.props.graphButton} */}
 
                 <div style={wikiCardDivStyle}>
-                        <WikiCard {...noClassProps} maxLength={maxLengths[this.props.clientType]} />
+                    <WikiCard {...noClassProps} maxLength={maxLengths[this.props.clientType]} />
                 </div>
             </div>
         );

@@ -28,7 +28,7 @@ class InfoDrawerButton extends React.Component {
         if (entity && entity.category !== 's') {
 
             const selectedIsRepresented = parseInt(this.props.infoBox.data, 10) === parseInt(this.props.match.params.entityId, 10);
-            console.log(this.props.match.entityId);
+            // console.log(this.props.match.entityId);
 
             let title = this.props.translate('graph.sideButtons.openDescription').split("@@");
             title = title[0] + entity.name + title[1];

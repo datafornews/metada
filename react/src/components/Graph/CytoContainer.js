@@ -170,7 +170,7 @@ class CytoContainer extends React.Component {
           // }
           const now = new Date().getTime();
           var timesince = now - this.state.lastTap;
-          if ((timesince < 600) && (timesince > 0)) {
+          if ((timesince < 400) && (timesince > 0)) {
             // double tap
             this.props.history.push(`/graph/${event.target.id()}`);
             document.body.style.cursor = 'default';
@@ -242,7 +242,7 @@ class CytoContainer extends React.Component {
             container.props.startHelp()
           },
           enabled: true
-        }, )
+        })
       }
       commands.push(
         {
@@ -255,8 +255,9 @@ class CytoContainer extends React.Component {
           enabled: false
         }
       )
-      const menuRadius = parseInt(150 * Math.pow(cytoData.edges.length, -0.25), 10);
-      let menu = cy.cxtmenu({
+      let menuRadius = parseInt(150 * Math.pow(cytoData.edges.length, -0.25), 10);
+      menuRadius = isNaN(menuRadius) ? 150 : menuRadius;
+      cy.cxtmenu({
         ...defaultMenu,
         commands,
         menuRadius

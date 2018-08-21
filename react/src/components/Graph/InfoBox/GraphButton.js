@@ -10,7 +10,7 @@ const graphButtonStyle = {
     color: 'green',
     fontSize: '0.8rem',
     padding: '8px',
-    fontWeight: 'bold'
+    border: "2px solid green"
 }
 
 const iconStyle = {
@@ -62,6 +62,7 @@ export default class GraphButton extends Component {
                     color: this.state.display ? graphButtonStyle.color : 'rgba(0,0,0,0)'
                 }}
                 onClick={this.props.handleClick}
+                variant="outlined"
             >
                 <span>{this.props.translate('graph.seeGraphButton')} {name} </span> &nbsp; &nbsp; <Icon style={iconStyle} />
             </Button>

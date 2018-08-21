@@ -12,9 +12,32 @@ export default class Example extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: null
+            entities: [],
+            indexes: []
         };
     }
+
+
+
+    componentWillMount() {
+        document.addEventListener("scroll", this.checkForNewChip);
+    }
+
+
+    componentWillUnmount() {
+        document.removeEventListener("scroll", this.checkForNewChip);
+    }
+
+    checkForNewChip = () => {
+        var lastDiv = document.querySelector("#chips-div > div:last-child");
+        var lastDivOffset = lastDiv.offsetTop + lastDiv.clientHeight;
+        var pageOffset = window.pageYOffset + window.innerHeight;
+
+        if (pageOffset > lastDivOffset - 50) {
+            this.addChips()
+            this.checkForNewChip();
+        }
+    };
 
     handleChipClick = (entity) => {
         logGraph(entity.id)
@@ -23,7 +46,7 @@ export default class Example extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if (!nextProps.dataIsAvailable || nextState.content) {
+        if (!nextProps.dataIsAvailable || nextState.entities.length) {
             return;
         }
         this.showChips(nextProps);
@@ -49,6 +72,27 @@ export default class Example extends Component {
         return entities
     }
 
+    addChips = () => {
+        const newEntities = this.getRandomEntities(
+            this.props, 3, this.state.indexes
+        );
+        const newIndexes = []
+        for (const ent of newEntities) {
+            newIndexes.push(ent.id)
+        }
+        this.setState({
+            entities: [
+                ...this.state.entities,
+                ...newEntities
+            ],
+            indexes: [
+                ...this.state.indexes,
+                ...newIndexes
+            ]
+        })
+
+    }
+
     showChips = (props) => {
         let indexes = [1, 149]
         const leMonde = props.data.entities.ids[1];
@@ -56,37 +100,31 @@ export default class Example extends Component {
         const entities = [leMonde, patrickDrahi].concat(this.getRandomEntities(
             props, props.nb, indexes
         ));
-        const component = this;
-
-        const content = (
-            <div style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
-                <Grid container spacing={32} alignItems="stretch">
-                    {entities.map((v, k) => {
-                        return <Grid key={k} item xs={12} sm={6} md={4} >
-                            <Chip
-                                handleChipClick={component.handleChipClick}
-                                entity={v}
-                                translate={component.props.translate}
-                            />
-                        </Grid>
-                    })}
-                </Grid>
-            </div>
-        );
-        if (!this.state.content) {
-            this.setState({
-                content
-            })
-        }
+        this.setState({
+            entities
+        })
     }
 
     render() {
+        const component = this;
         return this.props.show.chips ? (
             <div>
                 <div style={style}>
                     {this.props.translate('home.example')}
                 </div>
-                {this.state.content}
+                <div id="chips-div" style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
+                    <Grid container spacing={32} alignItems="stretch">
+                        {this.state.entities.map((v, k) => {
+                            return <Grid key={k} item xs={12} sm={6} md={4} >
+                                <Chip
+                                    handleChipClick={component.handleChipClick}
+                                    entity={v}
+                                    translate={component.props.translate}
+                                />
+                            </Grid>
+                        })}
+                    </Grid>
+                </div>
             </div>
         )
             :

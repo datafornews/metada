@@ -27,17 +27,23 @@ strong{
 }
 
 html {
-  background: #ECE9E6;
+  /* background: #ECE9E6; */
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #ECE9E6, #FFFFFF);
+  /* background: -webkit-linear-gradient(to left, #ECE9E6, #FFFFFF); */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, rgb(236, 233, 230), rgb(255, 255, 255));
+  /* background: linear-gradient(to left, rgb(236, 233, 230), rgb(255, 255, 255)); */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* height: 600px;
   width: 754px; */
   min-height: 100vh;
   min-width: 100%;
+  /* background-color: #3f51b5 */
   /* height: 100%; */
+
+  background-color: #e7eff9;
+  background-image: linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%);
+  
+  
 }
 
 

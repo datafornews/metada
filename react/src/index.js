@@ -15,6 +15,7 @@ import store, { history } from './store/store';
 import Home from './components/Home/Home';
 import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
+import theme from './theme/metadaTheme'
 
 
 import './style/index.css';
@@ -44,8 +45,6 @@ const styles = {
         ...defaultStyle
     }
 }
-
-const theme = createMuiTheme();
 
 
 const router = (
