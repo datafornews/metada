@@ -14,7 +14,7 @@ export default async function (component, entity) {
             })
             const weekInMilliSecs = 1000 * 60 * 60 * 24;
             const now = new Date().getTime();
-            if (now - Date.parse(urlData.date) < weekInMilliSecs){
+            if (now - Date.parse(urlData.date) < weekInMilliSecs) {
                 return
             }
         } catch (error) {
@@ -91,8 +91,8 @@ function setImageUrl(url, component, entity) {
         date: d,
         url
     })
-    component.setState({
+    window.location.href.indexOf('/graph/') === -1 ? component.setState({
         image: url
-    });
+    }) : console.log('abort');
 
 }

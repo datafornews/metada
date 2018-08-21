@@ -41,7 +41,7 @@ export default class Example extends Component {
 
     handleChipClick = (entity) => {
         logGraph(entity.id)
-        this.props.show.searchBar && ['/', '/search'].indexOf(this.props.location.pathname) > -1 && this.props.closeAll();
+        // this.props.show.searchBar && ['/', '/search'].indexOf(this.props.location.pathname) > -1 && this.props.closeAll();
         this.props.history.push('/graph/' + entity.id)
     }
 

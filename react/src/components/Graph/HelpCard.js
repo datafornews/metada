@@ -27,7 +27,8 @@ const styles = theme => ({
     card: {
         maxWidth: 375,
         pointerEvents: "all",
-        marginBottom: 16
+        marginBottom: 16,
+        zIndex: 201
     },
     noClick: {
         pointerEvents: "none"
@@ -97,7 +98,7 @@ class HelpCard extends Component {
 
 
     componentWillMount() {
-        if (!this.props.show.help) {
+        if (!this.props.show.help ) {
             this.setState({
                 grow: false
             })
@@ -123,6 +124,8 @@ class HelpCard extends Component {
 
 
     render() {
+        console.log(this.props.isRehydrated);
+        console.log(this.props);
         const { classes } = this.props;
         const shiftUnicode = '\u21E7'
         return (

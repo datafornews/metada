@@ -60,7 +60,7 @@ function show(state = false, action) {
             let newState = {
                 ...state
             }
-            const dont_close = ['legend', 'chips', 'help'];
+            const dont_close = ['legend', 'chips', 'help', 'doubleClickHelp', 'longClickHelp'];
             for (var i in state) {
                 if (dont_close.indexOf(i) === -1) {
                     newState[i] = false;
@@ -86,6 +86,16 @@ function show(state = false, action) {
             return {
                 ...state,
                 issue: !state.issue
+            };
+        case 'TOGGLE_DOUBLE_CLICK_HELP':
+            return {
+                ...state,
+                doubleClickHelp: !state.doubleClickHelp
+            };
+        case 'TOGGLE_LONG_CLICK_HELP':
+            return {
+                ...state,
+                longClickHelp: !state.longClickHelp
             };
         case 'TOGGLE_GRAPH_BUTTON_BLINK':
             return {

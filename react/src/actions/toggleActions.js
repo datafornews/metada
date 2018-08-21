@@ -88,6 +88,17 @@ export function toggleDrawer() {
     };
 }
 
+export function toggleDoubleClickHelp() {
+    return {
+        type: 'TOGGLE_DOUBLE_CLICK_HELP'
+    };
+}
+export function toggleLongClickHelp() {
+    return {
+        type: 'TOGGLE_LONG_CLICK_HELP'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'

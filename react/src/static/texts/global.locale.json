@@ -422,8 +422,8 @@
                 "Restez appuyé sur une entité"
             ],
             "contextualAfter": [
-                " to show a contextual menu.",
-                " pour afficher un menu contextuel."
+                " to show more information about it.",
+                " pour afficher plus d'informations."
             ],
             "represented": [
                 "highlighted entity",

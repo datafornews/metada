@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 
 import HelpCard from './HelpCard';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const styles = theme => ({
     divContainer: {
@@ -9,7 +10,8 @@ const styles = theme => ({
         top: theme.spacing.unit * 3 * 3,
         right: 32,
         pointerEvents: "none",
-        maxWidth: "70%"
+        maxWidth: "70%",
+        zIndex:200
     },
     mobileDivContainer:{
         position: "absolute",
@@ -17,6 +19,7 @@ const styles = theme => ({
         left: "50%",
         transform: "translate(-50%)",
         width: "85%",
+        zIndex:200
     },
     toolbar: theme.mixins.toolbar
 });

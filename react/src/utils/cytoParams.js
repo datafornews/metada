@@ -126,8 +126,6 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
     layout.padding = clientType === "mobile" ?
         0 : Math.floor(150 * edgeLength)
 
-    console.log('layout padding', layout.padding);
-
     const nodes = cytoData.nodes.map((v, k) => {
         return {
             data: {

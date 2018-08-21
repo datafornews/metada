@@ -3,7 +3,6 @@ import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import DescriptionIcon from 'react-icons/lib/fa/file-text';
 import 'font-awesome/css/font-awesome.min.css';
 
 
@@ -17,13 +16,13 @@ import SideCards from './SideCards';
 const styles = theme => ({
   cytoContainer: {
     height: "100%",
-    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)`,
     // border: "black 2px solid"
   },
   cyDiv: {
     height: "100%",
-    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
-    // border: "grey 2px solid"
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)`,
+    // border: "grey 2px solid",
   },
   pad: {
     paddingRight: "250px"
@@ -40,24 +39,7 @@ let defaultStyle = {
   justifyContent: 'center'
 };
 
-// the default values of each option are outlined below:
-let defaultMenu = {
-  menuRadius: 70, // the radius of the circular menu in pixels
-  selector: 'node', // elements matching this Cytoscape.js selector will trigger cxtmenus
-  fillColor: 'rgba(0, 0, 0, 0.1)', // the background colour of the menu
-  activeFillColor: '#3f51b5', // the colour used to indicate the selected command
-  activePadding: 5, // additional size in pixels for the active command
-  indicatorSize: 0, // the size in pixels of the pointer to the active command
-  separatorWidth: 0, // the empty spacing in pixels between successive commands
-  spotlightPadding: 0, // extra spacing in pixels between the element and the spotlight
-  minSpotlightRadius: 0, // the minimum radius in pixels of the spotlight
-  maxSpotlightRadius: 20, // the maximum radius in pixels of the spotlight
-  openMenuEvents: 'cxttapstart taphold', // space-separated cytoscape events that will open the menu; only `cxttapstart` and/or `taphold` work here
-  itemColor: 'white', // the colour of text in the command's content
-  itemTextShadowColor: 'transparent', // the text shadow colour of the command's content
-  zIndex: 9999, // the z-index of the ui div
-  atMouse: false // draw menu at mouse position
-};
+
 
 
 class CytoContainer extends React.Component {
@@ -79,7 +61,8 @@ class CytoContainer extends React.Component {
       changeWiki: false,
       focus: 0,
       scroll: scroll,
-      lastTap: new Date().getTime()
+      lastTap: new Date().getTime(),
+      longClickTimeout: null
     };
   }
 
@@ -127,6 +110,7 @@ class CytoContainer extends React.Component {
       document.removeEventListener("keydown", this.allowScroll, false);
       document.removeEventListener("keyup", this.preventScroll, false);
     }
+    clearTimeout(this.state.longClickTimeout);
     // this.props.show.help && this.props.stopHelp();
   }
 
@@ -187,7 +171,17 @@ class CytoContainer extends React.Component {
             lastTap: new Date().getTime()
           })
         },
-      );
+      ).on('tapend', (event) => {
+        clearTimeout(this.state.longClickTimeout);
+        return false;
+      }).on('tapstart', (event) => {
+        this.setState({
+          longClickTimeout: setTimeout(() => {
+            !this.props.show.drawer && this.props.toggleDrawer();
+          }, 600)
+        })
+        return false;
+      });
       cy.elements('node').on(
         'drag',
         (event) => {
@@ -200,69 +194,7 @@ class CytoContainer extends React.Component {
         console.timeEnd('      Render Cyto');
         console.timeEnd('Full Cyto');
       }
-      let commands = [{
-        fillColor: 'rgba(10, 10, 10, 0.85)',
-        content: '<i style="font-size:20px" class="fa fa-sitemap"></i>',
-        contentStyle: {},
-        select: function (ele) {
-          container.props.history.push('/graph/' + ele.id())
-        },
-        enabled: true
-      },
-      {
-        fillColor: '#ff7543',
-        content: '<i style="font-size:20px" class="fa fa-exclamation-circle"></i>',
-        contentStyle: {},
-        select: function (ele) {
-          container.props.toggleIssue()
-        },
-        enabled: true
-      }
-      ]
-      if (!container.props.show.drawer) {
-        commands.push(
-          {
-            fillColor: 'rgba(10, 10, 10, 0.85)',
-            content: '<i style="font-size:20px" class="fa fa-file-text"></i>',
-            contentStyle: {},
-            select: function (ele) {
-              container.props.toggleDrawer();
-            },
-            enabled: true
-          },
-        )
-      }
 
-      if (!container.props.show.help) {
-        commands.push({
-          fillColor: 'rgba(10, 10, 10, 0.85)',
-          content: '<i style="font-size:20px" class="fa fa-question-circle"></i>',
-          contentStyle: {},
-          select: function (ele) {
-            container.props.startHelp()
-          },
-          enabled: true
-        })
-      }
-      commands.push(
-        {
-          fillColor: 'rgba(90, 90, 90, 0.85)',
-          content: '<i style="font-size:20px" class="fa fa-ban"></i>',
-          contentStyle: {},
-          select: function (ele) {
-            // container.props.startHelp()
-          },
-          enabled: false
-        }
-      )
-      let menuRadius = parseInt(150 * Math.pow(cytoData.edges.length, -0.25), 10);
-      menuRadius = isNaN(menuRadius) ? 150 : menuRadius;
-      cy.cxtmenu({
-        ...defaultMenu,
-        commands,
-        menuRadius
-      });
-      console.log(menuRadius);
     });
     cy.userZoomingEnabled(this.state.scroll);
     cy.on('mouseover', 'node', function (evt) {
@@ -271,6 +203,17 @@ class CytoContainer extends React.Component {
     cy.on('mouseout', 'node', function (evt) {
       document.body.style.cursor = 'default';
     });
+    cy.on('tap', 'edge', (event) => {
+      const data = event.target.data();
+      this.props.updateShareInfoBox(data);
+    })
+    cy.fit();
+    if (this.props.clientType === 'mobile') {
+      cy.panningEnabled(true);
+      cy.userPanningEnabled(true);
+      cy.userZoomingEnabled(true);
+      cy.zoomingEnabled(true);
+    }
     this.cy = cy;
   }
 
@@ -279,11 +222,6 @@ class CytoContainer extends React.Component {
       update: true
     });
     this.renderCytoscapeElement()
-    if (this.props.clientType === 'mobile') {
-      this.cy.panningEnabled(true);
-      this.cy.userZoomingEnabled(true);
-      this.cy.zoomingEnabled(true);
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {

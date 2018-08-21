@@ -8,6 +8,7 @@ import Drawer from '../Header/Drawer';
 import CytoContainer from './CytoContainer';
 import Issue from './InfoBox/Issue';
 import Controls from './Controls'
+import Edge from './Edge'
 
 import Waiting from '../Waiting';
 
@@ -25,7 +26,7 @@ class _Graph extends React.Component {
 
     return this.props.dataIsAvailable ?
       <Drawer {...this.props}>
-        <Controls {...this.props}/>
+        {this.props.infoBox.type === "entity" ? <Controls {...this.props} /> : <Edge {...this.props} />}
         <CytoContainer {...this.props} />
         <Issue
           translate={this.props.translate}

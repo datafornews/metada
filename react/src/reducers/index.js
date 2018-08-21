@@ -12,6 +12,7 @@ import clientType from './clientType';
 import currentDisplay from './currentDisplay';
 import dataIsAvailable from './dataIsAvailable';
 import renderStatus from './renderStatus';
+import isRehydrated from './isRehydrated';
 
 const initialUserState = {
     firstName: 'Jane',
@@ -33,9 +34,10 @@ const rootReducer = combineReducers({
     router: routerReducer,
     show,
     renderStatus,
+    isRehydrated,
     userSignupForm: combineForms({
         user: initialUserState,
       }, 'userSignupForm')
 });
 
-export default rootReducer;
+export default rootReducer; 

@@ -58,7 +58,11 @@ store.dispatch({
     clientType
 });
 
-persistStore(store);
+persistStore(store, {}, () => {
+    store.dispatch({
+        type: 'STORE_IS_REHYDRATED'
+    })
+});
 
 // By default reducers are not hot reloaded, only components
 // To make them hot reloadable : 
