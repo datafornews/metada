@@ -1,5 +1,5 @@
 function isRehydrated(state = false, action) {
-    if (action.type === 'STORE_IS_REHYDRATED') {
+    if (action.type === 'persist/REHYDRATE') {
       return true;
     }
     return state;

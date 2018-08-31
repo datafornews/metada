@@ -1,8 +1,8 @@
-#### Hi!
+# Hi!
 
 You are currently on the web version of the Metada Extension. 
 
-##### Installation
+## Installation
 
 You are only 2 clicks away from getting the extension! Install the extension from the official stores: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)
 
@@ -16,7 +16,7 @@ The Extension's goal is to remind you of the ownership challenges in the media, 
 
 We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!).
 
-#### About the Extension
+## About the Extension
 
 The extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.
 

@@ -5,7 +5,7 @@ class Contact extends Component {
     
     render() {
 
-        return this.props.show.contact
+        return this.props.location.pathname.indexOf('/contact') > -1
             ?
             <ContactPaper {...this.props} />
             :

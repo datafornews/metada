@@ -4,69 +4,172 @@ export function toggle(value) {
     }
 }
 
-export function toggleSearchBar() {
+export function toggleSearchBar(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_SEARCH'
+        type: 'TOGGLE_SEARCH',
+        val
     };
 }
 
-export function toggleChips() {
+export function toggleChips(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_CHIPS'
+        type: 'TOGGLE_CHIPS',
+        val
     };
 }
 
-export function toggleStats() {
+export function toggleStats(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_STATS'
+        type: 'TOGGLE_STATS',
+        val
     };
 }
 
-export function toggleHowItWorks() {
+export function toggleHowItWorks(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_HOWITWORKS'
+        type: 'TOGGLE_HOWITWORKS',
+        val
     };
 }
 
-export function toggleAbout() {
+export function toggleAbout(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_ABOUT'
+        type: 'TOGGLE_ABOUT',
+        val
     };
 }
 
-export function toggleContact() {
+export function toggleContact(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_CONTACT'
+        type: 'TOGGLE_CONTACT',
+        val
     };
 }
 
-export function toggleSettings() {
+export function toggleSettings(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_SETTINGS'
+        type: 'TOGGLE_SETTINGS',
+        val
     };
 }
 
-export function toggleExtension() {
+export function toggleExtension(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_EXTENSION'
+        type: 'TOGGLE_EXTENSION',
+        val
     };
 }
 
-export function toggleSideButtons() {
+export function toggleSideButtons(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_SIDEBUTTONS'
+        type: 'TOGGLE_SIDEBUTTONS',
+        val
     };
 }
 
-export function toggleLegend() {
+export function toggleLegend(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_LEGEND'
+        type: 'TOGGLE_LEGEND',
+        val
     };
 }
 
-export function toggleIssue() {
+export function toggleIssue(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
     return {
-        type: 'TOGGLE_ISSUE'
+        type: 'TOGGLE_ISSUE',
+        val
+    };
+}
+
+
+export function toggleDrawer(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_DRAWER',
+        val
+    };
+}
+
+export function toggleDoubleClickHelp(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_DOUBLE_CLICK_HELP',
+        val
+    };
+}
+export function toggleLongClickHelp(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_LONG_CLICK_HELP',
+        val
+    };
+}
+
+export function toggleFocusSearchBar(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_FOCUSSEARCHBAR',
+        val
+    };
+}
+export function toggleNavigationSnackbar(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'navigationSnackbar',
+        val
+    };
+}
+
+export function toggleGraphButtonBlink(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_GRAPH_BUTTON_BLINK',
+        val
     };
 }
 
@@ -79,35 +182,6 @@ export function stopHelp() {
 export function startHelp() {
     return {
         type: 'START_HELP'
-    };
-}
-
-export function toggleDrawer() {
-    return {
-        type: 'TOGGLE_DRAWER'
-    };
-}
-
-export function toggleDoubleClickHelp() {
-    return {
-        type: 'TOGGLE_DOUBLE_CLICK_HELP'
-    };
-}
-export function toggleLongClickHelp() {
-    return {
-        type: 'TOGGLE_LONG_CLICK_HELP'
-    };
-}
-
-export function toggleFocusSearchBar() {
-    return {
-        type: 'TOGGLE_FOCUSSEARCHBAR'
-    };
-}
-
-export function toggleGraphButtonBlink() {
-    return {
-        type: 'TOGGLE_GRAPH_BUTTON_BLINK'
     };
 }
 

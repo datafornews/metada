@@ -10,9 +10,10 @@
         "push-extension-aws": "yarn push-extension && aws s3 sync ../Extension s3://oop-dev-build"
     },
     "dependencies": {
+        "@babel/runtime": "^7.0.0-beta.55",
         "@material-ui/codemod": "^1.1.0",
         "@material-ui/core": "^1.4.0",
-        "@material-ui/icons": "^1.1.0",
+        "@material-ui/icons": "^3.0.0",
         "autosuggest-highlight": "^3.1.1",
         "axios": "^0.16.2",
         "cytoscape": "^3.2.4",
@@ -24,7 +25,7 @@
         "history": "^4.7.2",
         "jshint": "^2.9.5",
         "lodash": "^4.17.4",
-        "material-ui": "^0.20.1",
+        "material-auto-rotating-carousel": "^2.0.0",
         "material-ui-icons": "^1.0.0-beta.17",
         "md5": "^2.2.1",
         "react": "^16.0.0",
@@ -43,6 +44,7 @@
         "react-scroll": "^1.6.4",
         "react-select": "^1.0.0-rc.10",
         "react-spinner": "^0.2.7",
+        "react-swipeable-views": "^0.12.16",
         "redux": "^3.7.2",
         "redux-form": "^7.2.0",
         "redux-persist": "4.10.2",

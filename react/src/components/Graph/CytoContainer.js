@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
-import SideButtons from './SideButtons/SideButtons';
+// import SideButtons from './SideButtons/SideButtons';
 // import SearchBar from '../Search/SearchBar';
 import ShiftToScroll from './SideButtons/ShiftToScroll';
 import SideCards from './SideCards';
@@ -157,7 +157,9 @@ class CytoContainer extends React.Component {
           if ((timesince < 400) && (timesince > 0)) {
             // double tap
             this.props.history.push(`/graph/${event.target.id()}`);
+            this.props.toggleDoubleClickHelp(false);
             document.body.style.cursor = 'default';
+            this.renderCytoscapeElement();
 
           } else {
             // too much time to be a doubletap
@@ -177,7 +179,9 @@ class CytoContainer extends React.Component {
       }).on('tapstart', (event) => {
         this.setState({
           longClickTimeout: setTimeout(() => {
-            !this.props.show.drawer && this.props.toggleDrawer();
+            container.props.updateEntityInfoBox(event.target.id());
+            this.props.toggleDrawer(true);
+            this.props.toggleLongClickHelp(false);
           }, 600)
         })
         return false;
@@ -205,6 +209,7 @@ class CytoContainer extends React.Component {
     });
     cy.on('tap', 'edge', (event) => {
       const data = event.target.data();
+      this.props.toggleDrawer(false);
       this.props.updateShareInfoBox(data);
     })
     cy.fit();
@@ -266,11 +271,11 @@ class CytoContainer extends React.Component {
           <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
           </div>
           {this.props.clientType !== 'mobile' && <ShiftToScroll translate={this.props.translate} />}
-          <SideButtons
+          {/* <SideButtons
             {...noClassProps}
             focusSearchBar={this.focusSearchBar}
             reRenderGraph={this.renderCytoscapeElement}
-          />
+          /> */}
         </div>
         <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
       </div>

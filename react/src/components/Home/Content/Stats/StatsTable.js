@@ -240,11 +240,9 @@ class BasicTable extends React.Component {
 
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes } = this.props;
 
         const { rowsPerPage, page } = this.state;
-
-        const count = this.state.stats.length;
 
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.state.stats.length - page * rowsPerPage);
 

@@ -1,6 +1,8 @@
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import cxtmenu from 'cytoscape-cxtmenu';
+import { colors } from '../theme/metadaTheme';
+
 
 cytoscape.use(cxtmenu);
 
@@ -53,12 +55,6 @@ const dagreLayout = {
     stop: function () { } // on layoutstop
 };
 
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    s: 'rgb(100, 100, 100)',
-    i: 'rgb(1, 41, 71)'
-}
 
 const nodeBaseStyle = {
     'background-opacity': 'data(backgroundOpacity)',
@@ -135,7 +131,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
                 height: v.data.name.length > 15 ? '40px' : '30px',
                 widthPx: v.data.category === 's' ? '80px' : v.data.width + 100 + 'px',
 
-                selectedColor: v.data.id === sourceId ? "white" : 'green',
+                selectedColor: v.data.id === sourceId ? "white" : colors.accent,
                 color: v.data.id === sourceId ? "white" : colors[v.data.category],
                 backgroundColor: colors[v.data.category],
                 backgroundOpacity: v.data.id === sourceId ? 1 : 0,

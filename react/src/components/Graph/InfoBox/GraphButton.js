@@ -6,11 +6,14 @@ import Icon from 'react-icons/lib/fa/sitemap';
 // import IconButton from '@material-ui/core/IconButton';
 // import Tooltip from '@material-ui/core/Tooltip';;
 
+import { colors } from '../../../theme/metadaTheme';
+
+
 const graphButtonStyle = {
-    color: 'green',
+    color: colors.accent,
     fontSize: '0.8rem',
     padding: '8px',
-    border: "2px solid green"
+    border: `2px solid ${colors.accent}`
 }
 
 const iconStyle = {

@@ -12,11 +12,13 @@ export default async function (component, entity) {
             component.setState({
                 image: urlData.url
             })
+            // console.log(`Using existing address (${entity.name})`)
             const weekInMilliSecs = 1000 * 60 * 60 * 24;
             const now = new Date().getTime();
             if (now - Date.parse(urlData.date) < weekInMilliSecs) {
                 return
             }
+            console.log(`Updating address (${entity.name})`)
         } catch (error) {
             console.log(error);
         }
@@ -48,29 +50,34 @@ export default async function (component, entity) {
                     const mdi = md5(name)
                     imageAddress = `https://upload.wikimedia.org/wikipedia/${lang}/${mdi[0]}/${mdi[0] + mdi[1]}/${name}`;
 
-                    if (UrlExists(imageAddress)) {
-                        setImageUrl(imageAddress, component, entity)
-                        return
-                    } else {
-                        imageAddress = `https://upload.wikimedia.org/wikipedia/commons/${mdi[0]}/${mdi[0] + mdi[1]}/${name}`;
-                        if (UrlExists(imageAddress)) {
-                            setImageUrl(imageAddress, component, entity)
-                            return
-                        }
-                    }
+                    checkImage(
+                        imageAddress,
+                        () => { setImageUrl(imageAddress, component, entity) },
+                        () => {
+                            imageAddress = `https://upload.wikimedia.org/wikipedia/commons/${mdi[0]}/${mdi[0] + mdi[1]}/${name}`;
+                            checkImage(
+                                imageAddress,
+                                () => { setImageUrl(imageAddress, component, entity) },
+                                () => { noImage(component); });
+                        });
                 }
             }
-            noImage(component);
+
         }).catch(noImage)
     }
 };
 
-function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    return http.status != 404;
+function checkImage(imageSrc, good, bad) {
+    try {
+        var img = new Image();
+        img.onload = good;
+        img.onerror = bad;
+        img.src = imageSrc;
+    } catch (e) {
+
+    }
 }
+
 
 function noImage(component) {
     console.log('noImage')
@@ -78,7 +85,7 @@ function noImage(component) {
 }
 
 function escapeRegExp(str) {
-    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    return str.replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1");
 }
 
 function replaceAll(str, find, replace) {

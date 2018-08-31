@@ -5,23 +5,20 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
 import classNames from 'classnames';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepButton from '@material-ui/core/StepButton';
+import Typography from '@material-ui/core/Typography';
 
-import Chip from '@material-ui/core/Chip';
+import NavigationHelp from './NavigationHelp';
+import LegendHelp from './LegendHelp';
 
-import ResetIcon from 'react-icons/lib/fa/refresh';
-import DescriptionIcon from 'react-icons/lib/fa/file-text';
-import CenterFocusStrongIcon from 'react-icons/lib/fa/sitemap';
-import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
-import HelpIcon from 'react-icons/lib/fa/question-circle';
-
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    i: 'rgb(1, 41, 71)'
+function getSteps() {
+    return ['Navigation', 'Légende'];
 }
+
 
 const styles = theme => ({
     card: {
@@ -33,63 +30,105 @@ const styles = theme => ({
     noClick: {
         pointerEvents: "none"
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+    actions: {
+        paddingTop: 0,
+        textAlign: "center"
     },
     title: {
         marginBottom: 16,
         fontSize: 18,
     },
-    subtitle: {
-        marginBottom: 12,
-        fontSize: 14,
+    root: {
+        width: '90%',
+        margin: 'auto'
     },
-    pos: {
-        marginBottom: 8,
-        fontSize:12
+    button: {
+        marginRight: theme.spacing.unit,
     },
-    actions: {
-        display: 'flex',
-        justifyContent: "flex-end",
-        paddingTop: 0
+    backButton: {
+        marginRight: theme.spacing.unit,
     },
-    iconContainer: {
-        display: "flex",
-        alignItems: "center",
-        marginBottom: 6
+    completed: {
+        display: 'inline-block',
     },
-    chip: {
-        color: "white",
+    instructions: {
+        marginTop: theme.spacing.unit,
+        marginBottom: theme.spacing.unit,
     },
-    m: {
-        backgroundColor: colors['m']
-    },
-    c: {
-        backgroundColor: colors['c']
-    },
-    i: {
-        backgroundColor: colors['i']
-    },
-    chipContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '4px'
-    }
 });
 
 class HelpCard extends Component {
 
-
     state = {
-        grow: false
+        activeStep: 0,
+        completed: new Set(),
+    };
+
+    totalSteps = () => {
+        return getSteps().length;
+    };
+
+    componentDidMount() {
+        // const height = this.divElement.clientHeight;
+        // this.setState({ height });
     }
 
-    close = () => {
+
+    handleNext = () => {
+        let activeStep;
+
+        if (this.isLastStep() && !this.allStepsCompleted()) {
+            // It's the last step, but not all steps have been completed
+            // find the first step that has been completed
+            const steps = getSteps();
+            activeStep = steps.findIndex((step, i) => !this.state.completed.has(i));
+        } else {
+            activeStep = this.state.activeStep + 1;
+        }
         this.setState({
-            grow: false
-        })
+            activeStep,
+        });
+    };
+
+    handleBack = () => {
+        this.setState(state => ({
+            activeStep: state.activeStep - 1,
+        }));
+    };
+
+    handleStep = step => () => {
+        this.setState({
+            activeStep: step,
+        });
+    };
+
+    skippedSteps() {
+        return 0;
+    }
+
+    isStepSkipped(step) {
+        return false;
+    }
+
+    isStepComplete(step) {
+        return this.state.completed.has(step);
+    }
+
+    completedSteps() {
+        return this.state.completed.size;
+    }
+
+    allStepsCompleted() {
+        return this.completedSteps() === this.totalSteps() - this.skippedSteps();
+    }
+
+    isLastStep() {
+        return this.state.activeStep === this.totalSteps() - 1;
+    }
+
+
+    close = () => {
+
         this.props.stopHelp();
 
         this.props.clientType !== "mobile" && setTimeout(this.props.reRenderGraph, 300);
@@ -97,130 +136,66 @@ class HelpCard extends Component {
     }
 
 
-    componentWillMount() {
-        if (!this.props.show.help ) {
-            this.setState({
-                grow: false
-            })
-        } else {
-            setTimeout(() => {
-                if (this.props.show.help) {
-                    this.setState({
-                        grow: true
-                    })
-                }
-            }, 500)
-        }
-    }
-
     componentWillUpdate(nextProps, nextState) {
-        if (this.props.show.help !== nextProps.show.help) {
+        if (!nextProps.show.help && this.props.show.help) {
             this.setState({
-                grow: nextProps.show.help
+                activeStep: 0
             })
         }
     }
-
 
 
     render() {
-        console.log(this.props.isRehydrated);
-        console.log(this.props);
         const { classes } = this.props;
-        const shiftUnicode = '\u21E7'
+        const grow = this.props.isRehydrated && this.props.show.help;
+        const steps = getSteps();
+        const { activeStep } = this.state;
         return (
-            <Slide direction="down" in={this.state.grow} mountOnEnter unmountOnExit>
-                <Card className={classNames(classes.card, !this.state.grow && classes.noClick)} elevation={24}>
-                    <CardContent style={{ paddingBottom: 0 }}>
+            <Slide direction="down" in={grow} mountOnEnter unmountOnExit>
+                <Card
+                    className={classNames(classes.card, !grow && classes.noClick)}
+                    elevation={24}
+                >
+                    <CardContent style={{ paddingBottom: 0, minHeight: 320 }}>
+
                         <Typography className={classes.title} color="textSecondary">
                             {this.props.translate('graph.helpCard.title')}
                         </Typography>
 
-                        <Typography className={classes.pos} color="textSecondary" component="div">
-                            <span style={{ fontWeight: "bolder" }}>
-                                {this.props.translate('graph.helpCard.contextual')}
-                            </span>
-                            {this.props.translate('graph.helpCard.contextualAfter')}
-                            <br /><br />
-                            {this.props.translate("graph.helpCard.doubleTapBefore")}
-                            <span style={{ fontWeight: "bolder" }}>{this.props.translate("graph.helpCard.doubleTap")}</span>
-                            {this.props.translate("graph.helpCard.doubleTapAfter")}
-                        </Typography>
+                        {activeStep === 0 ?
+                            < NavigationHelp translate={this.props.translate} />
+                            :
+                            <LegendHelp translate={this.props.translate} />
+                        }
 
-                        <Typography variant="subheading" className={classes.subtitle} component="h4">
-                            {this.props.translate('graph.helpCard.buttons')}
-                        </Typography>
 
-                        <Typography className={classes.pos} color="textSecondary" component="div">
-                            <div className={classes.iconContainer}><ResetIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.reset")}</div>
-                            <div className={classes.iconContainer}><DescriptionIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.description")}</div>
-                            <div className={classes.iconContainer}><CenterFocusStrongIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.focus")}</div>
-                            <div className={classes.iconContainer}><IssueIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.issue")}</div>
-                            <div className={classes.iconContainer}><HelpIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.help")}</div> <br />
-
-                            {this.props.clientType !== "mobile" && (
-                                <span>
-                                    {this.props.translate('graph.sideButtons.shift') + shiftUnicode + this.props.translate('graph.sideButtons.shift2')}
-                                    &nbsp;
-                                    {this.props.translate('graph.sideButtons.shift3')}
-                                    &nbsp;
-                                    {this.props.translate('graph.sideButtons.shift4')}
-                                </span>
-                            )
-                            }
-
-                        </Typography>
-                        <Typography variant="subheading" className={classes.subtitle} component="h4">
-                            {this.props.translate('graph.helpCard.legend.title')}
-                        </Typography>
-                        <Typography className={classes.pos} color="textSecondary" component="div">
-                            {this.props.translate('graph.helpCard.legend.intro')}
-
-                            <div className={classes.chipContainer}>
-                                <Chip
-                                    // avatar={<Avatar>{avatarName}</Avatar>}
-                                    label={this.props.translate(`home.cards.category.i`)}
-                                    className={classNames(classes.chip, classes.i)}
-                                />
-                                &nbsp;
-                                <Chip
-                                    // avatar={<Avatar>{avatarName}</Avatar>}
-                                    label={this.props.translate(`home.cards.category.c`)}
-                                    className={classNames(classes.chip, classes.c)}
-                                />
-                                &nbsp;
-                                <Chip
-                                    // avatar={<Avatar>{avatarName}</Avatar>}
-                                    label={this.props.translate(`home.cards.category.m`)}
-                                    className={classNames(classes.chip, classes.m)}
-                                />
-                            </div>
-                            <br />
-                            {this.props.translate("graph.helpCard.selectedBefore")}
-                            <span style={{ fontWeight: "bolder", color: "green" }}>{this.props.translate("graph.helpCard.selected")} </span>
-                            {this.props.translate("graph.helpCard.selectedAfter")}
-                            <br />
-                            <br />
-                            {this.props.translate("graph.helpCard.representedBefore")}
-                            <span style={{
-                                // fontWeight: "bold",
-                                color: "white",
-                                border: "2px solid rgba(0, 0, 0, 0)",
-                                backgroundColor: "rgba(0, 0, 0, 0.54)",
-                                borderRadius: "10px",
-                                marginLeft: "4px",
-                                marginRight: "4px",
-                                paddingLeft: "4px"
-                            }}>{this.props.translate("graph.helpCard.represented")} </span>
-                            {this.props.translate("graph.helpCard.representedAfter")}
-
-                        </Typography>
                     </CardContent>
                     <CardActions className={classes.actions}>
-                        <Button onClick={this.close} size="small">Ok</Button>
+                        <div className={classes.root}>
+                            <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+                                {steps.map((label, index) => {
+                                    return (
+                                        <Step key={label} >
+                                            <StepButton
+                                                onClick={this.handleStep(index)}
+                                                completed={this.isStepComplete(index)}
+                                            >
+                                                {label}
+                                            </StepButton>
+                                        </Step>
+                                    );
+                                })}
+                            </Stepper>
+
+                            <div style={{ minHeight: 40 }}>
+                                {activeStep === 1 && <Button onClick={this.close} size="large">OK</Button>}
+                            </div>
+
+
+                        </div>
                     </CardActions>
                 </Card>
-            </Slide>
+            </Slide >
         );
     }
 }

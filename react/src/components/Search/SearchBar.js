@@ -29,7 +29,6 @@ class SearchBar extends React.Component {
           if (this.props.show.about) {
             this.props.toggleAbout();
           }
-          this.props.show.searchBar && ['/', '/search'].indexOf(this.props.history.location.pathname) > -1 && this.props.closeAll();
           this.props.updateEntityInfoBox(val.id);
 
           logGraph(val.id);
@@ -73,7 +72,7 @@ class SearchBar extends React.Component {
             arrowRenderer={() => null}
             autoBlur
             clearable={false}
-            autofocus={!this.props.preventAutofocus}
+            autoFocus={!this.props.preventAutofocus}
             ref={(select) => { this.select = select; }}
           />
         </div>

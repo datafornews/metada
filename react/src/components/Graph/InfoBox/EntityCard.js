@@ -7,9 +7,9 @@ import WebsiteButton from "./WebsiteButton";
 import StatTitle from './StatTitle';
 
 const maxLengths = {
-    extension: 100,
-    mobile: 50,
-    browser: 150
+    extension: 10000,
+    mobile: 10000,
+    browser: 10000
 }
 
 const styles = theme => ({

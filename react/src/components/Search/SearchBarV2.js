@@ -207,7 +207,6 @@ class IntegrationReactSelect extends React.Component {
                     if (this.props.show.about) {
                         this.props.toggleAbout();
                     }
-                    this.props.show.searchBar && ['/', '/search'].indexOf(this.props.location.pathname) > -1 && this.props.closeAll();
                     this.props.updateEntityInfoBox(val.id);
 
                     logGraph(val.id);

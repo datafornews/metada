@@ -4,7 +4,7 @@ import SettingsPaper from './SettingsPaper';
 class Settings extends Component {
     render() {
 
-        return this.props.show.settings
+        return this.props.location.pathname.indexOf('/settings') > -1
             ?
             <SettingsPaper {...this.props} />
             :

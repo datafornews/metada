@@ -6,10 +6,11 @@ const defaultState = {
         howItWorks: true,
         legend: true,
         chips: true,
-        help: true,
+        help: false,
         graphButtonBlink: true,
         doubleClickHelp: true,
-        longClickHelp: true
+        longClickHelp: true,
+        navigationSnackbar: true
     },
     currentDisplay: -1,
     infoBox: {

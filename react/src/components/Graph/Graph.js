@@ -9,6 +9,7 @@ import CytoContainer from './CytoContainer';
 import Issue from './InfoBox/Issue';
 import Controls from './Controls'
 import Edge from './Edge'
+import Carousel from './Carousel';
 
 import Waiting from '../Waiting';
 
@@ -28,6 +29,7 @@ class _Graph extends React.Component {
       <Drawer {...this.props}>
         {this.props.infoBox.type === "entity" ? <Controls {...this.props} /> : <Edge {...this.props} />}
         <CytoContainer {...this.props} />
+        <Carousel {...this.props}></Carousel>
         <Issue
           translate={this.props.translate}
           clientType={this.props.clientType}

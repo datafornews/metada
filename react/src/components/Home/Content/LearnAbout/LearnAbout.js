@@ -4,10 +4,10 @@ import Intent from './Intent';
 class LearnAbout extends Component {
     render() {
 
-        return this.props.show.about
+        return this.props.location.pathname.indexOf('/about') > -1
             ?
             <Intent {...this.props} />
-            :
+            :   
             ''
 
     }

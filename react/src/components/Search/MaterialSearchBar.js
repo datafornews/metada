@@ -24,7 +24,6 @@ export default class MaterialSearchBar extends Component {
                 if (this.props.show.about) {
                     this.props.toggleAbout();
                 }
-                this.props.show.searchBar && ['/', '/search'].indexOf(this.props.location.pathname) > -1 && this.props.closeAll();
                 this.props.updateEntityInfoBox(entity.id);
 
                 logGraph(val.id);

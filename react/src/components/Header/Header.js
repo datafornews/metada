@@ -15,17 +15,49 @@ class Header extends React.Component {
     fetchData(component);
   }
 
-
-  componentWillMount() {
-    const pathname = this.props.history.location.pathname;
+  checkOrRedirect = (props) => {
+    let redirect = true;
+    const pathname = props.history.location.pathname;
+    const match = this.props.match;
     let locations = ['/extension', '/settings', '/about', '/search', '/contact', '/', '/callback', '/login'];
-    if (this.props.clientType === "extension" || 1){
+    if (props.clientType === "extension" || 1) {
       locations.push('/stats');
     }
-    if (pathname && (locations.indexOf(pathname) === -1 && pathname.indexOf('graph') === -1)) {
-      this.props.history.push('/');
+    if (pathname && match) {
+      if (locations.indexOf(pathname) !== -1) {
+        redirect = false;
+      } else if (pathname.startsWith('/graph/') && /^\d+$/.test(match.params.entityId)) {
+        redirect = false;
+      } else if (pathname.startsWith('/s/') && /^\d+$/.test(match.params.filter)) {
+        redirect = false;
+      }
+
+      if (redirect) {
+        console.log('redirect');
+        props.history.push('/');
+      }
     }
   }
+
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.history.location.pathname !== this.props.history.location.pathname) {
+      this.checkOrRedirect(nextProps);
+    }
+  }
+
+
+  componentWillMount() {
+    if (this.props.clientType === 'extension') {
+      document.getElementsByTagName('html')[0].style.height = '600px';
+      console.log('this.props.history.location :', this.props.history.location);
+      if (this.props.history.location.pathname.indexOf('index.html') !== -1) {
+        this.props.history.push('/');
+      }
+    }
+    this.checkOrRedirect(this.props);
+  }
+
 
 
   redirect = (val) => {

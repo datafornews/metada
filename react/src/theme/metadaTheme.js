@@ -1,29 +1,27 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-// import grey from '@material-ui/core/colors/grey';
-// import deepPurple from '@material-ui/core/colors/deepPurple';
-// import red from '@material-ui/core/colors/red';
+
+export const colors = {
+  m: '#3f51b5',
+  c: 'rgb(187, 45, 45)',
+  i: 'rgb(1, 41, 71)',
+  primary: '#223843',
+  secondary: '#caccce',
+  accent: "green",
+  default: "#598234"
+};
 
 
-// All the following keys are optional.
-// We try our best to provide a great default value.
-const theme = createMuiTheme({
-    palette: {
-        default: {
-            light: '#ffffff',
-            main: '#f5f5f5',
-            dark: '#c2c2c2',
-        },
-        primary: {
-            main: '#00838f',
-            light: '#4fb3bf',
-            dark: '#005662',
-        },
-        secondary: {
-            main: '#90a4ae',
-            light: '#c1d5e0',
-            dark: '#62757f',
-        }
-    },
-});
+const palette = {
+  primary: {
+    main: colors.primary,
+  },
+  secondary: {
+    main: colors.secondary,
+  },
+  accent: colors.accent,
+  default: colors.default,
+}
+const themeName = 'Purple Heart Gull Gray Guinea';
 
-export default theme;
+export default createMuiTheme({ palette, themeName });
+//https://react-theming.github.io/create-mui-theme/

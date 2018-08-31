@@ -1,8 +1,8 @@
-#### Bonjour!
+# Bonjour!
 
 Vous êtes actuellement sur la version web de l'Extension Metada.
 
-#### Installation
+## Installation
 
 Installez l'Extension depuis les sites officiels en juste 2 clics: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)
 
@@ -16,7 +16,7 @@ Le but de cette extension est d'être avec vous, discrètement, et de vous rappe
 Nous essayons de rendre votre expérience aussi agréable que possible mais quelques défauts de présentation peuvent subsister (pour l'instant!). 
 
 
-#### À propos de l'Extension
+## À propos de l'Extension
 
 L'Extension est actuellement en cours de développement. Pour cette première version, seuls les médias Français sont représentés dans le Graphe. Cela devrait changer rapidement avec la possibilité pour les utilisateurs de suggérer de nouveaux médias dans la prochaine version.
 

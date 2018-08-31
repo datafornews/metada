@@ -60,17 +60,6 @@ class WikiCard extends Component {
     }
 
     render() {
-        let extractStyle;
-        if (this.props.clientType === 'browser') {
-            extractStyle = {
-                height: '180px',
-                overflowY: 'scroll'
-            }
-        } else {
-            extractStyle = {
-                position: 'inherit'
-            }
-        }
 
         const { classes } = this.props;
 

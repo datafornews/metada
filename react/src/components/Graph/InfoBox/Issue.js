@@ -10,34 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
-
-
-
-const buttonPosition = {
-    'browser': {
-        position: "absolute",
-        width: "56px",
-        bottom: "8px",
-        left: "50%",
-        transform: "translate(-50%, -50%)"
-    },
-    'extension': {
-        position: "absolute",
-        width: "56px",
-        bottom: "8px",
-        left: "50%",
-        transform: "translate(-50%, -50%)"
-    },
-    'mobile': {
-        position: "absolute",
-        width: "56px",
-        bottom: "8px",
-        left: "50%",
-        transform: "translate(-50%, -50%)"
-    }
-}
 
 
 class IssueDialog extends React.Component {

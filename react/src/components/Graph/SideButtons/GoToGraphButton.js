@@ -7,6 +7,7 @@ import SitemapIcon from 'react-icons/lib/fa/sitemap';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
 
+import { colors } from '../../../theme/metadaTheme';
 
 
 
@@ -66,7 +67,7 @@ class GoToGraphButton extends React.Component {
                 id="tooltip-ResetButton"
                 title={title}
                 placement="right"
-                content={<SitemapIcon style={{ color: "green" }} className={this.props.classes.icon} />}
+                content={<SitemapIcon style={{ color: colors.accent }} className={this.props.classes.icon} />}
                 onClick={this.handleClick(entity.id)}
                 // disabled={disabled}
                 {...this.props}

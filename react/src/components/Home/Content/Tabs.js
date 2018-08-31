@@ -63,7 +63,6 @@ class HomeContentTabs extends React.Component {
   handleChange = (event, value) => {
     if (this.props.location.pathname.split('/')[1] !== value) {
       this.setState({ value });
-      this.props.closeAll();
       this.props.toggle(value);
       this.props.history.push('/' + value)
     }

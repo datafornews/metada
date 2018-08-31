@@ -21,11 +21,7 @@ import CIcon from '@material-ui/icons/AccountBalance';
 import MIcon from 'react-icons/lib/ti/news'
 
 
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    i: 'rgb(1, 41, 71)'
-}
+import { colors } from '../../../../theme/metadaTheme';
 
 const styles = theme => ({
     card: {
@@ -74,8 +70,7 @@ const styles = theme => ({
     },
     img: {
         maxWidth: "-webkit-fill-available",
-        maxHeight: 100,
-        maxWidth: 200,
+        maxHeight: "100%",
         borderRadius: 4,
     },
     imgDiv: {
@@ -84,7 +79,8 @@ const styles = theme => ({
         justifyContent: "center",
         alignItems: "center",
         width: "200px",
-        height: "100px"
+        height: "100px",
+        maxWidth: "90%",
     }
 });
 
@@ -104,11 +100,11 @@ class HomeCard extends Component {
 
     getDefault = () => {
         if (this.props.entity.category === "i") {
-            return <IIcon style={{ minWidth: 200, minHeight: 100, opacity: 0.2 }} />
+            return <IIcon style={{ maxWidth: '100%', maxHeight: '100%', width: 200, height: 100, opacity: 0.2 }} />
         } else if (this.props.entity.category === "c") {
-            return <CIcon style={{ minWidth: 200, minHeight: 100, opacity: 0.2 }} />
+            return <CIcon style={{ maxWidth: '100%', maxHeight: '100%', width: 200, height: 100, opacity: 0.2 }} />
         } else {
-            return <MIcon style={{ minWidth: 200, minHeight: 100, opacity: 0.2 }} />
+            return <MIcon style={{ maxWidth: '100%', maxHeight: '100%', width: 200, height: 100, opacity: 0.2 }} />
         }
     }
 
@@ -147,7 +143,7 @@ class HomeCard extends Component {
                             translate={this.props.translate}
                         />
                         <Typography className={classes.pos} >
-                            {(entity.website || entity.wiki_link) && "Liens externes" || ""}
+                            {((entity.website || entity.wiki_link) && "Liens externes") || ""}
                         </Typography>
                         <Typography variant="body1" component="p">
                             <WikiButton {...this.props} />
@@ -157,6 +153,7 @@ class HomeCard extends Component {
                     </CardContent>
                 </Card>
             </div>
+            
         )
     }
 }

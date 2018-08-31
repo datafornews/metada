@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import classNames from 'classnames';
 import ClearIcon from '@material-ui/icons/Clear';
-import DescriptionIcon from 'react-icons/lib/fa/file-text';
 import HelpIcon from 'react-icons/lib/fa/question-circle';
+import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
+import Fade from '@material-ui/core/Fade';
 
 
 import PropTypes from 'prop-types';
@@ -31,8 +31,8 @@ const styles = theme => (
             height: "100%",
             zIndex: 1,
             overflow: 'hidden',
-            position: 'relative',
             display: 'flex',
+            maxHeight: '100vh'
         },
         appBar: {
             position: 'absolute',
@@ -54,6 +54,7 @@ const styles = theme => (
         drawerPaper: {
             position: 'relative',
             width: drawerWidth,
+            maxHeight: '100vh',
         },
         content: {
             flexGrow: 1,
@@ -61,14 +62,15 @@ const styles = theme => (
             padding: theme.spacing.unit * 3,
             paddingTop: theme.spacing.unit * 3 * 3,
             minWidth: 0, // So the Typography noWrap works,
-            height: "100%",
+            // height: "100%",
             minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
             transition: theme.transitions.create('margin', {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
             position: "relative",
-            overflow: "scroll"
+            overflow: "scroll",
+            maxHeight: '100vh'
         },
         'content-right': {
             marginRight: -drawerWidth,
@@ -91,11 +93,18 @@ const styles = theme => (
             ...theme.mixins.toolbar,
         },
         noPadding: {
-            padding: "48px 0px"
+            padding: `${theme.spacing.unit * 3 * 2}px 0px 0px 0px`
         },
         mobileToolbar: {
-            marginBottom: "8px !important",
             textAlign: "center"
+        },
+        iconButton: {
+            width: '45%',
+            margin: 'auto',
+            maxWidth: 50
+        },
+        docked: {
+            height: "100%"
         }
     }
 );
@@ -106,16 +115,15 @@ class ClippedDrawer extends Component {
 
 
     componentWillMount() {
-        if (this.props.history.location.pathname.startsWith("/graph/")) {
-            !this.props.show.drawer && this.props.toggleDrawer()
-        } else {
-            this.props.show.drawer && this.props.toggleDrawer()
+        if (!this.props.history.location.pathname.startsWith("/graph/")) {
+            this.props.toggleDrawer(false);
         }
     }
 
     toggleHelp = () => {
         this.props.show.help ? this.props.stopHelp() : this.props.startHelp();
-        this.props.clientType !== "mobile" && setTimeout(this.props.reRenderGraph, 300)
+        const isMobile = this.props.clientType === 'mobile';
+        !isMobile && setTimeout(this.props.reRenderGraph, 300)
     }
 
     goHome = () => {
@@ -125,8 +133,11 @@ class ClippedDrawer extends Component {
 
     render() {
         const { classes, ...noClassProps } = this.props;
+        const isMobile = this.props.clientType === 'mobile';
 
-        const size = this.props.clientType !== "mobile" ? "large" : 'small';
+        const widths = isMobile ? this.props.show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
+        const paddingLeft = isMobile ? 0 : 16;
+        const paddingRight = isMobile ? 0 : 16;
 
         const drawerContent = !this.props.history.location.pathname.startsWith("/graph/") ? "" : <DrawerContent {...noClassProps} />
         return (
@@ -140,40 +151,48 @@ class ClippedDrawer extends Component {
                 )
                 }
                     position="absolute">
-                    <Toolbar>
-                        <div style={{ width: "30%", margin: "auto" }} className={this.props.clientType === "mobile" ? classes.mobileToolbar : undefined}>
-
-                            <Menu history={this.props.history} clientType={this.props.clientType}/>
-                            <Button size={size} mini={size === "small"} variant="extendedFab" aria-label="metada" color="secondary" onClick={this.goHome}>
-                                Metada
-                            </Button>
+                    <Toolbar style={{ paddingLeft, paddingRight }}>
+                        <div style={{ width: widths[0], margin: "auto" }} className={isMobile ? classes.mobileToolbar : undefined}>
+                            <Menu history={this.props.history} clientType={this.props.clientType} />
                         </div>
-                        {(this.props.clientType !== "mobile" || !this.props.show.drawer) && <div style={{ width: "50%", margin: "auto" }}>
+                        <Fade in={!isMobile || !this.props.show.drawer} timeout={500}>
+                            <div style={{ width: widths[1], margin: "auto" }}>
 
 
-                            <SearchBar
-                                data={this.props.data}
-                                toggleAbout={this.props.toggleAbout}
-                                show={this.props.show}
-                                closeAll={this.props.closeAll}
-                                toggleSideButtons={this.props.toggleSideButtons}
-                                history={this.props.history}
-                                data={this.props.data}
-                                translate={this.props.translate}
-                                preventAutofocus={this.props.preventAutofocus}
-                                updateEntityInfoBox={this.props.updateEntityInfoBox}
-                            />
-                        </div>}
-                        <div style={{ width: "20%", margin: "auto" }}>
-                            {!this.props.show.drawer && this.props.history.location.pathname.startsWith("/graph/") &&
-                                <div style={{display:"flex", justifyContent:'flex-end'}}>
-                                    <IconButton
-                                        onClick={this.toggleHelp}
-                                        style={{color: "white" }}
-                                    >
-                                        <HelpIcon />
-                                    </IconButton>
-                                </div>
+                                <SearchBar
+                                    data={this.props.data}
+                                    toggleAbout={this.props.toggleAbout}
+                                    show={this.props.show}
+                                    toggleSideButtons={this.props.toggleSideButtons}
+                                    history={this.props.history}
+                                    translate={this.props.translate}
+                                    preventAutofocus={this.props.preventAutofocus}
+                                    updateEntityInfoBox={this.props.updateEntityInfoBox}
+                                />
+                            </div>
+                        </Fade>
+
+                        <div style={{ width: widths[2], margin: "auto" }}>
+                            {this.props.history.location.pathname.startsWith("/graph/") &&
+                                <Fade in={!(isMobile && this.props.show.drawer)} timeout={500}>
+                                    <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+                                        <IconButton
+                                            onClick={this.props.toggleIssue}
+                                            style={{ color: "white" }}
+                                            className={classes.iconButton}
+                                        >
+                                            <IssueIcon />
+                                        </IconButton>
+                                        {isMobile && <br />}
+                                        <IconButton
+                                            onClick={this.toggleHelp}
+                                            style={{ color: "white" }}
+                                            className={classes.iconButton}
+                                        >
+                                            <HelpIcon />
+                                        </IconButton>
+                                    </div>
+                                </Fade>
                             }
                         </div>
 
@@ -186,29 +205,29 @@ class ClippedDrawer extends Component {
                         [classes.contentShift]: this.props.show.drawer,
                         [classes["contentShift-right"]]: this.props.show.drawer,
                     },
-                    this.props.clientType === "mobile" && classes.noPadding
+                    isMobile && classes.noPadding
                 )}>
                     {this.props.children}
                 </main>
 
-                {this.props.history.location.pathname.startsWith('/graph/') && <Drawer
-                    variant="persistent"
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                    open={this.props.show.drawer}
-                    anchor="right"
-                >
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.props.toggleDrawer}>
-                            <ClearIcon />
-                        </IconButton>
-                    </div>
-                    {drawerContent}
-                </Drawer>
+                {this.props.history.location.pathname.startsWith('/graph/') && <div style={{ maxHeight: '100vh' }}>
+                    <Drawer
+                        variant="persistent"
+                        classes={{
+                            paper: classes.drawerPaper,
+                            docked: classes.docked
+                        }}
+                        open={this.props.isRehydrated && this.props.show.drawer}
+                        anchor="right"
+                    >
+                        <div className={classes.drawerHeader}>
+                            <IconButton onClick={this.props.toggleDrawer}>
+                                <ClearIcon />
+                            </IconButton>
+                        </div>
+                        {drawerContent}
+                    </Drawer>
+                </div>
                 }
             </div>
         );

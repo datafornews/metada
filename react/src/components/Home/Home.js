@@ -4,16 +4,11 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import { check_website } from '../../utils/backgroundUtils';
-import wtf_wikipedia from 'wtf_wikipedia';
 import { Helmet } from "react-helmet";
 
-// import Scroll from 'react-scroll';
-
 import LearnAbout from './Content/LearnAbout/LearnAbout';
-import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
 import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
-import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
 import Stats from './Content/Stats/Stats';
@@ -68,14 +63,12 @@ class Home extends React.Component {
             sessionStorage['default_' + entity.id] = 'true';
             component.props.updateEntityInfoBox(entity.id);
             component.props.displayEntity(entity.id);
-            component.props.closeAll();
             component.props.history.push('/graph/' + entity.id);
           }
         }
       });
     }
     if (this.props.location.pathname === '/') {
-      this.props.closeAll();
       this.props.toggleSearchBar();
       localStorage['reduxPersist:show'] = JSON.stringify({
         'intent': false,
@@ -88,12 +81,11 @@ class Home extends React.Component {
     } else {
       const location = this.props.location.pathname.split('/')[1];
       if (location) {
-        this.props.closeAll();
         this.props.toggle(location);
-        localStorage['reduxPersist:show'] = JSON.stringify({
-          ...this.props.show,
-          location: true
-        })
+        // localStorage['reduxPersist:show'] = JSON.stringify({
+        //   ...this.props.show,
+        //   location: true
+        // })
       };
     }
 
@@ -104,7 +96,6 @@ class Home extends React.Component {
     const newLocation = nextProps.location.pathname.split('/')[1] || 'search';
     const location = this.props.location.pathname.split('/')[1] || 'search';
     if (location !== newLocation) {
-      this.props.closeAll();
       this.props.toggle(newLocation);
     }
   }
@@ -124,31 +115,27 @@ class Home extends React.Component {
 
 
 
+
   render() {
 
     const location = this.props.location.pathname.split('/')[1];
 
-    console.log(location);
-
     return (
       <Drawer {...this.props}>
-        <div style={{ margin: 'auto' }}>
+        <div style={{ margin: 'auto' }} ref='exampleDiv'>
 
 
           <Helmet>
             <title>Metada - {this.props.translate('home.tabs.' + location)}</title>
           </Helmet>
-          {location ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
+          {["", "s"].indexOf(location) === -1 ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
           <div style={homeContentDivStyle[this.props.clientType]}>
-            {location ? '' : <Example {...this.props} nb={4} />}
-            {/* <HomeContentTabs {...this.props} /> */}
-            {/* <HomeSearchBar {...this.props} /> */}
+            {["", "s"].indexOf(location) === -1 ? '' : <Example {...this.props} nb={4} />}
             <LearnAbout {...this.props} />
             <Contact {...this.props} />
             <Settings {...this.props} />
             <Extension {...this.props} />
             <Stats {...this.props} />
-            {/* {this.state.wiki &&} */}
           </div>
         </div>
       </Drawer>

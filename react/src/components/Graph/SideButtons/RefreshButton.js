@@ -6,14 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import ResetIcon from 'react-icons/lib/fa/refresh';
 import sideButtonStyle from './sideButtonStyle';
 import SideElement from './SideElement';
+import { colors } from '../../../theme/metadaTheme';
 
 const styles = theme => (sideButtonStyle);
 
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    i: 'rgb(1, 41, 71)'
-};
+
 
 class HomeButton extends React.Component {
 

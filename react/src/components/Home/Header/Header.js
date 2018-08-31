@@ -38,7 +38,6 @@ const parentDivstyle = {
 export default class Header extends Component {
 
     render() {
-        const title = "Metada"
         return (
             <div id='HomeHeader' style={{ ...this.props.style, ...parentDivstyle[this.props.clientType] }}>
                 <div style={titleStyle[this.props.clientType]}>

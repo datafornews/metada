@@ -4,11 +4,8 @@ import Filter from '@material-ui/icons/Label';
 import Grid from '@material-ui/core/Grid';
 import GraphIcon from 'react-icons/lib/fa/sitemap';
 
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    i: 'rgb(1, 41, 71)'
-}
+import { colors } from '../../../theme/metadaTheme';
+
 
 
 export default class Legend extends Component {
@@ -17,7 +14,7 @@ export default class Legend extends Component {
 
         let completeGraph = this.props.translate('graph.sideButtons.legend.cg').split(':');
         completeGraph = (<span>
-            <span style={{ color: 'green', fontWeight: 500 }}>
+            <span style={{ color: colors.accent, fontWeight: 500 }}>
                 {completeGraph[0]}
             </span>
             : {completeGraph[1]}
@@ -88,7 +85,7 @@ export default class Legend extends Component {
                     <Grid container direction="row" spacing={0} style={{ marginTop: 40 }}>
                         <Grid item >
                             <Grid container alignItems='center'>
-                                <Grid xs={5} item><Icon style={{ width: "40px", color: 'green' }} /></Grid>
+                                <Grid xs={5} item><Icon style={{ width: "40px", color: colors.accent }} /></Grid>
                                 <Grid xs={7} item >{completeGraph}</Grid>
                             </Grid>
                         </Grid>

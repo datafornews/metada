@@ -25,16 +25,16 @@
             "Param\u00e8tres"
         ],
         "contactPaperMd": [
-            "**Get in touch** and suggest anything:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Suggest an edit to the Graph**:\n [(Google Form)](https://goo.gl/forms/Lf9fIFDyV1tGtmmr2) or send us an email\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)",
-            "**Contactez-nous** et partagez vos pistes d'am\u00e9lioration:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1) ou adresse mail ci-dessus\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)"
+            "# Contact\n\n\n**Get in touch** and suggest anything:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Suggest an edit to the Graph**:\n [(Google Form)](https://goo.gl/forms/Lf9fIFDyV1tGtmmr2) or send us an email\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)",
+            "# Contact\n\n\n**Contactez-nous** et partagez vos pistes d'am\u00e9lioration:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1) ou adresse mail ci-dessus\n\n**Github**: [Frontend](https://bit.ly/metadaGithubFront) | [Backend](https://bit.ly/metadaGithubBack)"
         ],
         "contactNewLink": [
             " \n\n (Links must be openned in new tabs: right click > \"open in new tab\")",
             " \n\n (Les liens doivent \u00eatre ouverts dans un nouvel onglet: click droit puis \"ouvrir dans un nouvel onglet\")"
         ],
         "intentPaperMd": [
-            "### Metada\n\nWe lack information about the very information we read. Be it about the ownership of a media, of a regular website or simply about the person who wrote the article. The Open MetaData Project aims at gradually filling that hole, the Open Source way.\n\nWe chose to start with the Media but we have a lot more ideas, get in touch and contribute!\n\n#### Who owns the media?\n\nMost of the time we don't know. Not that this information is secret, we just don't necessarily think about it.\n\n#### Does it make any difference on the content?\n\nNo! Maybe. Sometimes. Often. Always? It depends, really: on the media, the owner, the piece of news, the time and location etc. Knowing who owns the media we read is a valuable information in itself. It's neither a good nor bad thing that the media may be (privately) owned. But we ought to think critically about this and keep in mind a media's owners' interests. This is why we started **Metada**: to provide citizens with an easy way to access this kind of information. \n\n\n#### A Chrome Extension?\n\nFor Metada to be impactful, it should be clear and easy to use. It should be visual, open, thought-through together as a community. We believe the most efficient way to change our approach to the News is by fitting in our existing habits, not by trying to change them drastically. It should therefore be a browser plugin: simply a mouse-click away, enabling us to find out whether the information we are reading could be biased in an instant, without even leaving the current webpage.\n\n\n#### Where does the graph come from ?\n\nThe information in the graph represent Companies (nodes) and Ownership relations (edges). For the French Media, most of it originally comes from this*  work by Le Monde Diplomatique. Our goal is to build a platform allowing us to crowd-source the information so that it becomes scalable in time (new media, new ownerships) and space (different countries). The idea is to allow people to submit relevant sourced pieces of information as in Wikipedia, with Moderators deciding whether or not to update the graph accordingly. Machine Learning techniques will be developed to suggest modifications and assist moderators.\n\n\nWe believe this project will become a tool for enlightened citizens. At the same time its development to be a **learning opportunity** for everyone involved, including **YOU** if you want to be part of the journey!\n\n\nYou are currently using our first, minimalist release. Graph edition, Moderation and more are to come.\n\nA lot has yet to be built. All ideas are welcome and will be discussed - including yours if you wanted to join! The only thing we want you to keep in mind is this project\u2019s spirit: to be an open democratic tool.\n",
-            "### Metada\n\nNous savons peu de choses \u00e0 propos des information que nous consultons, que ce soit \u00e0 propos de qui poss\u00e8de un m\u00e9dia, un site web quelconque ou m\u00eame \u00e0 propos de l'auteur des lignes que l'on lit. L'Open Metadata Project vise \u00e0 combler ce manque, sous la forme d'un projet Open Source.\n\nNous avons d\u00e9cid\u00e9 de commencer par nous int\u00e9resser aux m\u00e9dias mais nous avons plein d'autres id\u00e9es: rejoignez-nous!\n\n#### \u00c0 qui appartiennent les m\u00e9dias?\nLa plupart du temps on ne sait pas. Ou plut\u00f4t on n'y pense pas. Ce n'est pas que l'information est cach\u00e9e, inconnue, inaccessible, on n'y pense simplement pas toujours.\n\n#### Est-ce que \u00e7a impacte le contenu?\nNon! Enfin peut-\u00eatre. Parfois. Souvent. Toujours? En r\u00e9alit\u00e9, \u00e7a d\u00e9pend: du m\u00e9dia, du/des propri\u00e9taires, de l'information en elle m\u00eame, du lieu, du moment etc. Savoir \u00e0 qui appartiennent les m\u00e9dias est une information qui a de la valeur en elle-m\u00eame. Que les m\u00e9dias soient poss\u00e9d\u00e9s (par des pouvoirs publics ou d'argent) n'est pas une bonne ou une mauvaise chose en soit, il ne faut simplement pas l'oublier. C'est pour cela que nous avons cr\u00e9\u00e9 **Metada**: pour fournir au citoyen un moyen simple et rapide pour acc\u00e9der \u00e0 ce type d'information. \n\n#### Pourquoi une extension Web?\n\nPour que Metada ait un r\u00e9el impact, ce moyen doit \u00eatre clair et facile \u00e0 utiliser. Il doit \u00eatre simple, visuel, ouvert et accessible \u00e0 tous, nous devons le construire ensemble. Nous pensons que le moyen le plus efficace de transformer la mani\u00e8re dont on aborde l'information est de s'int\u00e9grer \u00e0 nos habitudes existantes, pas d'en cr\u00e9er de nouvelles trop diff\u00e9rentes. C'est pour ces raisons que nous avons choisi d'en faire une extension pour navigateur: elle est toujours l\u00e0, pr\u00eate \u00e0 nous fournir une m\u00e9ta-information et nous rappeler qu'il est possible (pas automatique!) que le contenu soit biais\u00e9. Tout cela sans m\u00eame quitter le site que l'on est en train de consulter!\n\n\n#### D'o\u00f9 vient le Graphe?\n\nLe Graphe repr\u00e9sente les entreprises ou individus comme des *noeuds* et les relation de propri\u00e9t\u00e9 comme des *arr\u00eates* (=fl\u00eaches). Pour les m\u00e9dias Fran\u00e7ais, la grande majorit\u00e9 des informations du Graph proviennent initialement de ce* travail du *Monde Diplomatique*.\n\nNotre but est de construire une plateforme pour *crowd-sourcer* l'information, \u00e0 la mani\u00e8re de Wikip\u00e9dia, pour rendre ce projet viable dans le temps (des m\u00e9dias sont r\u00e9guli\u00e8rement cr\u00e9\u00e9s ou rachet\u00e9s par exemple) et dans l'espace (pour les m\u00e9dias et propri\u00e9taires d'autres pays). L'id\u00e9e est de nous permettre \u00e0 tous de soumettre une modification du graphe, que ce soit l'apparition d'un nouveau m\u00e9dia, un changement de nom ou de propri\u00e9taire. Cette modification devra \u00eatre sourc\u00e9e et sera v\u00e9rifi\u00e9e par des mod\u00e9rateurs avant d'\u00eatre rendue publique sur le Graphe. Nous voulons \u00e9galement utiliser l'Apprentissage Machine (*Machine Learning*) pour sugg\u00e9rer des modification et assister les mod\u00e9rateurs.\n\nNous pensons que ce projet doit devenir un outil d\u00e9mocratique. Et nous pensons qu'il est aussi l'opportunit\u00e9 d'apprendre, de discuter, pour tous ceux qui veulent participer. Cela **VOUS** inclu! \n\nLe projet n'en est qu'\u00e0 sa toute premi\u00e8re version, tr\u00e8s minimaliste. Mais de nombreuses am\u00e9liorations sont pr\u00e9vues, notamment la possibilit\u00e9 de modifier le graphe.\n\nNous avons encore beaucoup de travail et de r\u00e9flexion \u00e0 mener. Toutes les id\u00e9es et bonnes volont\u00e9s sont les bienvenues - la v\u00f4tre y compris! La seule chose \u00e0 garder en t\u00eate est l'esprit du projet: un outil ouvert, gratuit et citoyen.\n"
+            "# Metada\n\nWe lack information about the very information we read. Be it about the ownership of a media, of a regular website or simply about the person who wrote the article. The Open MetaData Project aims at gradually filling that hole, the Open Source way.\n\nWe chose to start with the Media but we have a lot more ideas, get in touch and contribute!\n\n## Who owns the media?\n\nMost of the time we don't know. Not that this information is secret, we just don't necessarily think about it.\n\n## Does it make any difference on the content?\n\nNo! Maybe. Sometimes. Often. Always? It depends, really: on the media, the owner, the piece of news, the time and location etc. Knowing who owns the media we read is a valuable information in itself. It's neither a good nor bad thing that the media may be (privately) owned. But we ought to think critically about this and keep in mind a media's owners' interests. This is why we started **Metada**: to provide citizens with an easy way to access this kind of information. \n\n\n## A Chrome Extension?\n\nFor Metada to be impactful, it should be clear and easy to use. It should be visual, open, thought-through together as a community. We believe the most efficient way to change our approach to the News is by fitting in our existing habits, not by trying to change them drastically. It should therefore be a browser plugin: simply a mouse-click away, enabling us to find out whether the information we are reading could be biased in an instant, without even leaving the current webpage.\n\n\n## Where does the graph come from ?\n\nThe information in the graph represent Companies (nodes) and Ownership relations (edges). For the French Media, most of it originally comes from this*  work by Le Monde Diplomatique. Our goal is to build a platform allowing us to crowd-source the information so that it becomes scalable in time (new media, new ownerships) and space (different countries). The idea is to allow people to submit relevant sourced pieces of information as in Wikipedia, with Moderators deciding whether or not to update the graph accordingly. Machine Learning techniques will be developed to suggest modifications and assist moderators.\n\n\nWe believe this project will become a tool for enlightened citizens. At the same time its development to be a **learning opportunity** for everyone involved, including **YOU** if you want to be part of the journey!\n\n\nYou are currently using our first, minimalist release. Graph edition, Moderation and more are to come.\n\nA lot has yet to be built. All ideas are welcome and will be discussed - including yours if you wanted to join! The only thing we want you to keep in mind is this project\u2019s spirit: to be an open democratic tool.\n",
+            "# Metada\n\nNous savons peu de choses \u00e0 propos des information que nous consultons, que ce soit \u00e0 propos de qui poss\u00e8de un m\u00e9dia, un site web quelconque ou m\u00eame \u00e0 propos de l'auteur des lignes que l'on lit. L'Open Metadata Project vise \u00e0 combler ce manque, sous la forme d'un projet Open Source.\n\nNous avons d\u00e9cid\u00e9 de commencer par nous int\u00e9resser aux m\u00e9dias mais nous avons plein d'autres id\u00e9es: rejoignez-nous!\n\n## \u00c0 qui appartiennent les m\u00e9dias?\nLa plupart du temps on ne sait pas. Ou plut\u00f4t on n'y pense pas. Ce n'est pas que l'information est cach\u00e9e, inconnue, inaccessible, on n'y pense simplement pas toujours.\n\n## Est-ce que \u00e7a impacte le contenu?\nNon! Enfin peut-\u00eatre. Parfois. Souvent. Toujours? En r\u00e9alit\u00e9, \u00e7a d\u00e9pend: du m\u00e9dia, du/des propri\u00e9taires, de l'information en elle m\u00eame, du lieu, du moment etc. Savoir \u00e0 qui appartiennent les m\u00e9dias est une information qui a de la valeur en elle-m\u00eame. Que les m\u00e9dias soient poss\u00e9d\u00e9s (par des pouvoirs publics ou d'argent) n'est pas une bonne ou une mauvaise chose en soit, il ne faut simplement pas l'oublier. C'est pour cela que nous avons cr\u00e9\u00e9 **Metada**: pour fournir au citoyen un moyen simple et rapide pour acc\u00e9der \u00e0 ce type d'information. \n\n## Pourquoi une extension Web?\n\nPour que Metada ait un r\u00e9el impact, ce moyen doit \u00eatre clair et facile \u00e0 utiliser. Il doit \u00eatre simple, visuel, ouvert et accessible \u00e0 tous, nous devons le construire ensemble. Nous pensons que le moyen le plus efficace de transformer la mani\u00e8re dont on aborde l'information est de s'int\u00e9grer \u00e0 nos habitudes existantes, pas d'en cr\u00e9er de nouvelles trop diff\u00e9rentes. C'est pour ces raisons que nous avons choisi d'en faire une extension pour navigateur: elle est toujours l\u00e0, pr\u00eate \u00e0 nous fournir une m\u00e9ta-information et nous rappeler qu'il est possible (pas automatique!) que le contenu soit biais\u00e9. Tout cela sans m\u00eame quitter le site que l'on est en train de consulter!\n\n\n## D'o\u00f9 vient le Graphe?\n\nLe Graphe repr\u00e9sente les entreprises ou individus comme des *noeuds* et les relation de propri\u00e9t\u00e9 comme des *arr\u00eates* (=fl\u00eaches). Pour les m\u00e9dias Fran\u00e7ais, la grande majorit\u00e9 des informations du Graph proviennent initialement de ce* travail du *Monde Diplomatique*.\n\nNotre but est de construire une plateforme pour *crowd-sourcer* l'information, \u00e0 la mani\u00e8re de Wikip\u00e9dia, pour rendre ce projet viable dans le temps (des m\u00e9dias sont r\u00e9guli\u00e8rement cr\u00e9\u00e9s ou rachet\u00e9s par exemple) et dans l'espace (pour les m\u00e9dias et propri\u00e9taires d'autres pays). L'id\u00e9e est de nous permettre \u00e0 tous de soumettre une modification du graphe, que ce soit l'apparition d'un nouveau m\u00e9dia, un changement de nom ou de propri\u00e9taire. Cette modification devra \u00eatre sourc\u00e9e et sera v\u00e9rifi\u00e9e par des mod\u00e9rateurs avant d'\u00eatre rendue publique sur le Graphe. Nous voulons \u00e9galement utiliser l'Apprentissage Machine (*Machine Learning*) pour sugg\u00e9rer des modification et assister les mod\u00e9rateurs.\n\nNous pensons que ce projet doit devenir un outil d\u00e9mocratique. Et nous pensons qu'il est aussi l'opportunit\u00e9 d'apprendre, de discuter, pour tous ceux qui veulent participer. Cela **VOUS** inclu! \n\nLe projet n'en est qu'\u00e0 sa toute premi\u00e8re version, tr\u00e8s minimaliste. Mais de nombreuses am\u00e9liorations sont pr\u00e9vues, notamment la possibilit\u00e9 de modifier le graphe.\n\nNous avons encore beaucoup de travail et de r\u00e9flexion \u00e0 mener. Toutes les id\u00e9es et bonnes volont\u00e9s sont les bienvenues - la v\u00f4tre y compris! La seule chose \u00e0 garder en t\u00eate est l'esprit du projet: un outil ouvert, gratuit et citoyen.\n"
         ],
         "settings": {
             "languageButton": [
@@ -155,8 +155,8 @@
             ]
         },
         "extensionPaperMd": [
-            "#### Hi!\n\nYou are currently on the web version of the Metada Extension. \n\n##### Installation\n\nYou are only 2 clicks away from getting the extension! Install the extension from the official stores: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nThe Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. It will allow you to:\n\n* Access the graph anytime (including offline)\n* Get a notification about the media's ownership when visiting its website\n* Gather a few statistics about your news consumption\n\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!).\n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!",
-            "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension Metada.\n\n#### Installation\n\nInstallez l'Extension depuis les sites officiels en juste 2 clics: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nLe but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Elle vous permettra :\n\n* D'acc\u00e9der au graphe \u00e0 tout moment (y compris hors connexion)\n* De recevoir une notification vous rappelant \u00e0 qui appartient le m\u00e9dia en visitant son site internet\n* De suivre quelques statistiques sur votre consommation d'information \n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n"
+            "# Hi!\n\nYou are currently on the web version of the Metada Extension. \n\n## Installation\n\nYou are only 2 clicks away from getting the extension! Install the extension from the official stores: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nThe Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. It will allow you to:\n\n* Access the graph anytime (including offline)\n* Get a notification about the media's ownership when visiting its website\n* Gather a few statistics about your news consumption\n\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!).\n\n## About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!",
+            "# Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension Metada.\n\n## Installation\n\nInstallez l'Extension depuis les sites officiels en juste 2 clics: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\nLe but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Elle vous permettra :\n\n* D'acc\u00e9der au graphe \u00e0 tout moment (y compris hors connexion)\n* De recevoir une notification vous rappelant \u00e0 qui appartient le m\u00e9dia en visitant son site internet\n* De suivre quelques statistiques sur votre consommation d'information \n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n## \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n"
         ],
         "profile": {
             "register": [
@@ -257,21 +257,21 @@
                 "All time proportion",
                 "Proportion totale"
             ],
-            "labelDisplayedRows":[
+            "labelDisplayedRows": [
                 "of",
                 "sur"
             ],
-            "labelRowsPerPage":[
+            "labelRowsPerPage": [
                 "Rows per page:",
                 "Lignes par page:"
             ],
-            "ownersTitle":[
+            "ownersTitle": [
                 "Statistics: end owners of your past media readings",
-                "Statistiques: propriétaires des médias que vous consultez"
+                "Statistiques: propri\u00e9taires des m\u00e9dias que vous consultez"
             ],
-            "entitesTitle":[
+            "entitesTitle": [
                 "Statistics: the media you read",
-                "Statistiques: quels médias lisez vous?"
+                "Statistiques: quels m\u00e9dias lisez vous?"
             ]
         },
         "cards": {
@@ -282,7 +282,7 @@
                 ],
                 "c": [
                     "Intermediary",
-                    "Intermédiaire"
+                    "Interm\u00e9diaire"
                 ],
                 "i": [
                     "End Owner",
@@ -362,16 +362,16 @@
             "legend": {
                 "title": [
                     "Legend",
-                    "Légende"
+                    "L\u00e9gende"
                 ],
                 "intro": [
                     "There are 3 types of entities:",
-                    "Il y a 3 sortes d'entitées:"
+                    "Il y a 3 sortes d'entit\u00e9es:"
                 ]
-            },
-            "buttons": [
-                "Buttons",
-                "Boutons"
+            },  
+            "navigation": [
+                "Explore the graph",
+                "Explorer le graphe"
             ],
             "reset": [
                 "Redraw the graph",
@@ -383,7 +383,7 @@
             ],
             "focus": [
                 "Focus the graph on this entity",
-                "Voir le graphe de cette entité"
+                "Voir le graphe de cette entit\u00e9"
             ],
             "issue": [
                 "Issue with a Graph",
@@ -395,19 +395,19 @@
             ],
             "doubleTap": [
                 "Double clicking",
-                "double cliquant"
+                "Double cliquez"
             ],
             "doubleTapBefore": [
-                "",
-                "Vous pouvez aussi voir le graphe de l'entité en "
+                " ",
+                " "
             ],
             "doubleTapAfter": [
-                " is a shortcut to the focus button",
-                " dessus"
+                " on an entity will show you its complete graph",
+                " sur une entit\u00e9 pour voir son graphe complet"
             ],
             "selected": [
                 "green entity",
-                "entité verte"
+                "entit\u00e9 verte"
             ],
             "selectedBefore": [
                 "The ",
@@ -415,19 +415,19 @@
             ],
             "selectedAfter": [
                 " is the currently selected one, about which you may read more in the description.",
-                " est celle actuellement sélectionnée: vous pouvez en savoir plus dans la description."
+                " est celle actuellement s\u00e9lectionn\u00e9e: vous pouvez en savoir plus dans la description."
             ],
             "contextual": [
-                "Stay clicked on an entity",
-                "Restez appuyé sur une entité"
+                "Stay clicked",
+                "Restez appuy\u00e9"
             ],
             "contextualAfter": [
-                " to show more information about it.",
-                " pour afficher plus d'informations."
+                " on an entity to show more information about it.",
+                " sur une entit\u00e9 pour afficher plus d'informations."
             ],
             "represented": [
                 "highlighted entity",
-                "entité entourée"
+                "entit\u00e9 entour\u00e9e"
             ],
             "representedBefore": [
                 "The ",
@@ -435,7 +435,7 @@
             ],
             "representedAfter": [
                 " is the currently represented one: you are viewing its graph.",
-                " est celle qui est représentée: vous voyez actuellement son graphe."
+                " est celle qui est repr\u00e9sent\u00e9e: vous voyez actuellement son graphe."
             ]
         },
         "websiteButton": [
@@ -530,7 +530,7 @@
                 ],
                 "cg": [
                     "Selected Entity: (other than the Mapped Entity) you clicked on this entity, a Wikipedia extract about it is displayed in the description pannel",
-                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqué dessus, un extrait de sa page Wikip\u00e9dia s' affich\u00e9 dans l'onglet de description"
+                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqu\u00e9 dessus, un extrait de sa page Wikip\u00e9dia s' affich\u00e9 dans l'onglet de description"
                 ],
                 "boldLabel": [
                     "bold",
@@ -542,7 +542,7 @@
                 ],
                 "title": [
                     "Legend",
-                    "Légende"
+                    "L\u00e9gende"
                 ]
             }
         },
@@ -565,7 +565,7 @@
             ],
             "isExtract": [
                 "(Extract from Wikipedia)",
-                "(Extrait de Wikipédia)"
+                "(Extrait de Wikip\u00e9dia)"
             ]
         },
         "issue": {

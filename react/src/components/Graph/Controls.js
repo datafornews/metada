@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
-
+import { colors } from '../../theme/metadaTheme';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+}
 
 const styles = theme => (
     {
@@ -41,12 +47,6 @@ const styles = theme => (
         }
     }
 );
-
-const colors = {
-    m: '#3f51b5',
-    c: 'rgb(187, 45, 45)',
-    i: 'rgb(1, 41, 71)'
-}
 
 class Controls extends Component {
 
@@ -100,13 +100,13 @@ class Controls extends Component {
     render() {
         const selectedIsRepresented = parseInt(this.props.infoBox.data, 10) === parseInt(this.props.match.params.entityId, 10);
         const entity = this.props.data.entities.ids[this.props.infoBox.data];
-        const { classes, fullScreen } = this.props
+        const { classes } = this.props
         return (
             <div className={classes.container} style={{ marginTop: this.props.clientType === 'mobile' ? 56 : 8 }}>
                 <div className={classes.wrapper}>
 
                     <div className={classes.entity} style={{
-                        color: selectedIsRepresented ? colors[entity.category] : 'green'
+                        color: selectedIsRepresented ? colors[entity.category] : colors.accent
                     }}>
                         {entity && entity.name}
                     </div>
@@ -118,6 +118,7 @@ class Controls extends Component {
                 <Dialog
                     open={this.state.doubleClickHelp || this.state.longClickHelp}
                     onClose={this.handleClose}
+                    TransitionComponent={Transition}
                 >
                     <DialogTitle>{"Did you know?"}</DialogTitle>
                     <DialogContent>

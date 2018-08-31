@@ -1,56 +1,77 @@
 import React from 'react';
-import Menu from '@material-ui/core/Menu';
+
 import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
-import MenuIcon from '@material-ui/icons/Menu';
+import Collapse from '@material-ui/core/Collapse';
+
 import MenuList from '@material-ui/core/MenuList';
-import IconButton from '@material-ui/core/IconButton';
+
 import { withStyles } from '@material-ui/core/styles';
-import HomeIcon from 'react-icons/lib/ti/home-outline';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import SettingsIcon from 'react-icons/lib/go/settings';
-import ContactIcon from 'react-icons/lib/go/mail';
-import AboutIcon from 'react-icons/lib/go/organization';
-import ExtensionIcon from 'react-icons/lib/go/package';
-import StatsIcon from 'react-icons/lib/fa/bar-chart';
+import Logo from './Logo'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+
+import HomeIcon from 'react-icons/lib/md/home';
+import ContactIcon from 'react-icons/lib/md/email';
+import ExtensionIcon from '@material-ui/icons/SaveAltTwoTone';
+import StatsIcon from 'react-icons/lib/md/insert-chart';
+import SettingsIcon from 'react-icons/lib/md/settings';
+import AboutIcon from 'react-icons/lib/md/people';
 
 const styles = theme => ({
     menuItem: {
         '&:focus': {
             backgroundColor: theme.palette.primary.main,
-            '& $primary, & $icon': {
-                color: theme.palette.common.white,
-            },
+            // '& $primary, & $icon': {
+            //     color: theme.palette.common.white,
+            // },
             outline: "none"
         },
     },
-    primary: {},
     icon: {
         height: 30,
-        width: 30
+        width: 30,
+        color: theme.palette.secondary.main
     },
     menuList: {
         outline: "none"
+    },
+    root: {
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: '0px 0px 4px 4px',
+        // width: 'calc(100vw - 10px)'
+    },
+    secondary: {
+        color: theme.palette.secondary.main
     }
 });
 
 
-class FadeMenu extends React.Component {
+class CollapseMenu extends React.Component {
     state = {
         anchorEl: null,
     };
 
     handleClick = event => {
-        this.setState({ anchorEl: event.currentTarget });
+        console.log('handleclick');
+        if (this.props.clientType !== 'mobile') {
+            this.goTo('/')()
+        } else {
+            this.setState({ anchorEl: event.currentTarget });
+        }
     };
 
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
 
+    open = event => {
+        this.setState({ anchorEl: event.currentTarget });
+    }
+
     goTo = to => () => {
-        console.log(to);
         this.props.history.push(to)
         this.handleClose()
     }
@@ -61,63 +82,71 @@ class FadeMenu extends React.Component {
 
         return (
             <span>
-                <IconButton
+                <Logo
                     color="inherit"
                     aria-haspopup="true"
                     onClick={this.handleClick}
                     aria-owns={anchorEl ? 'fade-menu' : null}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    id="fade-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={this.handleClose}
-                    TransitionComponent={Fade}
-                >
-                    <MenuList className={classes.menuList}>
-                        <MenuItem onClick={this.goTo('/')}>
-                            <ListItemIcon className={classes.icon}>
-                                <HomeIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Home" />
-                        </MenuItem>
-                        {this.props.clientType === "extension" && <MenuItem onClick={this.goTo('/stats')}>
-                            <ListItemIcon className={classes.icon}>
-                                <StatsIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Stats" />
-                        </MenuItem>}
-                        <MenuItem onClick={this.goTo('/about')}>
-                            <ListItemIcon className={classes.icon}>
-                                <AboutIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="About" />
-                        </MenuItem>
-                        {this.props.clientType !== "extension" && <MenuItem onClick={this.goTo('/extension')}>
-                            <ListItemIcon className={classes.icon}>
-                                <ExtensionIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Extension" />
-                        </MenuItem>}
-                        <MenuItem onClick={this.goTo('/contact')}>
-                            <ListItemIcon className={classes.icon}>
-                                <ContactIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Contact" />
-                        </MenuItem>
-                        <MenuItem onClick={this.goTo('/settings')}>
-                            <ListItemIcon className={classes.icon}>
-                                <SettingsIcon />
-                            </ListItemIcon>
-                            <ListItemText classes={{ primary: classes.primary }} inset primary="Settings" />
-                        </MenuItem>
-                    </MenuList>
-                </Menu>
+                    clientType={this.props.clientType}
+                    onMouseEnter={this.open}
+                />
+                <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal>
+                    {({ TransitionProps, placement }) => (
+                        <Collapse
+                            {...TransitionProps}
+                            id="menu-list-grow"
+                            timeout={{
+                                enter: 500
+                            }}
+                        >
+                            <Paper className={classes.root} elevation={0}>
+                                <ClickAwayListener onClickAway={this.handleClose}>
+                                    <MenuList className={classes.menuList} onMouseLeave={this.handleClose}>
+                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <HomeIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Home" />
+                                        </MenuItem>
+                                        {this.props.clientType === "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/stats')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <StatsIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Stats" />
+                                        </MenuItem>}
+                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/about')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <AboutIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="About" />
+                                        </MenuItem>
+                                        {this.props.clientType !== "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/extension')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <ExtensionIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Extension" />
+                                        </MenuItem>}
+                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/contact')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <ContactIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Contact" />
+                                        </MenuItem>
+                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/settings')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <SettingsIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Settings" />
+                                        </MenuItem>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Collapse>
+                    )}
+                </Popper>
             </span>
         );
     }
 }
 
-export default withStyles(styles)(FadeMenu);
+export default withStyles(styles)(CollapseMenu);
