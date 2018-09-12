@@ -33,6 +33,11 @@ At Chrome start up it may ask you whether or not to load this extension. Say yes
 
 6. To **build** the **extension** run `yarn extension` which will build the app and update the content of `metada/Extension` accordingly
 
+### V2 on the way
+
+To see the 2nd version currently under development, clone the repo and checkout the `dev` branch
+
+
 ## Metada
 
 #### Why
@@ -56,3 +61,9 @@ If you want to get involved, get in touch with me. This project is just starting
 #### Current State
 
 As of now, only the French Media are supported and the information is based on [this](https://www.monde-diplomatique.fr/cartes/PPA) work by *Le Monde Diplomatique*. It is but a prototype, not even an MVP and the database is static, included as a json-serialized file instead of the future server which is needed. I hope it changes soon!
+
+## Data
+
+The data is extracted from the map and a binding to https://github.com/mdiplo/Medias_francais is on the way. Additional data such as Wikipedia articles and websites are manually added. 
+
+The data is hosted in a PostgreSQL database (see the Backend repo) on heroku. The raw data is publicly available at https://oop-pro.herokuapp.com/public/data
