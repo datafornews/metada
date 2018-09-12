@@ -4,6 +4,20 @@ The browser (Chrome & Firefox) extension which shows you who owns the Media.
 
 For now, France only. Help wanted for more countries (front/back devs).
 
+## Contributing
+
+All help is welcome. To modify information about the graph, submit a pull request to https://github.com/mdiplo/Medias_francais or open an issue here.
+
+**Journalists** your help is welcome about the project's guidance and its spread.
+
+**Developpers** your help is MOST welcome to make the extension the best version of itself. 
+
+## Vision
+
+The core value of Metada is to bring users pieces of information about the media they read. Owenrship is only one of them: let's include public subsidies, number of journalists, audience etc.
+
+The core vision of Metada is to bring users data about their online behaviour. Not only about the media (other websites can be owned), not only about ownership (who is the journalist you read? his background, previous media etc.)
+
 ## How to install - Regular User
 
 ### Official stores
