@@ -1,8 +1,40 @@
 {
     "home": {
         "subtitle": [
-            "The Open MetaData Project: gathering metadata about our world.",
-            "The Open MetaData Project: rassembler les m\u00e9ta-donn\u00e9es de notre monde."
+            "Explore the Graph:",
+            "Explorez le Graphe:"
+        ],
+        "install": {
+            "disclaimer": [
+                "Metada is mainly a browser extension designed to remind you who owns the media you read as you browse the internet!",
+                "Metada est avant tout une extension pour navigateur qui vous rappelle qui possède les médias que vous consultez!"
+            ],
+            "installFirefox": [
+                "Install on Firefox",
+                "Installer sur Firefox"
+            ],
+            "installChrome": [
+                "Install on Chrome",
+                "Installer sur Chrome"
+            ]
+        },
+        "filterChips": {
+            "media": [
+                "Media",
+                "Média"
+            ],
+            "company": [
+                "Company",
+                "Intermédiaire"
+            ],
+            "owner": [
+                "Owner",
+                "Propriétaire"
+            ]
+        },
+        "chipTooltip": [
+            "See this graph",
+            "Voir ce graphe"
         ],
         "example": [
             "Let's start with the media. Pick one you want to learn about:",
@@ -120,7 +152,13 @@
                 "Comment \u00e7a marche?"
             ]
         },
-        "tabs": {
+        "contribute": {
+            "title": [
+                "Contribute",
+                "Contribuer"
+            ]
+        },
+        "menu": {
             "about": [
                 "About",
                 "\u00c0 propos"
@@ -152,6 +190,14 @@
             "login": [
                 "Log in",
                 "S'inscrire"
+            ],
+            "home": [
+                "Home",
+                "Accueuil"
+            ],
+            "contribute": [
+                "Contribute",
+                "Contribuer"
             ]
         },
         "extensionPaperMd": [
@@ -293,7 +339,11 @@
                     "Propri\u00e9taire"
                 ]
             }
-        }
+        },
+        "title": [
+            "Who owns the media?",
+            "À qui appartiennent les Médias?"
+        ]
     },
     "login": {
         "username": {
@@ -450,90 +500,14 @@
             "See this Graph",
             "Voir ce Graphe"
         ],
-        "sideButtons": {
-            "goToGraph": [
-                "See @@'s graph",
-                "Voir le graphe de @@ "
-            ],
-            "openDescription": [
-                "See @@'s description",
-                "Voir la descrition de @@ "
-            ],
-            "homeTooltip": [
-                "Go home",
-                "Retour \u00e0 l'Accueil"
-            ],
-            "legendTooltip": [
-                "Hide this legend in the Settings",
-                "D\u00e9sactivez cette l\u00e9gende dans vos Param\u00e8tres"
-            ],
-            "issueTooltip": [
-                "A piece of information is wrong ?",
-                "Une information est fausse?"
-            ],
-            "shiftTooltip": [
-                "Want to zoom in or out?",
-                "(D\u00e9-)Zoomez sur le Graphe!"
-            ],
-            "searchTooltip": [
-                "Search the Graph",
-                "Rechercher une entit\u00e9"
-            ],
-            "searchTooltipDisabled": [
-                "Search: use the Search Bar at the top!",
-                "Rechercher: utilisez la Barre de Recherche en haut!"
-            ],
-            "resetTooltip": [
-                "Reset Graph",
-                "Redessiner le graphe"
-            ],
-            "previousTooltip": [
-                "Previous Graph",
-                "Graphe pr\u00e9c\u00e9dent"
-            ],
-            "nextTooltip": [
-                "Next Graph",
-                "Graphe suivant"
-            ],
-            "hideTooltip": [
-                "Hide Menu",
-                "Fermer le menu"
-            ],
-            "menuTooltip": [
-                "Menu",
-                "Menu"
-            ],
-            "legend": {
-                "m": [
-                    "Media",
-                    "M\u00e9dia"
-                ],
-                "i": [
-                    "End Owner",
-                    "Propri\u00e9taire"
-                ],
-                "c": [
-                    "Company",
-                    "Entreprise"
-                ],
-                "cg": [
-                    "Selected Entity: (other than the Mapped Entity) you clicked on this entity, a Wikipedia extract about it is displayed in the description pannel",
-                    "Entit\u00e9 S\u00e9lectionn\u00e9e: (autre que l'Entit\u00e9 Repr\u00e9sent\u00e9e) vous avez cliqu\u00e9 dessus, un extrait de sa page Wikip\u00e9dia s' affich\u00e9 dans l'onglet de description"
-                ],
-                "boldLabel": [
-                    "bold",
-                    "en gras"
-                ],
-                "boldText": [
-                    "Mapped Entity: this is the entity which generated the current Graph you're seeing",
-                    "Entit\u00e9 Repr\u00e9sent\u00e9e: c'est l'entit\u00e9 qui a g\u00e9n\u00e9r\u00e9 le graphe courant que vous voyez"
-                ],
-                "title": [
-                    "Legend",
-                    "L\u00e9gende"
-                ]
-            }
-        },
+        "previousGraphTooltip": [
+            "Previous Graph",
+            "Graphe pr\u00e9c\u00e9dent"
+        ],
+        "nextGraphTooltip": [
+            "Next Graph",
+            "Graphe suivant"
+        ],
         "wiki": {
             "loading": [
                 "Looking for a Wikipedia extract...",

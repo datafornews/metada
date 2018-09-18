@@ -130,7 +130,7 @@ class EntityCard extends Component {
                         {entity.long_name}
                     </Typography>
                     <br />
-                    <StatTitle {...noClassProps} ></StatTitle>
+                    <StatTitle entity={entity} translate={this.props.translate} ></StatTitle>
                 </div>
 
                 <WikiButton entity={entity} />

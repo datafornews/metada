@@ -22,7 +22,7 @@ class HistoryPrevious extends Component {
 
     render() {
         const { classes, routerLocations } = this.props;
-        const title = 'Previous Graph'
+        const title = this.props.translate('graph.previousGraphTooltip');
         const disabled = routerLocations ? routerLocations.index === 0 : true;
         return disabled ?
             <div style={{ display: this.props.clientType === 'mobile' ? 'inline-block' : 'block' }}>

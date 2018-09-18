@@ -1,20 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import { colors } from '../../../../theme/metadaTheme';
 
 const styles = {
-    root: {
-        color: green[600],
-        '&$checked': {
-            color: green[500],
-        },
-    },
-    checked: {},
     size: {
         width: 40,
         height: 40,
@@ -81,37 +73,37 @@ class CheckboxLabels extends React.Component {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            color="secondary"
+                            style={{color: colors['m']}}
                             onChange={this.handleChange(1)}
-                            value="media"
+                            value={this.props.translate('home.filterChips.media')}
                             checked={categories.has('m')}
                         />
                     }
-                    label="Media"
+                    label={this.props.translate('home.filterChips.media')}
                 />
                 &nbsp;&nbsp;
                 <FormControlLabel
                     control={
                         <Checkbox
-                            color="secondary"
+                            style={{color: colors['c']}}
                             onChange={this.handleChange(3)}
-                            value="company"
+                            value={this.props.translate('home.filterChips.company')}
                             checked={categories.has('c')}
                         />
                     }
-                    label="Company"
+                    label={this.props.translate('home.filterChips.company')}
                 />
                 &nbsp;&nbsp;
                 <FormControlLabel
                     control={
                         <Checkbox
-                            color="secondary"
+                            style={{color: colors['i']}}
                             onChange={this.handleChange(7)}
-                            value="end owner"
+                            value={this.props.translate('home.filterChips.owner')}
                             checked={categories.has('i')}
                         />
                     }
-                    label="End Owner"
+                    label={this.props.translate('home.filterChips.owner')}
                 />
             </FormGroup>
         );

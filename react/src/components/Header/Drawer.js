@@ -162,6 +162,7 @@ class ClippedDrawer extends Component {
                                 clientType={this.props.clientType}
                                 show={this.props.show}
                                 isRehydrated={this.props.isRehydrated}
+                                translate={this.props.translate}
                             />
                         </div>
                         <Fade in={!isMobile || !this.props.show.drawer} timeout={500}>

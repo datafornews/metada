@@ -27,7 +27,6 @@ class SearchBar extends React.Component {
           this.props.updateEntityInfoBox(val.id);
 
           logGraph(val.id);
-          this.props.show.sideButtons && this.props.toggleSideButtons();
           this.props.history.push(`/graph/${val.id}`);
         }
       }

@@ -81,7 +81,7 @@ class Main extends Component {
                         </div>
                     </Grid>}
                     {this.props.clientType !== "extension" && <Grid item xs={12} className={classes.shareGridItem} >
-                        <Install clientType={this.props.clientType} />
+                        <Install clientType={this.props.clientType} translate={this.props.translate}/>
                     </Grid>}
                 </Grid>
                 {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}

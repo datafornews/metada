@@ -74,6 +74,16 @@ export function toggleSettings(val = null) {
     };
 }
 
+export function toggleContribute(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_CONTRIBUTE',
+        val
+    };
+}
+
 export function toggleExtension(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;

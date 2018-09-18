@@ -60,6 +60,7 @@ const router = (
                         <Route exact path='/' component={Home}></Route>
                         <Route exact path='/s/:filter' component={Home}></Route>
                         <Route exact path='/extension' component={Home}></Route>
+                        <Route exact path='/contribute' component={Home}></Route>
                         <Route exact path='/settings' component={Home}></Route>
                         <Route exact path='/about' component={Home}></Route>
                         <Route exact path='/search' component={Home}></Route>

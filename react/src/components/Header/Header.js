@@ -16,6 +16,7 @@ class Header extends React.Component {
   }
 
   checkOrRedirect = (props) => {
+    return
     let redirect = true;
     const pathname = props.history.location.pathname;
     const match = this.props.match;

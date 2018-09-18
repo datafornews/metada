@@ -3,11 +3,7 @@ const defaultState = {
     dataIsAvailable: false,
     isRehydrated: false,
     show: {
-        howItWorks: true,
-        legend: true,
-        chips: true,
         help: false,
-        graphButtonBlink: true,
         doubleClickHelp: true,
         longClickHelp: true,
         navigationSnackbar: true

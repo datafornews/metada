@@ -30,10 +30,10 @@ class Title extends Component {
         return (
             <div>
                 <Typography color='primary' variant={this.state.width > 800 ? "display3" : "display2"} gutterBottom className={classes.title}>
-                    À qui appartiennent les Médias?
+                    {this.props.translate('home.title')}
                 </Typography>
                 <Typography variant={this.state.width > 800 ? "display2" : "display1"} gutterBottom className={classes.title}>
-                    Explorez le Graphe:
+                {this.props.translate('home.subtitle')}
                 </Typography>
             </div>
         )

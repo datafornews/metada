@@ -41,7 +41,7 @@ const styles = theme => ({
     }
 });
 
-class Share extends Component {
+class Install extends Component {
     render() {
         const { classes } = this.props;
 
@@ -50,7 +50,7 @@ class Share extends Component {
                 {this.props.clientType !== "extension" &&
                     <Grid item xs={12} md={5} style={{ marginBottom: 8 }}>
                         <Typography variant="subheading" component="div">
-                            Metada est avant tout une extension pour navigateur qui vous rappelle qui possède les médias que vous consultez!
+                            {this.props.translate('home.install.disclaimer')}
                         </Typography>
                     </Grid>}
 
@@ -63,36 +63,23 @@ class Share extends Component {
                             alignItems={'center'}
                             justify={'center'}
                         >
-                            <Grid item xs={7} sm={4}>
-                                <div className={classes.buttonDiv}>
-                                    <Button
-                                        style={{ color: colors.default, maxWidth: '170px' }}
-                                        classes={{ label: classes.label }}
-                                        variant='contained'
-                                        color="primary"
-                                        target="_blank"
-                                        href="https://bit.ly/metadaChrome"
-                                    >
-                                        Installer sur Chrome
-                                        <OpenInNew className={classes.icon} />
-                                    </Button>
-                                </div>
-                            </Grid>
-
-                            <Grid item xs={7} sm={4}>
-                                <div className={classes.buttonDiv}>
-                                    <Button
-                                        style={{ color: colors.default, maxWidth: '170px' }}
-                                        classes={{ label: classes.label }}
-                                        variant='contained'
-                                        color="primary"
-                                        target="_blank"
-                                        href="https://bit.ly/metadaFirefox">
-                                        Installer sur Firefox
-                                        <OpenInNew className={classes.icon} />
-                                    </Button>
-                                </div>
-                            </Grid>
+                            {["Chrome", "Firefox"].map((v, k) => {
+                                return <Grid item xs={7} sm={4} key={k}>
+                                    <div className={classes.buttonDiv}>
+                                        <Button
+                                            style={{ color: colors.default, maxWidth: '170px' }}
+                                            classes={{ label: classes.label }}
+                                            variant='contained'
+                                            color="primary"
+                                            target="_blank"
+                                            href={`https://bit.ly/metada${v}`}
+                                        >
+                                            {this.props.translate(`home.install.install${v}`)}
+                                            <OpenInNew className={classes.icon} />
+                                        </Button>
+                                    </div>
+                                </Grid>
+                            })}
                         </Grid>
                     </Grid>}
             </Grid>
@@ -100,4 +87,4 @@ class Share extends Component {
     }
 }
 
-export default withStyles(styles)(Share);
+export default withStyles(styles)(Install);

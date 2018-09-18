@@ -53,12 +53,13 @@ class Example extends Component {
     }
 
     checkForNewChip = () => {
-        var pageOffset = window.pageYOffset + window.innerHeight;
-        var chipOffset = document.getElementById('chips-div').getBoundingClientRect().bottom
+        const pageOffset = window.pageYOffset + window.innerHeight;
+        const chip = document.getElementById('chips-div')
+        const chipOffset = chip ? chip.getBoundingClientRect().bottom : null;
 
         // console.log(pageOffset, lastDivOffset, chipOffset);
 
-        if (pageOffset - chipOffset + 100 > 0) {
+        if (chipOffset && (pageOffset - chipOffset + 100 > 0)) {
             this.addChips()
             this.checkForNewChip();
         }
@@ -217,7 +218,7 @@ class Example extends Component {
     render() {
         const component = this;
         const { classes, ...noClassesProps } = this.props;
-        return this.props.show.chips ? (
+        return (
             <div className={classes.containerDiv} style={this.props.style}>
                 {/* <div style={style}>
                     {this.props.translate('home.example')}
@@ -240,8 +241,6 @@ class Example extends Component {
                 </div>
             </div>
         )
-            :
-            ''
     }
 }
 export default withStyles(styles)(Example);

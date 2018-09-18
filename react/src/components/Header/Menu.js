@@ -19,6 +19,7 @@ import ExtensionIcon from '@material-ui/icons/SaveAltTwoTone';
 import StatsIcon from 'react-icons/lib/md/insert-chart';
 import SettingsIcon from 'react-icons/lib/md/settings';
 import AboutIcon from 'react-icons/lib/md/people';
+import ContributeIcon from 'react-icons/lib/io/upload';
 
 import Share from './Share';
 
@@ -106,37 +107,43 @@ class CollapseMenu extends React.Component {
                                             <ListItemIcon className={classes.icon}>
                                                 <HomeIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Home" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.home')} />
                                         </MenuItem>
                                         {this.props.clientType === "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/stats')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <StatsIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Stats" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.stats')} />
                                         </MenuItem>}
                                         <MenuItem className={classes.menuItem} onClick={this.goTo('/about')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <AboutIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="About" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.about')} />
+                                        </MenuItem>
+                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/contribute')}>
+                                            <ListItemIcon className={classes.icon}>
+                                                <ContributeIcon />
+                                            </ListItemIcon>
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contribute')} />
                                         </MenuItem>
                                         {this.props.clientType !== "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/extension')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <ExtensionIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Extension" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.extension')} />
                                         </MenuItem>}
                                         <MenuItem className={classes.menuItem} onClick={this.goTo('/contact')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <ContactIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Contact" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contact')} />
                                         </MenuItem>
                                         <MenuItem className={classes.menuItem} onClick={this.goTo('/settings')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <SettingsIcon />
                                             </ListItemIcon>
-                                            <ListItemText classes={{ primary: classes.secondary }} inset primary="Settings" />
+                                            <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.settings')} />
                                         </MenuItem>
                                         <MenuItem className={classes.menuItem} >
                                             <Share clientType={this.props.clientType} />

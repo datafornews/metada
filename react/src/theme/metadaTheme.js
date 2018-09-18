@@ -4,8 +4,8 @@ import Building from "react-icons/lib/fa/building"
 import User from "react-icons/lib/fa/user"
 
 export const colors = {
-  m: '#3f51b5',
-  c: 'rgb(154, 182, 234)',
+  m: "rgb(32,94,196)",
+  c: 'rgb(144, 159, 199)',
   i: 'rgb(1, 41, 71)',
   primary: '#3f51b5',
   secondary: 'rgb(80, 80, 96)',

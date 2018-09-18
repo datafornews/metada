@@ -87,10 +87,6 @@ class CytoContainer extends React.Component {
     super(props);
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
 
-    if (this.props.clientType === 'mobile' && this.props.show.sideButtons) {
-      this.props.toggle('sideButtons');
-    }
-
     this.state = {
       update: false,
       focus: 0,

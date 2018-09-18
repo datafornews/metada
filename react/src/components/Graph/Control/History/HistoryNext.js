@@ -22,7 +22,7 @@ class HistoryNext extends Component {
 
     render() {
         const { classes, routerLocations } = this.props;
-        const title = "Next Graph";
+        const title = this.props.translate('graph.nextGraphTooltip');
         const disabled = routerLocations ? routerLocations.index === routerLocations.locations.length - 1 : true;
 
         return disabled ?

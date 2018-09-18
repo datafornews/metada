@@ -10,6 +10,11 @@ function show(state = false, action) {
                 ...state,
                 stats: action.val != null ? action.val : !state.stats
             };
+        case 'TOGGLE_CONTRIBUTE':
+            return {
+                ...state,
+                contribute: action.val != null ? action.val : !state.contribute
+            };
         case 'TOGGLE_SEARCH':
             return {
                 ...state,
@@ -39,12 +44,6 @@ function show(state = false, action) {
             return {
                 ...state,
                 focusSearchBar: action.val != null ? action.val : !state.focusSearchBar
-            }
-        case 'TOGGLE_SIDEBUTTONS':
-            return {
-                ...state,
-                sideButtons: action.val != null ? action.val : !state.sideButtons,
-                searchBar: false
             }
         case 'TOGGLE_LEGEND':
             return {

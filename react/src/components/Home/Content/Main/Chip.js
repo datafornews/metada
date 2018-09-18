@@ -206,7 +206,7 @@ class HomeCard extends Component {
                         onClick={this.goTo(entity.category)}
                     />
                     <CardContent className={classes.root}>
-                        <Tooltip placement='top' classes={{ tooltip: classes.tooltip }} title='Voir ce graph'>
+                        <Tooltip placement='top' classes={{ tooltip: classes.tooltip }} title={this.props.translate('home.chipTooltip')}>
                             <div onClick={this.handleClick} className={classes.pointer}>
                                 <Typography className={classes.title}>
                                     {entity.name}

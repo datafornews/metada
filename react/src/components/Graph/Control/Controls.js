@@ -42,6 +42,10 @@ const styles = theme => (
         wrapper: {
             display: 'inline-block',
             margin: 'auto'
+        },
+        text: {
+            color: theme.palette.secondary.main,
+            fontWeight: "bolder"
         }
     }
 );
@@ -112,8 +116,8 @@ class Controls extends Component {
                         {entity && <Typography variant="display1">{entity.name}</Typography>}
                     </div>
                     <div className={classes.buttons}>
-                        <Button color="primary" className={classes.desc} size="large" variant="outlined" onClick={this.seeDescription}>Description</Button>
-                        {selectedIsRepresented ? '' : <Button color="primary" className={classes.graph} size="large" variant="outlined" onClick={this.goTo}>Voir le Graph</Button>}
+                        <Button color="default" className={classes.desc} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>Description</Button>
+                        {selectedIsRepresented ? '' : <Button color="default" className={classes.graph} variant="text" classes={{ text: classes.text }} onClick={this.goTo}>Voir le Graph</Button>}
                     </div>
                 </div>
                 <Dialog

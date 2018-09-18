@@ -12,6 +12,7 @@ import Settings from './Content/Settings/Settings';
 import Extension from './Content/Extension/Extension';
 import Stats from './Content/Stats/Stats';
 import Main from './Content/Main/Main';
+import Contribute from './Content/Contribute/Contribute';
 
 import Drawer from '../Header/Drawer';
 
@@ -122,7 +123,7 @@ class Home extends React.Component {
     return (
       <Drawer {...this.props}>
         <Helmet>
-          <title>Metada - {this.props.translate('home.tabs.' + titleLoc)}</title>
+          <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
         </Helmet>
 
         <div style={{ margin: 'auto', marginTop: 8 }} ref='exampleDiv'>
@@ -135,6 +136,7 @@ class Home extends React.Component {
             <Settings {...this.props} />
             <Extension {...this.props} />
             <Stats {...this.props} />
+            <Contribute {...this.props} />
           </div>
         </div>
       </Drawer>
