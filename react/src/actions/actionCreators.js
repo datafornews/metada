@@ -45,3 +45,35 @@ export function reRenderGraph() {
     type: "UPDATE_RENDER_STATUS"
   }
 }
+
+export function updateRouterLocation(pathname) {
+  return {
+    type: "UPDATE_ROUTER_LOCATION",
+    payload: {
+      pathname
+    }
+  }
+}
+
+
+export function resetRouterLocation(pathname) {
+  return {
+    type: "RESET_ROUTER_LOCATION",
+    payload: {
+      pathname
+    }
+  }
+}
+
+
+export function goToPreviousGraph() {
+  return {
+    type: "GO_TO_PREVIOUS_GRAPH"
+  }
+}
+
+export function goToNextGraph() {
+  return {
+    type: "GO_TO_NEXT_GRAPH"
+  }
+}

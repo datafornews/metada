@@ -1,24 +1,19 @@
 import React from 'react';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import Select, { createFilter } from 'react-select';
 import logGraph from '../../utils/logGraph';
+import { withStyles } from '@material-ui/core/styles';
 
-const selectStyle = {
-  // borderWidth: '1px',
-  // borderRadius: '0px',
-  // zIndex: 999,
-  // margin: 'auto',
-  // marginBottom: '15px',
-  // fontSize: '0.8rem',
-  // width:'60%'
-};
 
-var searchBarDivStyleDefault = {
-  margin: 'auto',
-  // marginTop: '15px',
-  // textAlign: 'center',
-  // float: 'right'
-};
+const styles = theme => ({
+  container: {
+    width: '80%',
+    height: 'auto',
+    margin: 'auto'
+  }
+});
+
+
+
 
 class SearchBar extends React.Component {
 
@@ -39,47 +34,54 @@ class SearchBar extends React.Component {
     }
   }
 
-
-  // componentWillUpdate(nextProps, nextState) {
-  //   if (nextProps.focus !== this.props.focus && this.props.history.location.pathname.indexOf('graph') > -1) {
-  //     console.log('focus');
-  //     this.select.focus()
-  //   }
-  // }
-
-
   render() {
+    const { classes, controlStyle } = this.props;
 
-    let searchBarDivStyle = { ...searchBarDivStyleDefault };
-
-    const selectDivStyle = {
-      ...selectStyle
+    const colourStyles = {
+      control: styles => ({ ...styles, ...controlStyle }),
+      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return {
+          ...styles,
+          backgroundColor: isDisabled
+            ? null
+            : isSelected ? 'green' : isFocused ? 'rgba(50, 50, 50, 0.2)' : null,
+          color: isDisabled
+            ? '#ccc'
+            : isSelected
+              ? 'black'
+              : this.props.theme.palette.secondary.main,
+          cursor: isDisabled ? 'not-allowed' : 'default',
+        };
+      },
+      input: styles => ({ ...styles }),
+      placeholder: styles => ({ ...styles }),
+      singleValue: (styles, { data }) => ({ ...styles }),
     };
 
     return (
-      <div style={searchBarDivStyle}>
-        <div style={selectDivStyle}>
-          <Select
-            name="form-field-name"
-            value="one"
-            options={this.props.data.optionsData}
-            onChange={this.logChange}
-            ignoreCase
-            ignoreAccents
-            style={selectStyle}
-            menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)', zIndex: 1000 }}
-            placeholder={this.props.translate('search.searchPlaceholder')}
-            arrowRenderer={() => null}
-            autoBlur
-            clearable={false}
-            autoFocus={!this.props.preventAutofocus}
-            ref={(select) => { this.select = select; }}
-          />
-        </div>
-        {/* {!this.props.hideButton && <HideSearchBar {...this.props} />} */}
-      </div>
+
+      <Select
+        className={classes.container}
+        name="form-field-name"
+        value="one"
+        options={this.props.data.optionsData}
+        onChange={this.logChange}
+        filterOption={createFilter({
+          ignoreCase: true,
+          ignoreAccents: true,
+          trim: true,
+          matchFromStart: 'any'
+        })}
+        styles={colourStyles}
+        placeholder={this.props.translate('search.searchPlaceholder')}
+        arrowRenderer={() => this.props.arrowRenderer ? this.props.arrowRenderer : null}
+        autoBlur
+        clearable={false}
+        autoFocus={!this.props.preventAutofocus}
+        ref={(select) => { this.select = select; }}
+      />
     );
   }
 }
 
-export default SearchBar;
+export default withStyles(styles, { withTheme: true })(SearchBar);

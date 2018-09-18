@@ -12,7 +12,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     const component = this;
-    fetchData(component);
+    fetchData(component)
   }
 
   checkOrRedirect = (props) => {

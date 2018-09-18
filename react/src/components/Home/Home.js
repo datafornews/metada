@@ -10,9 +10,8 @@ import LearnAbout from './Content/LearnAbout/LearnAbout';
 import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
 import Extension from './Content/Extension/Extension';
-import Header from './Header/Header';
 import Stats from './Content/Stats/Stats';
-import Example from './Content/Example/Example';
+import Main from './Content/Main/Main';
 
 import Drawer from '../Header/Drawer';
 
@@ -44,53 +43,52 @@ class Home extends React.Component {
     wiki: null
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const component = this;
     if (this.props.clientType === 'extension') {
+      const _n = performance.now();
       window.browser.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
         if (tabs.length === 0) {
           console.log('tabs.length is 0')
           return;
         }
+        console.log('getting tab', '(s)', (performance.now() - _n) / 1000)
         var url = tabs[0].url;
         if (component.props.dataIsAvailable) {
+          const _p = performance.now();
           const entity = check_website(component.props.data, url);
+          console.log('check_website', '(s)', (performance.now() - _p) / 1000)
           if (entity && !sessionStorage['default_' + entity.id]) {
             // an entity was found and it is the first time 
             // the Extension sees this entity for this session
             // (It is assumed that if the user re-clicks on the Extension
             // during the session they intend to access the whole Extension)
-            sessionStorage['default_' + entity.id] = 'true';
-            component.props.updateEntityInfoBox(entity.id);
-            component.props.displayEntity(entity.id);
+            const _a = performance.now();
             component.props.history.push('/graph/' + entity.id);
+            console.log('history.push', '(s)', (performance.now() - _a) / 1000)
+            const _z = performance.now();
+            sessionStorage['default_' + entity.id] = 'true';
+            console.log('setting default', '(s)', (performance.now() - _z) / 1000)
+            const _e = performance.now();
+            component.props.updateEntityInfoBox(entity.id);
+            console.log('update info', '(s)', (performance.now() - _e) / 1000)
+            const _t = performance.now();
+            component.props.displayEntity(entity.id);
+            console.log('display entity', '(s)', (performance.now() - _t) / 1000)
+            console.log('Checking tab', '(s)', (performance.now() - _n) / 1000)
           }
         }
       });
+      console.log('HOME', performance.now())
     }
-    if (this.props.location.pathname === '/') {
-      this.props.toggleSearchBar();
-      localStorage['reduxPersist:show'] = JSON.stringify({
-        'intent': false,
-        'contact': false,
-        'settings': false,
-        'extension': false,
-        'stats': false,
-        'searchBar': true
-      });
-    } else {
-      const location = this.props.location.pathname.split('/')[1];
-      if (location) {
-        this.props.toggle(location);
-        // localStorage['reduxPersist:show'] = JSON.stringify({
-        //   ...this.props.show,
-        //   location: true
-        // })
-      };
-    }
+
+    const location = this.props.location.pathname.split('/')[1];
+    if (location) {
+      this.props.toggle(location);
+    };
+
 
   }
-
 
   componentWillReceiveProps(nextProps) {
     const newLocation = nextProps.location.pathname.split('/')[1] || 'search';
@@ -119,18 +117,19 @@ class Home extends React.Component {
   render() {
 
     const location = this.props.location.pathname.split('/')[1];
+    const titleLoc = location ? location : 'search';
 
     return (
       <Drawer {...this.props}>
-        <div style={{ margin: 'auto' }} ref='exampleDiv'>
+        <Helmet>
+          <title>Metada - {this.props.translate('home.tabs.' + titleLoc)}</title>
+        </Helmet>
 
+        <div style={{ margin: 'auto', marginTop: 8 }} ref='exampleDiv'>
 
-          <Helmet>
-            <title>Metada - {this.props.translate('home.tabs.' + location)}</title>
-          </Helmet>
-          {["", "s"].indexOf(location) === -1 ? '' : <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />}
+          {["", "s"].indexOf(location) === -1 ? '' : <Main {...this.props} nb={4} />}
+
           <div style={homeContentDivStyle[this.props.clientType]}>
-            {["", "s"].indexOf(location) === -1 ? '' : <Example {...this.props} nb={4} />}
             <LearnAbout {...this.props} />
             <Contact {...this.props} />
             <Settings {...this.props} />

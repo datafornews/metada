@@ -2,16 +2,14 @@ import React from 'react';
 import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+
 import 'font-awesome/css/font-awesome.min.css';
 
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
-// import SideButtons from './SideButtons/SideButtons';
-// import SearchBar from '../Search/SearchBar';
-import ShiftToScroll from './SideButtons/ShiftToScroll';
 import SideCards from './SideCards';
+
 
 const styles = theme => ({
   cytoContainer: {
@@ -39,7 +37,49 @@ let defaultStyle = {
   justifyContent: 'center'
 };
 
+function edgeLength(cy, edge) {
+  const e = cy.$id('' + edge.data.id);
+  const p1 = e.source().position();
+  const p2 = e.target().position();
+  const length = Math.sqrt(
+    Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
+  )
+  return length
+}
 
+function findLevel(cy, cytoData, targetId, level, maxLength) {
+  const edges = cytoData.edges.filter(
+    edge => {
+      return (
+        edge.data.source === targetId || edge.data.target === targetId
+      ) && (
+          edgeLength(cy, edge) < maxLength
+        )
+    }
+  );
+  if (level === 1) {
+    return edges.map(
+      (edge, k) => {
+        return edge.data.source === targetId ? edge.data.target : edge.data.source
+      }
+    )
+  } else {
+    return [].concat.apply(
+      [],
+      edges.map(
+        (edge, k) => {
+          return findLevel(
+            cy,
+            cytoData,
+            edge.data.source === targetId ? edge.data.target : edge.data.source,
+            level - 1,
+            maxLength
+          )
+        }
+      )
+    );
+  }
+}
 
 
 class CytoContainer extends React.Component {
@@ -51,39 +91,12 @@ class CytoContainer extends React.Component {
       this.props.toggle('sideButtons');
     }
 
-    let scroll = false;
-    if (this.props.clientType === 'mobile') {
-      scroll = true;
-    }
-
     this.state = {
       update: false,
-      changeWiki: false,
       focus: 0,
-      scroll: scroll,
       lastTap: new Date().getTime(),
       longClickTimeout: null
     };
-  }
-
-  allowScroll = (event) => {
-    if (event.keyCode === 16) {
-      this.setState({
-        scroll: true
-      });
-      this.cy.userPanningEnabled(true);
-      this.cy.userZoomingEnabled(true);
-    }
-  }
-
-  preventScroll = (event) => {
-    if (event.keyCode === 16) {
-      this.setState({
-        scroll: false
-      })
-      this.cy.userPanningEnabled(false);
-      this.cy.userZoomingEnabled(false);
-    }
   }
 
   focusSearchBar = () => {
@@ -93,25 +106,8 @@ class CytoContainer extends React.Component {
   }
 
 
-  componentWillMount() {
-    const location = parseInt(this.props.match.params.entityId, 10);
-    if (this.props.clientType !== 'mobile') {
-      document.addEventListener("keydown", this.allowScroll, false);
-      document.addEventListener("keyup", this.preventScroll, false);
-    }
-    if (location !== this.props.currentDisplay) {
-      this.props.displayEntity(location);
-      this.props.updateEntityInfoBox(location);
-    }
-  }
-
   componentWillUnmount() {
-    if (this.props.clientType !== 'mobile') {
-      document.removeEventListener("keydown", this.allowScroll, false);
-      document.removeEventListener("keyup", this.preventScroll, false);
-    }
     clearTimeout(this.state.longClickTimeout);
-    // this.props.show.help && this.props.stopHelp();
   }
 
 
@@ -145,27 +141,48 @@ class CytoContainer extends React.Component {
     var cyElement = document.getElementById('cy');
     const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.data));
     cy.ready(() => {
-      cy.elements('node[category != "s"]').on(
+      cy.on(
         'tap',
         (event) => {
+          if (event.target.isNode) {
+            if (event.target.data()['category'] === 's') {
+              return
+            }
+          } else if (!event.target.isEdge) {
+            const now = new Date().getTime();
+            var timesince = now - this.state.lastTap;
+            if ((timesince < 400) && (timesince > 0)) {
+              // double tap
+              cy.fit();
+            }
+            this.setState({
+              lastTap: new Date().getTime()
+            })
+            return
+          }
 
-          // if (!this.props.show.drawer) {
-          //   container.props.toggleDrawer();
-          // }
+          if (event.target.isEdge && event.target.isEdge()) {
+            console.log('event.target :', event.target);
+            console.log('edge length: ',edgeLength(cy,
+            {
+              data: event.target.data()
+            }))
+            return
+          }
+
           const now = new Date().getTime();
           var timesince = now - this.state.lastTap;
           if ((timesince < 400) && (timesince > 0)) {
             // double tap
-            this.props.history.push(`/graph/${event.target.id()}`);
+            const newLoc = `/graph/${event.target.id()}`;
+            this.props.updateRouterLocation(newLoc);
+            this.props.history.push(newLoc);
             this.props.toggleDoubleClickHelp(false);
             document.body.style.cursor = 'default';
             this.renderCytoscapeElement();
 
           } else {
             // too much time to be a doubletap
-            this.setState({
-              changeWiki: true
-            });
             container.props.updateEntityInfoBox(event.target.id());
           }
 
@@ -177,6 +194,15 @@ class CytoContainer extends React.Component {
         clearTimeout(this.state.longClickTimeout);
         return false;
       }).on('tapstart', (event) => {
+
+        if (!event.target.isEdge || !event.target.isNode) {
+          return
+        }
+
+        if (event.target.isEdge()) {
+          return
+        }
+
         this.setState({
           longClickTimeout: setTimeout(() => {
             container.props.updateEntityInfoBox(event.target.id());
@@ -200,7 +226,6 @@ class CytoContainer extends React.Component {
       }
 
     });
-    cy.userZoomingEnabled(this.state.scroll);
     cy.on('mouseover', 'node', function (evt) {
       document.body.style.cursor = 'pointer';
     });
@@ -212,13 +237,25 @@ class CytoContainer extends React.Component {
       this.props.toggleDrawer(false);
       this.props.updateShareInfoBox(data);
     })
-    cy.fit();
-    if (this.props.clientType === 'mobile') {
-      cy.panningEnabled(true);
-      cy.userPanningEnabled(true);
-      cy.userZoomingEnabled(true);
-      cy.zoomingEnabled(true);
+
+    if (cytoData.nodes.length > 10) {
+      const idsToFit = findLevel(cy, cytoData, id, 2, 250).map(
+        (v, k) => {
+          return '#' + v
+        }
+      ).join(', ');
+      // console.log('idsToFit :', idsToFit);
+      cy.fit(idsToFit);
+    } else {
+      cy.fit()
     }
+
+
+    cy.panningEnabled(true);
+    cy.userPanningEnabled(true);
+    cy.userZoomingEnabled(true);
+    cy.zoomingEnabled(true);
+
     this.cy = cy;
   }
 
@@ -227,6 +264,15 @@ class CytoContainer extends React.Component {
       update: true
     });
     this.renderCytoscapeElement()
+
+    const location = parseInt(this.props.match.params.entityId, 10);
+
+    if (location !== this.props.currentDisplay) {
+      this.props.displayEntity(location);
+      this.props.updateEntityInfoBox(location);
+    }
+    console.log('CYTOCONTAINER', performance.now())
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -260,22 +306,14 @@ class CytoContainer extends React.Component {
 
     const { classes, ...noClassProps } = this.props;
 
-    const pad = this.props.show.help && this.props.clientType !== "mobile";
-
     return (
       <div>
-        <div id="cytoContainer" className={classNames(classes.cytoContainer, pad && classes.pad)}>
+        <div id="cytoContainer" className={classes.cytoContainer}>
           <Helmet>
             <title>Metada - {entity.name}</title>
           </Helmet>
           <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
           </div>
-          {this.props.clientType !== 'mobile' && <ShiftToScroll translate={this.props.translate} />}
-          {/* <SideButtons
-            {...noClassProps}
-            focusSearchBar={this.focusSearchBar}
-            reRenderGraph={this.renderCytoscapeElement}
-          /> */}
         </div>
         <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
       </div>

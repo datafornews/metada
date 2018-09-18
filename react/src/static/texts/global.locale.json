@@ -265,13 +265,17 @@
                 "Rows per page:",
                 "Lignes par page:"
             ],
+            "statsTitle": [
+                "Your stats",
+                "Vos statistiques"
+            ],
             "ownersTitle": [
-                "Statistics: end owners of your past media readings",
-                "Statistiques: propri\u00e9taires des m\u00e9dias que vous consultez"
+                "End owners of your past media readings",
+                "Propri\u00e9taires des m\u00e9dias que vous consultez"
             ],
             "entitesTitle": [
-                "Statistics: the media you read",
-                "Statistiques: quels m\u00e9dias lisez vous?"
+                "The media you read",
+                "Médias que vous consultez"
             ]
         },
         "cards": {
@@ -349,8 +353,8 @@
     },
     "search": {
         "searchPlaceholder": [
-            "Search for Entity...",
-            "Rechercher une entit\u00e9..."
+            "Search a media",
+            "Chercher un média"
         ]
     },
     "graph": {
@@ -368,7 +372,7 @@
                     "There are 3 types of entities:",
                     "Il y a 3 sortes d'entit\u00e9es:"
                 ]
-            },  
+            },
             "navigation": [
                 "Explore the graph",
                 "Explorer le graphe"
@@ -498,22 +502,6 @@
             "menuTooltip": [
                 "Menu",
                 "Menu"
-            ],
-            "shift": [
-                "Press ",
-                "Appuyez sur "
-            ],
-            "shift2": [
-                " (shift)",
-                " (majuscule)"
-            ],
-            "shift3": [
-                "to move the graph around",
-                "pour d\u00e9placer le graphe"
-            ],
-            "shift4": [
-                "and to zoom in and out",
-                "et pour (d\u00e9)-zoomer"
             ],
             "legend": {
                 "m": [

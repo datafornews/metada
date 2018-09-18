@@ -2,20 +2,29 @@ import React, { Component } from 'react'
 import LogoIcon from "react-icons/lib/go/puzzle"
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+
 
 const styles = theme => ({
     root: {
         "&:hover": {
             'cursor': 'pointer',
         },
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.secondary.main,
         display: 'inline-block',
-        marginLeft: 32,
         textAlign: 'center'
     },
     primary: {
-        color: theme.palette.secondary.main,
+        color: theme.palette.default,
         textTransform: 'uppercase'
+    },
+    moveLeft: {
+        marginLeft: -22,
+        transition: "all 0.2s ease-in-out",
+    },
+    normal: {
+        marginLeft: 32,
+        transition: "all 0.2s ease-in-out",
     }
 });
 
@@ -28,12 +37,15 @@ class Logo extends Component {
         const width = isMobile ? 'inherit' : 180 - 2 * padding;
         const marginLeft = isMobile ? 4 : 8;
         const fontSize = isMobile ? "0.6rem" : '1rem';
-        const paperMargin = isMobile ? 12 : 32;
+        let paperStyle = { padding, width }
+        if (isMobile) {
+            paperStyle.marginLeft = 12;
+        }
         return (
             <Paper
-                className={classes.root}
+                className={classNames(classes.root, this.props.isRehydrated && this.props.show.drawer ? classes.moveLeft : classes.normal)}
                 onClick={this.props.onClick}
-                style={{ padding, width, marginLeft: paperMargin }}
+                style={paperStyle}
                 onMouseEnter={this.props.onMouseEnter}
                 onMouseLeave={this.props.onMouseLeave}
                 elevation={0}

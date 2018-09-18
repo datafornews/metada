@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 
-import HelpCard from './HelpCard';
+import HelpCard from './Help/HelpCard';
 // import zIndex from '@material-ui/core/styles/zIndex';
 
 const styles = theme => ({

@@ -57,6 +57,7 @@ export default class GraphButton extends Component {
     render() {
 
         const name = this.props.name ? <span><br /> {'(' + this.props.name + ')'}</span> : ""
+        
 
         return (
             <Button

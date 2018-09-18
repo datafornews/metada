@@ -16,8 +16,9 @@ const styles = theme => ({
         width: '100%',
     },
     heading: {
-        fontSize: theme.typography.pxToRem(15),
+        fontSize: theme.typography.pxToRem(20),
         fontWeight: theme.typography.fontWeightRegular,
+        color: theme.palette.secondary.main
     },
     summary: {
         margin: '8px 0px 0px 0px!important',
@@ -192,8 +193,8 @@ export default ContactPaper;
 class ExpansionStats extends Component {
 
     state = {
-        entitiesExpanded: true,
-        ownersExpanded: true
+        entitiesExpanded: false,
+        ownersExpanded: false
     }
 
     toggleEntities = () => {
@@ -212,6 +213,9 @@ class ExpansionStats extends Component {
 
         return (
             <div className={classes.root}>
+                <Typography variant="display1" color="primary">
+                    {this.props.translate('home.stats.statsTitle')}
+                </Typography>
                 <ExpansionPanel
                     className={classes.expansionPannel}
                     expanded={this.state.entitiesExpanded}
@@ -252,7 +256,7 @@ class ExpansionStats extends Component {
                     }>
                         <Typography className={classes.heading}>{this.props.translate('home.stats.ownersTitle')}</Typography>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails style={{ justifyContent: "center" , padding: 0 }}>
+                    <ExpansionPanelDetails style={{ justifyContent: "center", padding: 0 }}>
                         <StatsTable
                             data={this.props.data}
                             history={this.props.history}

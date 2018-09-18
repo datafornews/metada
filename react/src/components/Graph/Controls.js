@@ -7,7 +7,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
+import HistoryNavigation from "./History/HistoryNavigation"
 
 
 function Transition(props) {
@@ -17,12 +19,8 @@ function Transition(props) {
 const styles = theme => (
     {
         container: {
-            // backgroundColor: 'white',
             display: 'flex',
-            // position: 'absolute',
-            // left: "50%",
-            // transform: "translate(-50%, 0)",
-            // zIndex: 100
+            position: 'relative'
         },
         buttons: {
             display: "flex",
@@ -94,21 +92,24 @@ class Controls extends Component {
     }
 
     move = () => {
-        this.props.history.push(`/graph/${this.props.data.entities.ids[this.props.infoBox.data].id}`)
+        const newLoc = `/graph/${this.props.data.entities.ids[this.props.infoBox.data].id}`;
+        this.props.history.push(newLoc);
+        this.props.updateRouterLocation(newLoc);
     }
 
     render() {
         const selectedIsRepresented = parseInt(this.props.infoBox.data, 10) === parseInt(this.props.match.params.entityId, 10);
         const entity = this.props.data.entities.ids[this.props.infoBox.data];
-        const { classes } = this.props
+        const { classes, ...noClassProps } = this.props
         return (
-            <div className={classes.container} style={{ marginTop: this.props.clientType === 'mobile' ? 56 : 8 }}>
+            <div className={classes.container} style={{ marginTop: this.props.clientType === 'mobile' ? 40 : 8 }}>
+                <HistoryNavigation {...noClassProps} />
                 <div className={classes.wrapper}>
 
                     <div className={classes.entity} style={{
                         color: selectedIsRepresented ? colors[entity.category] : colors.accent
                     }}>
-                        {entity && entity.name}
+                        {entity && <Typography variant="display1">{entity.name}</Typography>}
                     </div>
                     <div className={classes.buttons}>
                         <Button color="primary" className={classes.desc} size="large" variant="outlined" onClick={this.seeDescription}>Description</Button>

@@ -22,6 +22,8 @@ import DefaultRoute from './components/DefaultRoute';
 import './style/index.css';
 
 
+console.log('INDEX', performance.now())
+
 window.browser = (function () {
     return window.msBrowser ||
         window.browser ||
@@ -46,7 +48,6 @@ const styles = {
         ...defaultStyle
     }
 }
-
 
 const router = (
     <Provider store={store}>

@@ -1,4 +1,4 @@
-function fetchData(force) {
+async function fetchData(force) {
     // When updating this function, be sure to update its react counterpart
     localStorage.fetchingData = 'true';
     // whether or not to go fetch the data

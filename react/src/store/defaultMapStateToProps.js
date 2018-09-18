@@ -11,7 +11,8 @@ function mapStateToProps(state) {
     currentLanguage: getActiveLanguage(state.locale).code,
     clientType: state.clientType,
     userSignupForm: state.userSignupForm,
-    isRehydrated: state.isRehydrated
+    isRehydrated: state.isRehydrated,
+    routerLocations: state.routerLocations,
   };
 }
 

@@ -80,7 +80,7 @@ function checkImage(imageSrc, good, bad) {
 
 
 function noImage(component) {
-    console.log('noImage')
+    // console.log('noImage')
     return
 }
 

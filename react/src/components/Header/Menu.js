@@ -20,31 +20,29 @@ import StatsIcon from 'react-icons/lib/md/insert-chart';
 import SettingsIcon from 'react-icons/lib/md/settings';
 import AboutIcon from 'react-icons/lib/md/people';
 
+import Share from './Share';
+
 const styles = theme => ({
     menuItem: {
         '&:focus': {
-            backgroundColor: theme.palette.primary.main,
-            // '& $primary, & $icon': {
-            //     color: theme.palette.common.white,
-            // },
+            backgroundColor: theme.palette.secondary.main,
             outline: "none"
         },
     },
     icon: {
         height: 30,
         width: 30,
-        color: theme.palette.secondary.main
+        color: theme.palette.default
     },
     menuList: {
         outline: "none"
     },
     root: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.secondary.main,
         borderRadius: '0px 0px 4px 4px',
-        // width: 'calc(100vw - 10px)'
     },
     secondary: {
-        color: theme.palette.secondary.main
+        color: theme.palette.default
     }
 });
 
@@ -89,6 +87,8 @@ class CollapseMenu extends React.Component {
                     aria-owns={anchorEl ? 'fade-menu' : null}
                     clientType={this.props.clientType}
                     onMouseEnter={this.open}
+                    show={this.props.show}
+                    isRehydrated={this.props.isRehydrated}
                 />
                 <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal>
                     {({ TransitionProps, placement }) => (
@@ -137,6 +137,9 @@ class CollapseMenu extends React.Component {
                                                 <SettingsIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary="Settings" />
+                                        </MenuItem>
+                                        <MenuItem className={classes.menuItem} >
+                                            <Share clientType={this.props.clientType} />
                                         </MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>

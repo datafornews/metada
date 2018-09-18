@@ -2,7 +2,7 @@ import Axios from 'axios';
 import formatData from './formatData';
 import formatUpdateData from './formatUpdateData';
 
-function updateData(component) {
+async function updateData(component) {
     // When updating this function, be sure to update its background counterpart
 
     var ts2 = Math.round((new Date()).getTime() / 1000);

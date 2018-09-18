@@ -6,10 +6,9 @@ import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import Drawer from '../Header/Drawer';
 
 import CytoContainer from './CytoContainer';
-import Issue from './InfoBox/Issue';
+import Issue from './Issue';
 import Controls from './Controls'
 import Edge from './Edge'
-import Carousel from './Carousel';
 
 import Waiting from '../Waiting';
 
@@ -20,16 +19,23 @@ class _Graph extends React.Component {
     if (this.props.clientType === 'mobile' && this.props.show.help) {
       this.props.stopHelp();
     }
+    this.props.resetRouterLocation(this.props.history.location.pathname);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isRehydrated && !this.props.isRehydrated) {
+      nextProps.resetRouterLocation(nextProps.history.location.pathname);
+    }
   }
 
 
-  render() {
 
+  render() {
     return this.props.dataIsAvailable ?
       <Drawer {...this.props}>
         {this.props.infoBox.type === "entity" ? <Controls {...this.props} /> : <Edge {...this.props} />}
         <CytoContainer {...this.props} />
-        <Carousel {...this.props}></Carousel>
         <Issue
           translate={this.props.translate}
           clientType={this.props.clientType}

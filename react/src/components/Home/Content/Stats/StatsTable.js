@@ -110,6 +110,7 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         width: 200,
+        marginTop: 0
     }
 });
 
@@ -128,7 +129,7 @@ class BasicTable extends React.Component {
         this.state = {
             stats: [], // displayed stats
             data: [], // full stats
-            sort: 3,
+            sort: 1,
             asc: false,
             page: 0,
             rowsPerPage: 5,

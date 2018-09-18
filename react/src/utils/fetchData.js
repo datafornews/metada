@@ -4,7 +4,7 @@ import formatData from './formatData';
 // Use local json data or fetch from server
 var USE_LOCAL_ONLY = true;
 
-function fetchData(component) {
+async function fetchData(component) {
     // When updating this function, be sure to update its background counterpart
 
     // whether or not to go fetch the data

@@ -76,7 +76,11 @@ function show(state = false, action) {
                 ...state,
                 longClickHelp: action.val != null ? action.val : !state.longClickHelp
             };
-        case 'navigationSnackbar':
+        case 'TOGGLE_NAVIGATION_SNACKBAR':
+            console.log('returning ', {
+                ...state,
+                navigationSnackbar: action.val != null ? action.val : !state.navigationSnackbar
+            });
             return {
                 ...state,
                 navigationSnackbar: action.val != null ? action.val : !state.navigationSnackbar

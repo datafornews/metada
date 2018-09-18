@@ -157,8 +157,11 @@ export function toggleNavigationSnackbar(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;
     }
+    if (val === false){
+        localStorage['navigationSnackbar'] = '1'
+    }
     return {
-        type: 'navigationSnackbar',
+        type: 'TOGGLE_NAVIGATION_SNACKBAR',
         val
     };
 }
@@ -182,11 +185,5 @@ export function stopHelp() {
 export function startHelp() {
     return {
         type: 'START_HELP'
-    };
-}
-
-export function closeAll() {
-    return {
-        type: 'CLOSE_ALL'
     };
 }

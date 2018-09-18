@@ -40,6 +40,8 @@ const styles = theme => (
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.default
         },
         appBarShift: {
             width: `calc(100% - ${drawerWidth}px)`,
@@ -93,7 +95,7 @@ const styles = theme => (
             ...theme.mixins.toolbar,
         },
         noPadding: {
-            padding: `${theme.spacing.unit * 3 * 2}px 0px 0px 0px`
+            padding: `${theme.spacing.unit * 3 * 3}px 0px 0px 0px`
         },
         mobileToolbar: {
             textAlign: "center"
@@ -138,8 +140,10 @@ class ClippedDrawer extends Component {
         const widths = isMobile ? this.props.show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
         const paddingLeft = isMobile ? 0 : 16;
         const paddingRight = isMobile ? 0 : 16;
+        const isGraph = this.props.history.location.pathname.startsWith("/graph/");
 
-        const drawerContent = !this.props.history.location.pathname.startsWith("/graph/") ? "" : <DrawerContent {...noClassProps} />
+
+        const drawerContent = !isGraph ? "" : <DrawerContent {...noClassProps} />
         return (
             <div className={classes.root}>
                 <AppBar className={classNames(
@@ -153,13 +157,18 @@ class ClippedDrawer extends Component {
                     position="absolute">
                     <Toolbar style={{ paddingLeft, paddingRight }}>
                         <div style={{ width: widths[0], margin: "auto" }} className={isMobile ? classes.mobileToolbar : undefined}>
-                            <Menu history={this.props.history} clientType={this.props.clientType} />
+                            <Menu
+                                history={this.props.history}
+                                clientType={this.props.clientType}
+                                show={this.props.show}
+                                isRehydrated={this.props.isRehydrated}
+                            />
                         </div>
                         <Fade in={!isMobile || !this.props.show.drawer} timeout={500}>
                             <div style={{ width: widths[1], margin: "auto" }}>
 
 
-                                <SearchBar
+                                {this.props.dataIsAvailable && <SearchBar
                                     data={this.props.data}
                                     toggleAbout={this.props.toggleAbout}
                                     show={this.props.show}
@@ -168,7 +177,14 @@ class ClippedDrawer extends Component {
                                     translate={this.props.translate}
                                     preventAutofocus={this.props.preventAutofocus}
                                     updateEntityInfoBox={this.props.updateEntityInfoBox}
-                                />
+                                    selectStyle={{
+                                        minHeight: 60,
+                                        margin: 'auto',
+                                        fontSize: 25,
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                />}
                             </div>
                         </Fade>
 
@@ -206,7 +222,9 @@ class ClippedDrawer extends Component {
                         [classes["contentShift-right"]]: this.props.show.drawer,
                     },
                     isMobile && classes.noPadding
-                )}>
+                )}
+                    style={{ overflow: isGraph ? 'hidden' : 'scroll' }}
+                >
                     {this.props.children}
                 </main>
 
