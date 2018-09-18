@@ -64,6 +64,23 @@ const styles = theme => ({
     },
     click: {
         'color': 'green'
+    },
+
+    divContainer: {
+        position: "absolute",
+        top: theme.spacing.unit * 3 * 3,
+        right: 32,
+        pointerEvents: "none",
+        maxWidth: "70%",
+        zIndex: 200
+    },
+    mobileDivContainer: {
+        position: "absolute",
+        top: theme.spacing.unit * 3 * 5,
+        left: "50%",
+        transform: "translate(-50%)",
+        width: "85%",
+        zIndex: 200
     }
 });
 
@@ -160,60 +177,62 @@ class HelpCard extends Component {
         const steps = getSteps();
         const { activeStep } = this.state;
         return (
-            <div className={classes.container}>
-                <Dialog
-                    className={classes.help}
-                    open={open}
-                    TransitionComponent={Transition}
-                    fullScreen={window.innerWidth < 650}
-                >
-                    <ClickAwayListener classeName={classes.click} onClickAway={this.close}>
-                        <div>
-                            <DialogContent style={{ paddingBottom: 0, minHeight: 320 }}>
+            <div className={this.props.clientType === "mobile" ? classes.mobileDivContainer : classes.divContainer}>
+                <div className={classes.container}>
+                    <Dialog
+                        className={classes.help}
+                        open={open}
+                        TransitionComponent={Transition}
+                        fullScreen={window.innerWidth < 650}
+                    >
+                        <ClickAwayListener classeName={classes.click} onClickAway={this.close}>
+                            <div>
+                                <DialogContent style={{ paddingBottom: 0, minHeight: 320 }}>
 
-                                <Typography className={classes.title} color="textSecondary">
-                                    {this.props.translate('graph.helpCard.title')}
-                                </Typography>
+                                    <Typography className={classes.title} color="textSecondary">
+                                        {this.props.translate('graph.helpCard.title')}
+                                    </Typography>
 
-                                {activeStep === 0 ?
-                                    < NavigationHelp translate={this.props.translate} />
-                                    :
-                                    <LegendHelp translate={this.props.translate} />
-                                }
+                                    {activeStep === 0 ?
+                                        < NavigationHelp translate={this.props.translate} />
+                                        :
+                                        <LegendHelp translate={this.props.translate} />
+                                    }
 
 
-                            </DialogContent>
-                            <DialogActions className={classes.actions}>
-                                <div className={classes.root}>
-                                    <Stepper alternativeLabel nonLinear activeStep={activeStep}>
-                                        {steps.map((label, index) => {
-                                            return (
-                                                <Step key={label} >
-                                                    <StepButton
-                                                        onClick={this.handleStep(index)}
-                                                        completed={this.isStepComplete(index)}
-                                                    >
-                                                        {label}
-                                                    </StepButton>
-                                                </Step>
-                                            );
-                                        })}
-                                    </Stepper>
+                                </DialogContent>
+                                <DialogActions className={classes.actions}>
+                                    <div className={classes.root}>
+                                        <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+                                            {steps.map((label, index) => {
+                                                return (
+                                                    <Step key={label} >
+                                                        <StepButton
+                                                            onClick={this.handleStep(index)}
+                                                            completed={this.isStepComplete(index)}
+                                                        >
+                                                            {label}
+                                                        </StepButton>
+                                                    </Step>
+                                                );
+                                            })}
+                                        </Stepper>
 
-                                    <div style={{ minHeight: 40 }}>
-                                        {activeStep === 1 ?
-                                            <Button variant='contained' color="primary" onClick={this.close} size="large">OK</Button>
-                                            :
-                                            <Button variant='contained' color="primary" onClick={this.handleStep(1)} size="large">></Button>
-                                        }
+                                        <div style={{ minHeight: 40 }}>
+                                            {activeStep === 1 ?
+                                                <Button variant='contained' color="primary" onClick={this.close} size="large">OK</Button>
+                                                :
+                                                <Button variant='contained' color="primary" onClick={this.handleStep(1)} size="large">></Button>
+                                            }
+                                        </div>
+
+
                                     </div>
-
-
-                                </div>
-                            </DialogActions>
-                        </div>
-                    </ClickAwayListener>
-                </Dialog>
+                                </DialogActions>
+                            </div>
+                        </ClickAwayListener>
+                    </Dialog>
+                </div>
             </div>
         );
     }

@@ -21,12 +21,12 @@ class Share extends Component {
         const shareUrl = 'https://metada.org';
         const title = "Metada: une extension pour voir à qui appartiennent les médias!";
 
-        const { classes, ...noClassesProps } = this.props;
+        const { classes } = this.props;
         return (
             <div className={classes.container}>
                 {/* <span className={classes.spread}>Spread the love!</span> */}
                 <Tooltip placement="bottom" title="Share on Facebook">
-                    <div style={{display: this.props.clientType === "mobile" ? "block" : "inline-block"}} >
+                    <div style={{ display: this.props.clientType === "mobile" ? "block" : "inline-block" }} >
                         <FacebookShareButton
                             url={shareUrl}
                             quote={title}
@@ -39,7 +39,7 @@ class Share extends Component {
                     </div>
                 </Tooltip>
                 <Tooltip placement="bottom" title="Share on Twitter">
-                    <div style={{display: this.props.clientType === "mobile" ? "block" : "inline-block"}}>
+                    <div style={{ display: this.props.clientType === "mobile" ? "block" : "inline-block" }}>
                         <TwitterShareButton
                             url={shareUrl}
                             title={title}
@@ -65,7 +65,7 @@ class Share extends Component {
                     </div>
                 </Tooltip>}
                 <Tooltip placement="bottom" title="Share on Linkedin">
-                    <div style={{display: this.props.clientType === "mobile" ? "block" : "inline-block"}}>
+                    <div style={{ display: this.props.clientType === "mobile" ? "block" : "inline-block" }}>
                         <LinkedinShareButton
                             url={shareUrl}
                             title={title}

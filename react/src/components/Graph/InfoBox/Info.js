@@ -1,7 +1,8 @@
+
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import WikiCard from './WikiCard';
+import WikiCard from './WikiExtract';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
 import StatTitle from './StatTitle';
@@ -31,6 +32,9 @@ const styles = theme => ({
         marginBottom: 12,
         color: theme.palette.text.secondary,
     },
+    container: {
+        padding: theme.spacing.unit * 2
+    }
 });
 
 const wikiCardDivStyle = {
@@ -106,6 +110,8 @@ class EntityCard extends Component {
     render() {
 
         const { classes, ...noClassProps } = this.props;
+        const entityId = parseInt(this.props.match.params.entityId, 10);
+        const entity = this.props.data.entities.ids[entityId];
 
         const style = {
             marginTop: this.props.clientType === 'mobile' ? '0px' : '8px',
@@ -113,23 +119,22 @@ class EntityCard extends Component {
         };
 
         return (
-            <div style={style}>
+            <div style={style} className={classes.container}>
 
 
                 <div style={{ paddingRight: this.state.paddingRight }}>
                     <Typography type="headline" style={entityNameTypoStyle}>
-                        {this.props.entity.name}
+                        {entity.name}
                     </Typography>
                     <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
-                        {this.props.entity.long_name}
+                        {entity.long_name}
                     </Typography>
                     <br />
                     <StatTitle {...noClassProps} ></StatTitle>
                 </div>
 
-                <WikiButton {...noClassProps} />
-                <WebsiteButton {...noClassProps} />
-                {/* {this.props.graphButton} */}
+                <WikiButton entity={entity} />
+                <WebsiteButton entity={entity} translate={this.props.translate} />
 
                 <div style={wikiCardDivStyle}>
                     <WikiCard {...noClassProps} maxLength={maxLengths[this.props.clientType]} />

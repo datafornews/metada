@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
-import SideCards from './SideCards';
+import HelpCard from './Help/HelpCard';
 
 
 const styles = theme => ({
@@ -150,7 +150,7 @@ class CytoContainer extends React.Component {
             }
           } else if (!event.target.isEdge) {
             const now = new Date().getTime();
-            var timesince = now - this.state.lastTap;
+            let timesince = now - this.state.lastTap;
             if ((timesince < 400) && (timesince > 0)) {
               // double tap
               cy.fit();
@@ -171,7 +171,7 @@ class CytoContainer extends React.Component {
           }
 
           const now = new Date().getTime();
-          var timesince = now - this.state.lastTap;
+          let timesince = now - this.state.lastTap;
           if ((timesince < 400) && (timesince > 0)) {
             // double tap
             const newLoc = `/graph/${event.target.id()}`;
@@ -315,7 +315,7 @@ class CytoContainer extends React.Component {
           <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
           </div>
         </div>
-        <SideCards {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
+        <HelpCard {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
       </div>
 
     );

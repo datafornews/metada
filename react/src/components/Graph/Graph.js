@@ -7,8 +7,8 @@ import Drawer from '../Header/Drawer';
 
 import CytoContainer from './CytoContainer';
 import Issue from './Issue';
-import Controls from './Controls'
-import Edge from './Edge'
+import Controls from './Control/Controls'
+import Edge from './Control/Edge'
 
 import Waiting from '../Waiting';
 

@@ -43,7 +43,8 @@ class WikiCard extends Component {
 
     componentDidMount() {
         const entity = this.props.data.entities.ids[this.props.infoBox.data];
-        getWikiData(this, entity);
+
+        entity && getWikiData(this, entity);
     }
 
 
@@ -56,7 +57,7 @@ class WikiCard extends Component {
         });
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
 
-        getWikiData(this, entity);
+        entity && getWikiData(this, entity);
     }
 
     render() {

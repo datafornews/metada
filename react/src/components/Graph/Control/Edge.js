@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 
-import { colors } from '../../theme/metadaTheme';
+import { colors } from '../../../theme/metadaTheme';
 
 
 export default class Edge extends Component {

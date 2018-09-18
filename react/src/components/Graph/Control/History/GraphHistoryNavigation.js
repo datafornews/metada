@@ -10,7 +10,7 @@ const styles = theme => ({
     }
 });
 
-class HistoryNavigation extends Component {
+class GraphHistoryNavigation extends Component {
     render() {
         const { classes, ...noClassProps } = this.props;
         return (
@@ -22,4 +22,4 @@ class HistoryNavigation extends Component {
     }
 }
 
-export default withStyles(styles)(HistoryNavigation);
+export default withStyles(styles)(GraphHistoryNavigation);

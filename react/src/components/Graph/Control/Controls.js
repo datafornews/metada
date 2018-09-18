@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import { colors } from '../../theme/metadaTheme';
+import { colors } from '../../../theme/metadaTheme';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
-import HistoryNavigation from "./History/HistoryNavigation"
+import GraphHistoryNavigation from "./History/GraphHistoryNavigation"
 
 
 function Transition(props) {
@@ -103,7 +103,7 @@ class Controls extends Component {
         const { classes, ...noClassProps } = this.props
         return (
             <div className={classes.container} style={{ marginTop: this.props.clientType === 'mobile' ? 40 : 8 }}>
-                <HistoryNavigation {...noClassProps} />
+                <GraphHistoryNavigation {...noClassProps} />
                 <div className={classes.wrapper}>
 
                     <div className={classes.entity} style={{

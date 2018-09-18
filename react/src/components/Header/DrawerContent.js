@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import InfoBoxEntityUI from '../Graph/InfoBox/InfoBoxEntityUI';
+import Info from '../Graph/InfoBox/Info';
 
 // import DrawerBottom from './DrawerBottom';
 
@@ -29,17 +29,7 @@ class DrawerContent extends Component {
 
         return (
                 <div className={classes.container}>
-                    {/* <div className={classes.toolbar} /> */}
-
-                    <InfoBoxEntityUI {...noClassProps} />
-                    {/* <DrawerBottom 
-                    translate={this.props.translate}
-                    clientType={this.props.clientType}
-                    startHelp={this.props.startHelp}
-                    reRenderGraph={this.props.reRenderGraph}
-                    show={this.props.show}
-                    toggleIssue={this.props.toggleIssue}
-                    /> */}
+                    <Info {...noClassProps} />
                 </div>
         )
     }

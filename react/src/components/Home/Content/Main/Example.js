@@ -7,14 +7,10 @@ import FilterChips from './FilterChips';
 
 import { withStyles } from '@material-ui/core/styles';
 
-const style = {
-    fontSize: '0.9rem'
-}
-
 
 const styles = theme => ({
     label: { textTransform: 'capitalize' },
-    containerDiv:{
+    containerDiv: {
         marginTop: 48,
         display: 'block'
     }
@@ -169,7 +165,7 @@ class Example extends Component {
                 ids[entity.category].add(entity.id);
             }
         }
-        ['i', 'c', 'm'].map((v, i) => {
+        ['i', 'c', 'm'].forEach(v => {
             if (!categories.has(v)) {
                 ids[v] = new Set();
             }
