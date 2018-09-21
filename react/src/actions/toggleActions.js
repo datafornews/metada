@@ -167,7 +167,7 @@ export function toggleNavigationSnackbar(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;
     }
-    if (val === false){
+    if (val === false) {
         localStorage['navigationSnackbar'] = '1'
     }
     return {
@@ -176,12 +176,21 @@ export function toggleNavigationSnackbar(val = null) {
     };
 }
 
-export function toggleGraphButtonBlink(val = null) {
+export function toggleHelpSuggestion(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;
     }
     return {
-        type: 'TOGGLE_GRAPH_BUTTON_BLINK',
+        type: 'TOGGLE_HELP_SUGGESTION',
+        val
+    };
+}
+export function toggleHelp(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: Boolean(val) ? 'START_HELP' : 'STOP_HELP',
         val
     };
 }

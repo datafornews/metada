@@ -119,6 +119,11 @@ class CytoContainer extends React.Component {
     const id = this.props.match.params.entityId;
     const entity = data.entities.ids[id];
     let cytoData = getCytoData(data, entity);
+    if (cytoData.nodes.length === 0) {
+      localStorage.removeItem('cytoData_' + id);
+      cytoData = getCytoData(data, entity);
+    }
+
 
     const graphHistory = sessionStorage.getItem('graphHistory');
     if (!graphHistory) {
@@ -159,10 +164,10 @@ class CytoContainer extends React.Component {
 
           if (event.target.isEdge && event.target.isEdge()) {
             console.log('event.target :', event.target);
-            console.log('edge length: ',edgeLength(cy,
-            {
-              data: event.target.data()
-            }))
+            console.log('edge length: ', edgeLength(cy,
+              {
+                data: event.target.data()
+              }))
             return
           }
 
@@ -209,18 +214,15 @@ class CytoContainer extends React.Component {
         return false;
       });
       cy.elements('node').on(
-        'drag',
+        'tapdrag',
         (event) => {
-          console.log('drag');
-          event.preventDefault();
-          return false
+          clearTimeout(this.state.longClickTimeout);
         },
       );
       if (time) {
         console.timeEnd('      Render Cyto');
         console.timeEnd('Full Cyto');
       }
-
     });
     cy.on('mouseover', 'node', function (evt) {
       document.body.style.cursor = 'pointer';

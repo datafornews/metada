@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
-
+import PropTypes from 'prop-types';
 import { colors } from '../../../theme/metadaTheme';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => (
+    {
+        container: {
+            display: 'flex',
+            position: 'relative'
+        },
+    }
+);
 
-export default class Edge extends Component {
+class Edge extends Component {
     render() {
-        const target = this.props.data.entities.ids[parseInt(this.props.infoBox.data.target, 10)]
-        const source = this.props.data.entities.ids[parseInt(this.props.infoBox.data.source, 10)]
+
+        const { data, infoBox, clientType } = this.props;
+
+        const target = data.entities.ids[parseInt(infoBox.data.target, 10)]
+        const source = data.entities.ids[parseInt(infoBox.data.source, 10)]
 
         if (!target || !source) {
             return ''
@@ -18,7 +30,7 @@ export default class Edge extends Component {
                 justifyContent: 'center',
                 alignItems: 'center',
                 minHeight: 62,
-                marginTop: this.props.clientType === 'mobile' ? 56 : 8
+                marginTop: clientType === 'mobile' ? 56 : 8
             }}>
                 <Grid
                     container
@@ -29,14 +41,20 @@ export default class Edge extends Component {
                 >
                     <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
                     <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[source.category] }}>{source.name}</Grid>
-                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({this.props.infoBox.data.label})</span>--></Grid>
+                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({infoBox.data.label})</span>--></Grid>
                     <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[target.category] }}>{target.name}</Grid>
                     <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
                 </Grid>
             </div>
-            //     <div>
-            //         {source.name} &nbsp;--<span style={{ fontSize: "0.7rem" }}>({this.props.infoBox.data.label})</span>--> &nbsp;{target.name}
-            //     </div>
         )
     }
 }
+
+Edge.propTypes = {
+    classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    infoBox: PropTypes.object.isRequired,
+};
+
+
+export default withStyles(styles)(Edge);

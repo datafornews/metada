@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Example from './Example';
 import Install from './Install';
 import Title from './Title';
@@ -7,6 +7,8 @@ import StatsPreview from './StatsPreview';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../../Search/SearchBar';
 import Search from '@material-ui/icons/Search';
+import Waiting from '../../../Waiting';
+
 
 const styles = theme => ({
     container: {
@@ -18,6 +20,7 @@ const styles = theme => ({
         justifyContent: 'space-around',
         alignItems: "center",
         flexDirection: 'column',
+        position: "relative"
     },
     searchBarGridDiv: {
         display: 'flex',
@@ -30,6 +33,14 @@ const styles = theme => ({
     },
     statsGridDiv: {
         maxWidth: "70%"
+    },
+    textLoader: {
+        maxWidth: 60,
+        position: 'absolute',
+        left: "50%",
+        transform: "translate(-50%)",
+        textAlign: 'center',
+        color: theme.palette.secondary.main
     }
 });
 
@@ -47,7 +58,7 @@ class Main extends Component {
 
 
     render() {
-        const { classes, ...noClassesProps } = this.props;
+        const { classes, theme, ...noClassesProps } = this.props;
         return (
             <div className={classes.container}>
                 <Grid container>
@@ -55,7 +66,7 @@ class Main extends Component {
                         <Title clientType={this.props.clientType} translate={this.props.translate} />
                     </Grid>
 
-                    {this.props.dataIsAvailable && <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
+                    {this.props.dataIsAvailable ? <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
                         {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
                             <StatsPreview history={this.props.history} />
                         </div>}
@@ -79,9 +90,20 @@ class Main extends Component {
                                 }}
                             />
                         </div>
-                    </Grid>}
+                    </Grid>
+
+                        :
+                        <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
+                            <Waiting 
+                            clientType={this.props.clientType} 
+                            translate={this.props.translate}
+                            toTranslate="home.loadingData"
+                            />
+                        </Grid>
+
+                    }
                     {this.props.clientType !== "extension" && <Grid item xs={12} className={classes.shareGridItem} >
-                        <Install clientType={this.props.clientType} translate={this.props.translate}/>
+                        <Install clientType={this.props.clientType} translate={this.props.translate} />
                     </Grid>}
                 </Grid>
                 {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}
@@ -90,4 +112,4 @@ class Main extends Component {
     }
 }
 
-export default withStyles(styles)(Main);
+export default withStyles(styles, { withTheme: true })(Main);

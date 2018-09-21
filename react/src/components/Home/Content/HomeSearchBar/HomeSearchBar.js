@@ -22,7 +22,7 @@ class HomeSearchBar extends Component {
                 :
                 ''
             :
-            <Waiting translate={this.props.translate} toTranslate='home.loadingData' />
+            <Waiting clientType={this.props.clientType} translate={this.props.translate} toTranslate='home.loadingData' />
     }
 }
 

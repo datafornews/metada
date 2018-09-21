@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
       ...actionCreators,
       ...toggleActions,
       setActiveLanguage,
-      ...renamedActions
+      // ...renamedActions
     },
     dispatch);
 }

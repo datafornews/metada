@@ -103,8 +103,12 @@
             ]
         },
         "loadingData": [
-            "Getting Data...",
-            "Chargement des donn\u00e9es..."
+            "Data is on its way!",
+            "Les données arrivent!"
+        ],
+        "noData":[
+            "Sorry, could not get the data. Refresh the page or check your internet connection.",
+            "Oups, impossible d'obtenir les données. Actualisez la page ou vérifiez votre connexion internet."
         ],
         "intro": {
             "a": [
@@ -495,10 +499,6 @@
         "websiteButton": [
             "Website",
             "Site Web"
-        ],
-        "seeGraphButton": [
-            "See this Graph",
-            "Voir ce Graphe"
         ],
         "previousGraphTooltip": [
             "Previous Graph",

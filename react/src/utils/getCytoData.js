@@ -50,6 +50,9 @@ export default function getCytoData(data, entity) {
         }
     }
 
+    if (entities.length === 0) {
+        entities.push(entity)
+    }
     var nodes = [];
     for (var e of entities) {
         var width = parseInt(e.name.length * WIDTH_FACTOR, 10);
@@ -63,6 +66,7 @@ export default function getCytoData(data, entity) {
 
     var shares = [];
     var special_shares = [];
+
 
     for (s of children) {
         var label;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import classNames from 'classnames';
 import { colors } from '../../../theme/metadaTheme';
-
 
 const styles = theme => ({
     title: {
@@ -40,42 +40,42 @@ const styles = theme => ({
 
 class LegendHelp extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes, translate } = this.props;
 
         return (
             <div>
                 <Typography variant="subheading" className={classes.subtitle} component="h4">
-                    {this.props.translate('graph.helpCard.legend.title')}
+                    {translate('graph.helpCard.legend.title')}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary" component="div">
-                    {this.props.translate('graph.helpCard.legend.intro')}
+                    {translate('graph.helpCard.legend.intro')}
 
                     <div className={classes.chipContainer}>
                         <Chip
                             // avatar={<Avatar>{avatarName}</Avatar>}
-                            label={this.props.translate(`home.cards.category.i`)}
+                            label={translate(`home.cards.category.i`)}
                             className={classNames(classes.chip, classes.i)}
                         />
                         &nbsp;
                                 <Chip
                             // avatar={<Avatar>{avatarName}</Avatar>}
-                            label={this.props.translate(`home.cards.category.c`)}
+                            label={translate(`home.cards.category.c`)}
                             className={classNames(classes.chip, classes.c)}
                         />
                         &nbsp;
                                 <Chip
                             // avatar={<Avatar>{avatarName}</Avatar>}
-                            label={this.props.translate(`home.cards.category.m`)}
+                            label={translate(`home.cards.category.m`)}
                             className={classNames(classes.chip, classes.m)}
                         />
                     </div>
                     <br />
-                    {this.props.translate("graph.helpCard.selectedBefore")}
-                    <span style={{ fontWeight: "bolder", color: colors.accent }}>{this.props.translate("graph.helpCard.selected")} </span>
-                    {this.props.translate("graph.helpCard.selectedAfter")}
+                    {translate("graph.helpCard.selectedBefore")}
+                    <span style={{ fontWeight: "bolder", color: colors.accent }}>{translate("graph.helpCard.selected")} </span>
+                    {translate("graph.helpCard.selectedAfter")}
                     <br />
                     <br />
-                    {this.props.translate("graph.helpCard.representedBefore")}
+                    {translate("graph.helpCard.representedBefore")}
                     <span style={{
                         // fontWeight: "bold",
                         color: "white",
@@ -85,8 +85,8 @@ class LegendHelp extends Component {
                         marginLeft: "4px",
                         marginRight: "4px",
                         paddingLeft: "4px"
-                    }}>{this.props.translate("graph.helpCard.represented")} </span>
-                    {this.props.translate("graph.helpCard.representedAfter")}
+                    }}>{translate("graph.helpCard.represented")} </span>
+                    {translate("graph.helpCard.representedAfter")}
 
 
                 </Typography>
@@ -94,5 +94,10 @@ class LegendHelp extends Component {
         )
     }
 }
+
+LegendHelp.propTypes = {
+    classes: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(LegendHelp);

@@ -46,9 +46,12 @@ class Example extends Component {
         document.addEventListener("scroll", this.checkForNewChip, true);
     }
 
+    componentDidMount() {
+        this.showChips(this.props);
+    }
+    
 
     componentWillUnmount() {
-        console.log('remove');
         document.removeEventListener("scroll", this.checkForNewChip, true);
     }
 
@@ -61,7 +64,7 @@ class Example extends Component {
 
         if (chipOffset && (pageOffset - chipOffset + 100 > 0)) {
             this.addChips()
-            this.checkForNewChip();
+            // this.checkForNewChip();
         }
     };
 
@@ -72,11 +75,10 @@ class Example extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.dataIsAvailable && this.props.history.location.pathname.startsWith('/s')) {
-            if (nextProps.history.location.pathname.startsWith('/s') && this.props.match.params.filter !== nextProps.match.params.filter) {
-                // console.log('change loc');
+        if (this.props.dataIsAvailable && this.props.history.location.pathname.startsWith('/s/')) {
+            if (nextProps.history.location.pathname.startsWith('/s/') && this.props.match.params.filter !== nextProps.match.params.filter) {
                 this.showChips(nextProps);
-                return
+                return;
             }
         }
         if (!nextProps.dataIsAvailable || this.state.entities.length) {
@@ -220,9 +222,6 @@ class Example extends Component {
         const { classes, ...noClassesProps } = this.props;
         return (
             <div className={classes.containerDiv} style={this.props.style}>
-                {/* <div style={style}>
-                    {this.props.translate('home.example')}
-                </div> */}
                 {this.props.clientType !== "mobile" && <FilterChips {...noClassesProps} />}
                 <div id="chips-div" style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
                     <Grid container spacing={32} alignItems="stretch">

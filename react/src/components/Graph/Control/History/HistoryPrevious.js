@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PreviousIcon from 'react-icons/lib/md/arrow-back';
@@ -21,11 +22,11 @@ class HistoryPrevious extends Component {
     }
 
     render() {
-        const { classes, routerLocations } = this.props;
-        const title = this.props.translate('graph.previousGraphTooltip');
+        const { classes, routerLocations, translate, clientType } = this.props;
+        const title = translate('graph.previousGraphTooltip');
         const disabled = routerLocations ? routerLocations.index === 0 : true;
         return disabled ?
-            <div style={{ display: this.props.clientType === 'mobile' ? 'inline-block' : 'block' }}>
+            <div style={{ display: clientType === 'mobile' ? 'inline-block' : 'block' }}>
                 <IconButton disabled={disabled}>
                     <PreviousIcon />
                 </IconButton>
@@ -35,7 +36,7 @@ class HistoryPrevious extends Component {
                 title={title}
                 placement="right"
             >
-                <div style={{ display: this.props.clientType === 'mobile' ? 'inline-block' : 'block' }}>
+                <div style={{ display: clientType === 'mobile' ? 'inline-block' : 'block' }}>
                     <IconButton disabled={disabled} onClick={this.handleClick}>
                         <PreviousIcon className={classes.icon} />
                     </IconButton>
@@ -44,5 +45,13 @@ class HistoryPrevious extends Component {
 
     }
 }
+
+
+HistoryPrevious.propTypes = {
+    classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    routerLocations: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(HistoryPrevious);

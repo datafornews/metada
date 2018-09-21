@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import NextIcon from 'react-icons/lib/md/arrow-forward';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
     icon: {
@@ -21,12 +22,12 @@ class HistoryNext extends Component {
     }
 
     render() {
-        const { classes, routerLocations } = this.props;
-        const title = this.props.translate('graph.nextGraphTooltip');
+        const { classes, routerLocations, translate, clientType } = this.props;
+        const title = translate('graph.nextGraphTooltip');
         const disabled = routerLocations ? routerLocations.index === routerLocations.locations.length - 1 : true;
 
         return disabled ?
-            <div style={{ display: this.props.clientType === 'mobile' ? 'inline-block' : 'block' }}>
+            <div style={{ display: clientType === 'mobile' ? 'inline-block' : 'block' }}>
                 <IconButton disabled={disabled}>
                     <NextIcon />
                 </IconButton>
@@ -36,7 +37,7 @@ class HistoryNext extends Component {
                 title={title}
                 placement="right"
             >
-                <div style={{ display: this.props.clientType === 'mobile' ? 'inline-block' : 'block' }}>
+                <div style={{ display: clientType === 'mobile' ? 'inline-block' : 'block' }}>
                     <IconButton disabled={disabled} onClick={this.handleClick}>
                         <NextIcon className={classes.icon} />
                     </IconButton>
@@ -45,5 +46,13 @@ class HistoryNext extends Component {
 
     }
 }
+
+
+HistoryNext.propTypes = {
+    classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    routerLocations: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(HistoryNext);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 const textStyle = {
     color: "grey",
@@ -6,7 +7,7 @@ const textStyle = {
     margin: "auto 10px"
 }
 
-export default class StatTitle extends Component {
+class StatTitle extends Component {
 
     getStats = () => {
         if (localStorage.stats) {
@@ -27,12 +28,23 @@ export default class StatTitle extends Component {
     }
 
     render() {
+
+        const { translate } = this.props;
+
         const percent = this.getStats();
         let text = ""
         if (percent > 0) {
-            text = `(${percent}% ${this.props.translate('graph.infoBoxStat')})`;
+            text = `(${percent}% ${translate('graph.infoBoxStat')})`;
             return <span style={textStyle}>{text}</span>
         }
         return ''
     }
 }
+
+
+StatTitle.propTypes = {
+    entity: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
+
+export default StatTitle

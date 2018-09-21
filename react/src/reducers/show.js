@@ -75,20 +75,11 @@ function show(state = false, action) {
                 ...state,
                 longClickHelp: action.val != null ? action.val : !state.longClickHelp
             };
-        case 'TOGGLE_NAVIGATION_SNACKBAR':
-            console.log('returning ', {
-                ...state,
-                navigationSnackbar: action.val != null ? action.val : !state.navigationSnackbar
-            });
+        case 'TOGGLE_HELP_SUGGESTION':
             return {
                 ...state,
-                navigationSnackbar: action.val != null ? action.val : !state.navigationSnackbar
+                helpSuggestion: action.val != null ? action.val : !state.helpSuggestion
             };
-        case 'TOGGLE_GRAPH_BUTTON_BLINK':
-            return {
-                ...state,
-                graphButtonBlink: action.val != null ? action.val : !state.graphButtonBlink
-            }
         case 'STOP_HELP':
             return {
                 ...state,

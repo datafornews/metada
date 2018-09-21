@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import WikiCard from './WikiExtract';
+import WikiExtract from './WikiExtract';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
-import StatTitle from './StatTitle';
+import DrawerTitle from './InfoTitle';
+import PropTypes from 'prop-types';
 
 const maxLengths = {
     extension: 10000,
@@ -42,17 +42,10 @@ const wikiCardDivStyle = {
     textJustify: 'auto'
 };
 
-const entityNameTypoStyle = {
-    display: 'inline-block',
-    marginRight: '10px',
-    fontSize: 26
-};
 
-const entityLongNameTypoStyle = {
-    display: 'inline-block',
-};
 
-class EntityCard extends Component {
+
+class Info extends Component {
 
     state = {
         paddingRight: 'unset',
@@ -109,13 +102,14 @@ class EntityCard extends Component {
 
     render() {
 
-        const { classes, ...noClassProps } = this.props;
-        const entityId = parseInt(this.props.match.params.entityId, 10);
-        const entity = this.props.data.entities.ids[entityId];
+        const { classes, infoBox, data, translate, clientType, match } = this.props;
+        const entityId = infoBox.type ? infoBox.data : parseInt(match.params.entityId, 10);
+        const entity = data.entities.ids[entityId];
+
 
         const style = {
-            marginTop: this.props.clientType === 'mobile' ? '0px' : '8px',
-            position: this.props.clientType === 'mobile' ? 'relative' : 'inherit'
+            marginTop: clientType === 'mobile' ? '0px' : '8px',
+            position: clientType === 'mobile' ? 'relative' : 'inherit'
         };
 
         return (
@@ -123,21 +117,30 @@ class EntityCard extends Component {
 
 
                 <div style={{ paddingRight: this.state.paddingRight }}>
-                    <Typography type="headline" style={entityNameTypoStyle}>
-                        {entity.name}
-                    </Typography>
-                    <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
-                        {entity.long_name}
-                    </Typography>
-                    <br />
-                    <StatTitle entity={entity} translate={this.props.translate} ></StatTitle>
+                    <DrawerTitle
+                        infoBox={infoBox}
+                        match={match}
+                        data={data}
+                        translate={translate}
+                    />
                 </div>
 
-                <WikiButton entity={entity} />
-                <WebsiteButton entity={entity} translate={this.props.translate} />
+                <WikiButton
+                    entity={entity}
+                />
+                <WebsiteButton
+                    entity={entity}
+                    translate={translate}
+                />
 
                 <div style={wikiCardDivStyle}>
-                    <WikiCard {...noClassProps} maxLength={maxLengths[this.props.clientType]} />
+                    <WikiExtract
+                        maxLength={maxLengths[clientType]}
+                        infoBox={infoBox}
+                        data={data}
+                        translate={translate}
+                        clientType={clientType}
+                    />
                 </div>
             </div>
         );
@@ -145,4 +148,15 @@ class EntityCard extends Component {
     }
 }
 
-export default withStyles(styles)(EntityCard);
+
+
+Info.propTypes = {
+    classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
+    infoBox: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(Info);

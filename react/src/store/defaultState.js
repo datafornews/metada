@@ -6,7 +6,7 @@ const defaultState = {
         help: false,
         doubleClickHelp: true,
         longClickHelp: true,
-        navigationSnackbar: true
+        helpSuggestion: true
     },
     currentDisplay: -1,
     infoBox: {

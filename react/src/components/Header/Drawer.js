@@ -134,7 +134,7 @@ class ClippedDrawer extends Component {
     }
 
     render() {
-        const { classes, ...noClassProps } = this.props;
+        const { classes, dataIsAvailable, ...noClassProps } = this.props;
         const isMobile = this.props.clientType === 'mobile';
 
         const widths = isMobile ? this.props.show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
@@ -143,7 +143,7 @@ class ClippedDrawer extends Component {
         const isGraph = this.props.history.location.pathname.startsWith("/graph/");
 
 
-        const drawerContent = !isGraph ? "" : <DrawerContent {...noClassProps} />
+        const drawerContent = !isGraph || !dataIsAvailable? "" : <DrawerContent {...noClassProps} />
         return (
             <div className={classes.root}>
                 <AppBar className={classNames(

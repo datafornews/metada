@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -29,39 +30,42 @@ const styles = theme => ({
 
 class NavigationHelp extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes, translate } = this.props;
         // const shiftUnicode = '\u21E7';
 
         return (
             <div>
 
                 <Typography variant="subheading" className={classes.subtitle} component="h4">
-                    {this.props.translate('graph.helpCard.navigation')}
+                    {translate('graph.helpCard.navigation')}
                 </Typography>
 
                 <Typography className={classes.pos} color="textSecondary" component="div">
                     <span className={classes.primary} >
-                        {this.props.translate('graph.helpCard.contextual')}
+                        {translate('graph.helpCard.contextual')}
                     </span>
-                    {this.props.translate('graph.helpCard.contextualAfter')}
+                    {translate('graph.helpCard.contextualAfter')}
 
                     <br /><br />
 
-                    {this.props.translate("graph.helpCard.doubleTapBefore")}
-                    <span className={classes.primary} >{this.props.translate("graph.helpCard.doubleTap")}</span>
-                    {this.props.translate("graph.helpCard.doubleTapAfter")}
-
-                    <br /><br />
+                    {translate("graph.helpCard.doubleTapBefore")}
+                    <span className={classes.primary} >{translate("graph.helpCard.doubleTap")}</span>
+                    {translate("graph.helpCard.doubleTapAfter")}
 
 
                     <br />
                     <br />
-                    <div className={classes.iconContainer}><IssueIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.issue")}</div>
-                    <div className={classes.iconContainer}><HelpIcon style={{ height: 20, width: 20 }} /> &nbsp; {this.props.translate("graph.helpCard.help")}</div> <br />
+                    <div className={classes.iconContainer}><IssueIcon style={{ height: 20, width: 20 }} /> &nbsp; {translate("graph.helpCard.issue")}</div>
+                    <div className={classes.iconContainer}><HelpIcon style={{ height: 20, width: 20 }} /> &nbsp; {translate("graph.helpCard.help")}</div> <br />
                 </Typography>
             </div>
         )
     }
 }
+
+NavigationHelp.propTypes = {
+    classes: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(NavigationHelp);

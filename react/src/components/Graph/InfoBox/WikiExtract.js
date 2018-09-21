@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames'
-
+import PropTypes from 'prop-types';
 import Waiting from '../../Waiting';
 import getWikiData from '../../../utils/getWikiData';
 import Paper from '@material-ui/core/Paper';
@@ -32,11 +32,11 @@ const styles = theme => ({
     }
 })
 
-class WikiCard extends Component {
+class WikiExtract extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />
+            extract: <Waiting clientType={this.props.clientType} translate={this.props.translate} toTranslate='graph.wiki.loading' />
         }
     }
 
@@ -53,7 +53,7 @@ class WikiCard extends Component {
             return
         }
         this.setState({
-            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />,
+            extract: <Waiting clientType={this.props.clientType} translate={this.props.translate} toTranslate='graph.wiki.loading' />,
         });
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
 
@@ -62,16 +62,16 @@ class WikiCard extends Component {
 
     render() {
 
-        const { classes } = this.props;
+        const { classes, maxLength, translate } = this.props;
 
         let div, dots;
         if (typeof this.state.extract === 'string' || this.state.extract instanceof String) {
             let summary = this.state.extract.split(' ');
-            if (summary.length > this.props.maxLength) {
-                summary = summary.slice(0, this.props.maxLength).join(" ") + " ...";
+            if (summary.length > maxLength) {
+                summary = summary.slice(0, maxLength).join(" ") + " ...";
                 dots = "..."
             } else {
-                summary = summary.slice(0, this.props.maxLength).join(" ");
+                summary = summary.slice(0, maxLength).join(" ");
                 dots = "";
             }
 
@@ -88,10 +88,10 @@ class WikiCard extends Component {
                         <ExpansionPanelDetails className={classes.noPadding} >
                             <Typography className={classes.heading} component="div" color="textSecondary">
 
-                                {dots + this.state.extract.split(' ').slice(this.props.maxLength).join(" ")}
+                                {dots + this.state.extract.split(' ').slice(maxLength).join(" ")}
                                 <br /><br />
                                 <Typography color="textSecondary" className={classes.wiki}>
-                                    {this.props.translate("graph.wiki.isExtract")}
+                                    {translate("graph.wiki.isExtract")}
                                 </Typography>
 
                             </Typography>
@@ -107,7 +107,7 @@ class WikiCard extends Component {
                         </Typography>
                         <br />
                         <Typography color="textSecondary" className={classes.wiki}>
-                            {this.props.translate("graph.wiki.isExtract")}
+                            {translate("graph.wiki.isExtract")}
                         </Typography>
                     </Paper>
 
@@ -122,4 +122,15 @@ class WikiCard extends Component {
     }
 }
 
-export default withStyles(styles)(WikiCard);
+
+
+WikiExtract.propTypes = {
+    classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
+    infoBox: PropTypes.object.isRequired,
+    maxLength: PropTypes.number.isRequired,
+    translate: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(WikiExtract);

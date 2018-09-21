@@ -61,8 +61,8 @@ class SearchBar extends React.Component {
 
       <Select
         className={classes.container}
-        name="form-field-name"
-        value="one"
+        isClearable
+        isSearchable
         options={this.props.data.optionsData}
         onChange={this.logChange}
         filterOption={createFilter({
@@ -73,9 +73,6 @@ class SearchBar extends React.Component {
         })}
         styles={colourStyles}
         placeholder={this.props.translate('search.searchPlaceholder')}
-        arrowRenderer={() => this.props.arrowRenderer ? this.props.arrowRenderer : null}
-        autoBlur
-        clearable={false}
         autoFocus={!this.props.preventAutofocus}
         ref={(select) => { this.select = select; }}
       />

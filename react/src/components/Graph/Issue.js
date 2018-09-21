@@ -28,29 +28,29 @@ class IssueDialog extends React.Component {
 
     render() {
 
-        let { fullScreen } = this.props;
-        if (this.props.clientType === 'extension' || window.innerWidth > 650) {
+        let { fullScreen, clientType, show, translate } = this.props;
+        if (clientType === 'extension' || window.innerWidth > 650) {
             fullScreen = false;
         }
 
         return (
             <Dialog
                 fullScreen={fullScreen}
-                open={this.props.show.issue ? true : false}
+                open={show.issue ? true : false}
                 onClose={this.handleRequestClose}
             >
-                <DialogTitle>{this.props.translate('graph.issue.dialogTitle')}</DialogTitle>
+                <DialogTitle>{translate('graph.issue.dialogTitle')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText style={{ fontSize: '0.9rem' }}>
-                        {this.props.translate('graph.issue.dialogContentText')}<br /><br />
-                        Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
-                        Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
-                        {this.props.translate('graph.issue.dialogContentText2')}
+                        {translate('graph.issue.dialogContentText')}<br /><br />
+                        Google Form : <a href={translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{translate('graph.issue.form')}</a><br />
+                        Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {translate('graph.issue.object')}<br /><br />
+                        {translate('graph.issue.dialogContentText2')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ fontSize: '0.9rem' }} onClick={this.handleRequestClose} color="primary">
-                        {this.props.translate('graph.issue.closeButton')}
+                        {translate('graph.issue.closeButton')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -60,6 +60,9 @@ class IssueDialog extends React.Component {
 
 IssueDialog.propTypes = {
     fullScreen: PropTypes.bool.isRequired,
+    clientType: PropTypes.string.isRequired,
+    show: PropTypes.object.isRequired,
+    translate: PropTypes.func.isRequired,
 };
 
 export default withMobileDialog()(IssueDialog);

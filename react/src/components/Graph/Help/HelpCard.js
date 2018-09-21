@@ -25,18 +25,20 @@ function getSteps() {
 }
 
 function Transition(props) {
-    return <Slide direction="up" {...props} />;
+    return <Slide direction="down" {...props} />;
 }
 
 
 const styles = theme => ({
     help: {
-        maxWidth: 500,
+        maxWidth: 400,
         margin: 'auto'
     },
     actions: {
         paddingTop: 0,
-        textAlign: "center"
+        textAlign: "center",
+        marginTop: '-8px',
+        marginBottom: '32px',
     },
     title: {
         marginBottom: 16,
@@ -158,8 +160,6 @@ class HelpCard extends Component {
 
         this.props.stopHelp();
 
-        this.props.clientType !== "mobile" && setTimeout(this.props.reRenderGraph, 300);
-
     }
 
 
@@ -172,12 +172,12 @@ class HelpCard extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-        const open = this.props.isRehydrated && this.props.show.help;
+        const { classes, isRehydrated, show, clientType, translate } = this.props;
+        const open = isRehydrated && show.help;
         const steps = getSteps();
         const { activeStep } = this.state;
         return (
-            <div className={this.props.clientType === "mobile" ? classes.mobileDivContainer : classes.divContainer}>
+            <div className={clientType === "mobile" ? classes.mobileDivContainer : classes.divContainer}>
                 <div className={classes.container}>
                     <Dialog
                         className={classes.help}
@@ -187,18 +187,17 @@ class HelpCard extends Component {
                     >
                         <ClickAwayListener classeName={classes.click} onClickAway={this.close}>
                             <div>
-                                <DialogContent style={{ paddingBottom: 0, minHeight: 320 }}>
+                                <DialogContent style={{ paddingBottom: 8 }}>
 
                                     <Typography className={classes.title} color="textSecondary">
-                                        {this.props.translate('graph.helpCard.title')}
+                                        {translate('graph.helpCard.title')}
                                     </Typography>
 
                                     {activeStep === 0 ?
-                                        < NavigationHelp translate={this.props.translate} />
+                                        < NavigationHelp translate={translate} />
                                         :
-                                        <LegendHelp translate={this.props.translate} />
+                                        <LegendHelp translate={translate} />
                                     }
-
 
                                 </DialogContent>
                                 <DialogActions className={classes.actions}>
@@ -238,9 +237,13 @@ class HelpCard extends Component {
     }
 }
 
-
 HelpCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
+    isRehydrated: PropTypes.bool.isRequired,
+    show: PropTypes.object.isRequired,
+    stopHelp: PropTypes.func.isRequired,
+    translate: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(withMobileDialog()(HelpCard));
