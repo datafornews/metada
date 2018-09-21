@@ -59,8 +59,8 @@ class IssueDialog extends React.Component {
 }
 
 IssueDialog.propTypes = {
-    fullScreen: PropTypes.bool.isRequired,
     clientType: PropTypes.string.isRequired,
+    fullScreen: PropTypes.bool.isRequired,
     show: PropTypes.object.isRequired,
     translate: PropTypes.func.isRequired,
 };
