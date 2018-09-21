@@ -1,6 +1,7 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import 'font-awesome/css/font-awesome.min.css';
@@ -295,14 +296,15 @@ class CytoContainer extends React.Component {
 
   render() {
 
-    if (!this.props.show.searchBar) {
+    const { classes, clientType, isRehydrated, show, stopHelp, translate, match } = this.props;
+
+    if (!show.searchBar) {
       defaultStyle.marginTop = '20px'
     }
 
-    const id = this.props.match.params.entityId;
-    const entity = this.props.data.entities.ids[id];
+    const id = match.params.entityId;
+    const entity = data.entities.ids[id];
 
-    const { classes, ...noClassProps } = this.props;
 
     return (
       <div>
@@ -313,12 +315,39 @@ class CytoContainer extends React.Component {
           <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
           </div>
         </div>
-        <HelpCard {...noClassProps} reRenderGraph={this.renderCytoscapeElement} />
+        <HelpCard
+          clientType={clientType}
+          isRehydrated={isRehydrated}
+          show={show}
+          stopHelp={stopHelp}
+          translate={translate}
+          reRenderGraph={this.renderCytoscapeElement} />
       </div>
 
     );
   }
 }
+
+
+CytoContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  clientType: PropTypes.string.isRequired,
+  isRehydrated: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
+  show: PropTypes.object.isRequired,
+// CHECK TYPE
+  updateRouterLocation: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  toggleDoubleClickHelp: PropTypes.object.isRequired,
+  toggleDrawer: PropTypes.object.isRequired,
+  toggleLongClickHelp: PropTypes.object.isRequired,
+  updateShareInfoBox: PropTypes.object.isRequired,
+  displayEntity: PropTypes.object.isRequired,
+  updateEntityInfoBox: PropTypes.object.isRequired,
+
+  stopHelp: PropTypes.func.isRequired,
+  translate: PropTypes.func.isRequired,
+};
 
 
 export default withStyles(styles)(CytoContainer);
