@@ -94,13 +94,12 @@ class Container extends Component {
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
             history, isRehydrated, show,
-            toggleIssue, translate, updateEntityInfoBox } = this.props;
+            toggleIssue, translate, updateEntityInfoBox, isGraph } = this.props;
 
         const isMobile = clientType === 'mobile';
         const widths = isMobile ? show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
         const paddingLeft = isMobile ? 0 : 16;
         const paddingRight = isMobile ? 0 : 16;
-        const isGraph = history.location.pathname.startsWith("/graph/");
 
         return (
             <div className={classes.root}>

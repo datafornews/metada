@@ -79,6 +79,7 @@ class Graph extends React.Component {
       toggleIssue={toggleIssue}
       translate={translate}
       updateEntityInfoBox={updateEntityInfoBox}
+      isGraph={true}
       drawer={<InfoDrawer
         clientType={clientType}
         data={data}
