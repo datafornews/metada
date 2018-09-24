@@ -37,15 +37,16 @@ class Waiting extends Component {
     componentDidMount() {
         this.setState({
             timeout: setTimeout(() => {
-                this.setState({
+                !this.isCancelled && this.setState({
                     noInternet: true
                 })
-            }, 25000)
+            }, 2500)
         })
     }
 
 
     componentWillUnmount() {
+        this.isCancelled = true;
         clearTimeout(this.state.timeout)
     }
 
