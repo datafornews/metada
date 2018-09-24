@@ -9,7 +9,7 @@ export default async function (component, entity) {
         return
     }
     if (!entity.wiki_link) {
-        noArticle(component);
+        noArticle(component, '!entity.wiki_link');
         return;
     }
     const wiki = entity.wiki_link.split('/');
@@ -51,7 +51,7 @@ export default async function (component, entity) {
             // console.log('Key', key);
 
             if (key === undefined) {
-                noArticle(component);
+                noArticle(component, 'key === undefined');
                 return;
             }
 
@@ -69,12 +69,12 @@ export default async function (component, entity) {
                     // console.log('Wikipedia URL', query_url);
                     getExtract(component, query_url, entity.id)
                 } else {
-                    noArticle(component);
+                    noArticle(component, ['!langLink', lang]);
                     return;
                 }
             }
         } else {
-            noArticle(component);
+            noArticle(component, '!data.entities');
             return;
         }
     } catch (e) {
@@ -104,7 +104,7 @@ function getExtract(component, queryUrl, entityId) {
                     );
                 }
             } else {
-                noArticle(component);
+                noArticle(component, '!response.data.query');
                 return;
             }
         },
@@ -126,8 +126,9 @@ function getExtract(component, queryUrl, entityId) {
     })
 };
 
-function noArticle(component) {
-    console.log('Article not available')
+function noArticle(component, why = null) {
+    console.log('Article not available');
+    why && console.log(why);
     component.setState(
         {
             extract: component.props.translate('graph.wiki.noData')

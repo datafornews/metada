@@ -58,7 +58,7 @@ class Graph extends React.Component {
 
     const {
       classes, history, infoBox, isRehydrated, show, toggleHelpSuggestion,
-      toggleHelp, clientType, toggleIssue, translate, preventAutofocus,
+      toggleHelp, clientType, toggleIssue, translate, preventAutofocus, currentLanguage,
       data, match, routerLocations, dataIsAvailable, updateEntityInfoBox, updateRouterLocation,
       reRenderGraph, startHelp, stopHelp, toggleDrawer } = this.props;
 
@@ -83,6 +83,7 @@ class Graph extends React.Component {
         clientType={clientType}
         data={data}
         dataIsAvailable={dataIsAvailable}
+        currentLanguage={currentLanguage}
         history={history}
         infoBox={infoBox}
         isRehydrated={isRehydrated}

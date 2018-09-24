@@ -61,7 +61,7 @@ class InfoDrawer extends Component {
     }
 
     render() {
-        const { classes, clientType, data, infoBox,
+        const { classes, clientType, data, infoBox, currentLanguage,
             isRehydrated, show, toggleDrawer, match, translate, dataIsAvailable } = this.props;
         return (
             // <Slide in={show.drawer} direction="left" >
@@ -88,6 +88,7 @@ class InfoDrawer extends Component {
                                     infoBox={infoBox}
                                     match={match}
                                     translate={translate}
+                                    currentLanguage={currentLanguage}
                                 />}
                             </div>
                         </Drawer>
@@ -103,6 +104,7 @@ InfoDrawer.propTypes = {
     // children: PropTypes.array.isRequired,
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
+    currentLanguage: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     isRehydrated: PropTypes.bool.isRequired,

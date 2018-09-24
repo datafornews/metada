@@ -102,7 +102,7 @@ class Info extends Component {
 
     render() {
 
-        const { classes, infoBox, data, translate, clientType, match } = this.props;
+        const { classes, infoBox, data, translate, clientType, match, currentLanguage } = this.props;
         const entityId = infoBox.type === "entity" ? infoBox.data : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
 
@@ -139,6 +139,7 @@ class Info extends Component {
                         data={data}
                         translate={translate}
                         clientType={clientType}
+                        currentLanguage={currentLanguage}
                     />
                 </div>
             </div>

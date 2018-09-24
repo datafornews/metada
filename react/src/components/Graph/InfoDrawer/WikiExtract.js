@@ -58,7 +58,6 @@ class WikiExtract extends Component {
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
 
         entity && getWikiData(this, entity);
-        console.log('entity :', entity);
     }
 
     render() {
@@ -128,10 +127,12 @@ class WikiExtract extends Component {
 WikiExtract.propTypes = {
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
+    currentLanguage: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
     infoBox: PropTypes.object.isRequired,
     maxLength: PropTypes.number.isRequired,
     translate: PropTypes.func.isRequired,
+    
 };
 
 export default withStyles(styles)(WikiExtract);
