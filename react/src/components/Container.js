@@ -93,7 +93,7 @@ const styles = theme => ({
 class Container extends Component {
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
-            history, isRehydrated, show,
+            history, isRehydrated, show, match,
             toggleIssue, translate, updateEntityInfoBox, isGraph } = this.props;
 
         const isMobile = clientType === 'mobile';
@@ -130,6 +130,8 @@ class Container extends Component {
                                     data={data}
                                     show={show}
                                     history={history}
+                                    match={match}
+                                    isGraph={isGraph}
                                     translate={translate}
                                     preventAutofocus={true}
                                     updateEntityInfoBox={updateEntityInfoBox}

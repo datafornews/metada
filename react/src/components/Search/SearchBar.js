@@ -28,7 +28,9 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { classes, controlStyle } = this.props;
+    const { classes, controlStyle, match, isGraph } = this.props;
+
+    const currentGraphId = isGraph ? match.params.entityId : "";
 
     const colourStyles = {
       control: styles => ({ ...styles, ...controlStyle }),
@@ -37,7 +39,7 @@ class SearchBar extends React.Component {
           ...styles,
           backgroundColor: isDisabled
             ? null
-            : isSelected ? 'green' : isFocused ? 'rgba(50, 50, 50, 0.2)' : null,
+            : isSelected || data.id === currentGraphId ? 'rgba(180, 180, 180, 0.2)' : isFocused ? 'rgba(50, 50, 50, 0.2)' : null,
           color: isDisabled
             ? '#ccc'
             : isSelected

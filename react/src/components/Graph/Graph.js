@@ -130,12 +130,14 @@ class Graph extends React.Component {
           </div>
           <CytoContainer
             clientType={this.props.clientType}
+            currentDisplay={this.props.currentDisplay}
             data={this.props.data}
             displayEntity={this.props.displayEntity}
             history={this.props.history}
             infoBox={this.props.infoBox}
             isRehydrated={this.props.isRehydrated}
             match={this.props.match}
+            reRenderGraph={this.props.reRenderGraph}
             show={this.props.show}
             stopHelp={this.props.stopHelp}
             toggleDoubleClickHelp={this.props.toggleDoubleClickHelp}

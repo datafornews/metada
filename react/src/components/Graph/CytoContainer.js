@@ -257,26 +257,20 @@ class CytoContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.isRehydrated && nextProps.isRehydrated) {
-      const location = parseInt(nextProps.match.params.entityId, 10);
-      if (location !== nextProps.currentDisplay) {
-        nextProps.displayEntity(location);
-        nextProps.updateEntityInfoBox(location);
-      }
-    }
-  }
 
-
-
-
-  componentWillReceiveProps(nextProps) {
     const location = parseInt(nextProps.match.params.entityId, 10);
-    if (location !== nextProps.currentDisplay) {
-      // something here? used to - useless now
+    console.log('location :', location, nextProps.currentDisplay);
+    if (location && (location !== nextProps.currentDisplay)) {
+      nextProps.displayEntity(location);
+      nextProps.updateEntityInfoBox(location);
+      nextProps.reRenderGraph();
     }
+
   }
+
 
   componentWillUpdate(nextProps, nextState) {
+    console.log('nextProps.renderStatus !== this.props.renderStatus :', nextProps.renderStatus !== this.props.renderStatus);
     if (nextProps.show.drawer !== this.props.show.drawer || nextProps.renderStatus !== this.props.renderStatus) {
       setTimeout(this.renderCytoscapeElement, 300);
       if (!nextProps.show.drawer) {
@@ -324,12 +318,14 @@ class CytoContainer extends React.Component {
 CytoContainer.propTypes = {
   classes: PropTypes.object.isRequired,
   clientType: PropTypes.string.isRequired,
+  currentDisplay: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
   displayEntity: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   infoBox: PropTypes.object.isRequired,
   isRehydrated: PropTypes.bool.isRequired,
   match: PropTypes.object.isRequired,
+  reRenderGraph: PropTypes.func.isRequired,
   show: PropTypes.object.isRequired,
   stopHelp: PropTypes.func.isRequired,
   toggleDoubleClickHelp: PropTypes.func.isRequired,
