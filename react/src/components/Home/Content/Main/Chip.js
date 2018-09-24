@@ -12,8 +12,8 @@ import classNames from 'classnames';
 
 import { MediaIcon, IndividualIcon, CompanyIcon } from "../../../../theme/metadaTheme";
 
-import WikiButton from '../../../Graph/InfoBox/WikiButton';
-import WebsiteButton from '../../../Graph/InfoBox/WebsiteButton';
+import WikiButton from '../../../Graph/InfoDrawer/WikiButton';
+import WebsiteButton from '../../../Graph/InfoDrawer/WebsiteButton';
 
 import getImage from '../../../../utils/getWikiImage';
 

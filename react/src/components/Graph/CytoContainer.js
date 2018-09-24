@@ -247,6 +247,16 @@ class CytoContainer extends React.Component {
     this.cy = cy;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const location = parseInt(this.props.match.params.entityId, 10);
+    if (location !== this.props.currentDisplay) {
+      this.props.displayEntity(location);
+      this.props.updateEntityInfoBox(location);
+      this.renderCytoscapeElement();
+      return
+    }
+  }
+
   componentDidMount() {
     this.setState({
       update: true
@@ -259,7 +269,6 @@ class CytoContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
 
     const location = parseInt(nextProps.match.params.entityId, 10);
-    console.log('location :', location, nextProps.currentDisplay);
     if (location && (location !== nextProps.currentDisplay)) {
       nextProps.displayEntity(location);
       nextProps.updateEntityInfoBox(location);
@@ -270,7 +279,6 @@ class CytoContainer extends React.Component {
 
 
   componentWillUpdate(nextProps, nextState) {
-    console.log('nextProps.renderStatus !== this.props.renderStatus :', nextProps.renderStatus !== this.props.renderStatus);
     if (nextProps.show.drawer !== this.props.show.drawer || nextProps.renderStatus !== this.props.renderStatus) {
       setTimeout(this.renderCytoscapeElement, 300);
       if (!nextProps.show.drawer) {
