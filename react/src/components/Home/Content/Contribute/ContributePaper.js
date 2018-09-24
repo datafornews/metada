@@ -62,8 +62,8 @@ class ContributePaper extends Component {
                         <Typography variant="body1">
                             L'Extension Chrome et le site metada.org sont construits à partir du même code: React + Redux en front, Flask sur Heroku en back. Les repos sont là:
                             <ul>
-                                <li><a href="https://github.com/vict0rsch/metada" target="_blank">Front-End (metada)</a></li>    
-                                <li><a href="https://github.com/vict0rsch/metada-back" target="_blank">Back-End (metada-back)</a></li>    
+                                <li><a href="https://github.com/vict0rsch/metada" rel="noopener noreferrer" target="_blank">Front-End (metada)</a></li>    
+                                <li><a href="https://github.com/vict0rsch/metada-back" rel="noopener noreferrer" target="_blank">Back-End (metada-back)</a></li>    
                             </ul> 
                         </Typography>
                         
@@ -75,7 +75,7 @@ class ContributePaper extends Component {
                         </Typography>
                     </div>
                 } />
-                <iframe className={classes.iframe} src="https://docs.google.com/forms/d/e/1FAIpQLSf3J6dXZd3iLbyu2n9V7vJksutiZmG1GlBKq8ZhN99M4rsUhw/viewform?embedded=true" width="100%" frameBorder="0" marginHeight="0" marginWidth="0">Chargement en cours...</iframe>
+                <iframe className={classes.iframe} src="https://docs.google.com/forms/d/e/1FAIpQLSf3J6dXZd3iLbyu2n9V7vJksutiZmG1GlBKq8ZhN99M4rsUhw/viewform?embedded=true" title="google-form"  width="100%" frameBorder="0" marginHeight="0" marginWidth="0">Chargement en cours...</iframe>
             </div>
         )
     }

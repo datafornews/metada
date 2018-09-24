@@ -103,9 +103,8 @@ class Info extends Component {
     render() {
 
         const { classes, infoBox, data, translate, clientType, match } = this.props;
-        const entityId = infoBox.type ? infoBox.data : parseInt(match.params.entityId, 10);
+        const entityId = infoBox.type === "entity" ? infoBox.data : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
-
 
         const style = {
             marginTop: clientType === 'mobile' ? '0px' : '8px',

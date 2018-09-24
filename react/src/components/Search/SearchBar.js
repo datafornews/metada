@@ -1,6 +1,5 @@
 import React from 'react';
 import Select, { createFilter } from 'react-select';
-import logGraph from '../../utils/logGraph';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -21,12 +20,7 @@ class SearchBar extends React.Component {
     if (val && val.id) {
       if (this.props.data.idSet.indexOf(parseInt(val.id, 10)) > -1) {
         if (this.props.history.location.pathname !== '/graph/' + val.id) {
-          if (this.props.show.about) {
-            this.props.toggleAbout();
-          }
           this.props.updateEntityInfoBox(val.id);
-
-          logGraph(val.id);
           this.props.history.push(`/graph/${val.id}`);
         }
       }

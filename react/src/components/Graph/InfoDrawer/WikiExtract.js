@@ -58,6 +58,7 @@ class WikiExtract extends Component {
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
 
         entity && getWikiData(this, entity);
+        console.log('entity :', entity);
     }
 
     render() {

@@ -125,17 +125,6 @@ class CytoContainer extends React.Component {
       cytoData = getCytoData(data, entity);
     }
 
-
-    const graphHistory = sessionStorage.getItem('graphHistory');
-    if (!graphHistory) {
-      sessionStorage.setItem('graphHistory', JSON.stringify(
-        [id]
-      ));
-      sessionStorage.setItem('location', JSON.stringify(
-        0
-      ));
-    }
-
     if (time) {
       console.timeEnd('      Data Cyto');
       console.time('      Render Cyto');
@@ -263,24 +252,27 @@ class CytoContainer extends React.Component {
       update: true
     });
     this.renderCytoscapeElement()
-
-    const location = parseInt(this.props.match.params.entityId, 10);
-
-    if (location !== this.props.currentDisplay) {
-      this.props.displayEntity(location);
-      this.props.updateEntityInfoBox(location);
-    }
     console.log('CYTOCONTAINER', performance.now())
 
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const location = parseInt(this.props.match.params.entityId, 10);
-    if (location !== this.props.currentDisplay) {
-      this.props.displayEntity(location);
-      this.props.updateEntityInfoBox(location);
-      this.renderCytoscapeElement();
-      return
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isRehydrated && nextProps.isRehydrated) {
+      const location = parseInt(nextProps.match.params.entityId, 10);
+      if (location !== nextProps.currentDisplay) {
+        nextProps.displayEntity(location);
+        nextProps.updateEntityInfoBox(location);
+      }
+    }
+  }
+
+
+
+
+  componentWillReceiveProps(nextProps) {
+    const location = parseInt(nextProps.match.params.entityId, 10);
+    if (location !== nextProps.currentDisplay) {
+      // something here? used to - useless now
     }
   }
 
@@ -296,7 +288,7 @@ class CytoContainer extends React.Component {
 
   render() {
 
-    const { classes, clientType, isRehydrated, show, stopHelp, translate, match } = this.props;
+    const { classes, clientType, isRehydrated, show, stopHelp, translate, match, data } = this.props;
 
     if (!show.searchBar) {
       defaultStyle.marginTop = '20px'
@@ -332,21 +324,21 @@ class CytoContainer extends React.Component {
 CytoContainer.propTypes = {
   classes: PropTypes.object.isRequired,
   clientType: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  displayEntity: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  infoBox: PropTypes.object.isRequired,
   isRehydrated: PropTypes.bool.isRequired,
   match: PropTypes.object.isRequired,
   show: PropTypes.object.isRequired,
-// CHECK TYPE
-  updateRouterLocation: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  toggleDoubleClickHelp: PropTypes.object.isRequired,
-  toggleDrawer: PropTypes.object.isRequired,
-  toggleLongClickHelp: PropTypes.object.isRequired,
-  updateShareInfoBox: PropTypes.object.isRequired,
-  displayEntity: PropTypes.object.isRequired,
-  updateEntityInfoBox: PropTypes.object.isRequired,
-
   stopHelp: PropTypes.func.isRequired,
+  toggleDoubleClickHelp: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
+  toggleLongClickHelp: PropTypes.func.isRequired,
   translate: PropTypes.func.isRequired,
+  updateEntityInfoBox: PropTypes.func.isRequired,
+  updateRouterLocation: PropTypes.func.isRequired,
+  updateShareInfoBox: PropTypes.func.isRequired,
 };
 
 

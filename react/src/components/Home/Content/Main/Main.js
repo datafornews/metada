@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, withTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Example from './Example';
 import Install from './Install';
 import Title from './Title';
@@ -76,7 +76,6 @@ class Main extends Component {
                                 data={this.props.data}
                                 toggleAbout={this.props.toggleAbout}
                                 show={this.props.show}
-                                toggleSideButtons={this.props.toggleSideButtons}
                                 history={this.props.history}
                                 translate={this.props.translate}
                                 preventAutofocus={false}
@@ -94,10 +93,10 @@ class Main extends Component {
 
                         :
                         <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
-                            <Waiting 
-                            clientType={this.props.clientType} 
-                            translate={this.props.translate}
-                            toTranslate="home.loadingData"
+                            <Waiting
+                                clientType={this.props.clientType}
+                                translate={this.props.translate}
+                                toTranslate="home.loadingData"
                             />
                         </Grid>
 

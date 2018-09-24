@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
-import Drawer from '../Header/Drawer';
+import InfoDrawer from './InfoDrawer/InfoDrawer';
+import Container from '../Container';
 
 import CytoContainer from './CytoContainer';
 import Issue from './Issue';
@@ -22,7 +23,7 @@ const styles = theme => ({
 });
 
 
-class _Graph extends React.Component {
+class Graph extends React.Component {
 
 
   componentWillMount() {
@@ -30,7 +31,6 @@ class _Graph extends React.Component {
       this.props.stopHelp();
     }
     this.props.resetRouterLocation(this.props.history.location.pathname);
-
   }
 
 
@@ -46,7 +46,6 @@ class _Graph extends React.Component {
     if ((nextProps.isRehydrated && !this.props.isRehydrated && nextProps.dataIsAvailable) || (nextProps.isRehydrated && nextProps.dataIsAvailable && !this.props.dataIsAvailable)) {
       nextProps.resetRouterLocation(nextProps.history.location.pathname);
       nextProps.toggleDrawer(true);
-      console.log('cwrp')
     }
   }
 
@@ -57,37 +56,108 @@ class _Graph extends React.Component {
 
   render() {
 
-    const { classes, ...noClassProps } = this.props;
-    const { dataIsAvailable } = noClassProps;
+    const {
+      classes, history, infoBox, isRehydrated, show, toggleHelpSuggestion,
+      toggleHelp, clientType, toggleIssue, translate, preventAutofocus,
+      data, match, routerLocations, dataIsAvailable, updateEntityInfoBox, updateRouterLocation,
+      reRenderGraph, startHelp, stopHelp, toggleDrawer } = this.props;
 
-    return <Drawer {...noClassProps}>
+    return <Container
+      clientType={clientType}
+      data={data}
+      dataIsAvailable={dataIsAvailable}
+      history={history}
+      infoBox={infoBox}
+      isRehydrated={isRehydrated}
+      match={match}
+      preventAutofocus={preventAutofocus}
+      reRenderGraph={reRenderGraph}
+      show={show}
+      startHelp={startHelp}
+      stopHelp={stopHelp}
+      toggleDrawer={toggleDrawer}
+      toggleIssue={toggleIssue}
+      translate={translate}
+      updateEntityInfoBox={updateEntityInfoBox}
+      drawer={<InfoDrawer
+        clientType={clientType}
+        data={data}
+        dataIsAvailable={dataIsAvailable}
+        history={history}
+        infoBox={infoBox}
+        isRehydrated={isRehydrated}
+        match={match}
+        reRenderGraph={reRenderGraph}
+        show={show}
+        startHelp={startHelp}
+        stopHelp={stopHelp}
+        toggleDrawer={toggleDrawer}
+        translate={translate}
+      />}
+    >
       {dataIsAvailable ?
         <div>
           <div className={classes.controlsContainer}>
-            {this.props.infoBox.type === "entity" ? <Controls {...noClassProps} /> : <Edge {...noClassProps} />}
+            {infoBox.type === "entity" ? <Controls
+              clientType={clientType}
+              data={data}
+              history={history}
+              infoBox={infoBox}
+              match={match}
+              routerLocations={routerLocations}
+              show={show}
+              toggleDrawer={toggleDrawer}
+              translate={translate}
+              updateRouterLocation={updateRouterLocation}
+            />
+              :
+              <Edge
+                clientType={clientType}
+                infoBox={infoBox}
+                data={data}
+              />
+
+            }
             <HelpSuggestion
-              isRehydrated={this.props.isRehydrated}
-              show={this.props.show}
-              toggleHelpSuggestion={this.props.toggleHelpSuggestion}
-              toggleHelp={this.props.toggleHelp}
-              clientType={this.props.clientType}
+              isRehydrated={isRehydrated}
+              show={show}
+              toggleHelpSuggestion={toggleHelpSuggestion}
+              toggleHelp={toggleHelp}
+              clientType={clientType}
             />
           </div>
-          <CytoContainer {...noClassProps} />
-          <Issue
-            translate={this.props.translate}
+          <CytoContainer
             clientType={this.props.clientType}
+            data={this.props.data}
+            displayEntity={this.props.displayEntity}
+            history={this.props.history}
+            infoBox={this.props.infoBox}
+            isRehydrated={this.props.isRehydrated}
+            match={this.props.match}
             show={this.props.show}
-            toggleIssue={this.props.toggleIssue}
+            stopHelp={this.props.stopHelp}
+            toggleDoubleClickHelp={this.props.toggleDoubleClickHelp}
+            toggleDrawer={this.props.toggleDrawer}
+            toggleLongClickHelp={this.props.toggleLongClickHelp}
+            translate={this.props.translate}
+            updateEntityInfoBox={this.props.updateEntityInfoBox}
+            updateRouterLocation={this.props.updateRouterLocation}
+            updateShareInfoBox={this.props.updateShareInfoBox}
+          />
+          <Issue
+            translate={translate}
+            clientType={clientType}
+            show={show}
+            toggleIssue={toggleIssue}
           />
         </div>
         :
-        <Waiting clientType={this.props.clientType} translate={this.props.translate} toTranslate='home.loadingData' />
+        <Waiting clientType={clientType} translate={translate} toTranslate='home.loadingData' />
       }
-    </Drawer>
+    </Container>
   }
 }
 
-const Graph = connect(mapStateToProps, mapDispatchToProps)(_Graph);
+Graph = connect(mapStateToProps, mapDispatchToProps)(Graph);
 
 export default withStyles(styles)(Graph);

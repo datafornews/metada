@@ -1,10 +1,6 @@
 function show(state = false, action) {
+    // console.log('action.type :', action.type);
     switch (action.type) {
-        case 'TOGGLE_ABOUT':
-            return {
-                ...state,
-                about: action.val != null ? action.val : !state.about
-            };
         case 'TOGGLE_STATS':
             return {
                 ...state,

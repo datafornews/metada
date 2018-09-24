@@ -54,6 +54,7 @@ Edge.propTypes = {
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
     infoBox: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 };
 
 

@@ -179,11 +179,14 @@ Controls.propTypes = {
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     infoBox: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     routerLocations: PropTypes.object.isRequired,
     show: PropTypes.object.isRequired,
+    toggleDrawer: PropTypes.func.isRequired,
     translate: PropTypes.func.isRequired,
+    updateRouterLocation: PropTypes.func.isRequired,
 };
 
 export default (withStyles(styles)(Controls));

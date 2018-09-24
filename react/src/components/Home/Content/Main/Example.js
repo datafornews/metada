@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Chip from './Chip';
-import logGraph from '../../../../utils/logGraph'
 import Grid from '@material-ui/core/Grid';
 import FilterChips from './FilterChips';
 
@@ -49,7 +48,7 @@ class Example extends Component {
     componentDidMount() {
         this.showChips(this.props);
     }
-    
+
 
     componentWillUnmount() {
         document.removeEventListener("scroll", this.checkForNewChip, true);
@@ -69,7 +68,6 @@ class Example extends Component {
     };
 
     handleChipClick = (entity) => {
-        logGraph(entity.id)
         this.props.history.push('/graph/' + entity.id)
     }
 

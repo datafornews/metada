@@ -25,9 +25,9 @@ const entityLongNameTypoStyle = {
 class InfoTitle extends Component {
     render() {
         const { classes, infoBox, match, data, translate } = this.props;
-
-        const entityId = infoBox.type ? infoBox.data : parseInt(match.params.entityId, 10);
+        const entityId = infoBox.type === "entity" ? parseInt(infoBox.data, 10) : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
+        
         return (
             <div className={classes.container}>
                 <Typography type="headline" style={entityNameTypoStyle}>

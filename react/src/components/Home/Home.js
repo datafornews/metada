@@ -14,7 +14,9 @@ import Stats from './Content/Stats/Stats';
 import Main from './Content/Main/Main';
 import Contribute from './Content/Contribute/Contribute';
 
-import Drawer from '../Header/Drawer';
+import Container from '../Container';
+import PropTypes from 'prop-types';
+
 
 import updateData from '../../utils/updateData';
 
@@ -100,14 +102,6 @@ class Home extends React.Component {
   }
 
 
-  componentWillUpdate(nextProps, nextState) {
-    if (sessionStorage.graphHistory && sessionStorage.graphHistory.length > 2) {
-      sessionStorage.graphHistory = "[]";
-      sessionStorage.location = "-1";
-    }
-  }
-
-
   componentDidUpdate(prevProps, prevState) {
     updateData(this);
   }
@@ -121,7 +115,7 @@ class Home extends React.Component {
     const titleLoc = location ? location : 'search';
 
     return (
-      <Drawer {...this.props}>
+      <Container {...this.props}>
         <Helmet>
           <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
         </Helmet>
@@ -139,7 +133,7 @@ class Home extends React.Component {
             <Contribute {...this.props} />
           </div>
         </div>
-      </Drawer>
+      </Container>
     );
   }
 }

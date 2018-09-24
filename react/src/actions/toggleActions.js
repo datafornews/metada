@@ -44,16 +44,6 @@ export function toggleHowItWorks(val = null) {
     };
 }
 
-export function toggleAbout(val = null) {
-    if (typeof (val) !== typeof (true)) {
-        val = null;
-    }
-    return {
-        type: 'TOGGLE_ABOUT',
-        val
-    };
-}
-
 export function toggleContact(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;
@@ -90,16 +80,6 @@ export function toggleExtension(val = null) {
     }
     return {
         type: 'TOGGLE_EXTENSION',
-        val
-    };
-}
-
-export function toggleSideButtons(val = null) {
-    if (typeof (val) !== typeof (true)) {
-        val = null;
-    }
-    return {
-        type: 'TOGGLE_SIDEBUTTONS',
         val
     };
 }
