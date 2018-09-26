@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import Menu from './Header/Menu';
 import SearchBar from './Search/SearchBar';
 import { connect } from 'react-redux';
+import { Helmet } from "react-helmet";
+
 import mapStateToProps from '../store/defaultMapStateToProps';
 import mapDispatchToProps from '../store/defaultMapDispatchToProps';
 
@@ -92,6 +94,9 @@ const styles = theme => ({
 
 class Container extends Component {
     render() {
+
+        console.log('this.props :', this.props);
+
         const { classes, children, clientType, data, dataIsAvailable,
             history, isRehydrated, show, match,
             toggleIssue, translate, updateEntityInfoBox, isGraph } = this.props;
@@ -100,14 +105,19 @@ class Container extends Component {
         const widths = isMobile ? show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
         const paddingLeft = isMobile ? 0 : 16;
         const paddingRight = isMobile ? 0 : 16;
+        const location = history.location.pathname.split('/')[1];
+        const titleLoc = location ? location : 'search';
 
         return (
             <div className={classes.root}>
+                <Helmet>
+                    <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
+                </Helmet>
                 <AppBar className={classNames(
                     classes.appBar,
                     {
                         [classes.appBarShift]: isRehydrated && show.drawer && isGraph,
-                        [classes["appBarShift-right"]]: isRehydrated &&  show.drawer && isGraph,
+                        [classes["appBarShift-right"]]: isRehydrated && show.drawer && isGraph,
                     }
                 )
                 }

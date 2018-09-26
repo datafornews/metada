@@ -8,7 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../../Search/SearchBar';
 import Search from '@material-ui/icons/Search';
 import Waiting from '../../../Waiting';
-
+import Home from '../../Home'
+import { connect } from 'react-redux';
+import mapStateToProps from '../../../../store/defaultMapStateToProps';
+import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
 
 const styles = theme => ({
     container: {
@@ -60,55 +63,59 @@ class Main extends Component {
     render() {
         const { classes, theme, ...noClassesProps } = this.props;
         return (
-            <div className={classes.container}>
-                <Grid container>
-                    <Grid item sm={5} xs={12} >
-                        <Title clientType={this.props.clientType} translate={this.props.translate} />
-                    </Grid>
+            !noClassesProps.isRehydrated ? '' :
+                <Home isMain={true} {...noClassesProps}>
+                    <div className={classes.container}>
+                        <Grid container>
+                            <Grid item sm={5} xs={12} >
+                                <Title clientType={this.props.clientType} translate={this.props.translate} />
+                            </Grid>
 
-                    {this.props.dataIsAvailable ? <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
-                        {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
-                            <StatsPreview history={this.props.history} />
-                        </div>}
-                        <div className={classes.searchBarGridDiv}>
-                            <SearchBar
-                                arrowRenderer={<Search />}
-                                data={this.props.data}
-                                toggleAbout={this.props.toggleAbout}
-                                show={this.props.show}
-                                history={this.props.history}
-                                translate={this.props.translate}
-                                preventAutofocus={false}
-                                updateEntityInfoBox={this.props.updateEntityInfoBox}
-                                controlStyle={{
-                                    minHeight: 60,
-                                    margin: 'auto',
-                                    fontSize: 25,
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            />
-                        </div>
-                    </Grid>
+                            {this.props.dataIsAvailable ? <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
+                                {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
+                                    <StatsPreview history={this.props.history} />
+                                </div>}
+                                <div className={classes.searchBarGridDiv}>
+                                    <SearchBar
+                                        arrowRenderer={<Search />}
+                                        data={this.props.data}
+                                        toggleAbout={this.props.toggleAbout}
+                                        show={this.props.show}
+                                        history={this.props.history}
+                                        translate={this.props.translate}
+                                        preventAutofocus={false}
+                                        updateEntityInfoBox={this.props.updateEntityInfoBox}
+                                        controlStyle={{
+                                            minHeight: 60,
+                                            margin: 'auto',
+                                            fontSize: 25,
+                                            display: 'flex',
+                                            justifyContent: 'center'
+                                        }}
+                                    />
+                                </div>
+                            </Grid>
 
-                        :
-                        <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
-                            <Waiting
-                                clientType={this.props.clientType}
-                                translate={this.props.translate}
-                                toTranslate="home.loadingData"
-                            />
+                                :
+                                <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
+                                    <Waiting
+                                        clientType={this.props.clientType}
+                                        translate={this.props.translate}
+                                        toTranslate="home.loadingData"
+                                    />
+                                </Grid>
+
+                            }
+                            {this.props.clientType !== "extension" && <Grid item xs={12} className={classes.shareGridItem} >
+                                <Install clientType={this.props.clientType} translate={this.props.translate} />
+                            </Grid>}
                         </Grid>
-
-                    }
-                    {this.props.clientType !== "extension" && <Grid item xs={12} className={classes.shareGridItem} >
-                        <Install clientType={this.props.clientType} translate={this.props.translate} />
-                    </Grid>}
-                </Grid>
-                {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}
-            </div>
+                        {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}
+                    </div>
+                </Home>
         )
     }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+Main = withStyles(styles, { withTheme: true })(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

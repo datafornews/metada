@@ -12,12 +12,18 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
 import store, { history } from './store/store';
-import Home from './components/Home/Home';
+// import Home from './components/Home/Home';
 import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
 import theme from './theme/metadaTheme'
 import DefaultRoute from './components/DefaultRoute';
-
+import Main from './components/Home/Content/Main/Main';
+import About from './components/Home/Content/About/About';
+import Extension from './components/Home/Content/Extension/Extension';
+import Contribute from './components/Home/Content/Contribute/Contribute';
+import Settings from './components/Home/Content/Settings/Settings';
+import Contact from './components/Home/Content/Contact/Contact';
+import Stats from './components/Home/Content/Stats/Stats';
 
 import './style/index.css';
 
@@ -57,15 +63,15 @@ const router = (
                 <div id='index' style={styles[store.getState().clientType]}>
                     <Header history={history} />
                     <Switch>
-                        <Route exact path='/' component={Home}></Route>
-                        <Route exact path='/s/:filter' component={Home}></Route>
-                        <Route exact path='/extension' component={Home}></Route>
-                        <Route exact path='/contribute' component={Home}></Route>
-                        <Route exact path='/settings' component={Home}></Route>
-                        <Route exact path='/about' component={Home}></Route>
-                        <Route exact path='/search' component={Home}></Route>
-                        <Route exact path='/contact' component={Home}></Route>
-                        <Route exact path='/stats' component={Home}></Route>
+                        <Route exact path='/' component={Main}></Route>
+                        <Route exact path='/s/:filter' component={Main}></Route>
+                        <Route exact path='/extension' component={Extension}></Route>
+                        <Route exact path='/contribute' component={Contribute}></Route>
+                        <Route exact path='/settings' component={Settings}></Route>
+                        <Route exact path='/about' component={About}></Route>
+                        <Route exact path='/search' component={Main}></Route>
+                        <Route exact path='/contact' component={Contact}></Route>
+                        <Route exact path='/stats' component={Stats}></Route>
                         <Route exact path='/graph/:entityId' component={Graph}></Route>
                         <Route path="*" component={DefaultRoute} />
                     </Switch>

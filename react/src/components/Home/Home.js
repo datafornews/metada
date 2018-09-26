@@ -111,26 +111,21 @@ class Home extends React.Component {
 
   render() {
 
-    const location = this.props.location.pathname.split('/')[1];
-    const titleLoc = location ? location : 'search';
-
     return (
       <Container {...this.props}>
-        <Helmet>
-          <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
-        </Helmet>
-
         <div style={{ margin: 'auto', marginTop: 8 }} ref='exampleDiv'>
-
-          {["", "s"].indexOf(location) === -1 ? '' : <Main {...this.props} nb={4} />}
+          {this.props.isMain && this.props.children}
+          {/* {["", "s"].indexOf(location) === -1 ? '' : <Main {...this.props} nb={4} />} */}
 
           <div style={homeContentDivStyle[this.props.clientType]}>
-            <LearnAbout {...this.props} />
+
+            {!this.props.isMain && this.props.children}
+            {/* <LearnAbout {...this.props} />
             <Contact {...this.props} />
             <Settings {...this.props} />
             <Extension {...this.props} />
             <Stats {...this.props} />
-            <Contribute {...this.props} />
+            <Contribute {...this.props} /> */}
           </div>
         </div>
       </Container>
@@ -138,4 +133,5 @@ class Home extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
