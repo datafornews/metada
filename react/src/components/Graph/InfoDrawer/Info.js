@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import WikiExtract from './WikiExtract';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
-import DrawerTitle from './InfoTitle';
+import InfoTitle from './InfoTitle';
 import PropTypes from 'prop-types';
 
 const maxLengths = {
@@ -116,11 +116,12 @@ class Info extends Component {
 
 
                 <div style={{ paddingRight: this.state.paddingRight }}>
-                    <DrawerTitle
+                    <InfoTitle
                         infoBox={infoBox}
                         match={match}
                         data={data}
                         translate={translate}
+                        clientType={clientType}
                     />
                 </div>
 

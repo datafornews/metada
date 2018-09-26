@@ -4,12 +4,24 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import StatTitle from './StatTitle';
 import PropTypes from 'prop-types';
+import getImage from '../../../utils/getWikiImage';
 
 
 const styles = theme => ({
-    container: {
-
-    }
+    img: {
+        maxWidth: "-webkit-fill-available",
+        maxHeight: "100%",
+        borderRadius: 4,
+    },
+    imgDiv: {
+        display: "flex",
+        margin: 'auto',
+        justifyContent: "center",
+        alignItems: "center",
+        width: "200px",
+        height: "100px",
+        maxWidth: "90%",
+    },
 });
 
 const entityNameTypoStyle = {
@@ -23,28 +35,72 @@ const entityLongNameTypoStyle = {
 };
 
 class InfoTitle extends Component {
-    render() {
-        const { classes, infoBox, match, data, translate } = this.props;
+
+    state = {
+        image: null
+    }
+
+    componentWillMount() {
+        const { infoBox, match, data } = this.props;
         const entityId = infoBox.type === "entity" ? parseInt(infoBox.data, 10) : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
-        
+        getImage(this, entity)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const entityId = this.props.infoBox.type === "entity" ? parseInt(this.props.infoBox.data, 10) : parseInt(this.props.match.params.entityId, 10);
+        const nextEntityId = nextProps.infoBox.type === "entity" ? parseInt(nextProps.infoBox.data, 10) : parseInt(nextProps.match.params.entityId, 10);
+        if (entityId !== nextEntityId) {
+            this.setState({
+                image: null
+            });
+            getImage(this, nextProps.data.entities.ids[nextEntityId])
+        }
+    }
+
+    render() {
+        const { classes, infoBox, match, data, translate, clientType } = this.props;
+        const entityId = infoBox.type === "entity" ? parseInt(infoBox.data, 10) : parseInt(match.params.entityId, 10);
+        const entity = data.entities.ids[entityId];
+
         return (
             <div className={classes.container}>
-                <Typography type="headline" style={entityNameTypoStyle}>
-                    {entity.name}
-                </Typography>
-                <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
-                    {entity.long_name}
-                </Typography>
-                <br />
-                <StatTitle entity={entity} translate={translate} ></StatTitle>
-            </div>
+                <Grid container alignItems='center'>
+
+                    <Grid item xs={12} md={this.state.image ? 6 : 12} >
+
+                        <Typography type="headline" style={entityNameTypoStyle}>
+                            {entity.name}
+                        </Typography>
+                        <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
+                            {entity.long_name}
+                        </Typography>
+                        {clientType === "extension" && (
+                            <div><br />
+                                <StatTitle entity={entity} translate={translate} ></StatTitle></div>
+                        )}
+
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+
+                        {this.state.image && (
+                            <div className={classes.imgDiv}>
+                                <img src={this.state.image} alt={`${entity.name}-logo`} className={classes.img} />
+                            </div>
+                        )}
+
+                    </Grid>
+                </Grid>
+
+            </div >
         )
     }
 }
 
 InfoTitle.propTypes = {
     classes: PropTypes.object.isRequired,
+    clientType: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
     infoBox: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,

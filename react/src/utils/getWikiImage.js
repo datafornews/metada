@@ -4,6 +4,11 @@ import wtf from 'wtf_wikipedia';
 
 export default async function (component, entity) {
 
+    if (!component || !entity){
+        noImage(component);
+        return
+    }
+
     let imageAddress;
     let localImage = localStorage.getItem('image_' + entity.id);
     if (localImage !== null) {
