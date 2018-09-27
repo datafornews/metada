@@ -222,11 +222,11 @@ class CytoContainer extends React.Component {
     });
     cy.on('tap', 'edge', (event) => {
       const data = event.target.data();
-      this.props.toggleDrawer(false);
+      // this.props.toggleDrawer(false);
       this.props.updateShareInfoBox(data);
     })
-
-    if (cytoData.nodes.length > 10) {
+ 
+    if (cytoData.nodes.length > 20) {
       const idsToFit = findLevel(cy, cytoData, id, 2, 250).map(
         (v, k) => {
           return '#' + v

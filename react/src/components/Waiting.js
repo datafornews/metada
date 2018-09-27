@@ -18,7 +18,8 @@ const styles = theme => ({
         position: 'relative',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        minHeight: 150
     },
     icon: {
         height: 25,
