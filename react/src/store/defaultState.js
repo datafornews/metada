@@ -10,8 +10,8 @@ const defaultState = {
     },
     currentDisplay: -1,
     infoBox: {
-        type: '',
-        data: []
+        entity: null,
+        share: null
     }
 };
 

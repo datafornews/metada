@@ -29,6 +29,7 @@ import './style/index.css';
 
 
 console.log('INDEX', performance.now())
+localStorage.removeItem('reduxPersist:infoBox')
 
 window.browser = (function () {
     return window.msBrowser ||

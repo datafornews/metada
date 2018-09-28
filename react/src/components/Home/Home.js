@@ -1,18 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import mapStateToProps from '../../store/defaultMapStateToProps';
-import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
+// import mapStateToProps from '../../store/defaultMapStateToProps';
+// import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import { check_website } from '../../utils/backgroundUtils';
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
-import LearnAbout from './Content/LearnAbout/LearnAbout';
-import Contact from './Content/Contact/Contact';
-import Settings from './Content/Settings/Settings';
-import Extension from './Content/Extension/Extension';
-import Stats from './Content/Stats/Stats';
-import Main from './Content/Main/Main';
-import Contribute from './Content/Contribute/Contribute';
+// import LearnAbout from './Content/LearnAbout/LearnAbout';
+// import Contact from './Content/Contact/Contact';
+// import Settings from './Content/Settings/Settings';
+// import Extension from './Content/Extension/Extension';
+// import Stats from './Content/Stats/Stats';
+// import Main from './Content/Main/Main';
+// import Contribute from './Content/Contribute/Contribute';
 
 import Container from '../Container';
 import PropTypes from 'prop-types';

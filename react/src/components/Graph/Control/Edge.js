@@ -18,8 +18,8 @@ class Edge extends Component {
 
         const { data, infoBox, clientType } = this.props;
 
-        const target = data.entities.ids[parseInt(infoBox.data.target, 10)]
-        const source = data.entities.ids[parseInt(infoBox.data.source, 10)]
+        const target = data.entities.ids[parseInt(infoBox.share.target, 10)]
+        const source = data.entities.ids[parseInt(infoBox.share.source, 10)]
 
         if (!target || !source) {
             return ''
@@ -41,7 +41,7 @@ class Edge extends Component {
                 >
                     <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
                     <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[source.category] }}>{source.name}</Grid>
-                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({infoBox.data.label})</span>--></Grid>
+                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({infoBox.share.label})</span>--></Grid>
                     <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[target.category] }}>{target.name}</Grid>
                     <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
                 </Grid>

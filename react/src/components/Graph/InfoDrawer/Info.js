@@ -75,10 +75,10 @@ class Info extends Component {
         const location = parseInt(this.props.match.params.entityId, 10);
         const persistedInfoBox = JSON.parse(localStorage.getItem('reduxPersist:infoBox'))
 
-        if (persistedInfoBox && persistedInfoBox.data !== location) {
+        if (persistedInfoBox && persistedInfoBox.entity !== location) {
             localStorage.setItem('reduxPersist:infoBox', JSON.stringify({
                 ...persistedInfoBox,
-                data: location
+                entity: location
             }))
         }
 
@@ -103,7 +103,7 @@ class Info extends Component {
     render() {
 
         const { classes, infoBox, data, translate, clientType, match, currentLanguage } = this.props;
-        const entityId = infoBox.type === "entity" ? infoBox.data : parseInt(match.params.entityId, 10);
+        const entityId = ! infoBox.share ? infoBox.entity : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
 
         const style = {

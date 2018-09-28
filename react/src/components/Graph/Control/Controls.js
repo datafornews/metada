@@ -96,7 +96,7 @@ class Controls extends Component {
     }
 
     move = () => {
-        const newLoc = `/graph/${this.props.data.entities.ids[this.props.infoBox.data].id}`;
+        const newLoc = `/graph/${this.props.data.entities.ids[this.props.infoBox.entity].id}`;
         this.props.history.push(newLoc);
         this.props.updateRouterLocation(newLoc);
     }
@@ -105,8 +105,8 @@ class Controls extends Component {
 
         const { classes, infoBox, match, data, clientType, translate, show, routerLocations } = this.props;
 
-        const selectedIsRepresented = parseInt(infoBox.data, 10) === parseInt(match.params.entityId, 10);
-        const entity = data.entities.ids[infoBox.data];
+        const selectedIsRepresented = parseInt(infoBox.entity, 10) === parseInt(match.params.entityId, 10);
+        const entity = data.entities.ids[infoBox.entity];
         return (
             <div className={classes.container} style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}>
                 <GraphHistoryNavigation

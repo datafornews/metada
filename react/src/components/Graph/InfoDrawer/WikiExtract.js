@@ -42,20 +42,20 @@ class WikiExtract extends Component {
 
 
     componentDidMount() {
-        const entity = this.props.data.entities.ids[this.props.infoBox.data];
+        const entity = this.props.data.entities.ids[this.props.infoBox.entity];
 
         entity && getWikiData(this, entity);
     }
 
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.infoBox.data === this.props.infoBox.data) {
+        if (nextProps.infoBox.entity === this.props.infoBox.entity) {
             return
         }
         this.setState({
             extract: <Waiting clientType={this.props.clientType} translate={this.props.translate} toTranslate='graph.wiki.loading' />,
         });
-        const entity = this.props.data.entities.ids[nextProps.infoBox.data];
+        const entity = this.props.data.entities.ids[nextProps.infoBox.entity];
 
         entity && getWikiData(this, entity);
     }

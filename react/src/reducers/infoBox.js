@@ -1,16 +1,37 @@
-function infoBox(state = [], action) {
+function infoBox(state = {}, action) {
     switch (action.type) {
         case 'UPDATE_ENTITY_INFOBOX':
+            if (typeof state.type === "string") {
+                return {
+                    entity: action.entityId,
+                    share: null
+                }
+            }
+            console.log('UPDATE_ENTITY_INFOBOX', {
+                share: null,
+                entity: action.entityId
+
+            });
             return {
-                type: 'entity',
-                data: action.entityId
+                share: null,
+                entity: action.entityId
 
             }
 
         case 'UPDATE_SHARE_INFOBOX':
+            if (typeof state.type === "string") {
+                return {
+                    entity: state.type === "entity" ? state.data : null,
+                    share: action.share
+                }
+            }
+            console.log('UPDATE_SHARE_INFOBOX', {
+                ...state,
+                share: action.share
+            });
             return {
-                type: 'share',
-                data: action.share
+                ...state,
+                share: action.share
             }
 
 

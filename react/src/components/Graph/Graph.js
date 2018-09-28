@@ -100,7 +100,7 @@ class Graph extends React.Component {
       {dataIsAvailable ?
         <div>
           <div className={classes.controlsContainer}>
-            {infoBox.type === "entity" ? <Controls
+            {!infoBox.share ? <Controls
               clientType={clientType}
               data={data}
               history={history}

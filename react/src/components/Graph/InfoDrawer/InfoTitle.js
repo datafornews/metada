@@ -42,14 +42,14 @@ class InfoTitle extends Component {
 
     componentWillMount() {
         const { infoBox, match, data } = this.props;
-        const entityId = infoBox.type === "entity" ? parseInt(infoBox.data, 10) : parseInt(match.params.entityId, 10);
+        const entityId = !infoBox.share ? parseInt(infoBox.entity, 10) : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
         getImage(this, entity)
     }
 
     componentWillReceiveProps(nextProps) {
-        const entityId = this.props.infoBox.type === "entity" ? parseInt(this.props.infoBox.data, 10) : parseInt(this.props.match.params.entityId, 10);
-        const nextEntityId = nextProps.infoBox.type === "entity" ? parseInt(nextProps.infoBox.data, 10) : parseInt(nextProps.match.params.entityId, 10);
+        const entityId = !this.props.infoBox.share ? parseInt(this.props.infoBox.entity, 10) : parseInt(this.props.match.params.entityId, 10);
+        const nextEntityId = !nextProps.infoBox.share ? parseInt(nextProps.infoBox.entity, 10) : parseInt(nextProps.match.params.entityId, 10);
         if (entityId !== nextEntityId) {
             this.setState({
                 image: null
@@ -60,8 +60,12 @@ class InfoTitle extends Component {
 
     render() {
         const { classes, infoBox, match, data, translate, clientType } = this.props;
-        const entityId = infoBox.type === "entity" ? parseInt(infoBox.data, 10) : parseInt(match.params.entityId, 10);
+        let entityId = !infoBox.share ? parseInt(infoBox.entity, 10) : parseInt(match.params.entityId, 10);
+        if (!entityId || !isNaN(entityId)) {
+            entityId = parseInt(match.params.entityId, 10)
+        }
         const entity = data.entities.ids[entityId];
+        console.log(entityId, infoBox, entity);
 
         return (
             <div className={classes.container}>

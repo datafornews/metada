@@ -3,6 +3,7 @@ import cytoscape from 'cytoscape';
 import { Helmet } from "react-helmet";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import ReactResizeDetector from 'react-resize-detector';
 
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -130,7 +131,7 @@ class CytoContainer extends React.Component {
       console.time('      Render Cyto');
     }
     var cyElement = document.getElementById('cy');
-    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.data));
+    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.entity));
     cy.ready(() => {
       cy.on(
         'tap',
@@ -225,9 +226,9 @@ class CytoContainer extends React.Component {
       // this.props.toggleDrawer(false);
       this.props.updateShareInfoBox(data);
     })
- 
-    if (cytoData.nodes.length > 20) {
-      const idsToFit = findLevel(cy, cytoData, id, 2, 250).map(
+
+    if (cytoData.nodes.length > 6) {
+      const idsToFit = findLevel(cy, cytoData, id, 3, 250).map(
         (v, k) => {
           return '#' + v
         }
@@ -287,6 +288,12 @@ class CytoContainer extends React.Component {
     }
   }
 
+  cyResize = () => {
+      this.cy && this.cy.resize();
+      this.cy && this.cy.fit();
+      console.log('resize');
+  }
+
 
   render() {
 
@@ -307,6 +314,7 @@ class CytoContainer extends React.Component {
             <title>Metada - {entity.name}</title>
           </Helmet>
           <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
+            <ReactResizeDetector refreshMode='debounce' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
           </div>
         </div>
         <HelpCard
