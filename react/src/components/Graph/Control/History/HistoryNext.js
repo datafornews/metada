@@ -53,6 +53,8 @@ HistoryNext.propTypes = {
     clientType: PropTypes.string.isRequired,
     routerLocations: PropTypes.object.isRequired,
     translate: PropTypes.func.isRequired,
+    updateEntityInfoBox: PropTypes.func.isRequired,
+    goToNextGraph: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(HistoryNext);

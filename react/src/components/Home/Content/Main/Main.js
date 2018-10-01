@@ -27,12 +27,11 @@ const styles = theme => ({
     },
     searchBarGridDiv: {
         display: 'flex',
-        justifyContent: 'center',
         alignItems: "center",
         width: "100%",
     },
     shareGridItem: {
-        marginTop: 32
+        // height: '100%'
     },
     statsGridDiv: {
         maxWidth: "70%"
@@ -66,49 +65,54 @@ class Main extends Component {
             !noClassesProps.isRehydrated ? '' :
                 <Home isMain={true} {...noClassesProps}>
                     <div className={classes.container}>
-                        <Grid container>
-                            <Grid item sm={5} xs={12} >
-                                <Title clientType={this.props.clientType} translate={this.props.translate} />
-                            </Grid>
-
-                            {this.props.dataIsAvailable ? <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
-                                {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
-                                    <StatsPreview history={this.props.history} />
-                                </div>}
-                                <div className={classes.searchBarGridDiv}>
-                                    <SearchBar
-                                        arrowRenderer={<Search />}
-                                        data={this.props.data}
-                                        toggleAbout={this.props.toggleAbout}
-                                        show={this.props.show}
-                                        history={this.props.history}
-                                        translate={this.props.translate}
-                                        preventAutofocus={false}
-                                        updateEntityInfoBox={this.props.updateEntityInfoBox}
-                                        controlStyle={{
-                                            minHeight: 60,
-                                            margin: 'auto',
-                                            fontSize: 25,
-                                            display: 'flex',
-                                            justifyContent: 'center'
-                                        }}
-                                    />
-                                </div>
-                            </Grid>
-
-                                :
-                                <Grid item sm={7} xs={12} className={classes.searchBarGridItem}>
-                                    <Waiting
-                                        clientType={this.props.clientType}
-                                        translate={this.props.translate}
-                                        toTranslate="home.loadingData"
-                                    />
+                        <Grid container spacing={16}>
+                            <Grid item xs={12} md={8}>
+                                <Grid item xs={12} >
+                                    <Title clientType={this.props.clientType} translate={this.props.translate} />
                                 </Grid>
 
-                            }
-                            {this.props.clientType !== "extension" && <Grid item xs={12} className={classes.shareGridItem} >
-                                <Install clientType={this.props.clientType} translate={this.props.translate} />
-                            </Grid>}
+                                {this.props.dataIsAvailable ? <Grid item xs={12} className={classes.searchBarGridItem}>
+                                    {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
+                                        <StatsPreview history={this.props.history} />
+                                    </div>}
+                                    <div className={classes.searchBarGridDiv}>
+                                        <SearchBar
+                                            arrowRenderer={<Search />}
+                                            data={this.props.data}
+                                            toggleAbout={this.props.toggleAbout}
+                                            show={this.props.show}
+                                            history={this.props.history}
+                                            translate={this.props.translate}
+                                            preventAutofocus={false}
+                                            updateEntityInfoBox={this.props.updateEntityInfoBox}
+                                            force={true}
+                                            controlStyle={{
+                                                minHeight: 60,
+                                                margin: 'auto',
+                                                fontSize: 25,
+                                                display: 'flex',
+                                                justifyContent: 'center'
+                                            }}
+                                        />
+                                    </div>
+                                </Grid>
+
+                                    :
+                                    <Grid item xs={12} className={classes.searchBarGridItem}>
+                                        <Waiting
+                                            clientType={this.props.clientType}
+                                            translate={this.props.translate}
+                                            toTranslate="home.loadingData"
+                                        />
+                                    </Grid>
+
+                                }
+                            </Grid>
+                            {this.props.clientType !== "extension" && (
+                                <Grid item xs={12} md={4} className={classes.shareGridItem} >
+                                    <Install clientType={this.props.clientType} translate={this.props.translate} />
+                                </Grid>
+                            )}
                         </Grid>
                         {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}
                     </div>

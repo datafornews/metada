@@ -74,7 +74,7 @@ class InfoDrawer extends Component {
                                 docked: classes.docked
                             }}
                             open={isRehydrated && show.drawer}
-                            anchor="right"
+                            anchor="left"
                         >
                             <div className={classes.drawerHeader}>
                                 <IconButton onClick={toggleDrawer}>

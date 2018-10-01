@@ -31,7 +31,7 @@ const styles = theme => ({
         display: "flex",
         flexFlow: "column",
         height: "100%",
-        backgroundColor: '#eae9e9b8',
+        backgroundColor: 'rgb(245,245,243)',
         "&:hover": {
             backgroundColor: 'white',
         },

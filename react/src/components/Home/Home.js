@@ -23,7 +23,7 @@ import updateData from '../../utils/updateData';
 const homeContentDivStyle = {
   "mobile": {
     textAlign: 'center',
-    width: '80%',
+    width: '92%',
     margin: 'auto'
   },
   "browser": {
@@ -113,7 +113,7 @@ class Home extends React.Component {
 
     return (
       <Container {...this.props}>
-        <div style={{ margin: 'auto', marginTop: 8 }} ref='exampleDiv'>
+        <div style={{ margin: 'auto' }} ref='exampleDiv'>
           {this.props.isMain && this.props.children}
           {/* {["", "s"].indexOf(location) === -1 ? '' : <Main {...this.props} nb={4} />} */}
 

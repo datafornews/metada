@@ -61,11 +61,13 @@ class InfoTitle extends Component {
     render() {
         const { classes, infoBox, match, data, translate, clientType } = this.props;
         let entityId = !infoBox.share ? parseInt(infoBox.entity, 10) : parseInt(match.params.entityId, 10);
-        if (!entityId || !isNaN(entityId)) {
+        console.log('entityId :', entityId);
+        if (!entityId || isNaN(entityId)) {
             entityId = parseInt(match.params.entityId, 10)
         }
         const entity = data.entities.ids[entityId];
-        console.log(entityId, infoBox, entity);
+
+        console.log(infoBox);
 
         return (
             <div className={classes.container}>

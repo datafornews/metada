@@ -2,6 +2,7 @@ import React from 'react';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Collapse from '@material-ui/core/Collapse';
+import classNames from 'classnames';
 
 import MenuList from '@material-ui/core/MenuList';
 
@@ -44,6 +45,17 @@ const styles = theme => ({
     },
     secondary: {
         color: theme.palette.default
+    },
+    burgerButton: {
+        marginRight: 12,
+    },
+    menuDiv: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    container: {
+        display: 'inline-flex',
     }
 });
 
@@ -51,6 +63,7 @@ const styles = theme => ({
 class CollapseMenu extends React.Component {
     state = {
         anchorEl: null,
+        isOpen: false
     };
 
     handleClick = event => {
@@ -58,51 +71,80 @@ class CollapseMenu extends React.Component {
         if (this.props.clientType !== 'mobile') {
             this.goTo('/')()
         } else {
-            this.setState({ anchorEl: event.currentTarget });
+            this.setState({ anchorEl: this.anchor });
         }
     };
 
-    handleClose = () => {
-        this.setState({ anchorEl: null });
+    close = () => {
+        console.log('close');
+        this.setState({ anchorEl: null, isOpen: false });
     };
 
     open = event => {
-        this.setState({ anchorEl: event.currentTarget });
+        console.log('open');
+        this.setState({ anchorEl: this.anchor, isOpen: true });
+    }
+
+    clickMenu = () => {
+        console.log('this.state :', this.state);
+        Boolean(this.state.isOpen) ? this.close() : this.open();
     }
 
     goTo = to => () => {
-        this.props.history.push(to)
-        this.handleClose()
+        this.props.history.push(to);
+        this.close();
     }
 
     render() {
         const { anchorEl } = this.state;
-        const { classes } = this.props;
-
+        const { classes, clientType } = this.props;
+        console.log('clientType :', clientType);
         return (
-            <span>
-                <Logo
-                    color="inherit"
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                    aria-owns={anchorEl ? 'fade-menu' : null}
-                    clientType={this.props.clientType}
-                    onMouseEnter={this.open}
-                    show={this.props.show}
-                    isRehydrated={this.props.isRehydrated}
-                />
-                <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal>
-                    {({ TransitionProps, placement }) => (
-                        <Collapse
-                            {...TransitionProps}
-                            id="menu-list-grow"
-                            timeout={{
-                                enter: 500
-                            }}
+            <ClickAwayListener onClickAway={this.close}>
+                <div
+                    ref={(div) => {
+                        this.anchor = div;
+                    }}
+                    className={classes.container}
+                >
+                    <div className={classes.menuDiv}>
+                        <button className={
+                            classNames(
+                                'hamburger',
+                                'hamburger--elastic',
+                                {
+                                    'is-active': Boolean(anchorEl)
+                                },
+                                'burgerButton'
+                            )
+                        }
+                            type="button"
+                            onClick={this.clickMenu}
                         >
-                            <Paper className={classes.root} elevation={0}>
-                                <ClickAwayListener onClickAway={this.handleClose}>
-                                    <MenuList className={classes.menuList} onMouseLeave={this.handleClose}>
+                            <span className="hamburger-box">
+                                <span className="hamburger-inner"></span>
+                            </span>
+                        </button>
+                        {clientType !== 'mobile' && <Logo
+                            color="inherit"
+                            aria-haspopup="true"
+                            onClick={this.handleClick}
+                            aria-owns={anchorEl ? 'fade-menu' : null}
+                            clientType={this.props.clientType}
+                            show={this.props.show}
+                            isRehydrated={this.props.isRehydrated}
+                        />}
+                    </div>
+                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                            <Collapse
+                                {...TransitionProps}
+                                timeout={{
+                                    enter: 500
+                                }}
+                            >
+                                <Paper className={classes.root} elevation={0}>
+                                    <MenuList className={classes.menuList} onMouseLeave={this.close}>
                                         <MenuItem className={classes.menuItem} onClick={this.goTo('/')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <HomeIcon />
@@ -149,12 +191,12 @@ class CollapseMenu extends React.Component {
                                             <Share clientType={this.props.clientType} />
                                         </MenuItem>
                                     </MenuList>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Collapse>
-                    )}
-                </Popper>
-            </span>
+                                </Paper>
+                            </Collapse>
+                        )}
+                    </Popper>
+                </div>
+            </ClickAwayListener>
         );
     }
 }

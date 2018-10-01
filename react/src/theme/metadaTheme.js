@@ -10,7 +10,7 @@ export const colors = {
   primary: '#3f51b5',
   secondary: 'rgb(80, 80, 96)',
   accent: "green",
-  default: "rgb(246,244,244)"
+  default: "rgb(246,244,244)" // If this value is changed, change it also in the hamburger part of index.css
 };
 
 export const MediaIcon = Newspaper;
@@ -29,7 +29,18 @@ const palette = {
   accent: colors.accent,
   default: colors.default,
 }
+
+export const typography = {
+  fontFamily: "Quicksand, fantasy"
+};
+
 const themeName = 'Purple Heart Gull Gray Guinea';
 
-export default createMuiTheme({ palette, themeName });
+const theme = {
+  palette,
+  themeName,
+  typography
+}
+
+export default createMuiTheme(theme);
 //https://react-theming.github.io/create-mui-theme/

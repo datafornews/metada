@@ -12,7 +12,8 @@ import Menu from './Header/Menu';
 import SearchBar from './Search/SearchBar';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
-
+import Logo from './Header/Logo'
+import Grid from '@material-ui/core/Grid';
 import mapStateToProps from '../store/defaultMapStateToProps';
 import mapDispatchToProps from '../store/defaultMapDispatchToProps';
 
@@ -48,16 +49,16 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
-    'appBarShift-right': {
-        marginRight: drawerWidth,
+    'appBarShift-left': {
+        marginLeft: drawerWidth,
     },
     mobileToolbar: {
         textAlign: "center"
     },
     iconButton: {
         width: '45%',
-        margin: 'auto',
-        maxWidth: 50
+        maxWidth: 50,
+        margin: '0px 4px'
     },
     content: {
         flexGrow: 1,
@@ -75,8 +76,8 @@ const styles = theme => ({
         overflow: "scroll",
         maxHeight: '100vh'
     },
-    'content-right': {
-        marginRight: -drawerWidth,
+    'content-left': {
+        marginLeft: -drawerWidth,
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -84,22 +85,28 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
-    'contentShift-right': {
-        marginRight: 0,
+    'contentShift-left': {
+        marginLeft: 0,
     },
     noPadding: {
         padding: `${theme.spacing.unit * 3 * 3}px 0px 0px 0px`
     },
+    searchBar: {
+        height: "52px",
+        display: "flex",
+    }
 });
 
 class Container extends Component {
+
+    goHome = () => {
+        this.props.history.push('/');
+    }
+
     render() {
-
-        console.log('this.props :', this.props);
-
         const { classes, children, clientType, data, dataIsAvailable,
             history, isRehydrated, show, match,
-            toggleIssue, translate, updateEntityInfoBox, isGraph } = this.props;
+            toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph } = this.props;
 
         const isMobile = clientType === 'mobile';
         const widths = isMobile ? show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
@@ -117,77 +124,101 @@ class Container extends Component {
                     classes.appBar,
                     {
                         [classes.appBarShift]: isRehydrated && show.drawer && isGraph,
-                        [classes["appBarShift-right"]]: isRehydrated && show.drawer && isGraph,
+                        [classes["appBarShift-left"]]: isRehydrated && show.drawer && isGraph,
                     }
                 )
                 }
                     position="absolute">
                     <Toolbar style={{ paddingLeft, paddingRight }}>
-                        <div style={{ width: widths[0], margin: "auto" }} className={isMobile ? classes.mobileToolbar : undefined}>
-                            <Menu
-                                history={history}
-                                clientType={clientType}
-                                show={show}
-                                isRehydrated={isRehydrated}
-                                translate={translate}
-                            />
-                        </div>
-                        <Fade in={!isMobile || !show.drawer} timeout={500}>
-                            <div style={{ width: widths[1], margin: "auto" }}>
-
-
-                                {dataIsAvailable && <SearchBar
-                                    data={data}
-                                    show={show}
+                        <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="center"
+                        >
+                            {/* <div style={{ width: widths[0], margin: "auto" }} className={isMobile ? classes.mobileToolbar : undefined}> */}
+                            <Grid item xs={6} sm={5}>
+                                <Menu
                                     history={history}
-                                    match={match}
-                                    isGraph={isGraph}
+                                    clientType={clientType}
+                                    show={show}
+                                    isRehydrated={isRehydrated}
                                     translate={translate}
-                                    preventAutofocus={true}
-                                    updateEntityInfoBox={updateEntityInfoBox}
-                                    selectStyle={{
-                                        minHeight: 60,
-                                        margin: 'auto',
-                                        fontSize: 25,
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                />}
-                            </div>
-                        </Fade>
+                                />
+                                {/* </div> */}
+                                {history.location.pathname.startsWith("/graph/") ?
 
-                        <div style={{ width: widths[2], margin: "auto" }}>
-                            {history.location.pathname.startsWith("/graph/") &&
-                                <Fade in={!(isMobile && show.drawer)} timeout={500}>
-                                    <div style={{ display: "flex", justifyContent: 'flex-end' }}>
-                                        <IconButton
-                                            onClick={toggleIssue}
-                                            style={{ color: "white" }}
-                                            className={classes.iconButton}
-                                        >
-                                            <IssueIcon />
-                                        </IconButton>
-                                        {isMobile && <br />}
-                                        <IconButton
-                                            onClick={this.toggleHelp}
-                                            style={{ color: "white" }}
-                                            className={classes.iconButton}
-                                        >
-                                            <HelpIcon />
-                                        </IconButton>
+                                    <Fade in={!(isMobile && show.drawer)} timeout={500}>
+                                        <div style={{ display: "inline-flex", justifyContent: 'flex-start' }}>
+                                            <IconButton
+                                                onClick={toggleIssue}
+                                                style={{ color: "white" }}
+                                                className={classes.iconButton}
+                                            >
+                                                <IssueIcon />
+                                            </IconButton>
+                                            {isMobile && <br />}
+                                            <IconButton
+                                                onClick={toggleHelp}
+                                                style={{ color: "white" }}
+                                                className={classes.iconButton}
+                                            >
+                                                <HelpIcon />
+                                            </IconButton>
+                                        </div>
+                                    </Fade>
+                                    :
+                                    isMobile ?
+
+                                        <Logo
+                                            color="inherit"
+                                            aria-haspopup="true"
+                                            onClick={this.goHome}
+                                            clientType={clientType}
+                                            show={show}
+                                            isRehydrated={isRehydrated}
+                                        />
+                                        : ''
+                                }
+                            </Grid>
+                            <Grid item xs={6} sm={show.drawer ? 6 : 5} md={show.drawer ? 5 : 4}>
+                                <Fade in={!isMobile || !show.drawer} timeout={500}>
+                                    {/* <div style={{ width: widths[1], margin: "auto" }}> */}
+
+                                    <div>
+                                        {dataIsAvailable && <div className={classes.searchBar}><SearchBar
+                                            data={data}
+                                            show={show}
+                                            history={history}
+                                            match={match}
+                                            isGraph={isGraph}
+                                            translate={translate}
+                                            preventAutofocus={true}
+                                            updateEntityInfoBox={updateEntityInfoBox}
+                                            controlStyle={{
+                                                margin: 'auto',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                            }}
+                                        /></div>}
                                     </div>
+                                    {/* </div> */}
                                 </Fade>
-                            }
-                        </div>
+                            </Grid>
+                            {/* <div style={{ width: widths[2], margin: "auto" }}> */}
 
+                            {/* </div> */}
+
+                        </Grid>
                     </Toolbar>
                 </AppBar>
+                {this.props.drawer}
                 <main className={classNames(
                     classes.content,
-                    isGraph && classes['content-right'],
+                    isGraph && classes['content-left'],
                     {
                         [classes.contentShift]: isGraph && show.drawer,
-                        [classes["contentShift-right"]]: isGraph && show.drawer,
+                        [classes["contentShift-left"]]: isGraph && show.drawer,
                     },
                     isMobile && classes.noPadding
                 )}
@@ -195,7 +226,6 @@ class Container extends Component {
                 >
                     {children}
                 </main>
-                {this.props.drawer}
             </div>
         )
     }

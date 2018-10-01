@@ -106,6 +106,7 @@ class CytoContainer extends React.Component {
 
   componentWillUnmount() {
     clearTimeout(this.state.longClickTimeout);
+    this.cy = null;
   }
 
 
@@ -227,7 +228,7 @@ class CytoContainer extends React.Component {
       this.props.updateShareInfoBox(data);
     })
 
-    if (cytoData.nodes.length > 6) {
+    if (cytoData.nodes.length > 20) {
       const idsToFit = findLevel(cy, cytoData, id, 3, 250).map(
         (v, k) => {
           return '#' + v
@@ -289,11 +290,10 @@ class CytoContainer extends React.Component {
   }
 
   cyResize = () => {
-      this.cy && this.cy.resize();
-      this.cy && this.cy.fit();
-      console.log('resize');
+    this.cy && this.cy.resize();
+    this.cy && this.cy.fit();
+    console.log('resize');
   }
-
 
   render() {
 
@@ -313,7 +313,7 @@ class CytoContainer extends React.Component {
           <Helmet>
             <title>Metada - {entity.name}</title>
           </Helmet>
-          <div id="cy" className={classes.cyDiv} onContextMenu={this.handleContextMenu} >
+          <div id="cy" className={classes.cyDiv} >
             <ReactResizeDetector refreshMode='debounce' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
           </div>
         </div>

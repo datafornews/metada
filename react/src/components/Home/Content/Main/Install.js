@@ -7,10 +7,13 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { colors } from '../../../../theme/metadaTheme';
 import OpenInNew from '@material-ui/icons/OpenInNew';
+import is from 'is_js';
+import ChromeIcon from "react-icons/lib/io/social-chrome";
+import FirefoxIcon from "react-icons/lib/fa/firefox";
 
 const styles = theme => ({
     container: {
-
+        height: '100%'
     },
     shareContainer: {
         marginTop: 4,
@@ -31,7 +34,8 @@ const styles = theme => ({
     },
     buttonDiv: {
         display: 'flex',
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        minWidth: 150
     },
 
     icon: {
@@ -45,17 +49,19 @@ class Install extends Component {
     render() {
         const { classes } = this.props;
 
+        const val = is.firefox() ? 'Firefox' : 'Chrome';
+
         return (
-            <Grid container className={classes.container}>
+            <Grid container spacing={16} className={classes.container}>
                 {this.props.clientType !== "extension" &&
-                    <Grid item xs={12} md={5} style={{ marginBottom: 8 }}>
+                    <Grid item xs={12} style={{ display: 'flex', alignItems: 'flex-end' }}>
                         <Typography variant="subheading" component="div">
                             {this.props.translate('home.install.disclaimer')}
                         </Typography>
                     </Grid>}
 
                 {this.props.clientType !== "extension" &&
-                    <Grid item xs={12} md={7}>
+                    <Grid item xs={12} style={{ display: 'flex', alignItems: 'center' }}>
 
                         <Grid
                             container
@@ -63,23 +69,22 @@ class Install extends Component {
                             alignItems={'center'}
                             justify={'center'}
                         >
-                            {["Chrome", "Firefox"].map((v, k) => {
-                                return <Grid item xs={7} sm={4} key={k}>
-                                    <div className={classes.buttonDiv}>
-                                        <Button
-                                            style={{ color: colors.default, maxWidth: '170px' }}
-                                            classes={{ label: classes.label }}
-                                            variant='contained'
-                                            color="primary"
-                                            target="_blank"
-                                            href={`https://bit.ly/metada${v}`}
-                                        >
-                                            {this.props.translate(`home.install.install${v}`)}
-                                            <OpenInNew className={classes.icon} />
-                                        </Button>
-                                    </div>
-                                </Grid>
-                            })}
+                            <Grid item xs={7} sm={4} >
+                                <div className={classes.buttonDiv}>
+                                    <Button
+                                        style={{ color: colors.default, maxWidth: '170px' }}
+                                        classes={{ label: classes.label }}
+                                        variant='contained'
+                                        color="primary"
+                                        target="_blank"
+                                        href={`https://bit.ly/metada${val}`}
+                                    >
+                                        {this.props.translate(`home.install.install${val}`)}
+                                        {is.firefox() ? <FirefoxIcon className={classes.icon} /> : <ChromeIcon className={classes.icon} />}
+                                        <OpenInNew className={classes.icon} />
+                                    </Button>
+                                </div>
+                            </Grid>
                         </Grid>
                     </Grid>}
             </Grid>

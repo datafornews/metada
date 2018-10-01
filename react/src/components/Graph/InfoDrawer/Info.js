@@ -53,7 +53,7 @@ class Info extends Component {
     };
 
     updateWidth = () => {
-
+        return
         var w = window,
             d = document,
             documentElement = d.documentElement,
@@ -103,8 +103,12 @@ class Info extends Component {
     render() {
 
         const { classes, infoBox, data, translate, clientType, match, currentLanguage } = this.props;
-        const entityId = ! infoBox.share ? infoBox.entity : parseInt(match.params.entityId, 10);
+        const entityId = !infoBox.share ? infoBox.entity : parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[entityId];
+
+        if (!entity) {
+            return '';
+        }
 
         const style = {
             marginTop: clientType === 'mobile' ? '0px' : '8px',

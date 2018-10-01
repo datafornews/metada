@@ -1,7 +1,7 @@
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import cxtmenu from 'cytoscape-cxtmenu';
-import { colors } from '../theme/metadaTheme';
+import { colors, typography } from '../theme/metadaTheme';
 
 
 cytoscape.use(cxtmenu);
@@ -55,12 +55,15 @@ const dagreLayout = {
     stop: function () { } // on layoutstop
 };
 
+console.log('typography.fontFamily :', typography.fontFamily);
+
 
 const nodeBaseStyle = {
     'background-opacity': 'data(backgroundOpacity)',
     'label': 'data(name)',
     'shape': 'roundrectangle',
     'font-weight': 'data(fontWeight)',
+    'font-family': typography.fontFamily,
     'width': 'data(widthPx)',
     'text-valign': "center",
     'compound-sizing-wrt-labels': 'include',
@@ -74,7 +77,6 @@ const nodeBaseStyle = {
     'border-color': 'data(color)',
     'border-width': '0px',
     'background-color': 'data(backgroundColor)',
-
 };
 
 function addOneLineBreak(string) {

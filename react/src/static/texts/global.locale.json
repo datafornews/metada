@@ -1,8 +1,8 @@
 {
     "home": {
         "subtitle": [
-            "Explore the Graph:",
-            "Explorez le Graphe:"
+            "Explore the Graph",
+            "Explorez le Graphe"
         ],
         "install": {
             "disclaimer": [
@@ -10,12 +10,12 @@
                 "Metada est avant tout une extension pour navigateur qui vous rappelle qui possède les médias que vous consultez!"
             ],
             "installFirefox": [
-                "Install on Firefox",
-                "Installer sur Firefox"
+                "Install",
+                "Installer"
             ],
             "installChrome": [
-                "Install on Chrome",
-                "Installer sur Chrome"
+                "Install",
+                "Installer"
             ]
         },
         "filterChips": {
@@ -106,7 +106,7 @@
             "Data is on its way!",
             "Les données arrivent!"
         ],
-        "noData":[
+        "noData": [
             "Sorry, could not get the data. Refresh the page or check your internet connection.",
             "Oups, impossible d'obtenir les données. Actualisez la page ou vérifiez votre connexion internet."
         ],

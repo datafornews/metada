@@ -60,7 +60,8 @@ class Graph extends React.Component {
       classes, history, infoBox, isRehydrated, show, toggleHelpSuggestion,
       toggleHelp, clientType, toggleIssue, translate, preventAutofocus, currentLanguage,
       data, match, routerLocations, dataIsAvailable, updateEntityInfoBox, updateRouterLocation,
-      reRenderGraph, startHelp, stopHelp, toggleDrawer } = this.props;
+      reRenderGraph, startHelp, stopHelp, toggleDrawer, goToPreviousGraph, goToNextGraph, toggleDoubleClickHelp,
+      toggleLongClickHelp } = this.props;
 
     return <Container
       clientType={clientType}
@@ -111,6 +112,11 @@ class Graph extends React.Component {
               toggleDrawer={toggleDrawer}
               translate={translate}
               updateRouterLocation={updateRouterLocation}
+              goToPreviousGraph={goToPreviousGraph}
+              goToNextGraph={goToNextGraph}
+              updateEntityInfoBox={updateEntityInfoBox}
+              toggleDoubleClickHelp={toggleDoubleClickHelp}
+              toggleLongClickHelp={toggleLongClickHelp}
             />
               :
               <Edge

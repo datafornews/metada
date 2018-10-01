@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Chip from './Chip';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import FilterChips from './FilterChips';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +12,11 @@ const styles = theme => ({
     label: { textTransform: 'capitalize' },
     containerDiv: {
         marginTop: 48,
-        display: 'block'
+        display: 'block',
+        // backgroundColor: 'rgb(235,235,233)',
+        padding: 64,
+        // border: "1px solid rgb(225,225,223)",
+        // borderRadius: '5px'
     }
 });
 
@@ -219,7 +224,7 @@ class Example extends Component {
         const component = this;
         const { classes, ...noClassesProps } = this.props;
         return (
-            <div className={classes.containerDiv} style={this.props.style}>
+            <Paper className={classes.containerDiv} style={this.props.style}>
                 {this.props.clientType !== "mobile" && <FilterChips {...noClassesProps} />}
                 <div id="chips-div" style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
                     <Grid container spacing={32} alignItems="stretch">
@@ -236,7 +241,7 @@ class Example extends Component {
                         })}
                     </Grid>
                 </div>
-            </div>
+            </Paper>
         )
     }
 }

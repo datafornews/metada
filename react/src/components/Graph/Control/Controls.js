@@ -103,7 +103,9 @@ class Controls extends Component {
 
     render() {
 
-        const { classes, infoBox, match, data, clientType, translate, show, routerLocations } = this.props;
+        const { classes, infoBox, match, data, clientType, translate, show,
+            routerLocations, history, goToPreviousGraph, updateEntityInfoBox,
+            goToNextGraph } = this.props;
 
         const selectedIsRepresented = parseInt(infoBox.entity, 10) === parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[infoBox.entity];
@@ -113,6 +115,11 @@ class Controls extends Component {
                     clientType={clientType}
                     translate={translate}
                     routerLocations={routerLocations}
+                    goToPreviousGraph={goToPreviousGraph}
+                    goToNextGraph={goToNextGraph}
+                    updateEntityInfoBox={updateEntityInfoBox}
+                    history={history}
+                    show={show}
                 />
                 <div className={classes.wrapper}>
 
@@ -179,13 +186,17 @@ Controls.propTypes = {
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
+    goToPreviousGraph: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     infoBox: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     routerLocations: PropTypes.object.isRequired,
     show: PropTypes.object.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
+    toggleLongClickHelp: PropTypes.func.isRequired,
+    toggleDoubleClickHelp: PropTypes.func.isRequired,
     translate: PropTypes.func.isRequired,
+    updateEntityInfoBox: PropTypes.func.isRequired,
     updateRouterLocation: PropTypes.func.isRequired,
 };
 

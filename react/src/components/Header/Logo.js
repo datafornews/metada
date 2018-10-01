@@ -11,7 +11,7 @@ const styles = theme => ({
             'cursor': 'pointer',
         },
         backgroundColor: theme.palette.secondary.main,
-        display: 'inline-block',
+        display: 'inline',
         textAlign: 'center'
     },
     primary: {
@@ -23,7 +23,7 @@ const styles = theme => ({
         transition: "all 0.2s ease-in-out",
     },
     normal: {
-        marginLeft: 32,
+        // marginLeft: 32,
         transition: "all 0.2s ease-in-out",
     }
 });

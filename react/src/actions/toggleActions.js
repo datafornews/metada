@@ -170,7 +170,7 @@ export function toggleHelp(val = null) {
         val = null;
     }
     return {
-        type: Boolean(val) ? 'START_HELP' : 'STOP_HELP',
+        type: "TOGGLE_HELP",
         val
     };
 }

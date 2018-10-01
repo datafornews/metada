@@ -7,7 +7,8 @@ const styles = theme => ({
   container: {
     width: '80%',
     height: 'auto',
-    margin: 'auto'
+    marginTop: 'auto',
+    marginBottom: 'auto'
   }
 });
 
@@ -47,12 +48,14 @@ class SearchBar extends React.Component {
 
 
   render() {
-    const { classes, controlStyle, match, isGraph } = this.props;
+    const { classes, controlStyle, match, isGraph, force } = this.props;
 
     const currentGraphId = isGraph ? match.params.entityId : "";
 
     const colourStyles = {
-      control: styles => ({ ...styles, ...controlStyle }),
+      control: (styles, {isFocused}) => {
+        return { ...styles, ...controlStyle, opacity: isFocused || isGraph || force ? 1 : 0.6 }
+      },
       option: (styles, { data, isDisabled, isFocused, isSelected }) => {
         return {
           ...styles,

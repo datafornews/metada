@@ -61,6 +61,11 @@ function show(state = false, action) {
                 ...state,
                 issue: action.val != null ? action.val : !state.issue
             };
+        case 'TOGGLE_HELP':
+            return {
+                ...state,
+                help: action.val != null ? action.val : !state.help
+            };
         case 'TOGGLE_DOUBLE_CLICK_HELP':
             return {
                 ...state,

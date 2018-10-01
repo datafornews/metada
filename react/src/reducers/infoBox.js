@@ -7,11 +7,11 @@ function infoBox(state = {}, action) {
                     share: null
                 }
             }
-            console.log('UPDATE_ENTITY_INFOBOX', {
-                share: null,
-                entity: action.entityId
+            // console.log('UPDATE_ENTITY_INFOBOX', {
+            //     share: null,
+            //     entity: action.entityId
 
-            });
+            // });
             return {
                 share: null,
                 entity: action.entityId
@@ -25,10 +25,10 @@ function infoBox(state = {}, action) {
                     share: action.share
                 }
             }
-            console.log('UPDATE_SHARE_INFOBOX', {
-                ...state,
-                share: action.share
-            });
+            // console.log('UPDATE_SHARE_INFOBOX', {
+            //     ...state,
+            //     share: action.share
+            // });
             return {
                 ...state,
                 share: action.share
