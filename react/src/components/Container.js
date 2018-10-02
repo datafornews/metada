@@ -122,7 +122,6 @@ class Container extends Component {
         this.setState({
             drawerWidth
         })
-        console.log('Container :', drawerWidth);
     }
 
     componentDidMount() {
@@ -143,7 +142,7 @@ class Container extends Component {
         const paddingRight = isMobile ? 0 : 16;
         const location = history.location.pathname.split('/')[1];
         const titleLoc = location ? location : 'search';
-        const showSearchBar = !show.mainSearchBar && (!isMobile || !show.drawer);
+        const showSearchBar = (!show.mainSearchBar || isGraph) && (!isMobile || !show.drawer);
         const isLarge = ["xl", "lg", "md"].indexOf(width) > -1;
 
         return (
