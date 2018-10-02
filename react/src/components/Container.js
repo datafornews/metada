@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import HelpIcon from 'react-icons/lib/fa/question-circle';
 import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
 import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Grow';
 import PropTypes from 'prop-types';
 import Menu from './Header/Menu';
 import SearchBar from './Search/SearchBar';
@@ -16,11 +17,12 @@ import Logo from './Header/Logo'
 import Grid from '@material-ui/core/Grid';
 import mapStateToProps from '../store/defaultMapStateToProps';
 import mapDispatchToProps from '../store/defaultMapDispatchToProps';
+import withWidth from '@material-ui/core/withWidth';
 
-let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
-if (drawerWidth < 50) {
-    drawerWidth = 300;
-}
+const _drawerWidth = Math.max(
+    window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
+    150
+);
 
 const styles = theme => ({
     root: {
@@ -43,14 +45,10 @@ const styles = theme => ({
         color: theme.palette.default
     },
     appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-    },
-    'appBarShift-left': {
-        marginLeft: drawerWidth,
     },
     mobileToolbar: {
         textAlign: "center"
@@ -62,11 +60,9 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
-        // backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
         paddingTop: theme.spacing.unit * 3 * 3,
         minWidth: 0, // So the Typography noWrap works,
-        // height: "100%",
         minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -75,9 +71,6 @@ const styles = theme => ({
         position: "relative",
         overflow: "scroll",
         maxHeight: '100vh'
-    },
-    'content-left': {
-        marginLeft: -drawerWidth,
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -94,10 +87,47 @@ const styles = theme => ({
     searchBar: {
         height: "52px",
         display: "flex",
+        justifyContent: 'center'
+    },
+    menuGridDiv: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        [theme.breakpoints.only('xs')]: {
+            // backgroundColor: 'red',
+            justifyContent: 'space-evenly',
+        },
+    },
+    menuGridDivDrawer: {
+        display: 'flex',
+        [theme.breakpoints.down('sm')]: {
+            // backgroundColor: 'red',
+            justifyContent: 'space-evenly',
+        }
     }
 });
 
 class Container extends Component {
+
+    state = { drawerWidth: _drawerWidth }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    handleResize = () => {
+        const drawerWidth = Math.max(
+            window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
+            150
+        );
+        this.setState({
+            drawerWidth
+        })
+        console.log('Container :', drawerWidth);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleResize);
+    }
 
     goHome = () => {
         this.props.history.push('/');
@@ -106,29 +136,34 @@ class Container extends Component {
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
             history, isRehydrated, show, match,
-            toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph } = this.props;
+            toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph, width } = this.props;
 
         const isMobile = clientType === 'mobile';
-        const widths = isMobile ? show.drawer ? ["100%", "0%", "0%"] : ["25%", "50%", "25%"] : ["30%", "40%", "30%"];
         const paddingLeft = isMobile ? 0 : 16;
         const paddingRight = isMobile ? 0 : 16;
         const location = history.location.pathname.split('/')[1];
         const titleLoc = location ? location : 'search';
+        const showSearchBar = !show.mainSearchBar && (!isMobile || !show.drawer);
+        const isLarge = ["xl", "lg", "md"].indexOf(width) > -1;
 
         return (
             <div className={classes.root}>
                 <Helmet>
                     <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
                 </Helmet>
-                <AppBar className={classNames(
-                    classes.appBar,
-                    {
-                        [classes.appBarShift]: isRehydrated && show.drawer && isGraph,
-                        [classes["appBarShift-left"]]: isRehydrated && show.drawer && isGraph,
-                    }
-                )
-                }
-                    position="absolute">
+                <AppBar
+                    className={classNames(
+                        classes.appBar,
+                        {
+                            [classes.appBarShift]: isRehydrated && show.drawer && isGraph,
+                        }
+                    )}
+                    position="absolute"
+                    style={{
+                        marginLeft: isRehydrated && show.drawer && isGraph ? this.state.drawerWidth : 'unset',
+                        width: isRehydrated && show.drawer && isGraph ? `calc(100% - ${this.state.drawerWidth}px)` : '100%',
+                    }}
+                >
                     <Toolbar style={{ paddingLeft, paddingRight }}>
                         <Grid
                             container
@@ -136,8 +171,10 @@ class Container extends Component {
                             justify="space-between"
                             alignItems="center"
                         >
-                            {/* <div style={{ width: widths[0], margin: "auto" }} className={isMobile ? classes.mobileToolbar : undefined}> */}
-                            <Grid item xs={6} sm={5}>
+                            <Grid
+                                className={classNames(classes.menuGridDiv, show.drawer && classes.menuGridDivDrawer)}
+                                item xs={12} sm={show.drawer ? 12 : 6} md={show.drawer ? 5 : 4}
+                            >
                                 <Menu
                                     history={history}
                                     clientType={clientType}
@@ -146,9 +183,14 @@ class Container extends Component {
                                     translate={translate}
                                 />
                                 {/* </div> */}
-                                {history.location.pathname.startsWith("/graph/") ?
-
-                                    <Fade in={!(isMobile && show.drawer)} timeout={500}>
+                                {isGraph && !(width === "xs" && show.drawer) ?
+                                    <Grow
+                                        in={isGraph && !(width === "xs" && show.drawer)}
+                                        timeout={{
+                                            enter: 300,
+                                            exit: 0
+                                        }}
+                                    >
                                         <div style={{ display: "inline-flex", justifyContent: 'flex-start' }}>
                                             <IconButton
                                                 onClick={toggleIssue}
@@ -166,9 +208,9 @@ class Container extends Component {
                                                 <HelpIcon />
                                             </IconButton>
                                         </div>
-                                    </Fade>
+                                    </Grow>
                                     :
-                                    isMobile ?
+                                    width === "xs" && 0 ?
 
                                         <Logo
                                             color="inherit"
@@ -181,10 +223,8 @@ class Container extends Component {
                                         : ''
                                 }
                             </Grid>
-                            <Grid item xs={6} sm={show.drawer ? 6 : 5} md={show.drawer ? 5 : 4}>
-                                <Fade in={!isMobile || !show.drawer} timeout={500}>
-                                    {/* <div style={{ width: widths[1], margin: "auto" }}> */}
-
+                            {(showSearchBar || isLarge ) && <Fade in={showSearchBar} timeout={250}>
+                                <Grid item xs={12} sm={show.drawer ? 12 : 5} md={show.drawer ? 5 : 4}>
                                     <div>
                                         {dataIsAvailable && <div className={classes.searchBar}><SearchBar
                                             data={data}
@@ -202,27 +242,27 @@ class Container extends Component {
                                             }}
                                         /></div>}
                                     </div>
-                                    {/* </div> */}
-                                </Fade>
-                            </Grid>
-                            {/* <div style={{ width: widths[2], margin: "auto" }}> */}
-
-                            {/* </div> */}
+                                </Grid>
+                            </Fade>}
 
                         </Grid>
                     </Toolbar>
                 </AppBar>
                 {this.props.drawer}
-                <main className={classNames(
-                    classes.content,
-                    isGraph && classes['content-left'],
-                    {
-                        [classes.contentShift]: isGraph && show.drawer,
-                        [classes["contentShift-left"]]: isGraph && show.drawer,
-                    },
-                    isMobile && classes.noPadding
-                )}
-                    style={{ overflow: isGraph ? 'hidden' : 'scroll' }}
+                <main
+                    className={classNames(
+                        classes.content,
+                        {
+                            [classes.contentShift]: isGraph && show.drawer,
+                            [classes["contentShift-left"]]: isGraph && show.drawer,
+                        },
+                        isMobile && classes.noPadding
+                    )}
+                    style={{
+                        overflow: isGraph ? 'hidden' : 'scroll',
+                        marginLeft: isRehydrated && isGraph ? show.drawer ? "0px" : -this.state.drawerWidth : "0px",
+                        width: isRehydrated && show.drawer && isGraph ? `calc(100% - ${this.state.drawerWidth}px)` : '100%',
+                    }}
                 >
                     {children}
                 </main>
@@ -237,4 +277,4 @@ Container.propTypes = {
 
 const _Container = connect(mapStateToProps, mapDispatchToProps)(Container);
 
-export default withStyles(styles)(_Container);
+export default withWidth()(withStyles(styles)(_Container));

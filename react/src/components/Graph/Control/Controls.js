@@ -28,25 +28,36 @@ const styles = theme => (
             alignItems: 'center'
         },
         desc: {
-            fontSize: '0.7rem',
+            fontSize: '0.85rem',
+            fontWeight: 800,
+            color: theme.palette.primary.main,
         },
         graph: {
             marginLeft: 16,
-            fontSize: '0.7rem'
+            fontSize: '0.85rem',
+            fontWeight: 800,
+            color: theme.palette.primary.main,
         },
         entity: {
-            minWidth: 200,
             textAlign: "center",
             marginBottom: 4
         },
         wrapper: {
             display: 'inline-block',
             margin: 'auto',
+            [theme.breakpoints.only('xs')]: {
+                marginTop: 32,
+            }
         },
-        text: {
-            color: theme.palette.secondary.main,
-            fontWeight: "bolder"
-        },
+        // text: {
+        //     color: theme.palette.secondary.main,
+        //     fontWeight: "bolder"
+        // },
+        entityName: {
+            [theme.breakpoints.down('sm')]: {
+                fontSize: 20
+            }
+        }
     }
 );
 
@@ -126,18 +137,18 @@ class Controls extends Component {
                     <div className={classes.entity} style={{
                         color: selectedIsRepresented ? colors[entity.category] : colors.accent
                     }}>
-                        {entity && <Typography style={clientType === "extension" ? { maxWidth: '270px' } : {}} variant="display1">{entity.name}</Typography>}
+                        {entity && <Typography className={classes.entityName} style={clientType === "extension" ? { maxWidth: '270px' } : {}} variant="display1">{entity.name}</Typography>}
                     </div>
                     <div className={classes.buttons}>
                         {
                             !show.drawer &&
-                            <Button color="default" className={classes.desc} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>
+                            <Button className={classes.desc} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>
                                 Description
                             </Button>
                         }
                         {
                             selectedIsRepresented ? '' :
-                                <Button color="default" className={classes.graph} variant="text" classes={{ text: classes.text }} onClick={this.goTo}>
+                                <Button className={classes.graph} variant="text" classes={{ text: classes.text }} onClick={this.goTo}>
                                     Voir le Graph
                                 </Button>
                         }

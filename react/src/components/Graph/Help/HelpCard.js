@@ -18,7 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-
+import NextIcon from 'react-icons/lib/md/skip-next';
 
 function getSteps() {
     return ['Navigation', 'Légende'];
@@ -42,7 +42,7 @@ const styles = theme => ({
     },
     title: {
         marginBottom: 16,
-        fontSize: 18,
+        fontSize: 26,
     },
     root: {
         width: '90%',
@@ -83,7 +83,11 @@ const styles = theme => ({
         transform: "translate(-50%)",
         width: "85%",
         zIndex: 200
-    }
+    },
+    nextIcon:{
+        height: 24,
+        width: 24
+    },
 });
 
 class HelpCard extends Component {
@@ -221,7 +225,9 @@ class HelpCard extends Component {
                                             {activeStep === 1 ?
                                                 <Button variant='contained' color="primary" onClick={this.close} size="large">OK</Button>
                                                 :
-                                                <Button variant='contained' color="primary" onClick={this.handleStep(1)} size="large">></Button>
+                                                <Button variant='contained' color="primary" onClick={this.handleStep(1)} size="large">
+                                                    <NextIcon className={classes.nextIcon} />
+                                                </Button>
                                             }
                                         </div>
 

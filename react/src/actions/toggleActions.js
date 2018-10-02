@@ -165,6 +165,15 @@ export function toggleHelpSuggestion(val = null) {
         val
     };
 }
+export function toggleMainSearchBar(val = null) {
+    if (typeof (val) !== typeof (true)) {
+        val = null;
+    }
+    return {
+        type: 'TOGGLE_MAIN_SEARCHBAR',
+        val
+    };
+}
 export function toggleHelp(val = null) {
     if (typeof (val) !== typeof (true)) {
         val = null;

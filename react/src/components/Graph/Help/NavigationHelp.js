@@ -9,8 +9,8 @@ import HelpIcon from 'react-icons/lib/fa/question-circle';
 
 const styles = theme => ({
     subtitle: {
-        marginBottom: 12,
-        fontSize: 14,
+        marginBottom: 24,
+        fontSize: 20,
     },
     pos: {
         marginBottom: 8,
@@ -24,7 +24,7 @@ const styles = theme => ({
     primary: {
         fontWeight: 'bolder',
         color: theme.palette.primary.main,
-        fontSize: '0.85rem'
+        fontSize: '1rem'
     }
 });
 
@@ -41,16 +41,16 @@ class NavigationHelp extends Component {
                 </Typography>
 
                 <Typography className={classes.pos} color="textSecondary" component="div">
+                    {translate("graph.helpCard.doubleTapBefore")}
+                    <span className={classes.primary} >{translate("graph.helpCard.doubleTap")}</span>
+                    {translate("graph.helpCard.doubleTapAfter")}
+
+                    <br /><br />
+
                     <span className={classes.primary} >
                         {translate('graph.helpCard.contextual')}
                     </span>
                     {translate('graph.helpCard.contextualAfter')}
-
-                    <br /><br />
-
-                    {translate("graph.helpCard.doubleTapBefore")}
-                    <span className={classes.primary} >{translate("graph.helpCard.doubleTap")}</span>
-                    {translate("graph.helpCard.doubleTapAfter")}
 
 
                     <br />

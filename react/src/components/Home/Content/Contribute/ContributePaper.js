@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import HomePaper from '../../Paper/HomePaper'
 import Typography from '@material-ui/core/Typography';
-import ReactIframeResizer from 'react-iframe-resizer-super';
 
 const styles = theme => ({
     container: {
@@ -16,7 +15,7 @@ const styles = theme => ({
         width: '100%',
         height: '970px'
     },
-    li: {
+    li:{
         marginBottom: 12
     },
     strong: {
@@ -39,14 +38,14 @@ class ContributePaper extends Component {
                         <Typography className={classes.headline} variant="headline" color="secondary">
                             Je veux améliorer la base de données
                         </Typography>
-                        <Typography variant="body1" component='div'>
+                        <Typography variant="body1">
                             Vous trouverez ci-après un formulaire pour proposer une modification. Elle peut être de toute sorte:
                             <ul>
                                 <li className={classes.li}>
                                     Un <span className={classes.strong} >lien</span> vers wikipédia ou un site web qui ne fonctionne pas, qui est faux ou qu'il faut ajouter
                                 </li>
                                 <li className={classes.li}>
-                                    Un <span className={classes.strong} >nom</span> à mettre à jour (iTélé devient CNews), un acronyme à expliciter (RMC = Radio Monte Carlo)
+                                    Un <span className={classes.strong} >nom</span> à mettre à jour (iTélé devient CNews), un acronyme à expliciter (RMC = Radio Monte Carlo) 
                                 </li>
                                 <li className={classes.li}>
                                     Une <span className={classes.strong} >évolution dans le graphe</span> (Le Progrès change de propriétaire, les parts de feu Pierre Bergé sont rachetées par M. Pigasse et X. Niel etc.)
@@ -60,14 +59,14 @@ class ContributePaper extends Component {
                         <Typography className={classes.headline} variant="headline" color="secondary">
                             Je suis développeur
                         </Typography>
-                        <Typography variant="body1" component='div'>
+                        <Typography variant="body1">
                             L'Extension Chrome et le site metada.org sont construits à partir du même code: React + Redux en front, Flask sur Heroku en back. Les repos sont là:
                             <ul>
-                                <li><a href="https://github.com/vict0rsch/metada" rel="noopener noreferrer" target="_blank">Front-End (metada)</a></li>
-                                <li><a href="https://github.com/vict0rsch/metada-back" rel="noopener noreferrer" target="_blank">Back-End (metada-back)</a></li>
-                            </ul>
+                                <li><a href="https://github.com/vict0rsch/metada" rel="noopener noreferrer" target="_blank">Front-End (metada)</a></li>    
+                                <li><a href="https://github.com/vict0rsch/metada-back" rel="noopener noreferrer" target="_blank">Back-End (metada-back)</a></li>    
+                            </ul> 
                         </Typography>
-
+                        
                         <Typography className={classes.headline} variant="headline" color="secondary">
                             Je suis journaliste
                         </Typography>
@@ -76,13 +75,7 @@ class ContributePaper extends Component {
                         </Typography>
                     </div>
                 } />
-                <ReactIframeResizer
-                    iframeResizerOptions={{
-                        checkOrigin: false,
-                        heightCalculationMethod: 'lowestElement'
-                    }}
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSf3J6dXZd3iLbyu2n9V7vJksutiZmG1GlBKq8ZhN99M4rsUhw/viewform?embedded=true" />
-                {/* <iframe className={classes.iframe} src="https://docs.google.com/forms/d/e/1FAIpQLSf3J6dXZd3iLbyu2n9V7vJksutiZmG1GlBKq8ZhN99M4rsUhw/viewform?embedded=true" title="google-form" width="100%" frameBorder="0" marginHeight="0" marginWidth="0">Chargement en cours...</iframe> */}
+                <iframe className={classes.iframe} src="https://docs.google.com/forms/d/e/1FAIpQLSf3J6dXZd3iLbyu2n9V7vJksutiZmG1GlBKq8ZhN99M4rsUhw/viewform?embedded=true" title="google-form"  width="100%" frameBorder="0" marginHeight="0" marginWidth="0">Chargement en cours...</iframe>
             </div>
         )
     }

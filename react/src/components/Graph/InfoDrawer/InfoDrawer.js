@@ -5,13 +5,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import Info from './Info';
 import PropTypes from 'prop-types'
-import Slide from '@material-ui/core/Slide';
 
 
-let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
-if (drawerWidth < 50) {
-    drawerWidth = 300;
-}
+const _drawerWidth = Math.max(
+    window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
+    150
+);
 
 const styles = theme => (
     {
@@ -21,7 +20,6 @@ const styles = theme => (
         },
         drawerPaper: {
             position: 'relative',
-            width: drawerWidth,
             maxHeight: '100vh',
         },
         toolbar: theme.mixins.toolbar,
@@ -42,12 +40,30 @@ const styles = theme => (
 
 class InfoDrawer extends Component {
 
+    state = { drawerWidth: _drawerWidth }
 
     componentWillMount() {
         if (!this.props.history.location.pathname.startsWith("/graph/")) {
             this.props.toggleDrawer(false);
         }
+        window.removeEventListener('resize', this.handleResize);
     }
+
+    handleResize = () => {
+        const drawerWidth = Math.max(
+            window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
+            150
+        );
+        this.setState({
+            drawerWidth
+        })
+        console.log('Drawer :', drawerWidth);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleResize);
+    }
+
 
     toggleHelp = () => {
         this.props.show.help ? this.props.stopHelp() : this.props.startHelp();
@@ -63,37 +79,48 @@ class InfoDrawer extends Component {
     render() {
         const { classes, clientType, data, infoBox, currentLanguage,
             isRehydrated, show, toggleDrawer, match, translate, dataIsAvailable } = this.props;
+
+        let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
+        if (drawerWidth < 50) {
+            drawerWidth = 300;
+        }
+        // console.log('drawerWidth :', drawerWidth);
+
+
         return (
             // <Slide in={show.drawer} direction="left" >
-                <div className={classes.root}>
-                    <div style={{ maxHeight: '100vh', height: '100vh' }}>
-                        <Drawer
-                            variant="persistent"
-                            classes={{
-                                paper: classes.drawerPaper,
-                                docked: classes.docked
-                            }}
-                            open={isRehydrated && show.drawer}
-                            anchor="left"
-                        >
-                            <div className={classes.drawerHeader}>
-                                <IconButton onClick={toggleDrawer}>
-                                    <ClearIcon />
-                                </IconButton>
-                            </div>
-                            <div className={classes.container}>
-                                {dataIsAvailable && isRehydrated && <Info
-                                    clientType={clientType}
-                                    data={data}
-                                    infoBox={infoBox}
-                                    match={match}
-                                    translate={translate}
-                                    currentLanguage={currentLanguage}
-                                />}
-                            </div>
-                        </Drawer>
-                    </div>
+            <div className={classes.root}>
+                <div style={{ maxHeight: '100vh', height: '100vh' }}>
+                    <Drawer
+                        variant="persistent"
+                        classes={{
+                            paper: classes.drawerPaper,
+                            docked: classes.docked
+                        }}
+                        open={isRehydrated && show.drawer}
+                        anchor="left"
+                        style={{
+                            width: this.state.drawerWidth
+                        }}
+                    >
+                        <div className={classes.drawerHeader}>
+                            <IconButton onClick={toggleDrawer}>
+                                <ClearIcon />
+                            </IconButton>
+                        </div>
+                        <div className={classes.container}>
+                            {dataIsAvailable && isRehydrated && <Info
+                                clientType={clientType}
+                                data={data}
+                                infoBox={infoBox}
+                                match={match}
+                                translate={translate}
+                                currentLanguage={currentLanguage}
+                            />}
+                        </div>
+                    </Drawer>
                 </div>
+            </div>
             // </Slide>
         );
     }

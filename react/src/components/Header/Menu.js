@@ -67,7 +67,6 @@ class CollapseMenu extends React.Component {
     };
 
     handleClick = event => {
-        console.log('handleclick');
         if (this.props.clientType !== 'mobile') {
             this.goTo('/')()
         } else {
@@ -76,17 +75,14 @@ class CollapseMenu extends React.Component {
     };
 
     close = () => {
-        console.log('close');
         this.setState({ anchorEl: null, isOpen: false });
     };
 
     open = event => {
-        console.log('open');
         this.setState({ anchorEl: this.anchor, isOpen: true });
     }
 
     clickMenu = () => {
-        console.log('this.state :', this.state);
         Boolean(this.state.isOpen) ? this.close() : this.open();
     }
 
@@ -98,7 +94,6 @@ class CollapseMenu extends React.Component {
     render() {
         const { anchorEl } = this.state;
         const { classes, clientType } = this.props;
-        console.log('clientType :', clientType);
         return (
             <ClickAwayListener onClickAway={this.close}>
                 <div
@@ -135,7 +130,7 @@ class CollapseMenu extends React.Component {
                             isRehydrated={this.props.isRehydrated}
                         />}
                     </div>
-                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal>
+                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal style={{zIndex: 10}}>
                         {({ TransitionProps, placement }) => (
                             <Collapse
                                 {...TransitionProps}

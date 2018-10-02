@@ -11,17 +11,37 @@ const styles = theme => ({
             'cursor': 'pointer',
         },
         backgroundColor: theme.palette.secondary.main,
-        display: 'inline',
-        textAlign: 'center'
+        display: 'flex',
+        textAlign: 'center',
+        [theme.breakpoints.up('xs')]: {
+            // backgroundColor: 'red',
+            padding: '12px 0px',
+            marginLeft: 8
+        },
     },
-    primary: {
+    logo: {
         color: theme.palette.default,
-        textTransform: 'uppercase'
+        height: 20,
+        width: 20,
+        [theme.breakpoints.up('sm')]: {
+            // backgroundColor: 'red',
+            height: 30,
+            width: 30,
+        },
     },
-    moveLeft: {
-        marginLeft: -22,
-        transition: "all 0.2s ease-in-out",
+    title: {
+        color: theme.palette.default,
+        textTransform: 'uppercase',
+        [theme.breakpoints.up('sm')]: {
+            // backgroundColor: 'red',
+            fontSize: 22,
+        },
+        marginLeft: 8,
     },
+    // moveLeft: {
+    //     marginLeft: -22,
+    //     transition: "all 0.2s ease-in-out",
+    // },
     normal: {
         // marginLeft: 32,
         transition: "all 0.2s ease-in-out",
@@ -31,27 +51,16 @@ const styles = theme => ({
 class Logo extends Component {
     render() {
         const { classes } = this.props;
-        const isMobile = this.props.clientType === 'mobile';
-        const size = isMobile ? 10 : 30;
-        const padding = isMobile ? 6 : 12;
-        const width = isMobile ? 'inherit' : 180 - 2 * padding;
-        const marginLeft = isMobile ? 4 : 8;
-        const fontSize = isMobile ? "0.6rem" : '1rem';
-        let paperStyle = { padding, width }
-        if (isMobile) {
-            paperStyle.marginLeft = 12;
-        }
         return (
             <Paper
                 className={classNames(classes.root, this.props.isRehydrated && this.props.show.drawer ? classes.moveLeft : classes.normal)}
                 onClick={this.props.onClick}
-                style={paperStyle}
                 onMouseEnter={this.props.onMouseEnter}
                 onMouseLeave={this.props.onMouseLeave}
                 elevation={0}
             >
-                <LogoIcon className={classes.primary} style={{ height: size, width: size }} />
-                <span className={classes.primary} style={{ marginLeft, fontSize }}>Metada</span>
+                <LogoIcon className={classes.logo} />
+                <span className={classes.title}>Metada</span>
             </Paper>
         )
     }

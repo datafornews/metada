@@ -13,10 +13,11 @@ const styles = theme => ({
     containerDiv: {
         marginTop: 48,
         display: 'block',
-        // backgroundColor: 'rgb(235,235,233)',
         padding: 64,
-        // border: "1px solid rgb(225,225,223)",
-        // borderRadius: '5px'
+        [theme.breakpoints.up('md')]: {
+            // backgroundColor: 'red',
+            marginTop: 64
+        },
     }
 });
 

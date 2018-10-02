@@ -7,13 +7,10 @@ import classNames from 'classnames';
 import { colors } from '../../../theme/metadaTheme';
 
 const styles = theme => ({
-    title: {
-        marginBottom: 16,
-        fontSize: 18,
-    },
+
     subtitle: {
-        marginBottom: 12,
-        fontSize: 14,
+        marginBottom: 24,
+        fontSize: 20,
     },
     pos: {
         marginBottom: 8,

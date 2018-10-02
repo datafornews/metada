@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   controlsContainer: {
-    maxHeight: 80,
+    // maxHeight: 80,
     minHeight: 80,
   },
 });

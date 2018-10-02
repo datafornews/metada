@@ -9,6 +9,7 @@ import SearchBar from '../../../Search/SearchBar';
 import Search from '@material-ui/icons/Search';
 import Waiting from '../../../Waiting';
 import Home from '../../Home'
+import VisibilitySensor from 'react-visibility-sensor';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
@@ -16,7 +17,7 @@ import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
 const styles = theme => ({
     container: {
         maxWidth: '90%',
-        margin: 'auto'
+        margin: 'auto',
     },
     searchBarGridItem: {
         display: 'flex',
@@ -49,7 +50,8 @@ const styles = theme => ({
 class Main extends Component {
 
     state = {
-        height: null
+        height: null,
+        searchIsVisible: true
     }
 
     componentDidMount() {
@@ -58,6 +60,9 @@ class Main extends Component {
         })
     }
 
+    onSearchBarVisibilityChange = (isVisible) => {
+        this.props.toggleMainSearchBar(isVisible);
+    }
 
     render() {
         const { classes, theme, ...noClassesProps } = this.props;
@@ -75,26 +80,29 @@ class Main extends Component {
                                     {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
                                         <StatsPreview history={this.props.history} />
                                     </div>}
-                                    <div className={classes.searchBarGridDiv}>
-                                        <SearchBar
-                                            arrowRenderer={<Search />}
-                                            data={this.props.data}
-                                            toggleAbout={this.props.toggleAbout}
-                                            show={this.props.show}
-                                            history={this.props.history}
-                                            translate={this.props.translate}
-                                            preventAutofocus={false}
-                                            updateEntityInfoBox={this.props.updateEntityInfoBox}
-                                            force={true}
-                                            controlStyle={{
-                                                minHeight: 60,
-                                                margin: 'auto',
-                                                fontSize: 25,
-                                                display: 'flex',
-                                                justifyContent: 'center'
-                                            }}
-                                        />
-                                    </div>
+                                    <VisibilitySensor
+                                        onChange={this.onSearchBarVisibilityChange}
+                                    >
+                                        <div className={classes.searchBarGridDiv}>
+                                            <SearchBar
+                                                arrowRenderer={<Search />}
+                                                data={this.props.data}
+                                                toggleAbout={this.props.toggleAbout}
+                                                show={this.props.show}
+                                                history={this.props.history}
+                                                translate={this.props.translate}
+                                                preventAutofocus={false}
+                                                updateEntityInfoBox={this.props.updateEntityInfoBox}
+                                                controlStyle={{
+                                                    minHeight: 60,
+                                                    margin: 'auto',
+                                                    fontSize: 25,
+                                                    display: 'flex',
+                                                    justifyContent: 'center'
+                                                }}
+                                            />
+                                        </div>
+                                    </VisibilitySensor>
                                 </Grid>
 
                                     :

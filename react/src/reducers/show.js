@@ -81,6 +81,11 @@ function show(state = false, action) {
                 ...state,
                 helpSuggestion: action.val != null ? action.val : !state.helpSuggestion
             };
+        case 'TOGGLE_MAIN_SEARCHBAR':
+            return {
+                ...state,
+                mainSearchBar: action.val != null ? action.val : !state.mainSearchBar
+            };
         case 'STOP_HELP':
             return {
                 ...state,

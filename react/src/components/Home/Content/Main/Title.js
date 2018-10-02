@@ -1,10 +1,40 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography'
+import withWidth from '@material-ui/core/withWidth';
+import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+
 
 const styles = theme => ({
     title: {
-        fontWeight: "bolder"
+        fontWeight: "bolder",
+        [theme.breakpoints.down(400)]: {
+            fontSize: 26
+        }
+    },
+    subtitle: {
+        fontWeight: "bolder",
+        [theme.breakpoints.down(400)]: {
+            fontSize: 22
+        }
+    },
+    container: {
+        paddingTop: 16,
+        paddingBottom: 16,
+        [theme.breakpoints.only('xs')]: { // xs -> seach bar goes down
+            // backgroundColor: 'red',
+            paddingTop: 64
+        },
+        [theme.breakpoints.up('md')]: {
+            // backgroundColor: 'red',
+            paddingTop: 32,
+            paddingBottom: 32
+        },
+        [theme.breakpoints.up('lg')]: {
+            // backgroundColor: 'red',
+            paddingTop: 48,
+            paddingBottom: 48
+        },
     }
 });
 
@@ -26,18 +56,25 @@ class Title extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, width, translate } = this.props;
+        console.log('width :', width);
         return (
-            <div>
+            <div className={classes.container}>
                 <Typography color='primary' variant={this.state.width > 800 ? "display3" : "display2"} gutterBottom className={classes.title}>
-                    {this.props.translate('home.title')}
+                    {translate('home.title')}
                 </Typography>
-                <Typography variant={this.state.width > 800 ? "display1" : "headline"} color="default" gutterBottom className={classes.title}>
-                {this.props.translate('home.subtitle')}
+                <Typography variant={this.state.width > 800 ? "display1" : "headline"} color="default" gutterBottom className={classes.subtitle}>
+                    {translate('home.subtitle')}
                 </Typography>
             </div>
         )
     }
 }
 
-export default withStyles(styles)(Title);
+Title.propTypes = {
+    width: PropTypes.string.isRequired,
+    translate: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+};
+
+export default withWidth()(withStyles(styles)(Title));

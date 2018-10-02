@@ -48,13 +48,13 @@ class SearchBar extends React.Component {
 
 
   render() {
-    const { classes, controlStyle, match, isGraph, force } = this.props;
+    const { classes, controlStyle, match, isGraph } = this.props;
 
     const currentGraphId = isGraph ? match.params.entityId : "";
 
     const colourStyles = {
       control: (styles, {isFocused}) => {
-        return { ...styles, ...controlStyle, opacity: isFocused || isGraph || force ? 1 : 0.6 }
+        return { ...styles, ...controlStyle }
       },
       option: (styles, { data, isDisabled, isFocused, isSelected }) => {
         return {
