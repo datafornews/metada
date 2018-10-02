@@ -187,8 +187,8 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
         ],
 
         layout: layout,
-        minZoom: 0.2,
-        maxZoom: 1.4,
+        minZoom: 0.4,
+        maxZoom: 1.3,
         userPanningEnabled: false,
         boxSelectionEnabled: false
     }
