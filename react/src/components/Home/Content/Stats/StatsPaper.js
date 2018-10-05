@@ -76,13 +76,10 @@ function getTableArray(stats) {
 function getOwnerStats(data, stats) {
     const ownerObject = {};
     let total = 0;
-    console.log(data);
     for (const stat of stats) {
         const entity = data.entities.names[stat.name];
         if (entity) {
-            console.log(entity);
             const owners = getOwners(data, entity);
-            console.log(owners);
             for (const owner of owners) {
                 if (Object.keys(ownerObject).indexOf(owner.name) < 0) {
                     ownerObject[owner.name] = {
@@ -99,7 +96,6 @@ function getOwnerStats(data, stats) {
                 }
                 total += stat.total;
             }
-            console.log('n');
         }
     }
     let tableArray = [];
