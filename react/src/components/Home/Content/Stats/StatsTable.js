@@ -15,7 +15,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TextField from '@material-ui/core/TextField';
-
+import is from 'is_js';
 
 const actionsStyles = theme => ({
     root: {
@@ -124,18 +124,16 @@ function compare(a, b, attr, asc) {
 }
 
 class BasicTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            stats: [], // displayed stats
-            data: [], // full stats
-            sort: 1,
-            asc: false,
-            page: 0,
-            rowsPerPage: 5,
-            search: ""
-        };
+    state = {
+        stats: [], // displayed stats
+        data: [], // full stats
+        sort: 1,
+        asc: false,
+        page: 0,
+        rowsPerPage: 5,
+        search: ""
     }
+
 
     handleChangePage = (event, page) => {
         this.setState({ page });
@@ -165,7 +163,6 @@ class BasicTable extends React.Component {
     };
 
     handleTextChange = name => event => {
-        console.log(event.target.value);
         if (!event.target.value) {
             this.setState({
                 stats: this.state.data
@@ -184,25 +181,35 @@ class BasicTable extends React.Component {
 
     goTo = (name) => () => {
         const entity = this.props.data.entities.names[name];
-        if (entity){
+        if (entity) {
             this.props.history.push(`/graph/${entity.id}`)
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({
             stats: this.props.tableData,
             data: this.props.tableData
-        })
+        });
+    }
+
+    componentDidMount() {
+        this.handleHeadClick(1, false)();
+        // this.handleHeadClick(1)();
     }
 
 
-    handleHeadClick = (id) => (event) => {
+    handleHeadClick = (id, _asc = null) => (event) => {
+
         let data = [...this.state.stats];
         let asc = false;
-        if (this.state.sort === id) {
+
+        if (!is.null(_asc)){
+            asc = _asc;
+        } else if (this.state.sort === id) {
             asc = !this.state.asc
         }
+        console.log('asc :', asc);
         switch (id) {
             case 0:
                 data.sort((a, b) => {
@@ -248,7 +255,7 @@ class BasicTable extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.state.stats.length - page * rowsPerPage);
 
         return (
-            <div style={{width: '95%'}}>
+            <div style={{ width: '95%' }}>
                 <div className={classes.container} noValidate autoComplete="off">
                     <TextField
                         id="search"
