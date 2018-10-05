@@ -99,7 +99,7 @@ const styles = theme => ({
     },
     menuGridDivDrawer: {
         display: 'flex',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             // backgroundColor: 'red',
             justifyContent: 'space-evenly',
         }
@@ -115,7 +115,7 @@ class Container extends Component {
     }
 
     handleResize = () => {
-        const drawerWidth = Math.max(
+        const drawerWidth = this.props.clientType === "extension" ? 250 : Math.max(
             window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
             150
         );
@@ -126,6 +126,7 @@ class Container extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
+        this.props.clientType === "extension" && this.handleResize();
     }
 
     goHome = () => {
@@ -222,7 +223,7 @@ class Container extends Component {
                                         : ''
                                 }
                             </Grid>
-                            {(showSearchBar || isLarge ) && <Fade in={showSearchBar} timeout={250}>
+                            {(showSearchBar || isLarge) && <Fade in={showSearchBar} timeout={250}>
                                 <Grid item xs={12} sm={show.drawer ? 12 : 5} md={show.drawer ? 5 : 4}>
                                     <div>
                                         {dataIsAvailable && <div className={classes.searchBar}><SearchBar
