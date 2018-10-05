@@ -16,7 +16,6 @@ class GraphHistoryNavigation extends Component {
     render() {
         const { classes, clientType, translate, routerLocations, history, show,
             goToPreviousGraph, goToNextGraph, updateEntityInfoBox } = this.props;
-        console.log('show.drawer :', show.drawer);
         return (
             <Fade in={clientType !== 'mobile' || !show.drawer}>
                 <div className={classes.historyContainer} style={clientType === "mobile" ? { left: 4, top: -48 } : { left: 16 }}>
