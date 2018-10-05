@@ -26,6 +26,9 @@ The core vision of Metada is to bring users data about their online behaviour. N
 
 [**Firefox Web Store**](https://bit.ly/metadaFirefox)
 
+A glimpse at the upcoming version?:
+
+![metada v1](https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif)
 
 ### From this source
 
