@@ -41,7 +41,7 @@ class Waiting extends Component {
                 !this.isCancelled && this.setState({
                     noInternet: true
                 })
-            }, 2500)
+            }, 20000)
         })
     }
 
