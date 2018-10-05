@@ -4,6 +4,10 @@ The browser (Chrome & Firefox) extension which shows you who owns the Media.
 
 For now, France only. Help wanted for more countries (front/back devs).
 
+A glimpse at the upcoming version? :
+
+<img src="https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy-downsized-large.gif" alt="metada"/>
+
 ## Contributing
 
 All help is welcome. To modify information about the graph, submit a pull request to https://github.com/mdiplo/Medias_francais or open an issue here.
@@ -26,10 +30,6 @@ The core vision of Metada is to bring users data about their online behaviour. N
 
 [**Firefox Web Store**](https://bit.ly/metadaFirefox)
 
-A glimpse at the upcoming version?:
-
-![metada v1](https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif)
-
 ### From this source
 
 1. Click the green "Clone or download" button then "Download ZIP"
@@ -50,7 +50,7 @@ At Chrome start up it may ask you whether or not to load this extension. Say yes
 
 6. To **build** the **extension** run `yarn extension` which will build the app and update the content of `metada/Extension` accordingly
 
-### V2 on the way
+### V1 on the way
 
 To see the 2nd version currently under development, clone the repo and checkout the `dev` branch
 
