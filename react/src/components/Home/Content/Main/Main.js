@@ -77,9 +77,9 @@ class Main extends Component {
                                 </Grid>
 
                                 {this.props.dataIsAvailable ? <Grid item xs={12} className={classes.searchBarGridItem}>
-                                    {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
+                                    {/* {this.props.clientType === "extension" && <div className={classes.statsGridDiv}>
                                         <StatsPreview history={this.props.history} />
-                                    </div>}
+                                    </div>} */}
                                     <VisibilitySensor
                                         onChange={this.onSearchBarVisibilityChange}
                                     >
@@ -100,6 +100,7 @@ class Main extends Component {
                                                     display: 'flex',
                                                     justifyContent: 'center'
                                                 }}
+                                                isMain
                                             />
                                         </div>
                                     </VisibilitySensor>

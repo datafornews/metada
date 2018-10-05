@@ -77,6 +77,27 @@ const nodeBaseStyle = {
     'border-color': 'data(color)',
     'border-width': '0px',
     'background-color': 'data(backgroundColor)',
+
+
+
+    // // 'background-opacity': 'data(backgroundOpacity)',
+    // // 'label': 'data(name)',
+    // 'shape': 'roundrectangle',
+    // // 'font-weight': 'data(fontWeight)',
+    // 'font-family': typography.fontFamily,
+    // // 'width': 'data(widthPx)',
+    // 'text-valign': "center",
+    // 'compound-sizing-wrt-labels': 'include',
+    // 'source-text-margin-y': '30px',
+    // 'target-text-margin-y': '30px',
+    // // 'height': 'data(height)',
+    // 'text-wrap': 'wrap',
+    // // 'color': 'data(color)',
+    // 'border-style': 'dashed',
+    // // 'border-opacity': 'data(borderOpacity)',
+    // // 'border-color': 'data(color)',
+    // 'border-width': '0px',
+    // // 'background-color': 'data(backgroundColor)',
 };
 
 function addOneLineBreak(string) {

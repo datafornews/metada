@@ -9,6 +9,8 @@ export default async function (component, entity) {
         return
     }
 
+    console.log("Trying to get image for ", entity.name);
+
     let imageAddress;
     let localImage = localStorage.getItem('image_' + entity.id);
     if (localImage !== null) {
@@ -103,7 +105,8 @@ function setImageUrl(url, component, entity) {
         date: d,
         url
     })
-    window.location.href.indexOf('/graph/') === -1 ? component.setState({
+    // should move to check location is same as calling component's
+    window.location.href.indexOf('/graph/') !== -1 ? component.setState({
         image: url
     }) : console.log('abort');
 

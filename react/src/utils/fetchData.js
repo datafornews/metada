@@ -36,7 +36,7 @@ async function fetchData(component) {
 
     if (fetch && USE_LOCAL_ONLY) {
         console.log('Getting data (Axios)...');
-        Axios.get('https://oop-pro.herokuapp.com/public/data').then(
+        Axios.get('https://oop-stage.herokuapp.com/public/data').then(
             (response) => {
                 console.log('Success (getting data)');
                 data = formatData(response.data);

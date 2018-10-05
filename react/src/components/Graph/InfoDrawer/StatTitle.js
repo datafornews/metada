@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const textStyle = {
     color: "grey",
     fontStyle: "italic",
-    margin: "auto 10px"
+    // margin: "auto 10px"
 }
 
 class StatTitle extends Component {

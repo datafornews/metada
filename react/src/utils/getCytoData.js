@@ -130,11 +130,12 @@ export default function getCytoData(data, entity) {
 
     }
 
-    var other_parents = find_other_special(data, entity);
+    // var other_parents = find_other_special(data, entity);
 
-    result = { nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares) };
+    // result = { nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares) };
+    result = { nodes: nodes, edges: shares };
 
-    localStorage['cytoData_' + entity.id] = JSON.stringify(result);
+    // localStorage['cytoData_' + entity.id] = JSON.stringify(result);
     return result;
 }
 

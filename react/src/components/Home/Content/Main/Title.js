@@ -23,17 +23,17 @@ const styles = theme => ({
         paddingBottom: 16,
         [theme.breakpoints.only('xs')]: { // xs -> seach bar goes down
             // backgroundColor: 'red',
-            paddingTop: 64
+            paddingTop: 24
         },
         [theme.breakpoints.up('md')]: {
             // backgroundColor: 'red',
             paddingTop: 32,
-            paddingBottom: 32
+            paddingBottom: 16
         },
         [theme.breakpoints.up('lg')]: {
             // backgroundColor: 'red',
             paddingTop: 48,
-            paddingBottom: 48
+            paddingBottom: 32
         },
     }
 });
@@ -60,10 +60,10 @@ class Title extends Component {
         console.log('width :', width);
         return (
             <div className={classes.container}>
-                <Typography color='primary' variant={this.state.width > 800 ? "display3" : "display2"} gutterBottom className={classes.title}>
+                <Typography color='primary' variant={this.state.width > 800 ? "display2" : "display1"} gutterBottom className={classes.title}>
                     {translate('home.title')}
                 </Typography>
-                <Typography variant={this.state.width > 800 ? "display1" : "headline"} color="default" gutterBottom className={classes.subtitle}>
+                <Typography variant={this.state.width > 800 ? "headline" : "title1"} color="default" gutterBottom className={classes.subtitle}>
                     {translate('home.subtitle')}
                 </Typography>
             </div>

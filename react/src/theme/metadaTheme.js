@@ -31,7 +31,10 @@ const palette = {
 }
 
 export const typography = {
-  fontFamily: "Quicksand, fantasy"
+  fontFamily: "Quicksand, Roboto, sans-serif, arial, fantasy",
+  display3: {
+    fontSize: '3.5rem'
+  }
 };
 
 const themeName = 'Purple Heart Gull Gray Guinea';

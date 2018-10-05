@@ -50,7 +50,7 @@ class InfoDrawer extends Component {
     }
 
     handleResize = () => {
-        const drawerWidth = Math.max(
+        const drawerWidth = this.props.clientType === "extension" ? 250 : Math.max(
             window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
             150
         );
@@ -62,6 +62,7 @@ class InfoDrawer extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
+        this.props.clientType === "extension" && this.handleResize();
     }
 
 
