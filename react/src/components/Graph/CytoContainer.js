@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ReactResizeDetector from 'react-resize-detector';
-
+import Fade from '@material-ui/core/Fade';
 import 'font-awesome/css/font-awesome.min.css';
 
 
@@ -93,7 +93,12 @@ class CytoContainer extends React.Component {
       update: false,
       focus: 0,
       lastTap: new Date().getTime(),
-      longClickTimeout: null
+      longClickTimeout: null,
+      toolY: 0,
+      toolX: 0,
+      toolH: 0,
+      toolW: 0,
+      toolIn: false
     };
   }
 
@@ -173,9 +178,13 @@ class CytoContainer extends React.Component {
             this.props.toggleDoubleClickHelp(false);
             document.body.style.cursor = 'default';
             this.renderCytoscapeElement();
+            this.cy && this.setState({
+              toolIn: false
+            });
 
           } else {
             // too much time to be a doubletap
+            console.log('event.target.data() :', event.target.data());
             container.props.updateEntityInfoBox(event.target.id());
           }
 
@@ -218,9 +227,23 @@ class CytoContainer extends React.Component {
     });
     cy.on('mouseover', 'node', function (evt) {
       document.body.style.cursor = 'pointer';
+      // console.log('evt.target :', evt.target.renderedPosition());
+      // const { x, y } = evt.target.renderedPosition();
+      // const w = evt.target.width();
+      // const h = evt.target.height();
+      // container.setState({
+      //   toolIn: true,
+      //   toolX: x - w / 2,
+      //   toolY: y + h / 2,
+      //   toolH: h,
+      //   toolW: w
+      // })
     });
     cy.on('mouseout', 'node', function (evt) {
       document.body.style.cursor = 'default';
+      container.setState({
+        toolIn: false
+      })
     });
     cy.on('tap', 'edge', (event) => {
       const data = event.target.data();
@@ -290,6 +313,9 @@ class CytoContainer extends React.Component {
   }
 
   cyResize = () => {
+    this.cy && this.setState({
+      toolIn: false
+    });
     this.cy && this.cy.resize();
     this.cy && this.cy.fit();
     console.log('resize');
@@ -313,10 +339,28 @@ class CytoContainer extends React.Component {
           <Helmet>
             <title>Metada - {entity.name}</title>
           </Helmet>
-          <div id="cy" className={classes.cyDiv} >
-            <ReactResizeDetector refreshMode='debounce' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
+          <div style={{ position: 'relative' }}>
+            <div id="cy" className={classes.cyDiv} >
+              <ReactResizeDetector refreshMode='throttle' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
+            </div>
+            <Fade in={this.state.toolIn}>
+              <div style={{
+                position: 'absolute',
+                top: this.state.toolY,
+                left: this.state.toolX,
+                height: this.state.toolH,
+                width: this.state.toolW,
+                zIndex: 20000,
+                backgroundColor: 'green',
+                pointerEvents: 'none',
+
+              }}>
+              </div>
+            </Fade>
           </div>
+
         </div>
+
         <HelpCard
           clientType={clientType}
           isRehydrated={isRehydrated}
