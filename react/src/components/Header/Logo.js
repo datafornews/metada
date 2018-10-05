@@ -3,6 +3,7 @@ import LogoIcon from "react-icons/lib/go/puzzle"
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import {AsyncComponents} from '../../index';
 
 
 const styles = theme => ({
@@ -49,13 +50,20 @@ const styles = theme => ({
 });
 
 class Logo extends Component {
+
+    onMouseEnter = () => {
+        console.log('prelaoding main');
+        AsyncComponents.main.preload();
+        this.props.onMouseEnter && this.props.onMouseEnter();
+    }
+
     render() {
         const { classes } = this.props;
         return (
             <Paper
                 className={classNames(classes.root, this.props.isRehydrated && this.props.show.drawer ? classes.moveLeft : classes.normal)}
                 onClick={this.props.onClick}
-                onMouseEnter={this.props.onMouseEnter}
+                onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.props.onMouseLeave}
                 elevation={0}
             >

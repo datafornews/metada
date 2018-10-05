@@ -5,27 +5,57 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
-
+import Loadable from 'react-loadable';
 // import metadaTheme from './theme/metadaTheme'
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
 import store, { history } from './store/store';
-// import Home from './components/Home/Home';
-import Graph from './components/Graph/Graph';
+import Loading from './Loading';
+import theme from './theme/metadaTheme';
 import Header from './components/Header/Header';
-import theme from './theme/metadaTheme'
-import DefaultRoute from './components/DefaultRoute';
-import Main from './components/Home/Content/Main/Main';
-import About from './components/Home/Content/About/About';
-import Extension from './components/Home/Content/Extension/Extension';
-import Contribute from './components/Home/Content/Contribute/Contribute';
-import Settings from './components/Home/Content/Settings/Settings';
-import Contact from './components/Home/Content/Contact/Contact';
-import Stats from './components/Home/Content/Stats/Stats';
-
 import './style/index.css';
+
+export const AsyncComponents = {
+    'graph': Loadable({
+        loader: () => import('./components/Graph/Graph'),
+        loading: Loading
+    }),
+    'default': Loadable({
+        loader: () => import('./components/DefaultRoute'),
+        loading: Loading
+    }),
+    'main': Loadable({
+        loader: () => import('./components/Home/Content/Main/Main'),
+        loading: Loading
+    }),
+    'about': Loadable({
+        loader: () => import('./components/Home/Content/About/About'),
+        loading: Loading
+    }),
+    'extension': Loadable({
+        loader: () => import('./components/Home/Content/Extension/Extension'),
+        loading: Loading
+    }),
+    'contribute': Loadable({
+        loader: () => import('./components/Home/Content/Contribute/Contribute'),
+        loading: Loading
+    }),
+    'settings': Loadable({
+        loader: () => import('./components/Home/Content/Settings/Settings'),
+        loading: Loading
+    }),
+    'contact': Loadable({
+        loader: () => import('./components/Home/Content/Contact/Contact'),
+        loading: Loading
+    }),
+    'stats': Loadable({
+        loader: () => import('./components/Home/Content/Stats/Stats'),
+        loading: Loading
+    })
+};
+
 
 
 console.log('INDEX', performance.now())
@@ -64,17 +94,22 @@ const router = (
                 <div id='index' style={styles[store.getState().clientType]}>
                     <Header history={history} />
                     <Switch>
-                        <Route exact path='/' component={Main}></Route>
-                        <Route exact path='/s/:filter' component={Main}></Route>
-                        <Route exact path='/extension' component={Extension}></Route>
-                        <Route exact path='/contribute' component={Contribute}></Route>
-                        <Route exact path='/settings' component={Settings}></Route>
-                        <Route exact path='/about' component={About}></Route>
-                        <Route exact path='/search' component={Main}></Route>
-                        <Route exact path='/contact' component={Contact}></Route>
-                        <Route exact path='/stats' component={Stats}></Route>
-                        <Route exact path='/graph/:entityId' component={Graph}></Route>
-                        <Route path="*" component={DefaultRoute} />
+                        <Route exact path='/' component={AsyncComponents.main}></Route>
+                        <Route exact path='/s/:filter' component={AsyncComponents.main}></Route>
+                        <Route exact path='/graph/:entityId' component={AsyncComponents.graph}></Route>
+                        {
+                            ['extension', 'contribute', 'settings', 'about', 'contact', 'stats'].map(
+                                (loc, k) => {
+                                    return <Route
+                                        exact
+                                        path={`/${loc}`}
+                                        component={AsyncComponents[loc]}
+                                        key={k}
+                                    />
+                                }
+                            )
+                        }
+                        <Route path="*" component={AsyncComponents.default} />
                     </Switch>
                 </div>
                 {/* </V0MuiThemeProvider> */}

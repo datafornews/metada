@@ -63,7 +63,7 @@ class Title extends Component {
                 <Typography color='primary' variant={this.state.width > 800 ? "display2" : "display1"} gutterBottom className={classes.title}>
                     {translate('home.title')}
                 </Typography>
-                <Typography variant={this.state.width > 800 ? "headline" : "title1"} color="default" gutterBottom className={classes.subtitle}>
+                <Typography variant={this.state.width > 800 ? "headline" : "title"} color="default" gutterBottom className={classes.subtitle}>
                     {translate('home.subtitle')}
                 </Typography>
             </div>

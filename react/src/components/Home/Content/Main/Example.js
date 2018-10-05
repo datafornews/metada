@@ -4,7 +4,7 @@ import Chip from './Chip';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import FilterChips from './FilterChips';
-
+import { AsyncComponents } from '../../../../index';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -221,6 +221,11 @@ class Example extends Component {
         this.props.history.push('/extension');
     }
 
+    preloadGraph = () => {
+        console.log('preloading graph');
+        AsyncComponents.graph.preload();
+    }
+
     render() {
         const component = this;
         const { classes, ...noClassesProps } = this.props;
@@ -228,7 +233,7 @@ class Example extends Component {
             <Paper className={classes.containerDiv} style={this.props.style}>
                 {this.props.clientType !== "mobile" && <FilterChips {...noClassesProps} />}
                 <div id="chips-div" style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
-                    <Grid container spacing={32} alignItems="stretch">
+                    <Grid container spacing={32} alignItems="stretch" onMouseEnter={this.preloadGraph}>
                         {this.state.entities.map((v, k) => {
                             return <Grid key={k} item xs={12} sm={6} md={4} lg={3} >
                                 <Chip

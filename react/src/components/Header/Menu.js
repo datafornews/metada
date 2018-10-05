@@ -24,6 +24,9 @@ import ContributeIcon from 'react-icons/lib/io/upload';
 
 import Share from './Share';
 
+
+import { AsyncComponents } from '../../index';
+
 const styles = theme => ({
     menuItem: {
         '&:focus': {
@@ -91,6 +94,19 @@ class CollapseMenu extends React.Component {
         this.close();
     }
 
+    preload = componentName => () => {
+
+        let name;
+        if (componentName in AsyncComponents) {
+            name = componentName
+        } else {
+            name = 'main';
+        };
+        console.log('preloading', name);
+        AsyncComponents[name].preload();
+
+    }
+
     render() {
         const { anchorEl } = this.state;
         const { classes, clientType } = this.props;
@@ -130,7 +146,7 @@ class CollapseMenu extends React.Component {
                             isRehydrated={this.props.isRehydrated}
                         />}
                     </div>
-                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal style={{zIndex: 10}}>
+                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal style={{ zIndex: 10 }}>
                         {({ TransitionProps, placement }) => (
                             <Collapse
                                 {...TransitionProps}
@@ -140,51 +156,60 @@ class CollapseMenu extends React.Component {
                             >
                                 <Paper className={classes.root} elevation={0}>
                                     <MenuList className={classes.menuList} onMouseLeave={this.close}>
-                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/')}>
+
+                                        <MenuItem className={classes.menuItem} onMouseOver={this.preload('')} onClick={this.goTo('/')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <HomeIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.home')} />
                                         </MenuItem>
-                                        {this.props.clientType === "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/stats')}>
+
+                                        {this.props.clientType === "extension" && <MenuItem className={classes.menuItem} onMouseOver={this.preload('stats')} onClick={this.goTo('/stats')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <StatsIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.stats')} />
                                         </MenuItem>}
-                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/about')}>
+
+                                        <MenuItem className={classes.menuItem} onMouseOver={this.preload('about')} onClick={this.goTo('/about')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <AboutIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.about')} />
                                         </MenuItem>
-                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/contribute')}>
+
+                                        <MenuItem className={classes.menuItem} onMouseOver={this.preload('contribute')} onClick={this.goTo('/contribute')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <ContributeIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contribute')} />
                                         </MenuItem>
-                                        {this.props.clientType !== "extension" && <MenuItem className={classes.menuItem} onClick={this.goTo('/extension')}>
+
+                                        {this.props.clientType !== "extension" && <MenuItem className={classes.menuItem} onMouseOver={this.preload('extension')} onClick={this.goTo('/extension')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <ExtensionIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.extension')} />
                                         </MenuItem>}
-                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/contact')}>
+
+                                        <MenuItem className={classes.menuItem} onMouseOver={this.preload('contact')} onClick={this.goTo('/contact')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <ContactIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contact')} />
                                         </MenuItem>
-                                        <MenuItem className={classes.menuItem} onClick={this.goTo('/settings')}>
+
+                                        <MenuItem className={classes.menuItem} onMouseOver={this.preload('settings')} onClick={this.goTo('/settings')}>
                                             <ListItemIcon className={classes.icon}>
                                                 <SettingsIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.settings')} />
                                         </MenuItem>
+
                                         <MenuItem className={classes.menuItem} >
                                             <Share clientType={this.props.clientType} />
                                         </MenuItem>
+
                                     </MenuList>
                                 </Paper>
                             </Collapse>

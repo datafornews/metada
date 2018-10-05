@@ -38,7 +38,7 @@ class ContributePaper extends Component {
                         <Typography className={classes.headline} variant="headline" color="secondary">
                             Je veux améliorer la base de données
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="body1" component='div'>
                             Vous trouverez ci-après un formulaire pour proposer une modification. Elle peut être de toute sorte:
                             <ul>
                                 <li className={classes.li}>
@@ -59,7 +59,7 @@ class ContributePaper extends Component {
                         <Typography className={classes.headline} variant="headline" color="secondary">
                             Je suis développeur
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="body1" component='div'>
                             L'Extension Chrome et le site metada.org sont construits à partir du même code: React + Redux en front, Flask sur Heroku en back. Les repos sont là:
                             <ul>
                                 <li><a href="https://github.com/vict0rsch/metada" rel="noopener noreferrer" target="_blank">Front-End (metada)</a></li>    
