@@ -209,7 +209,7 @@ class BasicTable extends React.Component {
         } else if (this.state.sort === id) {
             asc = !this.state.asc
         }
-        console.log('asc :', asc);
+        
         switch (id) {
             case 0:
                 data.sort((a, b) => {
