@@ -55,7 +55,7 @@ const dagreLayout = {
     stop: function () { } // on layoutstop
 };
 
-console.log('typography.fontFamily :', typography.fontFamily);
+// console.log('typography.fontFamily :', typography.fontFamily);
 
 
 const nodeBaseStyle = {

@@ -38,7 +38,7 @@ const styles = theme => ({
         maxWidth: "70%"
     },
     textLoader: {
-        maxWidth: 60,
+        maxWidth: theme.spacing.unit * 7,
         position: 'absolute',
         left: "50%",
         transform: "translate(-50%)",

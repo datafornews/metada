@@ -55,7 +55,7 @@ const styles = theme => ({
     },
     iconButton: {
         width: '45%',
-        maxWidth: 50,
+        maxWidth: theme.spacing.unit * 6,
         margin: '0px 4px'
     },
     content: {

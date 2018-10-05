@@ -11,12 +11,12 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
     label: { textTransform: 'capitalize' },
     containerDiv: {
-        marginTop: 48,
+        marginTop: theme.spacing.unit * 6,
         display: 'block',
-        padding: 64,
+        padding: theme.spacing.unit * 8,
         [theme.breakpoints.up('md')]: {
             // backgroundColor: 'red',
-            marginTop: 64
+            marginTop: theme.spacing.unit * 8
         },
     }
 });
@@ -222,7 +222,7 @@ class Example extends Component {
     }
 
     preloadGraph = () => {
-        console.log('preloading graph');
+        // console.log('preloading graph');
         AsyncComponents.graph.preload();
     }
 

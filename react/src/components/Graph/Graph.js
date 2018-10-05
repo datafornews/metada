@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
-
+import withWidth from '@material-ui/core/withWidth';
+import classNames from 'classnames';
 import InfoDrawer from './InfoDrawer/InfoDrawer';
 import Container from '../Container';
 
@@ -18,7 +19,10 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   controlsContainer: {
     // maxHeight: 80,
-    minHeight: 80,
+    minHeight: theme.spacing.unit * 10,
+  },
+  moveDown: {
+    paddingTop: theme.spacing.unit * 4
   },
 });
 
@@ -61,7 +65,12 @@ class Graph extends React.Component {
       toggleHelp, clientType, toggleIssue, translate, preventAutofocus, currentLanguage,
       data, match, routerLocations, dataIsAvailable, updateEntityInfoBox, updateRouterLocation,
       reRenderGraph, startHelp, stopHelp, toggleDrawer, goToPreviousGraph, goToNextGraph, toggleDoubleClickHelp,
-      toggleLongClickHelp } = this.props;
+      toggleLongClickHelp, width } = this.props;
+
+    const moveDown = width === "xs" ? true
+      : width === "sm" ?
+        show.drawer ? true : false
+        : false;
 
     return <Container
       clientType={clientType}
@@ -100,7 +109,12 @@ class Graph extends React.Component {
     >
       {dataIsAvailable ?
         <div>
-          <div className={classes.controlsContainer}>
+          <div
+            className={classNames(
+              classes.controlsContainer,
+              moveDown && classes.moveDown
+            )}
+          >
             {!infoBox.share ? <Controls
               clientType={clientType}
               data={data}
@@ -170,4 +184,4 @@ class Graph extends React.Component {
 
 Graph = connect(mapStateToProps, mapDispatchToProps)(Graph);
 
-export default withStyles(styles)(Graph);
+export default withWidth()(withStyles(styles)(Graph));

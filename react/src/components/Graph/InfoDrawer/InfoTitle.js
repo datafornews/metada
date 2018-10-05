@@ -11,7 +11,7 @@ const styles = theme => ({
     img: {
         maxWidth: "-webkit-fill-available",
         maxHeight: "100%",
-        borderRadius: 4,
+        borderRadius: theme.spacing.unit / 2,
     },
     imgDiv: {
         display: "flex",

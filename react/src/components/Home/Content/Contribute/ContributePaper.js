@@ -9,14 +9,14 @@ const styles = theme => ({
     },
     headline: {
         fontWeight: 300,
-        marginBottom: 16
+        marginBottom: theme.spacing.unit * 2
     },
     iframe: {
         width: '100%',
         height: '970px'
     },
     li:{
-        marginBottom: 12
+        marginBottom: theme.spacing.unit * 1.5
     },
     strong: {
         fontWeight: "bolder",

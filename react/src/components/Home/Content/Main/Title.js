@@ -19,21 +19,18 @@ const styles = theme => ({
         }
     },
     container: {
-        paddingTop: 16,
-        paddingBottom: 16,
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
         [theme.breakpoints.only('xs')]: { // xs -> seach bar goes down
-            // backgroundColor: 'red',
-            paddingTop: 24
+            paddingTop: theme.spacing.unit * 3
         },
         [theme.breakpoints.up('md')]: {
-            // backgroundColor: 'red',
-            paddingTop: 32,
-            paddingBottom: 16
+            paddingTop: theme.spacing.unit * 4,
+            paddingBottom: theme.spacing.unit * 2
         },
         [theme.breakpoints.up('lg')]: {
-            // backgroundColor: 'red',
-            paddingTop: 48,
-            paddingBottom: 32
+            paddingTop: theme.spacing.unit * 6,
+            paddingBottom: theme.spacing.unit * 4
         },
     }
 });

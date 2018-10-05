@@ -57,7 +57,6 @@ class InfoDrawer extends Component {
         this.setState({
             drawerWidth
         })
-        console.log('Drawer :', drawerWidth);
     }
 
     componentDidMount() {

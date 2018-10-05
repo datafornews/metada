@@ -101,7 +101,7 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit * 2.5,
     },
     table: {
-        minWidth: 100,
+        minWidth: theme.spacing.unit * 12,
     },
     cell: {
         padding: "4px"
@@ -109,7 +109,7 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 200,
+        width: theme.spacing.unit * 25,
         marginTop: 0
     }
 });
@@ -204,12 +204,12 @@ class BasicTable extends React.Component {
         let data = [...this.state.stats];
         let asc = false;
 
-        if (!is.null(_asc)){
+        if (!is.null(_asc)) {
             asc = _asc;
         } else if (this.state.sort === id) {
             asc = !this.state.asc
         }
-        
+
         switch (id) {
             case 0:
                 data.sort((a, b) => {

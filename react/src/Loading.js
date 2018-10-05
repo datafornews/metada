@@ -1,10 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Waiting from './components/Waiting';
+
+const translate = () => {
+    return 'On arrive!'
+}
 
 const LoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
+
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Waiting
+            translate={translate}
+        />;
     }
     // Handle the error state
     else if (error) {

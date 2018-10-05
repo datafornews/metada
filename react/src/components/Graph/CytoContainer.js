@@ -318,7 +318,7 @@ class CytoContainer extends React.Component {
     });
     this.cy && this.cy.resize();
     this.cy && this.cy.fit();
-    console.log('resize');
+
   }
 
   render() {

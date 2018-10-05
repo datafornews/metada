@@ -15,36 +15,28 @@ const styles = theme => ({
         display: 'flex',
         textAlign: 'center',
         [theme.breakpoints.up('xs')]: {
-            // backgroundColor: 'red',
             padding: '12px 0px',
-            marginLeft: 8
+            marginLeft: theme.spacing.unit
         },
     },
     logo: {
         color: theme.palette.default,
-        height: 20,
-        width: 20,
+        height: theme.spacing.unit * 3,
+        width: theme.spacing.unit * 3,
         [theme.breakpoints.up('sm')]: {
-            // backgroundColor: 'red',
-            height: 30,
-            width: 30,
+            height: theme.spacing.unit * 4,
+            width: theme.spacing.unit * 4,
         },
     },
     title: {
         color: theme.palette.default,
         textTransform: 'uppercase',
         [theme.breakpoints.up('sm')]: {
-            // backgroundColor: 'red',
             fontSize: 22,
         },
-        marginLeft: 8,
+        marginLeft: theme.spacing.unit,
     },
-    // moveLeft: {
-    //     marginLeft: -22,
-    //     transition: "all 0.2s ease-in-out",
-    // },
     normal: {
-        // marginLeft: 32,
         transition: "all 0.2s ease-in-out",
     }
 });

@@ -33,26 +33,22 @@ const styles = theme => (
             color: theme.palette.primary.main,
         },
         graph: {
-            marginLeft: 16,
+            marginLeft: theme.spacing.unit * 2,
             fontSize: '0.85rem',
             fontWeight: 800,
             color: theme.palette.primary.main,
         },
         entity: {
             textAlign: "center",
-            marginBottom: 4
+            marginBottom: theme.spacing.unit / 2
         },
         wrapper: {
             display: 'inline-block',
             margin: 'auto',
             [theme.breakpoints.only('xs')]: {
-                marginTop: 32,
+                marginTop: theme.spacing.unit * 4,
             }
         },
-        // text: {
-        //     color: theme.palette.secondary.main,
-        //     fontWeight: "bolder"
-        // },
         entityName: {
             [theme.breakpoints.down('sm')]: {
                 fontSize: 20
@@ -121,7 +117,11 @@ class Controls extends Component {
         const selectedIsRepresented = parseInt(infoBox.entity, 10) === parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[infoBox.entity];
         return (
-            <div className={classes.container} style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}>
+            <div 
+            className={classes.container} 
+            style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}
+            >
+
                 <GraphHistoryNavigation
                     clientType={clientType}
                     translate={translate}

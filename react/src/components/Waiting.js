@@ -7,7 +7,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 const styles = theme => ({
     textLoader: {
-        maxWidth: 60,
+        maxWidth: theme.spacing.unit * 8,
         position: 'absolute',
         left: "50%",
         transform: "translate(-50%)",
@@ -19,11 +19,11 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: 150
+        minHeight: theme.spacing.unit * 20
     },
     icon: {
-        height: 25,
-        width: 25,
+        height: theme.spacing.unit * 3,
+        width: theme.spacing.unit * 3,
         color: theme.palette.secondary.main
     }
 });
@@ -53,16 +53,16 @@ class Waiting extends Component {
 
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes, theme, translate } = this.props;
         const { noInternet } = this.state;
         return (
             <div className={classes.container}>
                 <div className={classes.textLoader} style={noInternet ? { maxWidth: 200, width: 200 } : {}}>
                     {/* Data is on its way! */}
                     {noInternet ?
-                        this.props.translate('home.noData')
+                        translate('home.noData')
                         :
-                        this.props.translate(this.props.toTranslate)
+                        translate(this.props.toTranslate)
                     }
                     {noInternet &&
                         <Button onClick={() => {

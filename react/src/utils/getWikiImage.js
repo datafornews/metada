@@ -9,7 +9,7 @@ export default async function (component, entity) {
         return
     }
 
-    console.log("Trying to get image for ", entity.name);
+    // console.log("Trying to get image for ", entity.name);
 
     let imageAddress;
     let localImage = localStorage.getItem('image_' + entity.id);

@@ -35,8 +35,8 @@ const styles = theme => ({
         },
     },
     icon: {
-        height: 30,
-        width: 30,
+        height: theme.spacing.unit * 4,
+        width: theme.spacing.unit * 4,
         color: theme.palette.default
     },
     menuList: {
@@ -50,7 +50,7 @@ const styles = theme => ({
         color: theme.palette.default
     },
     burgerButton: {
-        marginRight: 12,
+        marginRight: theme.spacing.unit * 1.5,
     },
     menuDiv: {
         display: 'inline-flex',
@@ -102,7 +102,7 @@ class CollapseMenu extends React.Component {
         } else {
             name = 'main';
         };
-        console.log('preloading', name);
+        // console.log('preloading', name);
         AsyncComponents[name].preload();
 
     }
