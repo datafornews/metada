@@ -12,6 +12,9 @@ For now, France only. Help wanted for more countries (front/back devs).
 
 [**Firefox Web Store**](https://bit.ly/metadaFirefox)
 
+A glimpse at the upcoming version?:
+
+![metada v1](https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif)
 
 ### From this source
 
