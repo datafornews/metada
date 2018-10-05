@@ -35,7 +35,8 @@ const styles = theme => ({
     buttonDiv: {
         display: 'flex',
         justifyContent: "space-evenly",
-        minWidth: 150
+        minWidth: 200,
+        margin: 'auto',
     },
 
     icon: {
@@ -63,29 +64,24 @@ class Install extends Component {
                 {this.props.clientType !== "extension" &&
                     <Grid item xs={12} style={{ display: 'flex', alignItems: 'center' }}>
 
-                        <Grid
-                            container
-                            spacing={16}
-                            alignItems={'center'}
-                            justify={'center'}
-                        >
-                            <Grid item xs={7} sm={4} >
-                                <div className={classes.buttonDiv}>
-                                    <Button
-                                        style={{ color: colors.default, maxWidth: '170px' }}
-                                        classes={{ label: classes.label }}
-                                        variant='contained'
-                                        color="primary"
-                                        target="_blank"
-                                        href={`https://bit.ly/metada${val}`}
-                                    >
-                                        {this.props.translate(`home.install.install${val}`)}
-                                        {is.firefox() ? <FirefoxIcon className={classes.icon} /> : <ChromeIcon className={classes.icon} />}
-                                        <OpenInNew className={classes.icon} />
-                                    </Button>
-                                </div>
-                            </Grid>
-                        </Grid>
+                        <div className={classes.buttonDiv}>
+                            <Button
+                                style={{ color: colors.default, padding: '16px 24px' }}
+                                classes={{ label: classes.label }}
+                                variant='contained'
+                                color="primary"
+                                target="_blank"
+                                href={`https://bit.ly/metada${val}`}
+                                size="large"
+                            >
+                                {this.props.translate(`home.install.install${val}`)}
+                                &nbsp;
+                                {is.firefox() ? <FirefoxIcon className={classes.icon} /> : <ChromeIcon className={classes.icon} />}
+                                &nbsp;
+                                <OpenInNew className={classes.icon} />
+                            </Button>
+                        </div>
+
                     </Grid>}
             </Grid>
         )
