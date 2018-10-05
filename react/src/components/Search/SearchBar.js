@@ -2,6 +2,7 @@ import React from 'react';
 import Select, { createFilter } from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import withWidth from '@material-ui/core/withWidth';
 
 const styles = theme => ({
   container: {
@@ -11,6 +12,14 @@ const styles = theme => ({
     marginBottom: 'auto'
   }
 });
+
+const fontSizes = {
+  "xs": 12,
+  "sm": 14,
+  "md": 16,
+  "lg": 18,
+  "xl": 20
+}
 
 
 
@@ -48,13 +57,13 @@ class SearchBar extends React.Component {
 
 
   render() {
-    const { classes, controlStyle, match, isGraph } = this.props;
+    const { classes, controlStyle, match, isGraph, width, isMain } = this.props;
 
     const currentGraphId = isGraph ? match.params.entityId : "";
 
     const colourStyles = {
-      control: (styles, {isFocused}) => {
-        return { ...styles, ...controlStyle }
+      control: (styles, { isFocused }) => {
+        return { ...styles, ...controlStyle, borderRadius: 50, borderColor: 'rgba(0,0,0,0)' }
       },
       option: (styles, { data, isDisabled, isFocused, isSelected }) => {
         return {
@@ -71,7 +80,11 @@ class SearchBar extends React.Component {
         };
       },
       input: styles => ({ ...styles }),
-      placeholder: styles => ({ ...styles }),
+      placeholder: styles => ({
+        ...styles,
+        fontSize: isMain ? fontSizes[width] * 1.5 : fontSizes[width],
+        opacity: 0.65
+      }),
       singleValue: (styles, { data }) => ({ ...styles }),
     };
 
@@ -100,4 +113,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(SearchBar);
+export default withWidth()(withStyles(styles, { withTheme: true })(SearchBar));
