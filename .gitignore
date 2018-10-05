@@ -1,5 +1,6 @@
 react/node_modules/*
 react/build/*
+Extension/
 *.zip
 
 .DS_Store
