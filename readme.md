@@ -4,6 +4,24 @@ The browser (Chrome & Firefox) extension which shows you who owns the Media.
 
 For now, France only. Help wanted for more countries (front/back devs).
 
+A glimpse at the upcoming version? :
+
+<img src="https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy-downsized-large.gif" alt="metada"/>
+
+## Contributing
+
+All help is welcome. To modify information about the graph, submit a pull request to https://github.com/mdiplo/Medias_francais or open an issue here.
+
+**Journalists** your help is welcome about the project's guidance and its spread.
+
+**Developpers** your help is MOST welcome to make the extension the best version of itself. 
+
+## Vision
+
+The core value of Metada is to bring users pieces of information about the media they read. Owenrship is only one of them: let's include public subsidies, number of journalists, audience etc.
+
+The core vision of Metada is to bring users data about their online behaviour. Not only about the media (other websites can be owned), not only about ownership (who is the journalist you read? his background, previous media etc.)
+
 ## How to install - Regular User
 
 ### Official stores
@@ -11,10 +29,6 @@ For now, France only. Help wanted for more countries (front/back devs).
 [**Chrome Web Store**](https://bit.ly/metadaChrome)
 
 [**Firefox Web Store**](https://bit.ly/metadaFirefox)
-
-A glimpse at the upcoming version?:
-
-![metada v1](https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif)
 
 ### From this source
 
@@ -35,6 +49,11 @@ At Chrome start up it may ask you whether or not to load this extension. Say yes
 	* That's it! The server runs on port `3000` so go to `http://localhost:3000/
 
 6. To **build** the **extension** run `yarn extension` which will build the app and update the content of `metada/Extension` accordingly
+
+### V1 on the way
+
+To see the 2nd version currently under development, clone the repo and checkout the `dev` branch
+
 
 ## Metada
 
