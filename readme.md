@@ -8,7 +8,11 @@ A glimpse at the upcoming version? :
 
 <img src="https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy-downsized-large.gif" alt="metada"/>
 
+([`dev` branch](https://github.com/vict0rsch/metada/tree/dev))
+
 ## Contributing
+
+**Checkout [contribute.md](/contribute.md)**
 
 All help is welcome. To modify information about the graph, submit a pull request to https://github.com/mdiplo/Medias_francais or open an issue here.
 
