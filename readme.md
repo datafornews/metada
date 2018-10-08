@@ -2,7 +2,7 @@
 
 The browser (Chrome & Firefox) extension which shows you who owns the Media.
 
-For now, France only. Help wanted for more countries (front/back devs).
+For now, France only. Help wanted for more countries (front/back devs). Join us on our [Discord discussion <img src="https://avatars3.githubusercontent.com/u/1965106?s=200&v=4" width=15 height=15/>](https://bit.ly/metadaDiscord)! 
 
 A glimpse at the upcoming version? :
 
