@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
@@ -26,9 +27,11 @@ export default class MyChip extends Component {
         return (
             <Chip
                 avatar={<Avatar>{avatarName}</Avatar>}
+                component = { Link }
                 label={this.props.entity.name}
                 onClick={this.handleClick}
                 style={chipStyle}
+                to = {`/graph/${this.props.entity.id}`}
             />
         )
     }
