@@ -10,10 +10,10 @@ import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
 import StatsIcon from 'react-icons/lib/fa/bar-chart';
 
-const styles = threme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: threme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 3,
   },
   indicator: {
     minWidth: '20px'  }
