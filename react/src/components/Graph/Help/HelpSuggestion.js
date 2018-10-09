@@ -5,8 +5,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
+import Fade from '@material-ui/core/Fade';
 import PropTypes from 'prop-types';
 import HelpIcon from 'react-icons/lib/fa/question-circle';
+import ClearIcon from 'react-icons/lib/md/clear';
 import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
@@ -29,14 +31,17 @@ const styles = theme => ({
         minWidth: 300
     },
     button: {
-        backgroundColor: theme.palette.default,
-        color: theme.palette.secondary.main,
-        minWidth: 150
+        // backgroundColor: theme.palette.default,
+        // color: theme.palette.secondary.main,
+        minWidth: 150,
+        "&:hover":{
+            opacity: 0.9
+        }
     },
-    iconButton: {
+    helpIconButton: {
         color: theme.palette.secondary.main,
-        height: 30,
-        width: 30
+        height: 50,
+        width: 50
     },
     cardActions: {
         display: 'flex',
@@ -46,16 +51,29 @@ const styles = theme => ({
         minWidth: 200
     },
     slideContained: {
-        maxWidth: 150
+        maxWidth: 150,
+        margin: "auto"
     },
     helpsecondary: {
         color: theme.palette.secondary.main
     },
     helpDefault: {
         color: theme.palette.default,
-        height: 30,
-        width: 30
+        height: 40,
+        width: 40
     },
+    clearIcon: {
+        height: 20,
+        width: 20,
+        color: theme.palette.default,
+    },
+    clearIconButton: {
+        height: 30,
+        width: 30,
+        position: 'absolute',
+        top: 8,
+        right: 8
+    }
 });
 
 class HelpSuggestion extends Component {
@@ -73,6 +91,9 @@ class HelpSuggestion extends Component {
         return (
             <div className={classes.container} style={isMobie ? { top: "50%", left: '50%', transform: "translate(-50%, -50%)" } : {}}>
                 <Card elevation={1} className={classes.paper}>
+                    <IconButton className={classes.clearIconButton} onClick={() => { toggleHelpSuggestion(false) }}>
+                        <ClearIcon className={classes.clearIcon} />
+                    </IconButton>
                     <CardContent>
                         Comment naviguer dans le graph?
                     </CardContent>
@@ -82,20 +103,23 @@ class HelpSuggestion extends Component {
                         className={classes.cardActions}
                     >
 
-                        <Slide mountOnEnter unmountOnExit direction="left" in={this.state.button}>
+                        <Slide mountOnEnter unmountOnExit direction="left" in={this.state.button || 1}>
                             <div className={classes.slideContained}>
                                 <Button
                                     className={classes.button}
+                                    color="default"
+                                    variant='contained'
                                 >
                                     Suivez le guide!
+
                                 </Button>
                             </div>
                         </Slide>
-                        <Slide mountOnEnter unmountOnExit direction="left" in={!this.state.button}>
+                        <Slide mountOnEnter unmountOnExit direction="right" in={!this.state.button && 0} timeout={{ enter: 400 }}>
                             <div className={classes.slideContained}>
                                 <IconButton
                                     onClick={() => { toggleHelpSuggestion(false); toggleHelp(true) }}
-                                    className={classes.iconButton}
+                                    className={classes.helpIconButton}
                                     color="secondary"
                                 >
                                     <HelpIcon className={classes.helpDefault} />
