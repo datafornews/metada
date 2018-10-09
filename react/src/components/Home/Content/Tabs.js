@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import { Link } from 'react-router-dom';
 import SearchIcon from 'material-ui-icons/Search';
 import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
@@ -55,20 +56,10 @@ const labelStyle = {
 const scrollableTabsMinWidth = 550;
 
 class HomeContentTabs extends React.Component {
-  state = {
-    value: 'search',
-    update: 0
-  };
-
-  handleChange = (event, value) => {
-    if (this.props.location.pathname.split('/')[1] !== value) {
-      this.setState({ value });
-      this.props.closeAll();
-      this.props.toggle(value);
-      this.props.history.push('/' + value)
-    }
-  };
-
+    state = {
+      value: 'search',
+      update: 0
+    };
 
   componentWillReceiveProps(nextProps) {
     if (this.state.update !== -1) {
@@ -116,7 +107,6 @@ class HomeContentTabs extends React.Component {
       <Paper className={classes.root}>
         <Tabs
           value={this.state.value}
-          onChange={this.handleChange}
           indicatorColor="primary"
           textColor="primary"
           centered
@@ -129,6 +119,8 @@ class HomeContentTabs extends React.Component {
               return <Tab
                 className={classes.labelContainer}
                 key={'tab' + k}
+                component={Link}
+                to={v}
                 label={
                   <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>{this.props.translate("home.tabs." + v)}</span>
                 }
