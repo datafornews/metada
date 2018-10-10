@@ -85,3 +85,8 @@ html {
     opacity: 0.15;
   }
 }
+
+/* Remove underlines from react-router Link anchor tags */
+a[role="button"] {
+  text-decoration-line: none;
+}
