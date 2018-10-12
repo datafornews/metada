@@ -15,30 +15,10 @@ import { check_website } from '../../utils/backgroundUtils';
 // import Contribute from './Content/Contribute/Contribute';
 
 import Container from '../Container';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 import updateData from '../../utils/updateData';
-
-const homeContentDivStyle = {
-  "mobile": {
-    textAlign: 'center',
-    width: '92%',
-    margin: 'auto'
-  },
-  "browser": {
-    textAlign: 'unset',
-    maxWidth: "900px",
-    width: '70%',
-    margin: 'auto'
-  },
-  "extension": {
-    textAlign: 'unset',
-    maxWidth: "900px",
-    width: '80%',
-    margin: 'auto'
-  }
-};
 
 class Home extends React.Component {
 
@@ -117,16 +97,13 @@ class Home extends React.Component {
           {this.props.isMain && this.props.children}
           {/* {["", "s"].indexOf(location) === -1 ? '' : <Main {...this.props} nb={4} />} */}
 
-          <div style={homeContentDivStyle[this.props.clientType]}>
-
-            {!this.props.isMain && this.props.children}
-            {/* <LearnAbout {...this.props} />
+          {!this.props.isMain && this.props.children}
+          {/* <LearnAbout {...this.props} />
             <Contact {...this.props} />
             <Settings {...this.props} />
             <Extension {...this.props} />
             <Stats {...this.props} />
             <Contribute {...this.props} /> */}
-          </div>
         </div>
       </Container>
     );

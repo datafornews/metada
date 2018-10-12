@@ -45,14 +45,17 @@ const styles = theme => (
         wrapper: {
             display: 'inline-block',
             margin: 'auto',
-            [theme.breakpoints.only('xs')]: {
-                marginTop: theme.spacing.unit * 4,
-            }
         },
         entityName: {
             [theme.breakpoints.down('sm')]: {
                 fontSize: 20
             }
+        },
+        boldText: {
+            fontSize: theme.typography.title.fontSize
+        },
+        dialogContent: {
+            marginTop: theme.spacing.unit
         }
     }
 );
@@ -117,9 +120,9 @@ class Controls extends Component {
         const selectedIsRepresented = parseInt(infoBox.entity, 10) === parseInt(match.params.entityId, 10);
         const entity = data.entities.ids[infoBox.entity];
         return (
-            <div 
-            className={classes.container} 
-            style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}
+            <div
+                className={classes.container}
+                style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}
             >
 
                 <GraphHistoryNavigation
@@ -159,32 +162,38 @@ class Controls extends Component {
                     onClose={this.handleClose}
                     TransitionComponent={Transition}
                 >
-                    <DialogTitle>{"Did you know?"}</DialogTitle>
-                    <DialogContent>
+                    <DialogTitle>
+                        <Typography variant="display1">
+                            {"Le saviez vous?"}
+                        </Typography>
+                    </DialogTitle>
+                    <DialogContent className={classes.dialogContent}>
                         <DialogContentText>
-                            {this.state.doubleClickHelp && (
-                                <span>
-                                    {translate("graph.helpCard.doubleTapBefore")}
-                                    <span style={{ fontWeight: "bolder" }}>
-                                        {translate("graph.helpCard.doubleTap")}
+                            <Typography variant="body1">
+                                {this.state.doubleClickHelp && (
+                                    <span>
+                                        {translate("graph.helpCard.doubleTapBefore")}
+                                        <span className={classes.boldText}>
+                                            {translate("graph.helpCard.doubleTap")}
+                                        </span>
+                                        {translate("graph.helpCard.doubleTapAfter")}
                                     </span>
-                                    {translate("graph.helpCard.doubleTapAfter")}
-                                </span>
-                            )}
+                                )}
 
-                            {this.state.longClickHelp && (
-                                <span>
-                                    <span style={{ fontWeight: "bolder" }}>
-                                        {translate('graph.helpCard.contextual')}
+                                {this.state.longClickHelp && (
+                                    <span>
+                                        <span className={classes.boldText}>
+                                            {translate('graph.helpCard.contextual')}
+                                        </span>
+                                        {translate('graph.helpCard.contextualAfter')}
                                     </span>
-                                    {translate('graph.helpCard.contextualAfter')}
-                                </span>
-                            )}
+                                )}
+                            </Typography>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                            Got it!
+                            Compris!
                     </Button>
                     </DialogActions>
                 </Dialog>

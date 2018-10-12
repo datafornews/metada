@@ -3,7 +3,7 @@ import LogoIcon from "react-icons/lib/go/puzzle"
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import {AsyncComponents} from '../../index';
+import { AsyncComponents } from '../../index';
 
 
 const styles = theme => ({
@@ -14,16 +14,16 @@ const styles = theme => ({
         backgroundColor: theme.palette.secondary.main,
         display: 'flex',
         textAlign: 'center',
-        [theme.breakpoints.up('xs')]: {
+        [theme.breakpoints.up('sm')]: {
             padding: '12px 0px',
-            marginLeft: theme.spacing.unit
+            marginLeft: theme.spacing.unit * 6
         },
     },
     logo: {
         color: theme.palette.default,
         height: theme.spacing.unit * 3,
         width: theme.spacing.unit * 3,
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('xs')]: {
             height: theme.spacing.unit * 4,
             width: theme.spacing.unit * 4,
         },

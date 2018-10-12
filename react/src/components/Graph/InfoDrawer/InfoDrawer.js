@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import Info from './Info';
 import PropTypes from 'prop-types'
+import {enableBodyScroll } from 'body-scroll-lock';
 
 
 const _drawerWidth = Math.max(
@@ -42,6 +43,8 @@ class InfoDrawer extends Component {
 
     state = { drawerWidth: _drawerWidth }
 
+    targetElement = null;
+
     componentWillMount() {
         if (!this.props.history.location.pathname.startsWith("/graph/")) {
             this.props.toggleDrawer(false);
@@ -62,6 +65,8 @@ class InfoDrawer extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.props.clientType === "extension" && this.handleResize();
+        this.targetElement = document.querySelector('#drawer-metada');
+        enableBodyScroll(this.targetElement);
     }
 
 
@@ -89,7 +94,7 @@ class InfoDrawer extends Component {
 
         return (
             // <Slide in={show.drawer} direction="left" >
-            <div className={classes.root}>
+            <div className={classes.root} id="drawer-metada">
                 <div style={{ maxHeight: '100vh', height: '100vh' }}>
                     <Drawer
                         variant="persistent"

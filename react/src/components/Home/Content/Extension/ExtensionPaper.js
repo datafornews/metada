@@ -19,19 +19,20 @@ class ExtensionPaper extends Component {
 
     render() {
         const { classes } = this.props;
+
+        const gifLink = "https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif";
+
         return (
-            <div style={{ textAlign: 'center' }}>
-                <MarkdownPaper
-                    {...this.props}
-                    source={this.props.translate('home.extensionPaperMd')}
-                    extra={<div className={classes.container}>
-                        <a href="https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif" target='_blank'>
-                            <img className={classes.img} src='https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy.gif' alt="Loading Metada demonstration gif..."></img>
-                        </a>
-                    </div>}
-                    toggle={this.props.toggleContact}
-                />
-            </div>
+            <MarkdownPaper
+                {...this.props}
+                source={this.props.translate('home.extensionPaperMd')}
+                extra={<div className={classes.container}>
+                    <a href={gifLink} target='_blank'>
+                        <img className={classes.img} src={gifLink} alt="Loading Metada demonstration gif..."></img>
+                    </a>
+                </div>}
+                toggle={this.props.toggleContact}
+            />
         );
     }
 }

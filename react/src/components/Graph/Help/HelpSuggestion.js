@@ -4,10 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import Slide from '@material-ui/core/Slide';
-import Fade from '@material-ui/core/Fade';
 import PropTypes from 'prop-types';
-import HelpIcon from 'react-icons/lib/fa/question-circle';
 import ClearIcon from 'react-icons/lib/md/clear';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -22,7 +19,7 @@ const styles = theme => ({
             // backgroundColor: 'red',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, 60%)'
+            transform: 'translate(-50%, 50%)'
         },
     },
     paper: {
@@ -34,7 +31,7 @@ const styles = theme => ({
         // backgroundColor: theme.palette.default,
         // color: theme.palette.secondary.main,
         minWidth: 150,
-        "&:hover":{
+        "&:hover": {
             opacity: 0.9
         }
     },
@@ -73,6 +70,12 @@ const styles = theme => ({
         position: 'absolute',
         top: 8,
         right: 8
+    },
+    cardContent: {
+        [theme.breakpoints.only('xs')]: {
+            // backgroundColor: 'red',
+            paddingRight: 32
+        },
     }
 });
 
@@ -82,8 +85,17 @@ class HelpSuggestion extends Component {
         button: true,
     }
 
+    turnOffHelpSuggestion = () => {
+        this.props.toggleHelpSuggestion(false);
+    }
+
+    displayHelp = () => {
+        this.props.toggleHelp(true);
+        this.turnOffHelpSuggestion();
+    }
+
     render() {
-        const { classes, toggleHelp, toggleHelpSuggestion, isRehydrated, show, clientType } = this.props;
+        const { classes, isRehydrated, show, clientType } = this.props;
         if (!isRehydrated || (isRehydrated && !show.helpSuggestion)) {
             return ''
         }
@@ -91,42 +103,26 @@ class HelpSuggestion extends Component {
         return (
             <div className={classes.container} style={isMobie ? { top: "50%", left: '50%', transform: "translate(-50%, -50%)" } : {}}>
                 <Card elevation={1} className={classes.paper}>
-                    <IconButton className={classes.clearIconButton} onClick={() => { toggleHelpSuggestion(false) }}>
+                    <IconButton className={classes.clearIconButton} onClick={this.turnOffHelpSuggestion}>
                         <ClearIcon className={classes.clearIcon} />
                     </IconButton>
-                    <CardContent>
+                    <CardContent className={classes.cardContent}>
                         Comment naviguer dans le graph?
                     </CardContent>
                     <CardActions
-                        onMouseEnter={() => { this.setState({ button: false }) }}
-                        onMouseLeave={() => { this.setState({ button: true }) }}
                         className={classes.cardActions}
                     >
-
-                        <Slide mountOnEnter unmountOnExit direction="left" in={this.state.button || 1}>
-                            <div className={classes.slideContained}>
-                                <Button
-                                    className={classes.button}
-                                    color="default"
-                                    variant='contained'
-                                >
-                                    Suivez le guide!
+                        <div className={classes.slideContained}>
+                            <Button
+                                className={classes.button}
+                                color="default"
+                                variant='contained'
+                                onClick={this.displayHelp}
+                            >
+                                Suivez le guide!
 
                                 </Button>
-                            </div>
-                        </Slide>
-                        <Slide mountOnEnter unmountOnExit direction="right" in={!this.state.button && 0} timeout={{ enter: 400 }}>
-                            <div className={classes.slideContained}>
-                                <IconButton
-                                    onClick={() => { toggleHelpSuggestion(false); toggleHelp(true) }}
-                                    className={classes.helpIconButton}
-                                    color="secondary"
-                                >
-                                    <HelpIcon className={classes.helpDefault} />
-                                </IconButton>
-                            </div>
-                        </Slide>
-
+                        </div>
                     </CardActions>
                 </Card>
             </div >

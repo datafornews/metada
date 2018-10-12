@@ -17,27 +17,27 @@ class Header extends React.Component {
 
   checkOrRedirect = (props) => {
     return
-    let redirect = true;
-    const pathname = props.history.location.pathname;
-    const match = this.props.match;
-    let locations = ['/extension', '/settings', '/about', '/search', '/contact', '/', '/callback', '/login'];
-    if (props.clientType === "extension" || 1) {
-      locations.push('/stats');
-    }
-    if (pathname && match) {
-      if (locations.indexOf(pathname) !== -1) {
-        redirect = false;
-      } else if (pathname.startsWith('/graph/') && /^\d+$/.test(match.params.entityId)) {
-        redirect = false;
-      } else if (pathname.startsWith('/s/') && /^\d+$/.test(match.params.filter)) {
-        redirect = false;
-      }
+    // let redirect = true;
+    // const pathname = props.history.location.pathname;
+    // const match = this.props.match;
+    // let locations = ['/extension', '/settings', '/about', '/search', '/contact', '/', '/callback', '/login'];
+    // if (props.clientType === "extension" || 1) {
+    //   locations.push('/stats');
+    // }
+    // if (pathname && match) {
+    //   if (locations.indexOf(pathname) !== -1) {
+    //     redirect = false;
+    //   } else if (pathname.startsWith('/graph/') && /^\d+$/.test(match.params.entityId)) {
+    //     redirect = false;
+    //   } else if (pathname.startsWith('/s/') && /^\d+$/.test(match.params.filter)) {
+    //     redirect = false;
+    //   }
 
-      if (redirect) {
-        console.log('redirect');
-        props.history.push('/');
-      }
-    }
+    //   if (redirect) {
+    //     console.log('redirect');
+    //     props.history.push('/');
+    //   }
+    // }
   }
 
 

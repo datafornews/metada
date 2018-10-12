@@ -50,7 +50,8 @@ const styles = theme => ({
         color: theme.palette.default
     },
     burgerButton: {
-        marginRight: theme.spacing.unit * 1.5,
+        position: 'absolute',
+        left: theme.spacing.unit
     },
     menuDiv: {
         display: 'inline-flex',
@@ -59,6 +60,20 @@ const styles = theme => ({
     },
     container: {
         display: 'inline-flex',
+    },
+    popper: {
+        [theme.breakpoints.only('xs')]: {
+            transform: 'translate(0%, 15%) !important'
+        }
+    },
+    menuItemIcon: {
+        [theme.breakpoints.only('xs')]: {
+            marginRight: 0
+        }
+    },
+    em: {
+        fontSize: "3em",
+        color: theme.palette.default
     }
 });
 
@@ -109,7 +124,8 @@ class CollapseMenu extends React.Component {
 
     render() {
         const { anchorEl } = this.state;
-        const { classes, clientType } = this.props;
+        const { classes, clientType, history } = this.props;
+        const path = history.location.pathname;
         return (
             <ClickAwayListener onClickAway={this.close}>
                 <div
@@ -126,7 +142,7 @@ class CollapseMenu extends React.Component {
                                 {
                                     'is-active': Boolean(anchorEl)
                                 },
-                                'burgerButton'
+                                classes.burgerButton
                             )
                         }
                             type="button"
@@ -146,7 +162,7 @@ class CollapseMenu extends React.Component {
                             isRehydrated={this.props.isRehydrated}
                         />}
                     </div>
-                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal style={{ zIndex: 10 }}>
+                    <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} transition disablePortal style={{ zIndex: 10 }} className={classes.popper} >
                         {({ TransitionProps, placement }) => (
                             <Collapse
                                 {...TransitionProps}
@@ -158,52 +174,59 @@ class CollapseMenu extends React.Component {
                                     <MenuList className={classes.menuList} onMouseLeave={this.close}>
 
                                         <MenuItem className={classes.menuItem} onMouseOver={this.preload('')} onClick={this.goTo('/')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <HomeIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.home')} />
+                                            {path === "/" && <span className={classes.em}>•</span>}
                                         </MenuItem>
 
                                         {this.props.clientType === "extension" && <MenuItem className={classes.menuItem} onMouseOver={this.preload('stats')} onClick={this.goTo('/stats')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <StatsIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.stats')} />
+                                            {path === "/stats" && <span className={classes.em}>•</span>}
                                         </MenuItem>}
 
                                         <MenuItem className={classes.menuItem} onMouseOver={this.preload('about')} onClick={this.goTo('/about')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <AboutIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.about')} />
+                                            {path === "/about" && <span className={classes.em}>•</span>}
                                         </MenuItem>
 
                                         <MenuItem className={classes.menuItem} onMouseOver={this.preload('contribute')} onClick={this.goTo('/contribute')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <ContributeIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contribute')} />
+                                            {path === "/contribute" && <span className={classes.em}>•</span>}
                                         </MenuItem>
 
                                         {this.props.clientType !== "extension" && <MenuItem className={classes.menuItem} onMouseOver={this.preload('extension')} onClick={this.goTo('/extension')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <ExtensionIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.extension')} />
+                                            {path === "/extension" && <span className={classes.em}>•</span>}
                                         </MenuItem>}
 
                                         <MenuItem className={classes.menuItem} onMouseOver={this.preload('contact')} onClick={this.goTo('/contact')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <ContactIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.contact')} />
+                                            {path === "/contact" && <span className={classes.em}>•</span>}
                                         </MenuItem>
 
                                         <MenuItem className={classes.menuItem} onMouseOver={this.preload('settings')} onClick={this.goTo('/settings')}>
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
                                                 <SettingsIcon />
                                             </ListItemIcon>
                                             <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.settings')} />
+                                            {path === "/settings" && <span className={classes.em}>•</span>}
                                         </MenuItem>
 
                                         <MenuItem className={classes.menuItem} >

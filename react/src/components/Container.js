@@ -18,6 +18,8 @@ import Grid from '@material-ui/core/Grid';
 import mapStateToProps from '../store/defaultMapStateToProps';
 import mapDispatchToProps from '../store/defaultMapDispatchToProps';
 import withWidth from '@material-ui/core/withWidth';
+// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 
 const _drawerWidth = Math.max(
     window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
@@ -70,7 +72,7 @@ const styles = theme => ({
         }),
         position: "relative",
         overflow: "scroll",
-        maxHeight: '100vh'
+        maxHeight: '100vh',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -94,6 +96,7 @@ const styles = theme => ({
         justifyContent: 'space-between',
         [theme.breakpoints.only('xs')]: {
             // backgroundColor: 'red',
+            minHeight: 52,
             justifyContent: 'space-evenly',
         },
     },
@@ -103,6 +106,17 @@ const styles = theme => ({
             // backgroundColor: 'red',
             justifyContent: 'space-evenly',
         }
+    },
+    toolbar: {
+        paddingLeft: theme.spacing.unit * 2,
+        paddingRight: theme.spacing.unit * 2,
+        [theme.breakpoints.only('xs')]: {
+            paddingLeft: 0,
+            paddingRight: 0,
+        }
+    },
+    shiftMainDown:{
+        paddingTop: theme.spacing.unit * 3 * 4
     }
 });
 
@@ -110,8 +124,12 @@ class Container extends Component {
 
     state = { drawerWidth: _drawerWidth }
 
+    // root = null;
+    // main = null;
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
+        // clearAllBodyScrollLocks();
     }
 
     handleResize = () => {
@@ -127,6 +145,11 @@ class Container extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.props.clientType === "extension" && this.handleResize();
+        // this.root = document.querySelector('#root');
+        // this.main = document.querySelector('#main-metada');
+        // console.log(this.main, this.root);
+        // disableBodyScroll(this.main);
+        // enableBodyScroll(this.main);
     }
 
     goHome = () => {
@@ -135,15 +158,14 @@ class Container extends Component {
 
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
-            history, isRehydrated, show, match,
+            history, isRehydrated, show, match, isMain,
             toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph, width } = this.props;
 
+        console.log({ show });
         const isMobile = clientType === 'mobile';
-        const paddingLeft = isMobile ? 0 : 16;
-        const paddingRight = isMobile ? 0 : 16;
         const location = history.location.pathname.split('/')[1];
         const titleLoc = location ? location : 'search';
-        const showSearchBar = (!show.mainSearchBar || isGraph) && (!isMobile || !show.drawer);
+        const showSearchBar = !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs")
         const isLarge = ["xl", "lg", "md"].indexOf(width) > -1;
 
         return (
@@ -164,7 +186,7 @@ class Container extends Component {
                         width: isRehydrated && show.drawer && isGraph ? `calc(100% - ${this.state.drawerWidth}px)` : '100%',
                     }}
                 >
-                    <Toolbar style={{ paddingLeft, paddingRight }}>
+                    <Toolbar className={classes.toolbar}>
                         <Grid
                             container
                             direction="row"
@@ -173,7 +195,7 @@ class Container extends Component {
                         >
                             <Grid
                                 className={classNames(classes.menuGridDiv, show.drawer && classes.menuGridDivDrawer)}
-                                item xs={12} sm={show.drawer ? 12 : 6} md={show.drawer ? 5 : 4}
+                                item xs={12} sm={show.drawer && isGraph ? 12 : 6} md={show.drawer ? 5 : 4}
                             >
                                 <Menu
                                     history={history}
@@ -223,8 +245,8 @@ class Container extends Component {
                                         : ''
                                 }
                             </Grid>
-                            {(showSearchBar || isLarge) && <Fade in={showSearchBar} timeout={250}>
-                                <Grid item xs={12} sm={show.drawer ? 12 : 5} md={show.drawer ? 5 : 4}>
+                            <Fade unmountOnExit mountOnEnter in={showSearchBar || isLarge} timeout={250}>
+                                <Grid item xs={12} sm={show.drawer && isGraph ? 12 : 5} md={show.drawer ? 5 : 4}>
                                     <div>
                                         {dataIsAvailable && <div className={classes.searchBar}><SearchBar
                                             data={data}
@@ -243,7 +265,7 @@ class Container extends Component {
                                         /></div>}
                                     </div>
                                 </Grid>
-                            </Fade>}
+                            </Fade>
 
                         </Grid>
                     </Toolbar>
@@ -256,13 +278,15 @@ class Container extends Component {
                             [classes.contentShift]: isGraph && show.drawer,
                             [classes["contentShift-left"]]: isGraph && show.drawer,
                         },
-                        isMobile && classes.noPadding
+                        isMobile && classes.noPadding,
+                        showSearchBar && width === "xs" && classes.shiftMainDown
                     )}
                     style={{
                         overflow: isGraph ? 'hidden' : 'scroll',
                         marginLeft: isRehydrated && isGraph ? show.drawer ? "0px" : -this.state.drawerWidth : "0px",
                         width: isRehydrated && show.drawer && isGraph ? `calc(100% - ${this.state.drawerWidth}px)` : '100%',
                     }}
+                    id="main-metada"
                 >
                     {children}
                 </main>
