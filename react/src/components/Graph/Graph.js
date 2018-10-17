@@ -12,6 +12,7 @@ import Issue from './Issue';
 import Controls from './Control/Controls'
 import Edge from './Control/Edge'
 import HelpSuggestion from './Help/HelpSuggestion'
+import JoyRide from './JoyRide';
 
 import Waiting from '../Waiting';
 import { withStyles } from '@material-ui/core/styles';
@@ -109,6 +110,7 @@ class Graph extends React.Component {
     >
       {dataIsAvailable ?
         <div>
+          <JoyRide />
           <div
             className={classNames(
               classes.controlsContainer,
