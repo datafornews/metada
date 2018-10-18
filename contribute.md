@@ -23,6 +23,10 @@ To work on the development of the extension part, you need to install it as an u
 
 The build process may take anywhere between 20s and 1+m depending on your cpu.
 
+## Roadmap
+
+Check out the wiki for details! https://github.com/Vict0rSch/metada/wiki/
+
 ## Dependencies
 
 Metada is based on [**material-ui**](https://material-ui.com/) and most components come from there. Notable other dependencies are:
