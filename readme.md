@@ -12,6 +12,20 @@ A glimpse at the upcoming version? :
 
 ([`dev` branch](https://github.com/vict0rsch/metada/tree/dev))
 
+---
+
+1. [**Contributing**](https://github.com/vict0rsch/metada#contributing)
+2. [**Vision**](https://github.com/vict0rsch/metada#vision)
+3. [**How to install**](https://github.com/vict0rsch/metada#how-to-install---regular-user)
+
+    a. [**Official Chrome and Firefox Stores**](https://github.com/vict0rsch/metada#official-stores)
+
+    b. [**From this source**]()
+
+4. [**Settin things up: Front-End dev**](https://github.com/vict0rsch/metada#how-to-install---front-end-dev)
+5. [**About Metada**](https://github.com/vict0rsch/metada#metada-1)
+6. [**Data**](https://github.com/vict0rsch/metada#data)
+
 ## Contributing
 
 **Checkout [contribute.md](/contribute.md)**
