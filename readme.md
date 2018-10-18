@@ -22,7 +22,7 @@ A glimpse at the upcoming version? :
 
     b. [**From this source**]()
 
-4. [**Settin things up: Front-End dev**](https://github.com/vict0rsch/metada#how-to-install---front-end-dev)
+4. [**Setting things up: Front-End dev**](https://github.com/vict0rsch/metada#how-to-install---front-end-dev)
 5. [**About Metada**](https://github.com/vict0rsch/metada#metada-1)
 6. [**Data**](https://github.com/vict0rsch/metada#data)
 
