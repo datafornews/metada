@@ -110,7 +110,7 @@ class Graph extends React.Component {
     >
       {dataIsAvailable ?
         <div>
-          <JoyRide />
+          {/* <JoyRide /> */}
           <div
             className={classNames(
               classes.controlsContainer,

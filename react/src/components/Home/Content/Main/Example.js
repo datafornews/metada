@@ -222,7 +222,7 @@ class Example extends Component {
     }
 
     preloadGraph = () => {
-        // console.log('preloading graph');
+        console.log('preloading graph');
         AsyncComponents.graph.preload();
     }
 

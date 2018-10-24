@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { colors } from '../../../theme/metadaTheme';
 import { withStyles } from '@material-ui/core/styles';
+import ShareComment from './ShareComment';
+import ShareSources from './ShareSources';
 
 const styles = theme => (
     {
@@ -17,9 +19,9 @@ class Edge extends Component {
     render() {
 
         const { data, infoBox, clientType } = this.props;
-
-        const target = data.entities.ids[parseInt(infoBox.share.target, 10)]
-        const source = data.entities.ids[parseInt(infoBox.share.source, 10)]
+        const share = infoBox.share;
+        const target = data.entities.ids[parseInt(share.target, 10)]
+        const source = data.entities.ids[parseInt(share.source, 10)]
 
         if (!target || !source) {
             return ''
@@ -35,15 +37,23 @@ class Edge extends Component {
                 <Grid
                     container
                     direction="row"
-                    justify="center"
+                    justify="space-around"
                     alignItems="center"
                     spacing={16}
                 >
-                    <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
-                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[source.category] }}>{source.name}</Grid>
-                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({infoBox.share.label})</span>--></Grid>
-                    <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[target.category] }}>{target.name}</Grid>
-                    <Grid item xs={"auto"} md={3} style={{ padding: 0 }}></Grid>
+                    <Grid item xs={8}>
+                        <Grid container>
+                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[source.category] }}>{source.name}</Grid>
+                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({share.label})</span>--></Grid>
+                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[target.category] }}>{target.name}</Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={"auto"}>
+                        <Grid container >
+                            {share.comment && <ShareComment share={share} />}
+                            {share.sources.length !== 0 && <ShareSources share={share} />}
+                        </Grid>
+                    </Grid>
                 </Grid>
             </div>
         )

@@ -50,14 +50,7 @@ const styles = theme => ({
 class Main extends Component {
 
     state = {
-        height: null,
         searchIsVisible: true
-    }
-
-    componentDidMount() {
-        this.setState({
-            height: window.innerHeight
-        })
     }
 
     onSearchBarVisibilityChange = (isVisible) => {
@@ -123,7 +116,7 @@ class Main extends Component {
                                 </Grid>
                             )}
                         </Grid>
-                        {this.props.dataIsAvailable && <Example {...noClassesProps} nb={this.state.height > 1000 ? 12 : 6} />}
+                        {this.props.dataIsAvailable && <Example {...noClassesProps} nb={12} />}
                     </div>
                 </Home>
         )

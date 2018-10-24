@@ -19,12 +19,10 @@ export default (serverData) => {
     var ID = -100;
     for (let serverShare of serverData.shares) {
         const newShare = {
-            child_id: serverShare.child_id,
-            parent_id: serverShare.parent_id,
-            special: serverShare.special,
-            value: serverShare.value,
+            ...serverShare,
             shareId: serverShare.parent_id + '-' + serverShare.child_id,
             id: ID
+
         };
 
         if (data.shares.children[newShare.child_id]) {

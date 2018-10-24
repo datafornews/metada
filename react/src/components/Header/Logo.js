@@ -14,6 +14,8 @@ const styles = theme => ({
         backgroundColor: theme.palette.secondary.main,
         display: 'flex',
         textAlign: 'center',
+        alignItems: 'center',
+        marginLeft: theme.spacing.unit * 5,
         [theme.breakpoints.up('sm')]: {
             padding: '12px 0px',
             marginLeft: theme.spacing.unit * 6

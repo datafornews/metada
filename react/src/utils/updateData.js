@@ -5,17 +5,17 @@ import formatUpdateData from './formatUpdateData';
 async function updateData(component) {
     // When updating this function, be sure to update its background counterpart
 
-    var ts2 = Math.round((new Date()).getTime() / 1000);
-    var ts;
+    var tsNow = Math.round((new Date()).getTime() / 1000);
+    var tsData;
     // element is the react component
     if (localStorage.dataTime) {
-        ts = parseInt(localStorage.dataTime, 10);
+        tsData = parseInt(localStorage.dataTime, 10);
         var checkEvery = 20;//3600 * 24; // 1 day
     } else {
-        ts = 0;
+        tsData = 0;
     }
     // 1511996122
-    if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
+    if ((!localStorage.dataTime || tsNow - tsData > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
         localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
         // if (localStorage.updateFromLocal && localStorage.updateFromLocal === 'true') {
@@ -25,18 +25,19 @@ async function updateData(component) {
         //     localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + '';
         //     localStorage.updateFromLocal = 'false';
         // } else {
-        Axios.get('https://oop-pro.herokuapp.com/public/update?timestamp=' + ts).then(
+        console.log('Trying data at', tsData);
+        Axios.get('https://oop-stage.herokuapp.com/public/update?timestamp=' + tsData).then(
             (response) => {
-                if (response.data && (response.data.entities.length > 0 || response.data.shares.length >0)){
-                    response.data.entities.map((v, k) => {
+                if (response.data && (response.data.entities.length > 0 || response.data.shares.length > 0)) {
+                    console.log('response.data :', response.data);
+                    response.data.entities.forEach(v => {
                         localStorage.removeItem('cytoData_' + v.id)
                         localStorage.removeItem('wiki_' + v.id + '_fr')
                         localStorage.removeItem('wiki_' + v.id + '_en')
-                        return null
                     })
-                    response.data.shares.map((v, k) => {
-                        localStorage.removeItem('cytoData_' + v.child.id)
-                        localStorage.removeItem('cytoData_' + v.parent.id)
+                    response.data.shares.forEach(v => {
+                        localStorage.removeItem('cytoData_' + v.child_id)
+                        localStorage.removeItem('cytoData_' + v.parent_id)
                         localStorage.removeItem('wiki_' + v.child_id + '_fr')
                         localStorage.removeItem('wiki_' + v.parent_id + '_fr')
                         localStorage.removeItem('wiki_' + v.child_id + '_en')
@@ -56,12 +57,14 @@ async function updateData(component) {
             (error) => {
                 console.log('Server Error (updating data)');
                 console.log(error);
+                localStorage.dataTime = tsData;
 
             }).catch(
-            (error) => {
-                console.log('Catching JS Error (updating data)');
-                console.log(error);
-            });
+                (error) => {
+                    console.log('Catching JS Error (updating data)');
+                    console.log(error);
+                    localStorage.dataTime = tsData;
+                });
         // }
     }
 }

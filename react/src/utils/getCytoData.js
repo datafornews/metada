@@ -80,6 +80,8 @@ export default function getCytoData(data, entity) {
         temp_data.source = s.parent_id;
         temp_data.target = s.child_id;
         temp_data.label = label;
+        temp_data.comment = s.comment || "";
+        temp_data.sources = s.sources || [];
         if (label.length > 10) {
             special_shares.push(s.id);
         }
@@ -97,6 +99,8 @@ export default function getCytoData(data, entity) {
         temp_data.source = s.parent_id;
         temp_data.target = s.child_id;
         temp_data.label = label;
+        temp_data.comment = s.comment || "";
+        temp_data.sources = s.sources || [];
         if (label.length > 10) {
             special_shares.push(s.id);
         }

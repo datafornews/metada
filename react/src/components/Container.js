@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import classNames from 'classnames';
-import HelpIcon from 'react-icons/lib/fa/question-circle';
-import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
+
 import Fade from '@material-ui/core/Fade';
-import Grow from '@material-ui/core/Grow';
+
 import PropTypes from 'prop-types';
 import Menu from './Header/Menu';
+import AppBarIcons from './Header/AppBarIcons';
 import SearchBar from './Search/SearchBar';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
@@ -55,14 +54,9 @@ const styles = theme => ({
     mobileToolbar: {
         textAlign: "center"
     },
-    iconButton: {
-        width: '45%',
-        maxWidth: theme.spacing.unit * 6,
-        margin: '0px 4px'
-    },
     content: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
+        // padding: theme.spacing.unit * 3,
         paddingTop: theme.spacing.unit * 3 * 3,
         minWidth: 0, // So the Typography noWrap works,
         minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
@@ -94,8 +88,8 @@ const styles = theme => ({
     menuGridDiv: {
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'left',
         [theme.breakpoints.only('xs')]: {
-            // backgroundColor: 'red',
             minHeight: 52,
             justifyContent: 'space-evenly',
         },
@@ -103,7 +97,6 @@ const styles = theme => ({
     menuGridDivDrawer: {
         display: 'flex',
         [theme.breakpoints.down('xs')]: {
-            // backgroundColor: 'red',
             justifyContent: 'space-evenly',
         }
     },
@@ -115,7 +108,7 @@ const styles = theme => ({
             paddingRight: 0,
         }
     },
-    shiftMainDown:{
+    shiftMainDown: {
         paddingTop: theme.spacing.unit * 3 * 4
     }
 });
@@ -161,12 +154,11 @@ class Container extends Component {
             history, isRehydrated, show, match, isMain,
             toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph, width } = this.props;
 
-        console.log({ show });
         const isMobile = clientType === 'mobile';
         const location = history.location.pathname.split('/')[1];
         const titleLoc = location ? location : 'search';
-        const showSearchBar = !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs")
-        const isLarge = ["xl", "lg", "md"].indexOf(width) > -1;
+        const showSearchBar = isRehydrated && !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs");
+        // const isLarge = ["xl", "lg", "md"].indexOf(width) > -1;
 
         return (
             <div className={classes.root}>
@@ -187,6 +179,14 @@ class Container extends Component {
                     }}
                 >
                     <Toolbar className={classes.toolbar}>
+                        <Menu
+                            history={history}
+                            clientType={clientType}
+                            show={show}
+                            isRehydrated={isRehydrated}
+                            translate={translate}
+                            isGraph={isGraph}
+                        />
                         <Grid
                             container
                             direction="row"
@@ -194,59 +194,32 @@ class Container extends Component {
                             alignItems="center"
                         >
                             <Grid
+                                item
                                 className={classNames(classes.menuGridDiv, show.drawer && classes.menuGridDivDrawer)}
-                                item xs={12} sm={show.drawer && isGraph ? 12 : 6} md={show.drawer ? 5 : 4}
+                                xs={12}
+                                sm={show.drawer && isGraph ? 12 : 6}
+                                md={show.drawer && isGraph ? 5 : 4}
                             >
-                                <Menu
-                                    history={history}
+
+                                <Logo
+                                    color="inherit"
+                                    aria-haspopup="true"
+                                    onClick={this.goHome}
                                     clientType={clientType}
                                     show={show}
                                     isRehydrated={isRehydrated}
-                                    translate={translate}
                                 />
-                                {/* </div> */}
-                                {isGraph && !(width === "xs" && show.drawer) ?
-                                    <Grow
-                                        in={isGraph && !(width === "xs" && show.drawer)}
-                                        timeout={{
-                                            enter: 300,
-                                            exit: 0
-                                        }}
-                                    >
-                                        <div style={{ display: "inline-flex", justifyContent: 'flex-start' }}>
-                                            <IconButton
-                                                onClick={toggleIssue}
-                                                style={{ color: "white" }}
-                                                className={classes.iconButton}
-                                            >
-                                                <IssueIcon />
-                                            </IconButton>
-                                            {isMobile && <br />}
-                                            <IconButton
-                                                onClick={toggleHelp}
-                                                style={{ color: "white" }}
-                                                className={classes.iconButton}
-                                            >
-                                                <HelpIcon />
-                                            </IconButton>
-                                        </div>
-                                    </Grow>
-                                    :
-                                    width === "xs" && 0 ?
 
-                                        <Logo
-                                            color="inherit"
-                                            aria-haspopup="true"
-                                            onClick={this.goHome}
-                                            clientType={clientType}
-                                            show={show}
-                                            isRehydrated={isRehydrated}
-                                        />
-                                        : ''
-                                }
+                                <AppBarIcons
+                                    toggleHelp={toggleHelp}
+                                    toggleIssue={toggleIssue}
+                                    isGraph={Boolean(isGraph)}
+                                    width={width}
+                                    show={show}
+                                />
                             </Grid>
-                            <Fade unmountOnExit mountOnEnter in={showSearchBar || isLarge} timeout={250}>
-                                <Grid item xs={12} sm={show.drawer && isGraph ? 12 : 5} md={show.drawer ? 5 : 4}>
+                            <Fade in={showSearchBar} timeout={250} unmountOnExit={width === "xs"} mountOnEnter={width === "xs"}>
+                                <Grid item xs={12} sm={show.drawer && isGraph ? 12 : 5} md={show.drawer && isGraph ? 5 : 4}>
                                     <div>
                                         {dataIsAvailable && <div className={classes.searchBar}><SearchBar
                                             data={data}

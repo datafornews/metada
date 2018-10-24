@@ -6,6 +6,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Info from './Info';
 import PropTypes from 'prop-types'
 import {enableBodyScroll } from 'body-scroll-lock';
+import classNames from 'classnames';
 
 
 const _drawerWidth = Math.max(
@@ -85,15 +86,7 @@ class InfoDrawer extends Component {
         const { classes, clientType, data, infoBox, currentLanguage,
             isRehydrated, show, toggleDrawer, match, translate, dataIsAvailable } = this.props;
 
-        let drawerWidth = window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10);
-        if (drawerWidth < 50) {
-            drawerWidth = 300;
-        }
-        // console.log('drawerWidth :', drawerWidth);
-
-
         return (
-            // <Slide in={show.drawer} direction="left" >
             <div className={classes.root} id="drawer-metada">
                 <div style={{ maxHeight: '100vh', height: '100vh' }}>
                     <Drawer
@@ -113,7 +106,7 @@ class InfoDrawer extends Component {
                                 <ClearIcon />
                             </IconButton>
                         </div>
-                        <div className={classes.container}>
+                        <div className={classNames(classes.container, 'joyride-drawer')}>
                             {dataIsAvailable && isRehydrated && <Info
                                 clientType={clientType}
                                 data={data}
@@ -126,14 +119,13 @@ class InfoDrawer extends Component {
                     </Drawer>
                 </div>
             </div>
-            // </Slide>
+
         );
     }
 }
 
 
 InfoDrawer.propTypes = {
-    // children: PropTypes.array.isRequired,
     classes: PropTypes.object.isRequired,
     clientType: PropTypes.string.isRequired,
     currentLanguage: PropTypes.string.isRequired,

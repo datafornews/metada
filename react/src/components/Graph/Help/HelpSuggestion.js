@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import ClearIcon from 'react-icons/lib/md/clear';
 import IconButton from '@material-ui/core/IconButton';
+import Fade from '@material-ui/core/Fade';
+import withWidth from '@material-ui/core/withWidth';
 
 const styles = theme => ({
     container: {
@@ -95,37 +97,38 @@ class HelpSuggestion extends Component {
     }
 
     render() {
-        const { classes, isRehydrated, show, clientType } = this.props;
-        if (!isRehydrated || (isRehydrated && !show.helpSuggestion)) {
-            return ''
-        }
+        const { classes, isRehydrated, show, clientType, width } = this.props;
+        const out = !isRehydrated || (isRehydrated && !show.helpSuggestion) || (isRehydrated && width === "xs" && show.drawer);
         const isMobie = clientType === "mobile";
         return (
-            <div className={classes.container} style={isMobie ? { top: "50%", left: '50%', transform: "translate(-50%, -50%)" } : {}}>
-                <Card elevation={1} className={classes.paper}>
-                    <IconButton className={classes.clearIconButton} onClick={this.turnOffHelpSuggestion}>
-                        <ClearIcon className={classes.clearIcon} />
-                    </IconButton>
-                    <CardContent className={classes.cardContent}>
-                        Comment naviguer dans le graph?
-                    </CardContent>
-                    <CardActions
-                        className={classes.cardActions}
-                    >
-                        <div className={classes.slideContained}>
-                            <Button
-                                className={classes.button}
-                                color="default"
-                                variant='contained'
-                                onClick={this.displayHelp}
-                            >
-                                Suivez le guide!
+            <Fade in={!out} unmountOnExit mountOnEnter>
 
+                <div className={classes.container} style={isMobie ? { top: "50%", left: '50%', transform: "translate(-50%, -50%)" } : {}}>
+                    <Card elevation={1} className={classes.paper}>
+                        <IconButton className={classes.clearIconButton} onClick={this.turnOffHelpSuggestion}>
+                            <ClearIcon className={classes.clearIcon} />
+                        </IconButton>
+                        <CardContent className={classes.cardContent}>
+                            Comment naviguer dans le graph?
+                    </CardContent>
+                        <CardActions
+                            className={classes.cardActions}
+                        >
+                            <div className={classes.slideContained}>
+                                <Button
+                                    className={classes.button}
+                                    color="default"
+                                    variant='contained'
+                                    onClick={this.displayHelp}
+                                >
+                                    Suivez le guide!
+    
                                 </Button>
-                        </div>
-                    </CardActions>
-                </Card>
-            </div >
+                            </div>
+                        </CardActions>
+                    </Card>
+                </div >
+            </Fade>
         )
     }
 }
@@ -138,6 +141,7 @@ HelpSuggestion.propTypes = {
     show: PropTypes.object.isRequired,
     toggleHelp: PropTypes.func.isRequired,
     toggleHelpSuggestion: PropTypes.func.isRequired,
+    width: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(HelpSuggestion);
+export default withWidth()(withStyles(styles)(HelpSuggestion));
