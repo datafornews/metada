@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import { enableBodyScroll } from 'body-scroll-lock';
+import classNames from 'classnames';
+
+import Info from './Info';
+
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
-import Info from './Info';
-import PropTypes from 'prop-types'
-import {enableBodyScroll } from 'body-scroll-lock';
-import classNames from 'classnames';
 
 
-const _drawerWidth = Math.max(
-    window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
-    150
-);
 
 const styles = theme => (
     {
@@ -34,6 +32,12 @@ const styles = theme => (
         },
         docked: {
             height: "100%"
+        },
+        drawer: {
+            width: "25vw",
+            [theme.breakpoints.only('xs')]:{
+                width: "40vw",
+            }
         }
     }
 );
@@ -42,8 +46,6 @@ const styles = theme => (
 
 class InfoDrawer extends Component {
 
-    state = { drawerWidth: _drawerWidth }
-
     targetElement = null;
 
     componentWillMount() {
@@ -51,16 +53,6 @@ class InfoDrawer extends Component {
             this.props.toggleDrawer(false);
         }
         window.removeEventListener('resize', this.handleResize);
-    }
-
-    handleResize = () => {
-        const drawerWidth = this.props.clientType === "extension" ? 250 : Math.max(
-            window.innerWidth < 800 ? parseInt(window.innerWidth * 0.4, 10) : parseInt(window.innerWidth * 0.25, 10),
-            150
-        );
-        this.setState({
-            drawerWidth
-        })
     }
 
     componentDidMount() {
@@ -98,8 +90,10 @@ class InfoDrawer extends Component {
                         open={isRehydrated && show.drawer}
                         anchor="left"
                         style={{
-                            width: this.state.drawerWidth
+
+                            // minWidth: 150
                         }}
+                        className={classes.drawer}
                     >
                         <div className={classes.drawerHeader}>
                             <IconButton onClick={toggleDrawer}>

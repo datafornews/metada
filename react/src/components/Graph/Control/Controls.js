@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { colors } from '../../../theme/metadaTheme';
+import GraphHistoryNavigation from "./History/GraphHistoryNavigation"
+
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,8 +14,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
-import GraphHistoryNavigation from "./History/GraphHistoryNavigation"
-import PropTypes from 'prop-types';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -27,16 +30,14 @@ const styles = theme => (
             justifyContent: 'center',
             alignItems: 'center'
         },
-        desc: {
+        actionButton: {
             fontSize: '0.85rem',
             fontWeight: 800,
             color: theme.palette.primary.main,
+            backgroundColor: theme.palette.default
         },
-        graph: {
+        shiftLeft: {
             marginLeft: theme.spacing.unit * 2,
-            fontSize: '0.85rem',
-            fontWeight: 800,
-            color: theme.palette.primary.main,
         },
         entity: {
             textAlign: "center",
@@ -145,13 +146,20 @@ class Controls extends Component {
                     <div className={classes.buttons}>
                         {
                             !show.drawer &&
-                            <Button className={classes.desc} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>
+                            <Button className={classes.actionButton} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>
                                 Description
                             </Button>
                         }
                         {
                             selectedIsRepresented ? '' :
-                                <Button className={classes.graph} variant="text" classes={{ text: classes.text }} onClick={this.goTo}>
+                                <Button
+                                    className={classNames(
+                                        classes.actionButton,
+                                        !show.drawer && classes.actionButton
+                                    )}
+                                    variant="text"
+                                    classes={{ text: classes.text }}
+                                    onClick={this.goTo}>
                                     Voir le Graph
                                 </Button>
                         }

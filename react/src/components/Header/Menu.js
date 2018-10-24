@@ -1,20 +1,5 @@
 import React from 'react';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import Collapse from '@material-ui/core/Collapse';
 import classNames from 'classnames';
-
-import MenuList from '@material-ui/core/MenuList';
-
-import { withStyles } from '@material-ui/core/styles';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Logo from './Logo'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import Menu from '@material-ui/core/Menu';
-
 import HomeIcon from 'react-icons/lib/md/home';
 import ContactIcon from 'react-icons/lib/md/email';
 import ExtensionIcon from '@material-ui/icons/SaveAltTwoTone';
@@ -24,9 +9,18 @@ import AboutIcon from 'react-icons/lib/md/people';
 import ContributeIcon from 'react-icons/lib/io/upload';
 
 import Share from './Share';
-
-
 import { AsyncComponents } from '../../index';
+
+import { withStyles } from '@material-ui/core/styles';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
+
+
 
 const styles = theme => ({
     menuItem: {
@@ -55,7 +49,8 @@ const styles = theme => ({
     },
     burgerButton: {
         position: 'absolute',
-        left: theme.spacing.unit
+        left: theme.spacing.unit,
+        top: theme.spacing.unit * 2
     },
     menuDiv: {
         display: 'inline-flex',

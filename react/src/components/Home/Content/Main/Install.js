@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
-import Grid from '@material-ui/core/Grid';
-import { colors } from '../../../../theme/metadaTheme';
-import OpenInNew from '@material-ui/icons/OpenInNew';
 import is from 'is_js';
 import ChromeIcon from "react-icons/lib/io/social-chrome";
 import FirefoxIcon from "react-icons/lib/fa/firefox";
+
+import { colors } from '../../../../theme/metadaTheme';
+
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import OpenInNew from '@material-ui/icons/OpenInNew';
+
 
 const styles = theme => ({
     container: {

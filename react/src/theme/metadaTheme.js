@@ -1,7 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles';
 import Newspaper from 'react-icons/lib/fa/newspaper-o'
 import Building from "react-icons/lib/fa/building"
 import User from "react-icons/lib/fa/user"
+
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export const colors = {
   m: "rgb(32,94,196)",
