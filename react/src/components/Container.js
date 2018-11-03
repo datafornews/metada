@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from "react-helmet";
 
 import mapStateToProps from '../store/defaultMapStateToProps';
 import mapDispatchToProps from '../store/defaultMapDispatchToProps';
@@ -10,7 +9,7 @@ import AppBar from './AppBar';
 
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
-
+import Header from './Header/Header'
 
 const styles = theme => ({
     root: {
@@ -74,25 +73,15 @@ class Container extends Component {
         window.removeEventListener('resize', this.handleResize);
     }
 
-    goHome = () => {
-        this.props.history.push('/');
-    }
-
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
-            history, isRehydrated, show, match, isMain,
+            history, isRehydrated, show, match, isMain, setData, makeDataAvailable,
             toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph, width } = this.props;
 
-        const location = history.location.pathname.split('/')[1];
-        const titleLoc = location ? location : 'search';
         const showSearchBar = isRehydrated && !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs");
-
         return (
             <div className={classes.root}>
-                <Helmet>
-                    <title>Metada - {this.props.translate('home.menu.' + titleLoc)}</title>
-                </Helmet>
-
+                <Header translate={translate} makeDataAvailable={makeDataAvailable} setData={setData} match={match} data={data} />
                 <AppBar
                     showSearchBar={showSearchBar}
                     show={show}

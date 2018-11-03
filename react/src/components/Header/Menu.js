@@ -109,7 +109,7 @@ class CollapseMenu extends React.Component {
         if (componentName in AsyncComponents) {
             name = componentName
         } else {
-            name = 'main';
+            name = 'home';
         };
         // console.log('preloading', name);
         AsyncComponents[name].preload();

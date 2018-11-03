@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
 import Loadable from 'react-loadable';
-// import metadaTheme from './theme/metadaTheme'
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -14,7 +13,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import store, { history } from './store/store';
 import Loading from './Loading';
 import theme from './theme/metadaTheme';
-import Header from './components/Header/Header';
 import './style/index.css';
 
 export const AsyncComponents = {
@@ -26,32 +24,32 @@ export const AsyncComponents = {
         loader: () => import('./components/DefaultRoute'),
         loading: Loading
     }),
-    'main': Loadable({
-        loader: () => import('./components/Home/Content/Main/Main'),
+    'home': Loadable({
+        loader: () => import('./components/Main/Content/Home/Home'),
         loading: Loading
     }),
     'about': Loadable({
-        loader: () => import('./components/Home/Content/About/About'),
+        loader: () => import('./components/Main/Content/About/About'),
         loading: Loading
     }),
     'extension': Loadable({
-        loader: () => import('./components/Home/Content/Extension/Extension'),
+        loader: () => import('./components/Main/Content/Extension/Extension'),
         loading: Loading
     }),
     'contribute': Loadable({
-        loader: () => import('./components/Home/Content/Contribute/Contribute'),
+        loader: () => import('./components/Main/Content/Contribute/Contribute'),
         loading: Loading
     }),
     'settings': Loadable({
-        loader: () => import('./components/Home/Content/Settings/Settings'),
+        loader: () => import('./components/Main/Content/Settings/Settings'),
         loading: Loading
     }),
     'contact': Loadable({
-        loader: () => import('./components/Home/Content/Contact/Contact'),
+        loader: () => import('./components/Main/Content/Contact/Contact'),
         loading: Loading
     }),
     'stats': Loadable({
-        loader: () => import('./components/Home/Content/Stats/Stats'),
+        loader: () => import('./components/Main/Content/Stats/Stats'),
         loading: Loading
     })
 };
@@ -89,13 +87,13 @@ const styles = {
 const router = (
     <Provider store={store}>
         <ConnectedRouter history={history}>
+
             <MuiThemeProvider theme={theme}>
-                {/* <V0MuiThemeProvider theme={metadaTheme}> */}
+
                 <div id='index' style={styles[store.getState().clientType]}>
-                    <Header history={history} />
                     <Switch>
-                        <Route exact path='/' component={AsyncComponents.main}></Route>
-                        <Route exact path='/s/:filter' component={AsyncComponents.main}></Route>
+                        <Route exact path='/' component={AsyncComponents.home}></Route>
+                        <Route exact path='/s/:filter' component={AsyncComponents.home}></Route>
                         <Route exact path='/graph/:entityId' component={AsyncComponents.graph}></Route>
                         {
                             ['extension', 'contribute', 'settings', 'about', 'contact', 'stats'].map(
@@ -112,7 +110,6 @@ const router = (
                         <Route path="*" component={AsyncComponents.default} />
                     </Switch>
                 </div>
-                {/* </V0MuiThemeProvider> */}
             </MuiThemeProvider>
         </ConnectedRouter>
     </Provider>

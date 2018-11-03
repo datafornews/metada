@@ -47,7 +47,7 @@ class Logo extends Component {
 
     onMouseEnter = () => {
         console.log('prelaoding main');
-        AsyncComponents.main.preload();
+        AsyncComponents.home.preload();
         this.props.onMouseEnter && this.props.onMouseEnter();
     }
 

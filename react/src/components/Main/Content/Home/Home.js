@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import VisibilitySensor from 'react-visibility-sensor';
+import { connect } from 'react-redux';
+
 import Example from './Example';
 import Install from './Install';
 import Title from './Title';
 import StatsPreview from './StatsPreview';
-import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../../Search/SearchBar';
-import Search from '@material-ui/icons/Search';
 import Waiting from '../../../Waiting';
-import Home from '../../Home'
-import VisibilitySensor from 'react-visibility-sensor';
-import { connect } from 'react-redux';
+import { check_website } from '../../../../utils/backgroundUtils';
+import updateData from '../../../../utils/updateData';
 import mapStateToProps from '../../../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
+import Container from '../../../Container';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Search from '@material-ui/icons/Search';
+
+
 
 const styles = theme => ({
     container: {
@@ -47,10 +52,40 @@ const styles = theme => ({
     }
 });
 
-class Main extends Component {
+class Home extends Component {
 
     state = {
         searchIsVisible: true
+    }
+
+    componentDidMount() {
+        const component = this;
+        if (this.props.clientType === 'extension') {
+            window.browser.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+                if (tabs.length === 0) {
+                    console.log('tabs.length is 0')
+                    return;
+                }
+                var url = tabs[0].url;
+                if (component.props.dataIsAvailable) {
+                    const entity = check_website(component.props.data, url);
+                    if (entity && !sessionStorage['default_' + entity.id]) {
+                        // an entity was found and it is the first time 
+                        // the Extension sees this entity for this session
+                        // (It is assumed that if the user re-clicks on the Extension
+                        // during the session they intend to access the whole Extension)
+                        component.props.history.push('/graph/' + entity.id);
+                        sessionStorage['default_' + entity.id] = 'true';
+                        component.props.updateEntityInfoBox(entity.id);
+                        component.props.displayEntity(entity.id);
+                    }
+                }
+            });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        updateData(this);
     }
 
     onSearchBarVisibilityChange = (isVisible) => {
@@ -61,7 +96,7 @@ class Main extends Component {
         const { classes, theme, ...noClassesProps } = this.props;
         return (
             !noClassesProps.isRehydrated ? '' :
-                <Home isMain={true} {...noClassesProps}>
+                <Container isMain={true} {...noClassesProps}>
                     <div className={classes.container}>
                         <Grid container spacing={16}>
                             <Grid item xs={12} md={8}>
@@ -118,10 +153,10 @@ class Main extends Component {
                         </Grid>
                         {this.props.dataIsAvailable && <Example {...noClassesProps} nb={12} />}
                     </div>
-                </Home>
+                </Container>
         )
     }
 }
 
-Main = withStyles(styles, { withTheme: true })(Main);
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+Home = withStyles(styles, { withTheme: true })(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

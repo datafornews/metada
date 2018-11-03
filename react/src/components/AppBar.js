@@ -8,7 +8,7 @@ import SearchBar from './Search/SearchBar';
 import Logo from './Header/Logo'
 
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import MaterialAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
@@ -59,13 +59,18 @@ const styles = theme => ({
     },
 });
 
-class _AppBar extends Component {
+class AppBar extends Component {
+
+    goHome = () => {
+        this.props.history.push('/');
+    }
+
     render() {
         const { classes, clientType, data, dataIsAvailable,
             history, isRehydrated, show, match, showSearchBar,
             toggleIssue, toggleHelp, translate, updateEntityInfoBox, isGraph, width } = this.props;
 
-        return <AppBar
+        return <MaterialAppBar
             className={classNames(
                 classes.appBar,
                 {
@@ -142,12 +147,12 @@ class _AppBar extends Component {
 
                 </Grid>
             </Toolbar>
-        </AppBar>
+        </MaterialAppBar>
     }
 }
 
-_AppBar.propTypes = {
+AppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(_AppBar);
+export default withStyles(styles)(AppBar);

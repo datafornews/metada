@@ -336,9 +336,6 @@ class CytoContainer extends React.Component {
     return (
       <div>
         <div id="cytoContainer" className={classes.cytoContainer}>
-          <Helmet>
-            <title>Metada - {entity.name}</title>
-          </Helmet>
           <div style={{ position: 'relative' }}>
             <div id="cy" className={classes.cyDiv} >
               <ReactResizeDetector refreshMode='throttle' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
