@@ -1,4 +1,56 @@
 {
+    "helmet":{
+        "title": {
+            "media": [
+                "Who owns ",
+                "À qui appartient "
+            ],
+            "other": [
+                "What does ",
+                "Que possède "
+            ],
+            "otherAfter": [
+                "own ",
+                " "
+            ],
+            "about": [
+                "About Metada",
+                "\u00c0 propos de Metada"
+            ],
+            "stats": [
+                "Your Stats",
+                "Vos Stats"
+            ],
+            "settings": [
+                "Settings",
+                "Param\u00e8tres"
+            ],
+            "contact": [
+                "Contact",
+                "Contact"
+            ],
+            "extension": [
+                "Extension",
+                "Extension"
+            ],
+            "profile": [
+                "Profile",
+                "Profil"
+            ],
+            "login": [
+                "Log in",
+                "S'inscrire"
+            ],
+            "home": [
+                "Home",
+                "Accueuil"
+            ],
+            "contribute": [
+                "Contribute to the Metada project",
+                "Contribuer au projet Metada"
+            ]
+        }
+    },
     "home": {
         "subtitle": [
             "Explore the Graph",

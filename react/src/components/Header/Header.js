@@ -27,6 +27,11 @@ class Header extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.match.path !== nextProps.match.path
+  }
+
+
   render() {
 
 
@@ -34,22 +39,27 @@ class Header extends React.Component {
 
     const { translate, data, match, dataIsAvailable } = this.props;
 
-    const entity = dataIsAvailable && match ?
-      data.entities.ids[parseInt(match.params.entityId, 10)] :
-      { name: '' };
     let title;
 
-    if (entity) {
-      switch (entity.category) {
-        case 'm':
-          title = `${translate('helmet.title.media')} ${entity.name}`;
-          break;
+    if (match.path.startsWith('/graph')) {
+      const entity = dataIsAvailable && match ?
+        data.entities.ids[parseInt(match.params.entityId, 10)] :
+        { name: '' };
+      if (entity) {
+        switch (entity.category) {
+          case 'm':
+            title = `${translate('helmet.title.media')} ${entity.name} ?`;
+            break;
 
-        default:
-          title = `${translate('helmet.title.other')} ${entity.name}`;
-          break
+          default:
+            title = `${translate('helmet.title.other')} ${entity.name} ${translate('helmet.title.otherAfter')} ? `;
+            break
+        }
       }
+    } else {
+      title = translate(`helmet.title.${match.path.split('/')[1]}`)
     }
+
 
     console.log({ title });
 
