@@ -2,7 +2,6 @@
     "private": true,
     "scripts": {
         "build": "react-scripts build",
-        "postbuild": "react-snap",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "start": "react-scripts start",
@@ -67,8 +66,7 @@
         "eslint-config-airbnb": "^16.1.0",
         "eslint-plugin-import": "^2.8.0",
         "eslint-plugin-jsx-a11y": "^6.0.2",
-        "eslint-plugin-react": "^7.4.0",
-        "react-snap": "^1.19.0"
+        "eslint-plugin-react": "^7.4.0"
     },
     "name": "create-oop"
 }

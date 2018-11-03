@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { hydrate, render } from "react-dom";
 
 import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -116,12 +115,7 @@ const router = (
     </Provider>
 );
 
-const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
-  hydrate(router, rootElement);
-} else {
-  render(router, rootElement);
-}
+ReactDOM.render(router, document.getElementById('root'));
 
 let isExtension;
 try {
