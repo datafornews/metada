@@ -20,7 +20,7 @@ class DefaultRoute extends Component {
 
     componentWillMount() {
         if (this.props.clientType === 'extension') {
-            document.getElementsByTagName('html')[0].style.height = '600px';
+            document && document.getElementsByTagName('html')[0].style.height = '600px';
             console.log('this.props.history.location :', this.props.history.location);
             if (this.props.history.location.pathname.indexOf('index.html') !== -1) {
                 this.props.history.push('/');
