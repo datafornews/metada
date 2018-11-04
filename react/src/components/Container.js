@@ -69,10 +69,6 @@ const styles = theme => ({
 
 class Container extends Component {
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResize);
-    }
-
     render() {
         const { classes, children, clientType, data, dataIsAvailable,
             history, isRehydrated, show, match, isMain, setData, makeDataAvailable,
@@ -81,7 +77,15 @@ class Container extends Component {
         const showSearchBar = isRehydrated && !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs");
         return (
             <div className={classes.root}>
-                <Header translate={translate} makeDataAvailable={makeDataAvailable} setData={setData} match={match} data={data} />
+                <Header
+                    translate={translate}
+                    makeDataAvailable={makeDataAvailable}
+                    setData={setData}
+                    match={match}
+                    data={data}
+                    history={history}
+                />
+
                 <AppBar
                     showSearchBar={showSearchBar}
                     show={show}

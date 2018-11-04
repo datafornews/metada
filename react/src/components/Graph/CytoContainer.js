@@ -117,6 +117,9 @@ class CytoContainer extends React.Component {
 
 
   renderCytoscapeElement = () => {
+    if (!window) {
+      return;
+    }
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -136,140 +139,143 @@ class CytoContainer extends React.Component {
       console.timeEnd('      Data Cyto');
       console.time('      Render Cyto');
     }
-    var cyElement = document.getElementById('cy');
-    const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.entity));
-    cy.ready(() => {
-      cy.on(
-        'tap',
-        (event) => {
-          if (event.target.isNode) {
-            if (event.target.data()['category'] === 's') {
+    if (document) {
+      var cyElement = document.getElementById('cy');
+      const cy = cytoscape(cytoParamsFromContainer(cyElement, cytoData, entity.id, this.props.clientType, this.props.infoBox.entity));
+      cy.ready(() => {
+        cy.on(
+          'tap',
+          (event) => {
+            if (event.target.isNode) {
+              if (event.target.data()['category'] === 's') {
+                return
+              }
+            } else if (!event.target.isEdge) {
+              const now = new Date().getTime();
+              let timesince = now - this.state.lastTap;
+              if ((timesince < 400) && (timesince > 0)) {
+                // double tap
+                cy.fit();
+              }
+              this.setState({
+                lastTap: new Date().getTime()
+              })
               return
             }
-          } else if (!event.target.isEdge) {
+
+            if (event.target.isEdge && event.target.isEdge()) {
+              console.log('event.target :', event.target);
+              console.log('edge length: ', edgeLength(cy,
+                {
+                  data: event.target.data()
+                }))
+              return
+            }
+
             const now = new Date().getTime();
             let timesince = now - this.state.lastTap;
             if ((timesince < 400) && (timesince > 0)) {
               // double tap
-              cy.fit();
+              const newLoc = `/graph/${event.target.id()}`;
+              this.props.updateRouterLocation(newLoc);
+              this.props.history.push(newLoc);
+              this.props.toggleDoubleClickHelp(false);
+              document.body.style.cursor = 'default';
+              this.renderCytoscapeElement();
+              this.cy && this.setState({
+                toolIn: false
+              });
+
+            } else {
+              // too much time to be a doubletap
+              console.log('event.target.data() :', event.target.data());
+              container.props.updateEntityInfoBox(event.target.id());
             }
+
             this.setState({
               lastTap: new Date().getTime()
             })
+          },
+        ).on('tapend', (event) => {
+          clearTimeout(this.state.longClickTimeout);
+          return false;
+        }).on('tapstart', (event) => {
+
+          if (!event.target.isEdge || !event.target.isNode) {
             return
           }
 
-          if (event.target.isEdge && event.target.isEdge()) {
-            console.log('event.target :', event.target);
-            console.log('edge length: ', edgeLength(cy,
-              {
-                data: event.target.data()
-              }))
+          if (event.target.isEdge()) {
             return
-          }
-
-          const now = new Date().getTime();
-          let timesince = now - this.state.lastTap;
-          if ((timesince < 400) && (timesince > 0)) {
-            // double tap
-            const newLoc = `/graph/${event.target.id()}`;
-            this.props.updateRouterLocation(newLoc);
-            this.props.history.push(newLoc);
-            this.props.toggleDoubleClickHelp(false);
-            document.body.style.cursor = 'default';
-            this.renderCytoscapeElement();
-            this.cy && this.setState({
-              toolIn: false
-            });
-
-          } else {
-            // too much time to be a doubletap
-            console.log('event.target.data() :', event.target.data());
-            container.props.updateEntityInfoBox(event.target.id());
           }
 
           this.setState({
-            lastTap: new Date().getTime()
+            longClickTimeout: setTimeout(() => {
+              container.props.updateEntityInfoBox(event.target.id());
+              this.props.toggleDrawer(true);
+              this.props.toggleLongClickHelp(false);
+            }, 600)
           })
-        },
-      ).on('tapend', (event) => {
-        clearTimeout(this.state.longClickTimeout);
-        return false;
-      }).on('tapstart', (event) => {
-
-        if (!event.target.isEdge || !event.target.isNode) {
-          return
+          return false;
+        });
+        cy.elements('node').on(
+          'tapdrag',
+          (event) => {
+            clearTimeout(this.state.longClickTimeout);
+          },
+        );
+        if (time) {
+          console.timeEnd('      Render Cyto');
+          console.timeEnd('Full Cyto');
         }
-
-        if (event.target.isEdge()) {
-          return
-        }
-
-        this.setState({
-          longClickTimeout: setTimeout(() => {
-            container.props.updateEntityInfoBox(event.target.id());
-            this.props.toggleDrawer(true);
-            this.props.toggleLongClickHelp(false);
-          }, 600)
-        })
-        return false;
       });
-      cy.elements('node').on(
-        'tapdrag',
-        (event) => {
-          clearTimeout(this.state.longClickTimeout);
-        },
-      );
-      if (time) {
-        console.timeEnd('      Render Cyto');
-        console.timeEnd('Full Cyto');
-      }
-    });
-    cy.on('mouseover', 'node', function (evt) {
-      document.body.style.cursor = 'pointer';
-      // console.log('evt.target :', evt.target.renderedPosition());
-      // const { x, y } = evt.target.renderedPosition();
-      // const w = evt.target.width();
-      // const h = evt.target.height();
-      // container.setState({
-      //   toolIn: true,
-      //   toolX: x - w / 2,
-      //   toolY: y + h / 2,
-      //   toolH: h,
-      //   toolW: w
-      // })
-    });
-    cy.on('mouseout', 'node', function (evt) {
-      document.body.style.cursor = 'default';
-      container.setState({
-        toolIn: false
+      cy.on('mouseover', 'node', function (evt) {
+        document.body.style.cursor = 'pointer';
+        // console.log('evt.target :', evt.target.renderedPosition());
+        // const { x, y } = evt.target.renderedPosition();
+        // const w = evt.target.width();
+        // const h = evt.target.height();
+        // container.setState({
+        //   toolIn: true,
+        //   toolX: x - w / 2,
+        //   toolY: y + h / 2,
+        //   toolH: h,
+        //   toolW: w
+        // })
+      });
+      cy.on('mouseout', 'node', function (evt) {
+        document.body.style.cursor = 'default';
+        container.setState({
+          toolIn: false
+        })
+      });
+      cy.on('tap', 'edge', (event) => {
+        const data = event.target.data();
+        // this.props.toggleDrawer(false);
+        this.props.updateShareInfoBox(data);
       })
-    });
-    cy.on('tap', 'edge', (event) => {
-      const data = event.target.data();
-      // this.props.toggleDrawer(false);
-      this.props.updateShareInfoBox(data);
-    })
 
-    if (cytoData.nodes.length > 20) {
-      const idsToFit = findLevel(cy, cytoData, id, 3, 250).map(
-        (v, k) => {
-          return '#' + v
-        }
-      ).join(', ');
-      // console.log('idsToFit :', idsToFit);
-      cy.fit(idsToFit);
-    } else {
-      cy.fit()
+      if (cytoData.nodes.length > 20) {
+        const idsToFit = findLevel(cy, cytoData, id, 3, 250).map(
+          (v, k) => {
+            return '#' + v
+          }
+        ).join(', ');
+        // console.log('idsToFit :', idsToFit);
+        cy.fit(idsToFit);
+      } else {
+        cy.fit()
+      }
+
+
+      cy.panningEnabled(true);
+      cy.userPanningEnabled(true);
+      cy.userZoomingEnabled(true);
+      cy.zoomingEnabled(true);
+
+      this.cy = cy;
+
     }
-
-
-    cy.panningEnabled(true);
-    cy.userPanningEnabled(true);
-    cy.userZoomingEnabled(true);
-    cy.zoomingEnabled(true);
-
-    this.cy = cy;
   }
 
   componentDidUpdate(prevProps, prevState) {

@@ -66,10 +66,12 @@ class Waiting extends Component {
                     }
                     {noInternet &&
                         <Button onClick={() => {
-                            if (this.props.clientType === 'extension') {
-                                window.browser.runtime.reload();
-                            } else {
-                                window.location.reload();
+                            if (window) {
+                                if (this.props.clientType === 'extension') {
+                                    window.browser.runtime.reload();
+                                } else {
+                                    window.location.reload();
+                                }
                             }
                         }}>
                             <RefreshIcon className={classes.icon} />

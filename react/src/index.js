@@ -17,53 +17,55 @@ import './style/index.css';
 
 export const AsyncComponents = {
     'graph': Loadable({
-        loader: () => import('./components/Graph/Graph'),
+        loader: () => import(/* webpackChunkName: "Graph" */ './components/Graph/Graph'),
         loading: Loading
     }),
     'default': Loadable({
-        loader: () => import('./components/DefaultRoute'),
+        loader: () => import(/* webpackChunkName: "DefaultRoute" */ './components/DefaultRoute'),
         loading: Loading
     }),
     'home': Loadable({
-        loader: () => import('./components/Main/Content/Home/Home'),
+        loader: () => import(/* webpackChunkName: "Home" */ './components/Main/Content/Home/Home'),
         loading: Loading
     }),
     'about': Loadable({
-        loader: () => import('./components/Main/Content/About/About'),
+        loader: () => import(/* webpackChunkName: "About" */ './components/Main/Content/About/About'),
         loading: Loading
     }),
     'extension': Loadable({
-        loader: () => import('./components/Main/Content/Extension/Extension'),
+        loader: () => import(/* webpackChunkName: "Extension" */ './components/Main/Content/Extension/Extension'),
         loading: Loading
     }),
     'contribute': Loadable({
-        loader: () => import('./components/Main/Content/Contribute/Contribute'),
+        loader: () => import(/* webpackChunkName: "Contribute" */ './components/Main/Content/Contribute/Contribute'),
         loading: Loading
     }),
     'settings': Loadable({
-        loader: () => import('./components/Main/Content/Settings/Settings'),
+        loader: () => import(/* webpackChunkName: "Settings" */ './components/Main/Content/Settings/Settings'),
         loading: Loading
     }),
     'contact': Loadable({
-        loader: () => import('./components/Main/Content/Contact/Contact'),
+        loader: () => import(/* webpackChunkName: "Contact" */ './components/Main/Content/Contact/Contact'),
         loading: Loading
     }),
     'stats': Loadable({
-        loader: () => import('./components/Main/Content/Stats/Stats'),
+        loader: () => import(/* webpackChunkName: "Stats" */ './components/Main/Content/Stats/Stats'),
         loading: Loading
     })
 };
 
 
 
-console.log('INDEX', performance.now())
-localStorage.removeItem('reduxPersist:infoBox')
+console.log('INDEX', performance.now());
+localStorage && localStorage.removeItem('reduxPersist:infoBox');
 
-window.browser = (function () {
-    return window.msBrowser ||
-        window.browser ||
-        window.chrome;
-})();
+if (window) {
+    window.browser = (function () {
+        return window.msBrowser ||
+            window.browser ||
+            window.chrome;
+    })();
+}
 
 
 const defaultStyle = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { enableBodyScroll } from 'body-scroll-lock';
 import classNames from 'classnames';
 
 import Info from './Info';
@@ -52,14 +51,6 @@ class InfoDrawer extends Component {
         if (!this.props.history.location.pathname.startsWith("/graph/")) {
             this.props.toggleDrawer(false);
         }
-        window.removeEventListener('resize', this.handleResize);
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', this.handleResize);
-        this.props.clientType === "extension" && this.handleResize();
-        this.targetElement = document.querySelector('#drawer-metada');
-        enableBodyScroll(this.targetElement);
     }
 
 

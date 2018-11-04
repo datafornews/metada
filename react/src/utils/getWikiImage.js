@@ -4,7 +4,7 @@ import wtf from 'wtf_wikipedia';
 
 export default async function (component, entity) {
 
-    if (!component || !entity){
+    if (!component || !entity) {
         noImage(component);
         return
     }
@@ -101,12 +101,14 @@ function replaceAll(str, find, replace) {
 
 function setImageUrl(url, component, entity) {
     const d = new Date();
-    localStorage[`image_${entity.id}`] = JSON.stringify({
-        date: d,
-        url
-    })
+    if (localStorage) {
+        localStorage[`image_${entity.id}`] = JSON.stringify({
+            date: d,
+            url
+        })
+    }
     // should move to check location is same as calling component's
-    window.location.href.indexOf('/graph/') !== -1 ? component.setState({
+    window && window.location.href.indexOf('/graph/') !== -1 ? component.setState({
         image: url
     }) : console.log('abort');
 

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+
+import mapStateToProps from '../store/defaultMapStateToProps';
+import mapDispatchToProps from '../store/defaultMapDispatchToProps';
 
 const styles = theme => ({
     container: {
@@ -13,6 +17,17 @@ const styles = theme => ({
 });
 
 class DefaultRoute extends Component {
+
+    componentWillMount() {
+        if (this.props.clientType === 'extension') {
+            document.getElementsByTagName('html')[0].style.height = '600px';
+            console.log('this.props.history.location :', this.props.history.location);
+            if (this.props.history.location.pathname.indexOf('index.html') !== -1) {
+                this.props.history.push('/');
+            }
+        }
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -22,5 +37,7 @@ class DefaultRoute extends Component {
         )
     }
 }
+
+DefaultRoute = connect(mapStateToProps, mapDispatchToProps)(DefaultRoute);
 
 export default withStyles(styles)(DefaultRoute);

@@ -10,24 +10,26 @@ import defaultState from './defaultState';
 
 export const history = createBrowserHistory();
 
-window.browser = (function () {
-    return window.msBrowser ||
-        window.browser ||
-        window.chrome;
-})();
+if (window) {
+    window.browser = (function () {
+        return window.msBrowser ||
+            window.browser ||
+            window.chrome;
+    })();
+}
 
 const middleware = routerMiddleware(history);
 
 const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window && window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 const store = createStore(combinedReducer, defaultState, enhancers);
 
 // Multi-language support
 
-let languageToUse = localStorage.getItem('activeLanguage');
-if (!languageToUse) {
+let languageToUse = localStorage ? localStorage.getItem('activeLanguage') : "en";
+if (!languageToUse && navigator) {
     languageToUse = navigator.language || navigator.userLanguage;
     languageToUse = languageToUse.indexOf('fr') > -1 ? 'fr' : 'en';
 }
@@ -45,7 +47,9 @@ try {
     //Not Chrome browser
     isExtension = false;
 }
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+if (!navigator) {
+    clientType = "server";
+} else if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     clientType = 'mobile';
 } else if (isExtension) {
     clientType = 'extension';
@@ -66,7 +70,7 @@ persistStore(store, {}, () => {
 
 // By default reducers are not hot reloaded, only components
 // To make them hot reloadable : 
-if (module.hot) {
+if (module && module.hot) {
     module.hot.accept('../reducers/', () => {
         const nextCombinedReducer = require('../reducers/index').default;
         store.replaceReducer(nextCombinedReducer);
