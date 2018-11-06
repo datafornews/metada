@@ -20,7 +20,6 @@ class Header extends React.Component {
   componentWillMount() {
     if (this.props.clientType === 'extension') {
       document.getElementsByTagName('html')[0].style.height = '600px';
-      console.log('this.props.history.location :', this.props.history.location);
       if (this.props.history.location.pathname.indexOf('index.html') !== -1) {
         this.props.history.push('/');
       }
@@ -34,14 +33,11 @@ class Header extends React.Component {
 
   render() {
 
-
-    console.log(this.props);
-
     const { translate, data, match, dataIsAvailable } = this.props;
 
     let title;
 
-    if (match.path.startsWith('/graph')) {
+    if (match.path.startsWith('/graph/')) {
       const entity = dataIsAvailable && match ?
         data.entities.ids[parseInt(match.params.entityId, 10)] :
         { name: '' };
@@ -53,15 +49,14 @@ class Header extends React.Component {
 
           default:
             title = `${translate('helmet.title.other')} ${entity.name} ${translate('helmet.title.otherAfter')} ? `;
-            break
+            break;
         }
       }
+    } else if (match.path.startsWith('/s/')) {
+      title = translate('helmet.title.home');
     } else {
-      title = translate(`helmet.title.${match.path.split('/')[1]}`)
+      title = translate(`helmet.title.${match.path.split('/')[1].length ? match.path.split('/')[1].length : "home"}`);
     }
-
-
-    console.log({ title });
 
     return <Helmet>
       <title>{title}</title>
