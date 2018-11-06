@@ -13,6 +13,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import store, { history } from './store/store';
 import Loading from './Loading';
 import theme from './theme/metadaTheme';
+import { colors } from './theme/metadaTheme'
 import './style/index.css';
 
 export const AsyncComponents = {
@@ -56,7 +57,7 @@ export const AsyncComponents = {
 
 
 
-console.log('INDEX', performance.now());
+// console.log('INDEX', performance.now());
 localStorage && localStorage.removeItem('reduxPersist:infoBox');
 
 if (window) {
@@ -69,7 +70,8 @@ if (window) {
 
 
 const defaultStyle = {
-    maxHeight: '100vh'
+    maxHeight: '100vh',
+    background: colors.background
 };
 
 const styles = {
