@@ -11,7 +11,8 @@ export const colors = {
   primary: '#3f51b5',
   secondary: 'rgb(80, 80, 96)',
   accent: "green",
-  default: "rgb(246,244,244)" // If this value is changed, change it also in the hamburger part of index.css
+  default: "rgb(246,244,244)",
+  background: "rgb(244, 241, 238)" // If this value is changed, change it also in the hamburger part of index.css
 };
 
 export const MediaIcon = Newspaper;
