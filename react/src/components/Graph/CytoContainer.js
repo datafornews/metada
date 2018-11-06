@@ -293,7 +293,7 @@ class CytoContainer extends React.Component {
       update: true
     });
     this.renderCytoscapeElement()
-    console.log('CYTOCONTAINER', performance.now())
+    // console.log('CYTOCONTAINER', performance.now())
 
   }
 
