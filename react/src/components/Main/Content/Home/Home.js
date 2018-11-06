@@ -151,7 +151,7 @@ class Home extends Component {
                                 </Grid>
                             )}
                         </Grid>
-                        {this.props.dataIsAvailable && <Example {...noClassesProps} nb={12} />}
+                        <Example {...noClassesProps} nb={12} />
                     </div>
                 </Container>
         )

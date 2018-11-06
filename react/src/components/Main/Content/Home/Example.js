@@ -48,7 +48,7 @@ class Example extends Component {
 
 
     componentWillMount() {
-        document.addEventListener("scroll", this.checkForNewChip, true);
+        document && document.addEventListener("scroll", this.checkForNewChip, true);
     }
 
     componentDidMount() {
@@ -57,7 +57,7 @@ class Example extends Component {
 
 
     componentWillUnmount() {
-        document.removeEventListener("scroll", this.checkForNewChip, true);
+        document && document.removeEventListener("scroll", this.checkForNewChip, true);
     }
 
     checkForNewChip = () => {
@@ -74,20 +74,23 @@ class Example extends Component {
     };
 
     handleChipClick = (entity) => {
-        this.props.history.push('/graph/' + entity.id)
+        entity.id ? this.props.history.push('/graph/' + entity.id) : this.props.history.push('/');
     }
 
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.dataIsAvailable);
         if (this.props.dataIsAvailable && this.props.history.location.pathname.startsWith('/s/')) {
             if (nextProps.history.location.pathname.startsWith('/s/') && this.props.match.params.filter !== nextProps.match.params.filter) {
                 this.showChips(nextProps);
                 return;
             }
         }
-        if (!nextProps.dataIsAvailable || this.state.entities.length) {
+
+        if (this.state.entities.length && this.props.dataIsAvailable) {
             return;
         }
+
         this.showChips(nextProps);
     }
 
@@ -182,6 +185,23 @@ class Example extends Component {
 
     showChips = (props) => {
         // console.log('showChips');
+
+        let entities;
+
+        if (!props.dataIsAvailable) {
+            entities = [];
+            for (let i = 0; i < props.nb + 2; i++) {
+                entities.push({
+                    name: ""
+                })
+            }
+            this.setState({
+                entities
+            })
+            console.log('setting empty entities', entities);
+            return;
+        }
+
         let requirements;
         if (props.history.location.pathname.startsWith('/s/')) {
             requirements = parseInt(props.match.params.filter, 10);
@@ -193,7 +213,7 @@ class Example extends Component {
         const ids = this.getIds(props, categories);
 
 
-        let entities, nb, indexes;
+        let nb, indexes;
         if (!props.history.location.pathname.startsWith('/s/')) {
             indexes = new Set([1, 149])
             const leMonde = props.data.entities.ids[1];
