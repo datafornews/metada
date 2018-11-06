@@ -24,10 +24,10 @@ class WebsiteButton extends Component {
             style.padding = 4;
             style.fontSize = "0.4rem"
         }
-        return entity.website && (
+        return entity.website ? (
             <Button target='_blank' style={style} href={entity.website}>
                 {translate('graph.websiteButton')} &nbsp; <OpenInNew style={iconStyle} />
-            </Button>)
+            </Button>) : ""
     }
 }
 
