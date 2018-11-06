@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-class AlertDialog extends React.Component {
+class ResetApp extends React.Component {
     state = {
         open: false,
     };
@@ -37,15 +37,16 @@ class AlertDialog extends React.Component {
         if (this.props.clientType === 'extension') {
             window.browser.runtime.reload();
         } else {
-            window.location.reload();
+            window && window.location.reload();
         }
+        this.props.history.push('/')
     };
 
     render() {
         return (
             <div >
 
-                <Button color='secondary' variant='flat' onClick={this.handleClickOpen} style={{fontSize:'0.8rem'}}>
+                <Button color='secondary' variant='flat' onClick={this.handleClickOpen} style={{ fontSize: '0.8rem' }}>
                     {this.props.translate('home.settings.resetDialogButton')}
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleRequestClose}>
@@ -53,7 +54,7 @@ class AlertDialog extends React.Component {
                         {this.props.translate('home.settings.resetDialogTitle')}
                     </DialogTitle>
                     <DialogContent>
-                        <DialogContentText style={{fontSize:'0.9rem'}}>
+                        <DialogContentText style={{ fontSize: '0.9rem' }}>
                             {this.props.translate('home.settings.resetDialogContent')}
                         </DialogContentText>
                     </DialogContent>
@@ -71,4 +72,4 @@ class AlertDialog extends React.Component {
     }
 }
 
-export default AlertDialog;
+export default ResetApp;

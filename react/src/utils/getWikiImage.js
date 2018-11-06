@@ -110,6 +110,6 @@ function setImageUrl(url, component, entity) {
     // should move to check location is same as calling component's
     window && window.location.href.indexOf('/graph/') !== -1 ? component.setState({
         image: url
-    }) : console.log('abort');
+    }) : console.warn('abort');
 
 }

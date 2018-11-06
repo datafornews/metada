@@ -54,7 +54,6 @@ class Title extends Component {
 
     render() {
         const { classes, width, translate } = this.props;
-        console.log('width :', width);
         return (
             <div className={classes.container}>
                 <Typography color='primary' variant={this.state.width > 800 ? "display2" : "display1"} gutterBottom className={classes.title}>
