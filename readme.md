@@ -28,7 +28,7 @@ A glimpse at the upcoming version? :
 
 ## Contributing
 
-**Checkout [contribute.md](/contribute.md)**
+**Checkout [contribute.md](/contribute.md)**, don't be afraid to add a line (beginners can check this: [first-contributions](https://github.com/firstcontributions/first-contributions))
 
 All help is welcome. To modify information about the graph, submit a pull request to https://github.com/mdiplo/Medias_francais or open an issue here.
 
