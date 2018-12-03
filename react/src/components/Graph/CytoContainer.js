@@ -305,7 +305,6 @@ class CytoContainer extends React.Component {
       this.renderCytoscapeElement();
       if (window) {
         window.scrollTo(0, 1);
-        alert('scrolled')
       }
       return
     }
