@@ -9,9 +9,11 @@ const LoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
 
     if (isLoading) {
-        return <Waiting
-            translate={translate}
-        />;
+        return <div style={{ minHeight: "100vh" }}>
+            <Waiting
+                translate={translate}
+            />
+        </div>;
     }
     // Handle the error state
     else if (error) {
