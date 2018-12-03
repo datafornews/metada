@@ -55,11 +55,12 @@ class Header extends React.Component {
     } else if (match.path.startsWith('/s/')) {
       title = translate('helmet.title.home');
     } else {
-      title = translate(`helmet.title.${match.path.split('/')[1].length ? match.path.split('/')[1].length : "home"}`);
+      title = translate(`helmet.title.${match.path.split('/')[1].length ? match.path.split('/')[1] : "home"}`);
     }
 
     return <Helmet>
       <title>{title}</title>
+      <meta name="description" content={translate('helmet.description.main')} />
     </Helmet>
   }
 }

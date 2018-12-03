@@ -1,5 +1,5 @@
 {
-    "helmet":{
+    "helmet": {
         "title": {
             "media": [
                 "Who owns ",
@@ -49,6 +49,12 @@
                 "Contribute to the Metada project",
                 "Contribuer au projet Metada"
             ]
+        },
+        "description": {
+            "main": [
+                "Metada shows you who owns the media with a graph illustrating the chain of capitalistic ownership, from the end-owner to the media itself",
+                "Metada représente sous forme de graphe la chaîne de détention capitalistique d'un média: du propriétaire au média lui-même découvrez à qui apprtiennent vos médias"
+            ]
         }
     },
     "home": {
@@ -68,6 +74,14 @@
             "installChrome": [
                 "Install",
                 "Installer"
+            ],
+            "comeHelp": [
+                "Your help is needed,",
+                "Votre aide est nécessaire,"
+            ],
+            "comeHelpLink": [
+                "contribute",
+                "contribuez!"
             ]
         },
         "filterChips": {
