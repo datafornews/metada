@@ -1,16 +1,19 @@
 import React from 'react';
-import cytoscape from 'cytoscape';
-import { Helmet } from "react-helmet";
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ReactResizeDetector from 'react-resize-detector';
-import Fade from '@material-ui/core/Fade';
-import 'font-awesome/css/font-awesome.min.css';
 
+import cytoscape from 'cytoscape';
+import ReactResizeDetector from 'react-resize-detector';
+
+import { withStyles } from '@material-ui/core/styles';
+import withWidth from '@material-ui/core/withWidth';
+import Fade from '@material-ui/core/Fade';
+
+import 'font-awesome/css/font-awesome.min.css';
 
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
 import HelpCard from './Help/HelpCard';
+import { AsyncComponents } from '../../index';
 
 
 const styles = theme => ({
@@ -98,8 +101,21 @@ class CytoContainer extends React.Component {
       toolX: 0,
       toolH: 0,
       toolW: 0,
-      toolIn: false
+      toolIn: false,
+      preloaded: false
     };
+  }
+
+
+  preloadAll = () => {
+    for (const name in AsyncComponents) {
+      if (AsyncComponents.hasOwnProperty(name)) {
+        AsyncComponents[name].preload();
+      }
+    }
+    this.setState({
+      preloaded: true
+    })
   }
 
   focusSearchBar = () => {
@@ -274,6 +290,9 @@ class CytoContainer extends React.Component {
       cy.zoomingEnabled(true);
 
       this.cy = cy;
+      if (!this.state.preloaded && this.props.width === "xs") {
+        this.preloadAll()
+      }
 
     }
   }
@@ -284,6 +303,10 @@ class CytoContainer extends React.Component {
       this.props.displayEntity(location);
       this.props.updateEntityInfoBox(location);
       this.renderCytoscapeElement();
+      if (window) {
+        window.scrollTo(0, 1);
+        alert('scrolled')
+      }
       return
     }
   }
@@ -294,7 +317,6 @@ class CytoContainer extends React.Component {
     });
     this.renderCytoscapeElement()
     // console.log('CYTOCONTAINER', performance.now())
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -344,7 +366,7 @@ class CytoContainer extends React.Component {
         <div id="cytoContainer" className={classes.cytoContainer}>
           <div style={{ position: 'relative' }}>
             <div id="cy" className={classes.cyDiv} >
-              <ReactResizeDetector refreshMode='throttle' refreshRate={200} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
+              <ReactResizeDetector refreshMode='debounce' refreshRate={500} skipOnMount handleWidth handleHeight onResize={this.cyResize} />
             </div>
             <Fade in={this.state.toolIn}>
               <div style={{
@@ -401,4 +423,4 @@ CytoContainer.propTypes = {
 };
 
 
-export default withStyles(styles)(CytoContainer);
+export default withWidth()(withStyles(styles)(CytoContainer));
