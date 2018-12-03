@@ -17,8 +17,10 @@ import LegendHelp from './LegendHelp';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import NextIcon from 'react-icons/lib/md/skip-next';
+import withWidth from '@material-ui/core/withWidth';
 
 function getSteps() {
     return ['Navigation', 'Légende'];
@@ -31,7 +33,6 @@ function Transition(props) {
 
 const styles = theme => ({
     help: {
-        maxWidth: 400,
         margin: 'auto'
     },
     actions: {
@@ -84,7 +85,7 @@ const styles = theme => ({
         width: "85%",
         zIndex: 200
     },
-    nextIcon:{
+    nextIcon: {
         height: 24,
         width: 24
     },
@@ -176,7 +177,7 @@ class HelpCard extends Component {
     }
 
     render() {
-        const { classes, isRehydrated, show, clientType, translate } = this.props;
+        const { classes, isRehydrated, show, clientType, translate, width } = this.props;
         const open = isRehydrated && show.help;
         const steps = getSteps();
         const { activeStep } = this.state;
@@ -184,18 +185,23 @@ class HelpCard extends Component {
             <div className={clientType === "mobile" ? classes.mobileDivContainer : classes.divContainer}>
                 <div className={classes.container}>
                     <Dialog
+                        fullScreen={width === "xs"}
+                        fullWidth
                         className={classes.help}
                         open={open}
+                        scroll="paper"
                         TransitionComponent={Transition}
-                        fullScreen={window.innerWidth < 650}
                     >
                         <ClickAwayListener classeName={classes.click} onClickAway={this.close}>
                             <div>
-                                <DialogContent style={{ paddingBottom: 8 }}>
 
+                                <DialogTitle style={{ padding: "12px 48px" }}>
                                     <Typography className={classes.title} color="textSecondary">
                                         {translate('graph.helpCard.title')}
                                     </Typography>
+                                </DialogTitle>
+
+                                <DialogContent style={{ padding: "12px 48px", minHeight: 250, maxWidth: 350 }}>
 
                                     {activeStep === 0 ?
                                         < NavigationHelp translate={translate} />
@@ -204,6 +210,7 @@ class HelpCard extends Component {
                                     }
 
                                 </DialogContent>
+
                                 <DialogActions className={classes.actions}>
                                     <div className={classes.root}>
                                         <Stepper alternativeLabel nonLinear activeStep={activeStep}>
@@ -234,6 +241,7 @@ class HelpCard extends Component {
 
                                     </div>
                                 </DialogActions>
+
                             </div>
                         </ClickAwayListener>
                     </Dialog>
@@ -252,4 +260,10 @@ HelpCard.propTypes = {
     translate: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(withMobileDialog()(HelpCard));
+export default withWidth()(
+    withStyles(styles)(
+        withMobileDialog({ breakpoint: 'xs' })(
+            HelpCard
+        )
+    )
+);

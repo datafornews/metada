@@ -12,13 +12,21 @@ const styles = theme => (
             display: 'flex',
             position: 'relative'
         },
+        edgeLabel: {
+            textAlign: 'center',
+            fontSize: '1.2rem'
+        },
+        edgeValue: {
+            textAlign: 'center',
+            color: 'grey'
+        },
     }
 );
 
 class Edge extends Component {
     render() {
 
-        const { data, infoBox, clientType } = this.props;
+        const { data, infoBox, clientType, classes } = this.props;
         const share = infoBox.share;
         const target = data.entities.ids[parseInt(share.target, 10)]
         const source = data.entities.ids[parseInt(share.source, 10)]
@@ -41,11 +49,11 @@ class Edge extends Component {
                     alignItems="center"
                     spacing={16}
                 >
-                    <Grid item xs={8}>
-                        <Grid container>
-                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[source.category] }}>{source.name}</Grid>
-                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: 'grey' }}>---<span style={{ fontSize: "0.7rem" }}>({share.label})</span>--></Grid>
-                            <Grid item xs={4} md={2} style={{ textAlign: 'center', color: colors[target.category] }}>{target.name}</Grid>
+                    <Grid item xs={12}>
+                        <Grid container justify="center">
+                            <Grid item xs={4} md={2} className={classes.edgeLabel} style={{ color: colors[source.category] }}>{source.name}</Grid>
+                            <Grid item xs={4} md={2} className={classes.edgeValue} >---&nbsp;{share.label}&nbsp;--></Grid>
+                            <Grid item xs={4} md={2} className={classes.edgeLabel} style={{ color: colors[target.category] }}>{target.name}</Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={"auto"}>

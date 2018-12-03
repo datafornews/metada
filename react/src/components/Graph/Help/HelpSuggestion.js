@@ -21,13 +21,21 @@ const styles = theme => ({
             // backgroundColor: 'red',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, 50%)'
+            transform: 'translate(-50%, 50%)',
+            height: '100vh',
+            width: '100vw',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(40, 40, 40, 0.5)'
         },
     },
     paper: {
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.default,
-        minWidth: 300
+        minWidth: 300,
+        position: "relative",
+        paddingTop: "12px",
     },
     button: {
         // backgroundColor: theme.palette.default,
@@ -70,8 +78,8 @@ const styles = theme => ({
         height: 30,
         width: 30,
         position: 'absolute',
-        top: 8,
-        right: 8
+        top: 4,
+        right: 4
     },
     cardContent: {
         [theme.breakpoints.only('xs')]: {

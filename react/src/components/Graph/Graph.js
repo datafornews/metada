@@ -23,7 +23,7 @@ const styles = theme => ({
     minHeight: theme.spacing.unit * 10,
   },
   moveDown: {
-    paddingTop: theme.spacing.unit * 4
+    paddingTop: theme.spacing.unit
   },
 });
 

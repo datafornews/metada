@@ -37,6 +37,7 @@ const styles = theme => ({
         width: "100%",
     },
     shareGridItem: {
+        display: 'flex'
         // height: '100%'
     },
     statsGridDiv: {

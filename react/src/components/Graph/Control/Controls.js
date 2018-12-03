@@ -23,18 +23,23 @@ const styles = theme => (
     {
         container: {
             display: 'flex',
-            position: 'relative'
+            position: 'relative',
+            marginTop: '8px',
+            [theme.breakpoints.only('xs')]: {
+                marginTop: '16px',
+            }
         },
         buttons: {
             display: "flex",
-            justifyContent: 'center',
+            justifyContent: "space-around",
+            minWidth: 300,
             alignItems: 'center'
         },
         actionButton: {
             fontSize: '0.85rem',
             fontWeight: 800,
             color: theme.palette.primary.main,
-            backgroundColor: theme.palette.default
+            backgroundColor: "white"
         },
         shiftLeft: {
             marginLeft: theme.spacing.unit * 2,
@@ -50,6 +55,9 @@ const styles = theme => (
         entityName: {
             [theme.breakpoints.down('sm')]: {
                 fontSize: 20
+            },
+            [theme.breakpoints.only('md')]: {
+                marginTop: 2 * theme.spacing.unit
             }
         },
         boldText: {
@@ -123,7 +131,6 @@ class Controls extends Component {
         return (
             <div
                 className={classes.container}
-                style={{ marginTop: clientType === 'mobile' ? 40 : 8 }}
             >
 
                 <GraphHistoryNavigation
@@ -146,7 +153,7 @@ class Controls extends Component {
                     <div className={classes.buttons}>
                         {
                             !show.drawer &&
-                            <Button className={classes.actionButton} variant="text" classes={{ text: classes.text }} onClick={this.seeDescription}>
+                            <Button className={classes.actionButton} variant="contained" classes={{ text: classes.text }} onClick={this.seeDescription}>
                                 Description
                             </Button>
                         }
@@ -157,7 +164,7 @@ class Controls extends Component {
                                         classes.actionButton,
                                         !show.drawer && classes.actionButton
                                     )}
-                                    variant="text"
+                                    variant="contained"
                                     classes={{ text: classes.text }}
                                     onClick={this.goTo}>
                                     Voir le Graph

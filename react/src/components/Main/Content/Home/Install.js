@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import OpenInNew from '@material-ui/icons/OpenInNew';
-
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     container: {
@@ -53,7 +53,7 @@ class Install extends Component {
 
         const val = is.firefox() ? 'Firefox' : 'Chrome';
 
-        return (
+        return (<div>
             <Grid container spacing={16} className={classes.container}>
                 {this.props.clientType !== "extension" &&
                     <Grid item xs={12} style={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -82,9 +82,13 @@ class Install extends Component {
                                 <OpenInNew className={classes.icon} />
                             </Button>
                         </div>
+                        <br />
 
                     </Grid>}
             </Grid>
+            <br/>
+            {this.props.translate('home.install.comeHelp')} <Link to="/contribute">{this.props.translate('home.install.comeHelpLink')}</Link>
+        </div>
         )
     }
 }
