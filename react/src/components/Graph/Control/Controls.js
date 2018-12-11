@@ -24,6 +24,7 @@ const styles = theme => (
         container: {
             display: 'flex',
             position: 'relative',
+            width: '100%',
         },
         buttons: {
             display: "flex",
