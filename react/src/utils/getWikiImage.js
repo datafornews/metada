@@ -25,7 +25,8 @@ export default async function (component, entity) {
             if (now - Date.parse(urlData.date) < weekInMilliSecs) {
                 return
             }
-            console.log(`Updating address (${entity.name})`)
+            console.log(`Updating address`)
+            // console.log(`Updating address (${entity.name})`)
         } catch (error) {
             console.log(error);
         }
@@ -81,7 +82,7 @@ function checkImage(imageSrc, good, bad) {
         img.onerror = bad;
         img.src = imageSrc;
     } catch (e) {
-
+        console.log("404 expected if no image, trying something else")
     }
 }
 

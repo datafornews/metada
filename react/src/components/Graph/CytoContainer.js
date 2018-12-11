@@ -180,11 +180,11 @@ class CytoContainer extends React.Component {
             }
 
             if (event.target.isEdge && event.target.isEdge()) {
-              console.log('event.target :', event.target);
-              console.log('edge length: ', edgeLength(cy,
-                {
-                  data: event.target.data()
-                }))
+              // console.log('event.target :', event.target);
+              // console.log('edge length: ', edgeLength(cy,
+              //   {
+              //     data: event.target.data()
+              //   }))
               return
             }
 
@@ -204,7 +204,7 @@ class CytoContainer extends React.Component {
 
             } else {
               // too much time to be a doubletap
-              console.log('event.target.data() :', event.target.data());
+              // console.log('event.target.data() :', event.target.data());
               container.props.updateEntityInfoBox(event.target.id());
             }
 

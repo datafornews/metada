@@ -127,8 +127,7 @@ function getExtract(component, queryUrl, entityId) {
 };
 
 function noArticle(component, why = null) {
-    console.log('Article not available');
-    why && console.log(why);
+    console.log(`Article not available ${why || " " }`);
     component.setState(
         {
             extract: component.props.translate('graph.wiki.noData')

@@ -16,7 +16,7 @@ async function updateData(component) {
     }
     // 1511996122
     if ((!localStorage.dataTime || tsNow - tsData > checkEvery) && localStorage.fetchingData !== 'true') {
-        console.log('Looking for DB Update...');
+        console.log('Looking for DB Update for timestamp', tsData,' ...');
         localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
         // if (localStorage.updateFromLocal && localStorage.updateFromLocal === 'true') {
         //     const data = formatData(JSON.parse(localStorage.data));
@@ -25,7 +25,6 @@ async function updateData(component) {
         //     localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + '';
         //     localStorage.updateFromLocal = 'false';
         // } else {
-        console.log('Trying data at', tsData);
         Axios.get('https://oop-stage.herokuapp.com/public/update?timestamp=' + tsData).then(
             (response) => {
                 if (response.data && (response.data.entities.length > 0 || response.data.shares.length > 0)) {

@@ -79,7 +79,7 @@ class Example extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.dataIsAvailable);
+        // console.log(nextProps.dataIsAvailable);
         if (this.props.dataIsAvailable && this.props.history.location.pathname.startsWith('/s/')) {
             if (nextProps.history.location.pathname.startsWith('/s/') && this.props.match.params.filter !== nextProps.match.params.filter) {
                 this.showChips(nextProps);

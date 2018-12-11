@@ -132,7 +132,7 @@ const styles = theme => ({
     }
 });
 
-class HomeCard extends Component {
+class Chips extends Component {
 
     state = {
         image: null
@@ -235,4 +235,4 @@ class HomeCard extends Component {
     }
 }
 
-export default withStyles(styles)(HomeCard);
+export default withStyles(styles)(Chips);
