@@ -8,7 +8,7 @@ For now, France only. Help wanted for more countries (front/back devs).
 
 A glimpse at the upcoming version? :
 
-<img src="https://media.giphy.com/media/3dgfdtwTCvQmahTGjW/giphy-downsized-large.gif" alt="metada"/>
+![Imgur](https://i.imgur.com/0znkY0Y.gif)
 
 ([`dev` branch](https://github.com/vict0rsch/metada/tree/dev))
 
