@@ -21,9 +21,12 @@ const styles = theme => ({
   controlsContainer: {
     // maxHeight: 80,
     minHeight: theme.spacing.unit * 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   moveDown: {
-    paddingTop: theme.spacing.unit
+    paddingTop: theme.spacing.unit * 5
   },
 });
 

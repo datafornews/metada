@@ -24,10 +24,6 @@ const styles = theme => (
         container: {
             display: 'flex',
             position: 'relative',
-            marginTop: '8px',
-            [theme.breakpoints.only('xs')]: {
-                marginTop: '16px',
-            }
         },
         buttons: {
             display: "flex",

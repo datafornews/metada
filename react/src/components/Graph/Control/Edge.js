@@ -35,13 +35,13 @@ class Edge extends Component {
             return ''
         }
         return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: 62,
-                marginTop: clientType === 'mobile' ? 56 : 8
-            }}>
+            // <div style={{
+            //     display: 'flex',
+            //     justifyContent: 'center',
+            //     alignItems: 'center',
+            //     minHeight: 62,
+            //     marginTop: clientType === 'mobile' ? 56 : 8
+            // }}>
                 <Grid
                     container
                     direction="row"
@@ -56,14 +56,14 @@ class Edge extends Component {
                             <Grid item xs={4} md={2} className={classes.edgeLabel} style={{ color: colors[target.category] }}>{target.name}</Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={"auto"}>
+                    {/* <Grid item xs={"auto"}>
                         <Grid container >
                             {share.comment && <ShareComment share={share} />}
                             {share.sources.length !== 0 && <ShareSources share={share} />}
                         </Grid>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
-            </div>
+            // </div>
         )
     }
 }
