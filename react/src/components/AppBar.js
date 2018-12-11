@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     appBar: {
-        position: 'absolute',
+        position: 'fixed',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,

@@ -70,7 +70,7 @@ if (window) {
 
 
 const defaultStyle = {
-    maxHeight: '100vh',
+    // maxHeight: '100vh',
     background: colors.background
 };
 

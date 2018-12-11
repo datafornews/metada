@@ -14,13 +14,15 @@ import Header from './Header/Header'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: "100%",
         zIndex: 1,
         overflow: 'hidden',
         display: 'flex',
-        maxHeight: '100vh',
         position: 'relative',
         width: '100%',
+    },
+    limitHeight: {
+        height: "100%",
+        maxHeight: '100vh',
     },
     content: {
         flexGrow: 1,
@@ -33,7 +35,7 @@ const styles = theme => ({
         }),
         position: "relative",
         overflow: "scroll",
-        maxHeight: '100vh',
+        maxHeight: `calc(100vh - ${theme.spacing.unit * 3 * 3})px`,
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -76,7 +78,12 @@ class Container extends Component {
 
         const showSearchBar = isRehydrated && !(isMain && show.mainSearchBar) && !(isGraph && show.drawer && width === "xs");
         return (
-            <div className={classes.root}>
+            <div className={
+                classNames(
+                    classes.root,
+                    !isMain && classes.limitHeight
+                )
+            }>
                 <Header
                     translate={translate}
                     makeDataAvailable={makeDataAvailable}
