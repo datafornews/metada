@@ -132,19 +132,26 @@ const styles = theme => ({
     }
 });
 
-class Chips extends Component {
+class Chip extends Component {
 
     state = {
-        image: null
+        image: null,
     }
 
     componentWillMount() {
-        getImage(this, this.props.entity)
+        getImage(this, this.props.entity);
+        this.prevent = false;
     }
 
     handleClick = () => {
         this.props.handleChipClick(this.props.entity)
     }
+
+    
+    componentWillUnmount() {
+        this.prevent = true;
+    }
+    
 
 
     componentWillReceiveProps(nextProps) {
@@ -235,4 +242,4 @@ class Chips extends Component {
     }
 }
 
-export default withStyles(styles)(Chips);
+export default withStyles(styles)(Chip);

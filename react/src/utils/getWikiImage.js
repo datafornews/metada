@@ -4,7 +4,7 @@ import wtf from 'wtf_wikipedia';
 
 export default async function (component, entity) {
 
-    if (!component || !entity) {
+    if (!component || !entity || component.prevent) {
         noImage(component);
         return
     }
@@ -109,7 +109,7 @@ function setImageUrl(url, component, entity) {
         })
     }
     // should move to check location is same as calling component's
-    window && window.location.href.indexOf('/graph/') !== -1 ? component.setState({
+    window && window.location.href.indexOf('/graph/') !== -1 && !component.prevent ? component.setState({
         image: url
     }) : console.warn('abort');
 
