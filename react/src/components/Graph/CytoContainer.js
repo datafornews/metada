@@ -190,7 +190,7 @@ class CytoContainer extends React.Component {
 
             const now = new Date().getTime();
             let timesince = now - this.state.lastTap;
-            if ((timesince < 400) && (timesince > 0)) {
+            if ((timesince < 400) && (timesince > 100)) {
               // double tap
               const newLoc = `/graph/${event.target.id()}`;
               this.props.updateRouterLocation(newLoc);
