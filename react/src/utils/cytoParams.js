@@ -12,7 +12,7 @@ const breadthFirstLayout = {
     name: 'breadthfirst',
     fit: true, // whether to fit the viewport to the graph
     directed: true, // whether the tree is directed downwards (or edges can point in any direction if false)
-    padding: '2px', // padding on fit
+    padding: '10px', // padding on fit
     circle: false, // put depths in concentric circles if true, put depths top down if false
     spacingFactor: 1, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
     boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
@@ -135,7 +135,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId, cl
         layout = dagreLayout;
         layout.spacingFactor = spacing;
     } else {
-        const spacing = 0.55 * Math.pow(cytoData.edges.length, 0.08);
+        const spacing = 0.5 * Math.pow(cytoData.edges.length, 0.08);
         layout = breadthFirstLayout;
         layout.spacingFactor = spacing;
     }
