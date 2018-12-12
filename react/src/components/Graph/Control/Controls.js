@@ -24,19 +24,20 @@ const styles = theme => (
         container: {
             display: 'flex',
             position: 'relative',
-            width: '100%',
+            width: '100%'
         },
         buttons: {
+            alignItems: 'center',
             display: "flex",
-            justifyContent: "space-around",
-            minWidth: 300,
-            alignItems: 'center'
+            justifyContent: "center",
+            minWidth: 300
         },
         actionButton: {
             fontSize: '0.85rem',
             fontWeight: 800,
             color: theme.palette.primary.main,
-            backgroundColor: "white"
+            backgroundColor: "white",
+            minWidth: "7rem®"
         },
         shiftLeft: {
             marginLeft: theme.spacing.unit * 2,
@@ -62,6 +63,9 @@ const styles = theme => (
         },
         dialogContent: {
             marginTop: theme.spacing.unit
+        },
+        spacer: {
+            minWidth: theme.spacing.unit * 2
         }
     }
 );
@@ -153,6 +157,9 @@ class Controls extends Component {
                             <Button className={classes.actionButton} variant="contained" classes={{ text: classes.text }} onClick={this.seeDescription}>
                                 Description
                             </Button>
+                        }
+                        {
+                            !show.drawe && !selectedIsRepresented && <span className={classes.spacer}></span>
                         }
                         {
                             selectedIsRepresented ? '' :
