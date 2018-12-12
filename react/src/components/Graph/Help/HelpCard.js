@@ -32,55 +32,46 @@ function Transition(props) {
 
 
 const styles = theme => ({
-    help: {
-        margin: 'auto'
-    },
     actions: {
-        paddingTop: 0,
-        textAlign: "center",
-        marginTop: '-8px',
         marginBottom: '32px',
-    },
-    title: {
-        marginBottom: 16,
-        fontSize: 26,
-    },
-    root: {
-        width: '90%',
-        margin: 'auto'
-    },
-    button: {
-        marginRight: theme.spacing.unit,
+        marginTop: '-8px',
+        paddingTop: 0,
+        textAlign: "center"
     },
     backButton: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing.unit
     },
-    completed: {
-        display: 'inline-block',
-    },
-    instructions: {
-        marginTop: theme.spacing.unit,
-        marginBottom: theme.spacing.unit,
-    },
-    container: {
-        position: 'relative'
+    button: {
+        marginRight: theme.spacing.unit
     },
     click: {
         'color': 'green'
     },
-
+    completed: {
+        display: 'inline-block'
+    },
+    container: {
+        position: 'relative'
+    },
     divContainer: {
-        position: "absolute",
-        top: theme.spacing.unit * 3 * 3,
-        right: 32,
-        pointerEvents: "none",
         maxWidth: "70%",
+        pointerEvents: "none",
+        position: "absolute",
+        right: 32,
+        top: theme.spacing.unit * 3 * 3,
         zIndex: 200
     },
+    help: {
+        margin: 'auto'
+    },
+    instructions: {
+        marginBottom: theme.spacing.unit,
+        marginTop: theme.spacing.unit
+    },
     mobileDivContainer: {
+        left: "50%",
         position: "absolute",
         top: theme.spacing.unit * 3 * 5,
-        left: "50%",
         transform: "translate(-50%)",
         width: "85%",
         zIndex: 200
@@ -89,6 +80,14 @@ const styles = theme => ({
         height: 24,
         width: 24
     },
+    root: {
+        margin: 'auto',
+        width: '90%'
+    },
+    title: {
+        fontSize: 26,
+        marginBottom: 16
+    }
 });
 
 class HelpCard extends Component {

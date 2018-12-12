@@ -6,32 +6,33 @@ import PropTypes from 'prop-types';
 
 
 const styles = theme => ({
-    title: {
-        fontWeight: "bolder",
-        [theme.breakpoints.down(400)]: {
-            fontSize: 26
-        }
-    },
-    subtitle: {
-        fontWeight: "bolder",
-        [theme.breakpoints.down(400)]: {
-            fontSize: 22
-        }
-    },
     container: {
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-        [theme.breakpoints.only('xs')]: { // xs -> seach bar goes down
+        [theme.breakpoints.only('xs')]: {
+            // xs -> seach bar goes down
             paddingTop: theme.spacing.unit * 3
         },
         [theme.breakpoints.up('md')]: {
-            paddingTop: theme.spacing.unit * 4,
-            paddingBottom: theme.spacing.unit * 2
+            paddingBottom: theme.spacing.unit * 2,
+            paddingTop: theme.spacing.unit * 4
         },
         [theme.breakpoints.up('lg')]: {
-            paddingTop: theme.spacing.unit * 6,
-            paddingBottom: theme.spacing.unit * 4
+            paddingBottom: theme.spacing.unit * 4,
+            paddingTop: theme.spacing.unit * 6
         },
+        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing.unit * 2
+    },
+    subtitle: {
+        [theme.breakpoints.down(400)]: {
+            fontSize: 22
+        },
+        fontWeight: "bolder"
+    },
+    title: {
+        [theme.breakpoints.down(400)]: {
+            fontSize: 26
+        },
+        fontWeight: "bolder"
     }
 });
 

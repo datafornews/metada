@@ -19,10 +19,10 @@ import is from 'is_js';
 
 const actionsStyles = theme => ({
     root: {
-        flexShrink: 0,
         color: theme.palette.text.secondary,
-        marginLeft: theme.spacing.unit * 2.5,
-    },
+        flexShrink: 0,
+        marginLeft: theme.spacing.unit * 2.5
+    }
 });
 
 class TablePaginationActions extends Component {
@@ -92,25 +92,25 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 
 
 const styles = theme => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-        overflowX: 'auto',
-        flexShrink: 0,
-        color: theme.palette.text.secondary,
-        marginLeft: theme.spacing.unit * 2.5,
-    },
-    table: {
-        minWidth: theme.spacing.unit * 12,
-    },
     cell: {
         padding: "4px"
+    },
+    root: {
+        color: theme.palette.text.secondary,
+        flexShrink: 0,
+        marginLeft: theme.spacing.unit * 2.5,
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
+        width: '100%'
+    },
+    table: {
+        minWidth: theme.spacing.unit * 12
     },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: theme.spacing.unit * 25,
-        marginTop: 0
+        marginTop: 0,
+        width: theme.spacing.unit * 25
     }
 });
 

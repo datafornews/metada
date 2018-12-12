@@ -11,81 +11,81 @@ import Fade from '@material-ui/core/Fade';
 import withWidth from '@material-ui/core/withWidth';
 
 const styles = theme => ({
-    container: {
-        position: 'absolute',
-        bottom: 32,
-        right: 32,
-        zIndex: 1000,
-        width: 'min-content',
-        [theme.breakpoints.only('xs')]: {
-            // backgroundColor: 'red',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, 50%)',
-            height: '100vh',
-            width: '100vw',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'rgba(40, 40, 40, 0.5)'
-        },
-    },
-    paper: {
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.default,
-        minWidth: 300,
-        position: "relative",
-        paddingTop: "12px",
-    },
     button: {
-        // backgroundColor: theme.palette.default,
-        // color: theme.palette.secondary.main,
-        minWidth: 150,
         "&:hover": {
             opacity: 0.9
-        }
-    },
-    helpIconButton: {
-        color: theme.palette.secondary.main,
-        height: 50,
-        width: 50
+        },
+        // backgroundColor: theme.palette.default,
+        // color: theme.palette.secondary.main,
+        minWidth: 150
     },
     cardActions: {
+        alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
         minHeight: 75,
         minWidth: 200
     },
-    slideContained: {
-        maxWidth: 150,
-        margin: "auto"
+    cardContent: {
+        [theme.breakpoints.only('xs')]: {
+            // backgroundColor: 'red',
+            paddingRight: 32
+        }
     },
-    helpsecondary: {
-        color: theme.palette.secondary.main
+    clearIcon: {
+        color: theme.palette.default,
+        height: 20,
+        width: 20
+    },
+    clearIconButton: {
+        height: 30,
+        position: 'absolute',
+        right: 4,
+        top: 4,
+        width: 30
+    },
+    container: {
+        [theme.breakpoints.only('xs')]: {
+            alignItems: 'center',
+            backgroundColor: 'rgba(40, 40, 40, 0.5)',
+            display: 'flex',
+            height: '100vh',
+            justifyContent: 'center',
+            left: '50%',
+            // backgroundColor: 'red',
+            top: '50%',
+            transform: 'translate(-50%, 50%)',
+            width: '100vw'
+        },
+        bottom: 32,
+        position: 'absolute',
+        right: 32,
+        width: 'min-content',
+        zIndex: 1000
     },
     helpDefault: {
         color: theme.palette.default,
         height: 40,
         width: 40
     },
-    clearIcon: {
-        height: 20,
-        width: 20,
+    helpIconButton: {
+        color: theme.palette.secondary.main,
+        height: 50,
+        width: 50
+    },
+    helpsecondary: {
+        color: theme.palette.secondary.main
+    },
+    paper: {
+        backgroundColor: theme.palette.secondary.main,
         color: theme.palette.default,
+        minWidth: 300,
+        paddingTop: "12px",
+        position: "relative"
     },
-    clearIconButton: {
-        height: 30,
-        width: 30,
-        position: 'absolute',
-        top: 4,
-        right: 4
-    },
-    cardContent: {
-        [theme.breakpoints.only('xs')]: {
-            // backgroundColor: 'red',
-            paddingRight: 32
-        },
+    slideContained: {
+        margin: "auto",
+        maxWidth: 150
     }
 });
 

@@ -20,11 +20,16 @@ function Transition(props) {
 }
 
 const styles = theme => (
-    {
-        container: {
-            display: 'flex',
-            position: 'relative',
-            width: '100%'
+   {
+        actionButton: {
+            backgroundColor: "white",
+            color: theme.palette.primary.main,
+            fontSize: '0.85rem',
+            fontWeight: 800,
+            minWidth: "7rem®"
+        },
+        boldText: {
+            fontSize: theme.typography.title.fontSize
         },
         buttons: {
             alignItems: 'center',
@@ -32,23 +37,17 @@ const styles = theme => (
             justifyContent: "center",
             minWidth: 300
         },
-        actionButton: {
-            fontSize: '0.85rem',
-            fontWeight: 800,
-            color: theme.palette.primary.main,
-            backgroundColor: "white",
-            minWidth: "7rem®"
+        container: {
+            display: 'flex',
+            position: 'relative',
+            width: '100%'
         },
-        shiftLeft: {
-            marginLeft: theme.spacing.unit * 2,
+        dialogContent: {
+            marginTop: theme.spacing.unit
         },
         entity: {
-            textAlign: "center",
-            marginBottom: theme.spacing.unit / 2
-        },
-        wrapper: {
-            display: 'inline-block',
-            margin: 'auto',
+            marginBottom: theme.spacing.unit / 2,
+            textAlign: "center"
         },
         entityName: {
             [theme.breakpoints.down('sm')]: {
@@ -58,14 +57,15 @@ const styles = theme => (
                 marginTop: 2 * theme.spacing.unit
             }
         },
-        boldText: {
-            fontSize: theme.typography.title.fontSize
-        },
-        dialogContent: {
-            marginTop: theme.spacing.unit
+        shiftLeft: {
+            marginLeft: theme.spacing.unit * 2
         },
         spacer: {
             minWidth: theme.spacing.unit * 2
+        },
+        wrapper: {
+            display: 'inline-block',
+            margin: 'auto'
         }
     }
 );

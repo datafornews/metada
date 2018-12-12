@@ -25,110 +25,110 @@ import MIcon from 'react-icons/lib/ti/news'
 import { colors } from '../../../../theme/metadaTheme';
 
 const styles = theme => ({
+    c: {
+        '&:hover': {
+            backgroundColor: colors['c'],
+            filter: "brightness(80%)"
+        },
+        backgroundColor: colors['c']
+    },
     card: {
-        maxWidth: 200,
+        "&:hover": {
+            backgroundColor: 'white'
+        },
+        backgroundColor: 'rgb(245,245,243)',
         // minHeight: 240,
         display: "flex",
         flexFlow: "column",
         height: "100%",
-        backgroundColor: 'rgb(245,245,243)',
-        "&:hover": {
-            backgroundColor: 'white',
-        },
+        maxWidth: 200,
         position: 'relative'
     },
-    margin: {
-        margin: theme.spacing.unit * 2,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 400
-    },
-    subtitle: {
-        marginBottom: 8,
-        fontSize: 12,
-    },
-    pos: {
-        marginTop: 12,
-        fontWeight: 200
-    },
     chip: {
-        position: "absolute",
-        color: "white",
-        top: -16,
-        right: 0,
         '&:hover': {
             cursor: 'pointer'
         },
-        height: '25px'
+        color: "white",
+        height: '25px',
+        position: "absolute",
+        right: 0,
+        top: -16
     },
-    m: {
-        backgroundColor: colors['m'],
-        '&:hover': {
-            filter: "brightness(80%)",
-            backgroundColor: colors['m']
-        }
+    chipLabel: {
+        fontSize: '0.6rem'
     },
-    c: {
-        backgroundColor: colors['c'],
+    cickDiv: {
         '&:hover': {
-            filter: "brightness(80%)",
-            backgroundColor: colors['c']
-        }
-    },
-    i: {
-        backgroundColor: colors['i'],
-        '&:hover': {
-            filter: "brightness(80%)",
-            backgroundColor: colors['i'],
-        }
+            backgroundColor: 'rgba(50, 50, 50, 0.5)',
+            display: 'block'
+        },
+        display: 'none',
+        left: "50%",
+        position: 'absolute',
+        top: "50%",
+        transform: "translate(-50%, -50%)"
     },
     container: {
         display: "flex",
         justifyContent: "center"
     },
+    i: {
+        '&:hover': {
+            backgroundColor: colors['i'],
+            filter: "brightness(80%)"
+        },
+        backgroundColor: colors['i']
+    },
     img: {
-        maxWidth: "-webkit-fill-available",
-        maxHeight: "100%",
         borderRadius: 4,
+        maxHeight: "100%",
+        maxWidth: "-webkit-fill-available"
     },
     imgDiv: {
-        display: "flex",
-        margin: 'auto',
-        justifyContent: "center",
         alignItems: "center",
-        width: "200px",
+        display: "flex",
         height: "100px",
+        justifyContent: "center",
+        margin: 'auto',
         maxWidth: "90%",
+        width: "200px"
     },
-    root: {
-        padding: '8px 0px 0px 0px !important'
+    m: {
+        '&:hover': {
+            backgroundColor: colors['m'],
+            filter: "brightness(80%)"
+        },
+        backgroundColor: colors['m']
+    },
+    margin: {
+        margin: theme.spacing.unit * 2
     },
     pointer: {
         '&:hover': {
             cursor: 'pointer'
         }
     },
-    cickDiv: {
-        display: 'none',
-        position: 'absolute',
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        '&:hover': {
-            display: 'block',
-            backgroundColor: 'rgba(50, 50, 50, 0.5)'
-        }
+    pos: {
+        fontWeight: 200,
+        marginTop: 12
     },
-    chipLabel: {
-        fontSize: '0.6rem'
+    root: {
+        padding: '8px 0px 0px 0px !important'
+    },
+    subtitle: {
+        fontSize: 12,
+        marginBottom: 8
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 400
     },
     tooltip: {
         // height: 30,
         // width: 50
         backgroundColor: theme.palette.secondary.main,
-        opacity: 1,
-        fontSize: '0.8rem'
+        fontSize: '0.8rem',
+        opacity: 1
     }
 });
 

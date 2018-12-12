@@ -19,15 +19,15 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   controlsContainer: {
-    // maxHeight: 80,
-    minHeight: theme.spacing.unit * 10,
-    display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    display: "flex",
+    justifyContent: "center",
+    // maxHeight: 80,
+    minHeight: theme.spacing.unit * 10
   },
   moveDown: {
     paddingTop: theme.spacing.unit * 5
-  },
+  }
 });
 
 

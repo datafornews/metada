@@ -10,15 +10,15 @@ import Select from '@material-ui/core/Select';
 const styles = theme => ({
     container: {
         display: 'inline-block',
-        flexWrap: 'wrap',
+        flexWrap: 'wrap'
     },
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 100,
+        minWidth: 100
     },
     selectEmpty: {
-        marginTop: theme.spacing.unit,
-    },
+        marginTop: theme.spacing.unit
+    }
 });
 
 class LanguageSelect extends React.Component {

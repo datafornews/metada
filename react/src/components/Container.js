@@ -12,61 +12,62 @@ import withWidth from '@material-ui/core/withWidth';
 import Header from './Header/Header'
 
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        zIndex: 1,
-        overflow: 'hidden',
-        display: 'flex',
-        position: 'relative',
-        width: '100%',
-    },
-    limitHeight: {
-        height: "100%",
-        maxHeight: '100vh',
-    },
     content: {
         flexGrow: 1,
-        paddingTop: theme.spacing.unit * 3 * 3,
-        minWidth: 0, // So the Typography noWrap works,
+        maxHeight: `calc(100vh - ${theme.spacing.unit * 3 * 3})px`,
+        // So the Typography noWrap works,
         minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
+        minWidth: 0,
+        overflow: "scroll",
+        paddingTop: theme.spacing.unit * 3 * 3,
+        position: "relative",
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        position: "relative",
-        overflow: "scroll",
-        maxHeight: `calc(100vh - ${theme.spacing.unit * 3 * 3})px`,
+            duration: theme.transitions.duration.leavingScreen
+        })
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+            duration: theme.transitions.duration.enteringScreen
+        })
     },
-    noPadding: {
-        padding: `${theme.spacing.unit * 3 * 3}px 0px 0px 0px`
+    fullMainWidth: {
+        width: "100vw"
     },
-    shiftMainDown: {
-        paddingTop: theme.spacing.unit * 3 * 4
+    limitHeight: {
+        height: "100%",
+        maxHeight: '100vh'
     },
     noMarginLeft: {
         marginLeft: "0px"
     },
+    noPadding: {
+        padding: `${theme.spacing.unit * 3 * 3}px 0px 0px 0px`
+    },
+    root: {
+        display: 'flex',
+        flexGrow: 1,
+        overflow: 'hidden',
+        position: 'relative',
+        width: '100%',
+        zIndex: 1
+    },
+    shiftMainDown: {
+        paddingTop: theme.spacing.unit * 3 * 4
+    },
     shiftMainLeft: {
-        marginLeft: "-25vw",
         [theme.breakpoints.only('xs')]: {
-            marginLeft: "-40vw",
-        }
+            marginLeft: "-40vw"
+        },
+        marginLeft: "-25vw"
     },
     shrinkMainWidth: {
-        width: "75vw",
         [theme.breakpoints.only('xs')]: {
-            width: "60vw",
-        }
-    },
-    fullMainWidth: {
-        width: "100vw",
-    },
+            width: "60vw"
+        },
+        width: "75vw"
+    }
 });
 
 class Container extends Component {

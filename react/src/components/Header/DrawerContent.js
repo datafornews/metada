@@ -9,11 +9,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => (
     {
-        toolbar: theme.mixins.toolbar,
         container: {
-            position: "relative",
-            height: "100%"
-        }
+            height: "100%",
+            position: "relative"
+        },
+        toolbar: theme.mixins.toolbar
     }
 );
 

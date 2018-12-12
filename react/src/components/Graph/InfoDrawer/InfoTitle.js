@@ -9,19 +9,19 @@ import getImage from '../../../utils/getWikiImage';
 
 const styles = theme => ({
     img: {
-        maxWidth: "-webkit-fill-available",
-        maxHeight: "100%",
         borderRadius: theme.spacing.unit / 2,
+        maxHeight: "100%",
+        maxWidth: "-webkit-fill-available"
     },
     imgDiv: {
-        display: "flex",
-        margin: 'auto',
-        justifyContent: "center",
         alignItems: "center",
-        width: "200px",
+        display: "flex",
         height: "100px",
+        justifyContent: "center",
+        margin: 'auto',
         maxWidth: "90%",
-    },
+        width: "200px"
+    }
 });
 
 const entityNameTypoStyle = {

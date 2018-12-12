@@ -14,33 +14,33 @@ import ClearIcon from '@material-ui/icons/Clear';
 const styles = theme => (
     {
         container: {
-            position: "relative",
-            height: "100%"
-        },
-        drawerPaper: {
-            position: 'relative',
-            maxHeight: '100vh',
-        },
-        toolbar: theme.mixins.toolbar,
-        drawerHeader: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
-            padding: '0 8px',
-            ...theme.mixins.toolbar,
+            height: "100%",
+            position: "relative"
         },
         docked: {
             height: "100%"
         },
         drawer: {
-            width: "25vw",
-            [theme.breakpoints.only('xs')]:{
-                width: "40vw",
-            }
-        }
+            [theme.breakpoints.only('xs')]: {
+                width: "40vw"
+            },
+            width: "25vw"
+        },
+        drawerHeader: {
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            padding: '0 8px',
+            ...theme.mixins.toolbar,
+
+        },
+        drawerPaper: {
+            maxHeight: '100vh',
+            position: 'relative'
+        },
+        toolbar: theme.mixins.toolbar
     }
 );
-
 
 
 class InfoDrawer extends Component {

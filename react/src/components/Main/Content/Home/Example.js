@@ -9,15 +9,17 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = theme => ({
-    label: { textTransform: 'capitalize' },
     containerDiv: {
-        marginTop: theme.spacing.unit * 6,
-        display: 'block',
-        padding: theme.spacing.unit * 8,
         [theme.breakpoints.up('md')]: {
             // backgroundColor: 'red',
             marginTop: theme.spacing.unit * 8
         },
+        display: 'block',
+        marginTop: theme.spacing.unit * 6,
+        padding: theme.spacing.unit * 8
+    },
+    label: {
+        textTransform: 'capitalize'
     }
 });
 

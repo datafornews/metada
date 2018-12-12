@@ -13,37 +13,36 @@ import OpenInNew from '@material-ui/icons/OpenInNew';
 import { Link } from 'react-router-dom'
 
 const styles = theme => ({
-    container: {
-        height: '100%'
-    },
-    shareContainer: {
-        marginTop: 4,
-        maxWidth: 30,
-        margin: 'auto',
-        position: 'fixed',
-        top: 100,
-        right: 16
-    },
-    shareButton: {
-        display: 'inline-block',
-        '&:hover': {
-            cursor: 'pointer'
-        }
-    },
-    spread: {
-        fontSize: '0.8rem',
-    },
     buttonDiv: {
         display: 'flex',
         justifyContent: "space-evenly",
-        minWidth: 200,
         margin: 'auto',
+        minWidth: 200
     },
-
+    container: {
+        height: '100%'
+    },
     icon: {
         height: '15px',
-        width: '15px',
-        marginLeft: 4
+        marginLeft: 4,
+        width: '15px'
+    },
+    shareButton: {
+        '&:hover': {
+            cursor: 'pointer'
+        },
+        display: 'inline-block'
+    },
+    shareContainer: {
+        margin: 'auto',
+        marginTop: 4,
+        maxWidth: 30,
+        position: 'fixed',
+        right: 16,
+        top: 100
+    },
+    spread: {
+        fontSize: '0.8rem'
     }
 });
 

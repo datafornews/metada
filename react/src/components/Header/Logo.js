@@ -7,39 +7,39 @@ import { AsyncComponents } from '../../index';
 
 
 const styles = theme => ({
-    root: {
-        "&:hover": {
-            'cursor': 'pointer',
-        },
-        backgroundColor: theme.palette.secondary.main,
-        display: 'flex',
-        textAlign: 'center',
-        alignItems: 'center',
-        marginLeft: theme.spacing.unit * 5,
-        [theme.breakpoints.up('sm')]: {
-            padding: '12px 0px',
-            marginLeft: theme.spacing.unit * 6
-        },
-    },
     logo: {
-        color: theme.palette.default,
-        height: theme.spacing.unit * 3,
-        width: theme.spacing.unit * 3,
         [theme.breakpoints.up('xs')]: {
             height: theme.spacing.unit * 4,
-            width: theme.spacing.unit * 4,
+            width: theme.spacing.unit * 4
         },
-    },
-    title: {
         color: theme.palette.default,
-        textTransform: 'uppercase',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: 22,
-        },
-        marginLeft: theme.spacing.unit,
+        height: theme.spacing.unit * 3,
+        width: theme.spacing.unit * 3
     },
     normal: {
-        transition: "all 0.2s ease-in-out",
+        transition: "all 0.2s ease-in-out"
+    },
+    root: {
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing.unit * 6,
+            padding: '12px 0px'
+        },
+        "&:hover": {
+            'cursor': 'pointer'
+        },
+        alignItems: 'center',
+        backgroundColor: theme.palette.secondary.main,
+        display: 'flex',
+        marginLeft: theme.spacing.unit * 5,
+        textAlign: 'center'
+    },
+    title: {
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 22
+        },
+        color: theme.palette.default,
+        marginLeft: theme.spacing.unit,
+        textTransform: 'uppercase'
     }
 });
 

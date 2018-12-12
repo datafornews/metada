@@ -7,19 +7,19 @@ import ShareComment from './ShareComment';
 import ShareSources from './ShareSources';
 
 const styles = theme => (
-    {
+{
         container: {
             display: 'flex',
             position: 'relative'
         },
         edgeLabel: {
-            textAlign: 'center',
-            fontSize: '1.2rem'
+            fontSize: '1.2rem',
+            textAlign: 'center'
         },
         edgeValue: {
-            textAlign: 'center',
-            color: 'grey'
-        },
+            color: 'grey',
+            textAlign: 'center'
+        }
     }
 );
 

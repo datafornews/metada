@@ -15,48 +15,48 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     appBar: {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.default,
         position: 'fixed',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.default
+            duration: theme.transitions.duration.leavingScreen
+        })
     },
     appBarShift: {
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    toolbar: {
-        paddingLeft: theme.spacing.unit * 2,
-        paddingRight: theme.spacing.unit * 2,
-        [theme.breakpoints.only('xs')]: {
-            paddingLeft: 0,
-            paddingRight: 0,
-        }
+            duration: theme.transitions.duration.enteringScreen
+        })
     },
     menuGridDiv: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'left',
         [theme.breakpoints.only('xs')]: {
-            minHeight: 52,
             justifyContent: 'space-evenly',
+            minHeight: 52
         },
+        alignItems: 'left',
+        display: 'flex',
+        justifyContent: 'space-between'
     },
     menuGridDivDrawer: {
-        display: 'flex',
         [theme.breakpoints.down('xs')]: {
-            justifyContent: 'space-evenly',
-        }
+            justifyContent: 'space-evenly'
+        },
+        display: 'flex'
     },
     searchBar: {
-        height: "52px",
         display: "flex",
+        height: "52px",
         justifyContent: 'center'
     },
+    toolbar: {
+        [theme.breakpoints.only('xs')]: {
+            paddingLeft: 0,
+            paddingRight: 0
+        },
+        paddingLeft: theme.spacing.unit * 2,
+        paddingRight: theme.spacing.unit * 2
+    }
 });
 
 class AppBar extends Component {

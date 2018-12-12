@@ -6,10 +6,10 @@ import withWidth from '@material-ui/core/withWidth';
 
 const styles = theme => ({
   container: {
-    width: '80%',
     height: 'auto',
+    marginBottom: 'auto',
     marginTop: 'auto',
-    marginBottom: 'auto'
+    width: '80%'
   }
 });
 

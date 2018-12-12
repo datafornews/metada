@@ -7,30 +7,30 @@ import PropTypes from 'prop-types';
 
 const styles = theme => ({
     root: {
-        margin: "auto",
-        marginTop: theme.spacing.unit * 4,
-        marginBottom: '30px',
-        maxWidth: '75%',
         [theme.breakpoints.up('lg')]: {
             maxWidth: '900px',
-            padding: theme.spacing.unit * 8,
+            padding: theme.spacing.unit * 8
         },
         [theme.breakpoints.only('xs')]: {
-            maxWidth: '85%',
-            // padding: theme.spacing.unit * 8,
+            maxWidth: '85%' // padding: theme.spacing.unit * 8,
+
         },
+        margin: "auto",
+        marginBottom: '30px',
+        marginTop: theme.spacing.unit * 4,
+        maxWidth: '75%'
     },
     typography: {
-        padding: theme.spacing.unit * 4,
         [theme.breakpoints.only('md')]: {
-            padding: theme.spacing.unit * 8,
+            padding: theme.spacing.unit * 8
         },
         [theme.breakpoints.up('lg')]: {
-            paddingTop: theme.spacing.unit * 8,
             paddingBottom: theme.spacing.unit * 8,
             paddingLeft: theme.spacing.unit * 12,
             paddingRight: theme.spacing.unit * 12,
+            paddingTop: theme.spacing.unit * 8
         },
+        padding: theme.spacing.unit * 4
     }
 });
 

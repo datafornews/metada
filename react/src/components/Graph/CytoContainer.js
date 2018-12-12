@@ -17,15 +17,15 @@ import { AsyncComponents } from '../../index';
 
 
 const styles = theme => ({
-  cytoContainer: {
-    height: "100%",
-    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)`,
-    // border: "black 2px solid"
-  },
   cyDiv: {
     height: "100%",
-    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)`,
-    // border: "grey 2px solid",
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)` // border: "grey 2px solid",
+
+  },
+  cytoContainer: {
+    height: "100%",
+    minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 7}px)` // border: "black 2px solid"
+
   },
   pad: {
     paddingRight: "250px"

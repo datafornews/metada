@@ -23,52 +23,52 @@ import MenuList from '@material-ui/core/MenuList';
 
 
 const styles = theme => ({
-    menuItem: {
-        '&:focus': {
-            backgroundColor: theme.palette.secondary.main,
-            outline: "none"
-        },
+    burgerButton: {
+        left: theme.spacing.unit,
+        position: 'absolute',
+        top: theme.spacing.unit * 2
+    },
+    container: {
+        display: 'inline-flex'
+    },
+    em: {
+        color: theme.palette.default,
+        fontSize: "3em"
     },
     icon: {
+        color: theme.palette.default,
         height: theme.spacing.unit * 4,
-        width: theme.spacing.unit * 4,
-        color: theme.palette.default
-    },
-    menuList: {
-        outline: "none"
+        width: theme.spacing.unit * 4
     },
     menu: {
         padding: 0
     },
-    paper: {
-        backgroundColor: theme.palette.secondary.main,
-        borderRadius: '0px 0px 4px 4px',
-    },
-    secondary: {
-        color: theme.palette.default
-    },
-    burgerButton: {
-        position: 'absolute',
-        left: theme.spacing.unit,
-        top: theme.spacing.unit * 2
-    },
     menuDiv: {
-        display: 'inline-flex',
         alignItems: 'center',
+        display: 'inline-flex',
         justifyContent: 'center'
     },
-    container: {
-        display: 'inline-flex',
+    menuItem: {
+        '&:focus': {
+            backgroundColor: theme.palette.secondary.main,
+            outline: "none"
+        }
     },
     menuItemIcon: {
         [theme.breakpoints.only('xs')]: {
             marginRight: 0
         }
     },
-    em: {
-        fontSize: "3em",
-        color: theme.palette.default
+    menuList: {
+        outline: "none"
     },
+    paper: {
+        backgroundColor: theme.palette.secondary.main,
+        borderRadius: '0px 0px 4px 4px'
+    },
+    secondary: {
+        color: theme.palette.default
+    }
 });
 
 

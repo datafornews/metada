@@ -8,23 +8,23 @@ import HelpIcon from 'react-icons/lib/fa/question-circle';
 
 
 const styles = theme => ({
-    subtitle: {
-        marginBottom: 24,
-        fontSize: 20,
-    },
-    pos: {
-        marginBottom: 8,
-        fontSize: 12
-    },
     iconContainer: {
-        display: "flex",
         alignItems: "center",
+        display: "flex",
         marginBottom: 6
     },
+    pos: {
+        fontSize: 12,
+        marginBottom: 8
+    },
     primary: {
-        fontWeight: 'bolder',
         color: theme.palette.primary.main,
-        fontSize: '1rem'
+        fontSize: '1rem',
+        fontWeight: 'bolder'
+    },
+    subtitle: {
+        fontSize: 20,
+        marginBottom: 24
     }
 });
 

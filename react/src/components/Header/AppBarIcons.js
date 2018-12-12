@@ -8,10 +8,10 @@ import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
 
 const styles = theme => ({
     iconButton: {
-        width: '45%',
+        margin: '0px 4px',
         maxWidth: theme.spacing.unit * 6,
-        margin: '0px 4px'
-    },
+        width: '45%'
+    }
 });
 
 class AppBarIcons extends Component {

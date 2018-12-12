@@ -10,35 +10,33 @@ import StatsIcon from 'react-icons/lib/io/stats-bars';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-    container: {
-
+    actions: {
+        fontSize: "0.7rem",
+        justifyContent: "center"
     },
     card: {
         backgroundColor: 'rgba(250,250,250, 0.8)',
         maxWidth: 200
     },
-    root: {
-        padding: theme.spacing.unit * 3
-    },
-    icon: {
-        height: 40,
-        width: 40,
-        color: theme.palette.secondary.main,
-    },
-    statsButton: {
-        fontSize: "0.6rem"
-    },
-    actions: {
-        justifyContent: "center",
-        fontSize: "0.7rem"
-    },
+    container: {},
     content: {
         paddingBottom: 0
     },
+    icon: {
+        color: theme.palette.secondary.main,
+        height: 40,
+        width: 40
+    },
     iconGridItem: {
+        "align-items": "center",
         display: "flex",
-        "justify-content": "center",
-        "align-items": "center"
+        "justify-content": "center"
+    },
+    root: {
+        padding: theme.spacing.unit * 3
+    },
+    statsButton: {
+        fontSize: "0.6rem"
     }
 });
 

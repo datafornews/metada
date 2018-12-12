@@ -12,20 +12,20 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 const styles = theme => ({
-    root: {
-        width: '100%',
+    expansionPannel: {
+        '&:before': {}
     },
     heading: {
+        color: theme.palette.secondary.main,
         fontSize: theme.typography.pxToRem(20),
-        fontWeight: theme.typography.fontWeightRegular,
-        color: theme.palette.secondary.main
+        fontWeight: theme.typography.fontWeightRegular
+    },
+    root: {
+        width: '100%'
     },
     summary: {
         margin: '8px 0px 0px 0px!important',
         minHeight: '0 !important'
-    },
-    expansionPannel: {
-        '&:before': {}
     }
 });
 

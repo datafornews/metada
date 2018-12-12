@@ -10,9 +10,9 @@ import {
 
 const styles = theme => ({
     container: {
-        width: '100%',
         display: 'flex',
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        width: '100%'
     }
 });
 

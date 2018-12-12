@@ -4,34 +4,32 @@ import HomePaper from '../../Paper/HomePaper'
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-    container: {
-
-    },
+    container: {},
     headline: {
         fontWeight: 300,
         marginBottom: theme.spacing.unit * 2
     },
     iframe: {
-        width: '100%',
-        height: '970px'
+        height: '970px',
+        width: '100%'
+    },
+    iframeContainer: {
+        margin: 'auto',
+        maxWidth: 750
+    },
+    italic: {
+        fontStyle: 'italic'
     },
     li: {
         marginBottom: theme.spacing.unit * 1.5
     },
-    strong: {
-        fontWeight: "bolder",
-    },
-    iframeContainer: {
-        maxWidth: 750,
-        margin: 'auto'
-    },
-    sep:{
-        width: "85%",
+    sep: {
+        borderBottom: "1px solid grey",
         margin: "20px auto",
-        borderBottom: "1px solid grey"
+        width: "85%"
     },
-    italic:{
-        fontStyle: 'italic'
+    strong: {
+        fontWeight: "bolder"
     }
 });
 

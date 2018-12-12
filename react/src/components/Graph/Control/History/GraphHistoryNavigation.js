@@ -7,13 +7,13 @@ import Fade from '@material-ui/core/Fade';
 
 const styles = theme => ({
     historyContainer: {
-        position: 'absolute',
-        zIndex: 1,
-        left: 16,
         [theme.breakpoints.only('xs')]: {
             left: 4,
             top: -4
-        }
+        },
+        left: 16,
+        position: 'absolute',
+        zIndex: 1
     }
 });
 

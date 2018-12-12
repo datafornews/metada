@@ -21,35 +21,35 @@ import Search from '@material-ui/icons/Search';
 
 const styles = theme => ({
     container: {
-        maxWidth: '90%',
         margin: 'auto',
-    },
-    searchBarGridItem: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: "center",
-        flexDirection: 'column',
-        position: "relative"
+        maxWidth: '90%'
     },
     searchBarGridDiv: {
-        display: 'flex',
         alignItems: "center",
-        width: "100%",
+        display: 'flex',
+        width: "100%"
+    },
+    searchBarGridItem: {
+        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        position: "relative"
     },
     shareGridItem: {
-        display: 'flex'
-        // height: '100%'
+        display: 'flex' // height: '100%'
+
     },
     statsGridDiv: {
         maxWidth: "70%"
     },
     textLoader: {
+        color: theme.palette.secondary.main,
+        left: "50%",
         maxWidth: theme.spacing.unit * 7,
         position: 'absolute',
-        left: "50%",
-        transform: "translate(-50%)",
         textAlign: 'center',
-        color: theme.palette.secondary.main
+        transform: "translate(-50%)"
     }
 });
 

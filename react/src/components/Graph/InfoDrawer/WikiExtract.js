@@ -13,22 +13,22 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
-    root: {
-        width: '100%',
+    expandIcon: {
+        right: "-8px"
     },
     heading: {
         fontSize: theme.typography.pxToRem(13),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    wiki: {
-        fontSize: theme.typography.pxToRem(11),
-        fontStyle: "italic"
+        fontWeight: theme.typography.fontWeightRegular
     },
     noPadding: {
         padding: "0px"
     },
-    expandIcon: {
-        right: "-8px"
+    root: {
+        width: '100%'
+    },
+    wiki: {
+        fontSize: theme.typography.pxToRem(11),
+        fontStyle: "italic"
     }
 })
 

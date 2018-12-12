@@ -7,31 +7,30 @@ import classNames from 'classnames';
 import { colors } from '../../../theme/metadaTheme';
 
 const styles = theme => ({
-
-    subtitle: {
-        marginBottom: 24,
-        fontSize: 20,
-    },
-    pos: {
-        marginBottom: 8,
-        fontSize: 12
-    },
-    m: {
-        backgroundColor: colors['m']
-    },
     c: {
         backgroundColor: colors['c']
     },
-    i: {
-        backgroundColor: colors['i']
-    },
     chip: {
-        color: "white",
+        color: "white"
     },
     chipContainer: {
         display: 'flex',
         justifyContent: 'center',
         marginTop: '4px'
+    },
+    i: {
+        backgroundColor: colors['i']
+    },
+    m: {
+        backgroundColor: colors['m']
+    },
+    pos: {
+        fontSize: 12,
+        marginBottom: 8
+    },
+    subtitle: {
+        fontSize: 20,
+        marginBottom: 24
     }
 });
 

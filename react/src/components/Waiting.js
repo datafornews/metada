@@ -6,25 +6,25 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 
 const styles = theme => ({
-    textLoader: {
-        maxWidth: theme.spacing.unit * 8,
-        position: 'absolute',
-        left: "50%",
-        transform: "translate(-50%)",
-        textAlign: 'center',
-        color: theme.palette.secondary.main
-    },
     container: {
-        position: 'relative',
+        alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: theme.spacing.unit * 20
+        minHeight: theme.spacing.unit * 20,
+        position: 'relative'
     },
     icon: {
+        color: theme.palette.secondary.main,
         height: theme.spacing.unit * 3,
-        width: theme.spacing.unit * 3,
-        color: theme.palette.secondary.main
+        width: theme.spacing.unit * 3
+    },
+    textLoader: {
+        color: theme.palette.secondary.main,
+        left: "50%",
+        maxWidth: theme.spacing.unit * 8,
+        position: 'absolute',
+        textAlign: 'center',
+        transform: "translate(-50%)"
     }
 });
 
