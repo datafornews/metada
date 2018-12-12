@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-import Chip from '@material-ui/core/Chip';
+import MaterialChip from '@material-ui/core/Chip';
 
 import classNames from 'classnames';
 
@@ -201,7 +201,7 @@ class Chip extends Component {
         return (
             <div className={classes.container}>
                 <Card className={classes.card} elevation={1} style={{ overflow: "visible" }}>
-                    <Chip
+                    <MaterialChip
                         // avatar={<Avatar>{avatarName}</Avatar>}
                         label={
                             <span className={classes.chipLabel}>
