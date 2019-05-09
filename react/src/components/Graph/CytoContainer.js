@@ -350,15 +350,11 @@ class CytoContainer extends React.Component {
 
   render() {
 
-    const { classes, clientType, isRehydrated, show, stopHelp, translate, match, data } = this.props;
+    const { classes, clientType, isRehydrated, show, stopHelp, translate } = this.props;
 
     if (!show.searchBar) {
       defaultStyle.marginTop = '20px'
     }
-
-    const id = match.params.entityId;
-    const entity = data.entities.ids[id];
-
 
     return (
       <div>
@@ -408,7 +404,6 @@ CytoContainer.propTypes = {
   history: PropTypes.object.isRequired,
   infoBox: PropTypes.object.isRequired,
   isRehydrated: PropTypes.bool.isRequired,
-  match: PropTypes.object.isRequired,
   reRenderGraph: PropTypes.func.isRequired,
   show: PropTypes.object.isRequired,
   stopHelp: PropTypes.func.isRequired,

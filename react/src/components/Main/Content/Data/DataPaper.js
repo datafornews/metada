@@ -126,7 +126,9 @@ class WrappedDataPapers extends Component {
                             src="https://data.culture.gouv.fr/explore/embed/dataset/liste-des-publications-de-presse/table/?&static=false&datasetcard=false"
                             width={this.state.width + ""}
                             height={this.state.width + ""}
-                            frameBorder="0">
+                            frameBorder="0"
+                            title="press publications french ministry for the culture"
+                            >
                         </iframe>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

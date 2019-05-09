@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Example from './Example';
 import Install from './Install';
 import Title from './Title';
-import StatsPreview from './StatsPreview';
+
 import SearchBar from '../../../Search/SearchBar';
 import Waiting from '../../../Waiting';
 import { check_website } from '../../../../utils/backgroundUtils';

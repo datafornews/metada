@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { colors } from '../../../theme/metadaTheme';
 import { withStyles } from '@material-ui/core/styles';
-import ShareComment from './ShareComment';
-import ShareSources from './ShareSources';
+// import ShareComment from './ShareComment';
+// import ShareSources from './ShareSources';
 
 const styles = theme => (
 {
@@ -26,7 +26,7 @@ const styles = theme => (
 class Edge extends Component {
     render() {
 
-        const { data, infoBox, clientType, classes } = this.props;
+        const { data, infoBox, classes } = this.props;
         const share = infoBox.share;
         const target = data.entities.ids[parseInt(share.target, 10)]
         const source = data.entities.ids[parseInt(share.source, 10)]

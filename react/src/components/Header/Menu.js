@@ -121,7 +121,7 @@ class CollapseMenu extends React.Component {
 
     render() {
         const { anchorEl } = this.state;
-        const { classes, clientType, history } = this.props;
+        const { classes, history } = this.props;
         const path = history.location.pathname;
         return (
             <ClickAwayListener onClickAway={this.close}>

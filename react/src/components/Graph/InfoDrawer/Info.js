@@ -54,21 +54,21 @@ class Info extends Component {
 
     updateWidth = () => {
         return
-        var w = window,
-            d = document,
-            documentElement = d.documentElement,
-            body = d.getElementsByTagName('body')[0],
-            width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+        // var w = window,
+        //     d = document,
+        //     documentElement = d.documentElement,
+        //     body = d.getElementsByTagName('body')[0],
+        //     width = w.innerWidth || documentElement.clientWidth || body.clientWidth
 
-        if (width < 950 || this.props.clientType === "extension") {
-            this.setState({
-                paddingRight: '55px',
-            })
-        } else {
-            this.setState({
-                paddingRight: 'unset',
-            })
-        }
+        // if (width < 950 || this.props.clientType === "extension") {
+        //     this.setState({
+        //         paddingRight: '55px',
+        //     })
+        // } else {
+        //     this.setState({
+        //         paddingRight: 'unset',
+        //     })
+        // }
     }
 
     componentWillMount() {

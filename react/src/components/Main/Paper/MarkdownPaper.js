@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import Markdown from 'react-markdown';
 import HomePaper from './HomePaper';
 import PropTypes from 'prop-types';

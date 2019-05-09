@@ -86,36 +86,34 @@ class Container extends Component {
                 )
             }>
                 <Header
-                    translate={translate}
-                    makeDataAvailable={makeDataAvailable}
-                    setData={setData}
-                    match={match}
-                    data={data}
-                    history={history}
+                    translate={ translate }
+                    makeDataAvailable={ makeDataAvailable }
+                    setData={ setData }
+                    match={ match }
+                    data={ data }
+                    history={ history }
                 />
 
                 <AppBar
-                    showSearchBar={showSearchBar}
-                    show={show}
-                    clientType={clientType}
-                    data={data}
-                    dataIsAvailable={dataIsAvailable}
-                    history={history}
-                    isRehydrated={isRehydrated}
-                    show={show}
-                    match={match}
-                    showSearchBar={showSearchBar}
-                    toggleIssue={toggleIssue}
-                    toggleHelp={toggleHelp}
-                    translate={translate}
-                    updateEntityInfoBox={updateEntityInfoBox}
-                    isGraph={isGraph}
-                    width={width}
+                    clientType={ clientType }
+                    data={ data }
+                    dataIsAvailable={ dataIsAvailable }
+                    history={ history }
+                    isGraph={ isGraph }
+                    isRehydrated={ isRehydrated }
+                    match={ match }
+                    show={ show }
+                    showSearchBar={ showSearchBar }
+                    toggleHelp={ toggleHelp }
+                    toggleIssue={ toggleIssue }
+                    translate={ translate }
+                    updateEntityInfoBox={ updateEntityInfoBox }
+                    width={ width }
                 />
 
-                {this.props.drawer}
+                { this.props.drawer }
                 <main
-                    className={classNames(
+                    className={ classNames(
                         classes.content,
                         {
                             [classes.contentShift]: isGraph && show.drawer,
@@ -125,13 +123,13 @@ class Container extends Component {
                         showSearchBar && width === "xs" && classes.shiftMainDown,
                         isRehydrated && isGraph ? show.drawer ? classes.noMarginLeft : classes.shiftMainLeft : classes.noMarginLeft,
                         isRehydrated && show.drawer && isGraph ? classes.shrinkMainWidth : classes.fullMainWidth
-                    )}
-                    style={{
+                    ) }
+                    style={ {
                         overflow: isGraph ? 'hidden' : 'scroll',
-                    }}
+                    } }
                     id="main-metada"
                 >
-                    {children}
+                    { children }
                 </main>
             </div>
         )
