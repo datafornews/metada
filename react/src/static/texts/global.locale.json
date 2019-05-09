@@ -5,6 +5,10 @@
                 "Who owns ",
                 "À qui appartient "
             ],
+            "data": [
+                "Data",
+                "Données"
+            ],
             "other": [
                 "What does ",
                 "Que possède "
@@ -58,6 +62,16 @@
         }
     },
     "home": {
+        "data": {
+            "dataTitle": [
+                "Data from the French Ministry for the Culture",
+                "Données du Ministère de la Culture"
+            ],
+            "pressPublications": [
+                "List of press publications",
+                "Liste des publications de presse"
+            ]
+        },
         "subtitle": [
             "Explore the Graph",
             "Explorez le Graphe"
@@ -229,6 +243,10 @@
             ]
         },
         "menu": {
+            "data": [
+                "Data",
+                "Données"
+            ],
             "about": [
                 "About",
                 "\u00c0 propos"

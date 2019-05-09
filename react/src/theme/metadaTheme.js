@@ -19,7 +19,15 @@ export const MediaIcon = Newspaper;
 export const IndividualIcon = User;
 export const CompanyIcon = Building;
 
-
+const overrides = {
+  MUIDataTable: {
+    paper: {
+      boxShadow: 'unset',
+      maxWidth: '100%',
+      overflow: 'auto'
+    }
+  }
+}
 
 const palette = {
   primary: {
@@ -44,7 +52,8 @@ const themeName = 'Purple Heart Gull Gray Guinea';
 const theme = {
   palette,
   themeName,
-  typography
+  typography,
+  overrides
 }
 
 export default createMuiTheme(theme);

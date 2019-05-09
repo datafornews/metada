@@ -31,6 +31,7 @@
         "material-auto-rotating-carousel": "^2.0.0",
         "material-ui-icons": "^1.0.0-beta.17",
         "md5": "^2.2.1",
+        "mui-datatables": "^2.0.0-beta-41",
         "react": "^16.0.0",
         "react-autosuggest": "^9.3.2",
         "react-dom": "^16.0.0",

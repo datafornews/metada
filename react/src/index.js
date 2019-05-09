@@ -49,6 +49,10 @@ export const AsyncComponents = {
         loader: () => import(/* webpackChunkName: "Contact" */ './components/Main/Content/Contact/Contact'),
         loading: Loading
     }),
+    'data': Loadable({
+        loader: () => import(/* webpackChunkName: "Data" */ './components/Main/Content/Data/Data'),
+        loading: Loading
+    }),
     'stats': Loadable({
         loader: () => import(/* webpackChunkName: "Stats" */ './components/Main/Content/Stats/Stats'),
         loading: Loading
@@ -100,7 +104,7 @@ const router = (
                         <Route exact path='/s/:filter' component={AsyncComponents.home}></Route>
                         <Route exact path='/graph/:entityId' component={AsyncComponents.graph}></Route>
                         {
-                            ['extension', 'contribute', 'settings', 'about', 'contact', 'stats'].map(
+                            ['extension', 'contribute', 'settings', 'about', 'contact', 'stats', 'data'].map(
                                 (loc, k) => {
                                     return <Route
                                         exact

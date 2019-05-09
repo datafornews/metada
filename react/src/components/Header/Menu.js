@@ -7,6 +7,7 @@ import StatsIcon from 'react-icons/lib/md/insert-chart';
 import SettingsIcon from 'react-icons/lib/md/settings';
 import AboutIcon from 'react-icons/lib/md/people';
 import ContributeIcon from 'react-icons/lib/io/upload';
+import DataIcon from 'react-icons/lib/fa/database';
 
 import Share from './Share';
 import { AsyncComponents } from '../../index';
@@ -183,6 +184,14 @@ class CollapseMenu extends React.Component {
                                 </ListItemIcon>
                                 <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.about')} />
                                 {path === "/about" && <span className={classes.em}>•</span>}
+                            </MenuItem>
+
+                            <MenuItem className={classes.menuItem} onMouseOver={this.preload('data')} onClick={this.goTo('/data')}>
+                                <ListItemIcon classes={{ root: classes.menuItemIcon }} className={classes.icon}>
+                                    <DataIcon />
+                                </ListItemIcon>
+                                <ListItemText classes={{ primary: classes.secondary }} inset primary={this.props.translate('home.menu.data')} />
+                                {path === "/data" && <span className={classes.em}>•</span>}
                             </MenuItem>
 
                             <MenuItem className={classes.menuItem} onMouseOver={this.preload('contribute')} onClick={this.goTo('/contribute')}>

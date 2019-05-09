@@ -136,7 +136,7 @@ function getOwners(data, entity) {
     return owners
 }
 
-class ContactPaper extends Component {
+class StatsPaper extends Component {
 
     state = {
         entityData: [],
@@ -170,7 +170,7 @@ class ContactPaper extends Component {
                 {...this.props}
                 noPadding={true}
                 toggle={this.props.toggleStats}
-                content={<WrappedExpansionStats
+                content={<WrappedStatsPaper
                     translate={this.props.translate}
                     ownerData={this.state.ownerData}
                     entityData={this.state.entityData}
@@ -182,11 +182,11 @@ class ContactPaper extends Component {
     }
 }
 
-export default ContactPaper;
+export default StatsPaper;
 
 
 
-class ExpansionStats extends Component {
+class WrappedStatsPaper extends Component {
 
     state = {
         entitiesExpanded: false,
@@ -267,8 +267,8 @@ class ExpansionStats extends Component {
 }
 
 
-ExpansionStats.propTypes = {
+StatsPaper.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const WrappedExpansionStats = withStyles(styles)(ExpansionStats);
+WrappedStatsPaper = withStyles(styles)(StatsPaper);
