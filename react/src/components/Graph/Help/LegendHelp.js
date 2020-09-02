@@ -11,12 +11,14 @@ const styles = theme => ({
         backgroundColor: colors['c']
     },
     chip: {
-        color: "white"
+        color: "white",
+        marginLeft: 8,
+        marginRight: 8
     },
     chipContainer: {
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '4px'
+        marginTop: '16px'
     },
     i: {
         backgroundColor: colors['i']
@@ -25,7 +27,7 @@ const styles = theme => ({
         backgroundColor: colors['m']
     },
     pos: {
-        fontSize: 12,
+        // fontSize: 12,
         marginBottom: 8
     },
     subtitle: {
@@ -40,7 +42,7 @@ class LegendHelp extends Component {
 
         return (
             <div>
-                <Typography variant="subheading" className={classes.subtitle} component="h4">
+                <Typography variant="subtitle2" className={classes.subtitle} component="h4">
                     {translate('graph.helpCard.legend.title')}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary" component="div">

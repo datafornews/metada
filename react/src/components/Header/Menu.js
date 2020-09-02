@@ -25,9 +25,9 @@ import MenuList from '@material-ui/core/MenuList';
 
 const styles = theme => ({
     burgerButton: {
-        left: theme.spacing.unit,
+        left: theme.spacing(1),
         position: 'absolute',
-        top: theme.spacing.unit * 2
+        top: theme.spacing(2)
     },
     container: {
         display: 'inline-flex'
@@ -38,8 +38,8 @@ const styles = theme => ({
     },
     icon: {
         color: theme.palette.default,
-        height: theme.spacing.unit * 4,
-        width: theme.spacing.unit * 4
+        height: theme.spacing(4),
+        width: theme.spacing(4)
     },
     menu: {
         padding: 0

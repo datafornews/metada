@@ -33,7 +33,7 @@ const styles = theme => ({
         "justify-content": "center"
     },
     root: {
-        padding: theme.spacing.unit * 3
+        padding: theme.spacing(3)
     },
     statsButton: {
         fontSize: "0.6rem"

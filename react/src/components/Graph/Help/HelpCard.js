@@ -27,7 +27,7 @@ function getSteps() {
 }
 
 function Transition(props) {
-    return <Slide direction="down" {...props} />;
+    return <Slide direction="down" {...props}/>;
 }
 
 
@@ -39,10 +39,10 @@ const styles = theme => ({
         textAlign: "center"
     },
     backButton: {
-        marginRight: theme.spacing.unit
+        marginRight: theme.spacing(1)
     },
     button: {
-        marginRight: theme.spacing.unit
+        marginRight: theme.spacing(1)
     },
     click: {
         'color': 'green'
@@ -58,20 +58,20 @@ const styles = theme => ({
         pointerEvents: "none",
         position: "absolute",
         right: 32,
-        top: theme.spacing.unit * 3 * 3,
+        top: theme.spacing(3 * 3),
         zIndex: 200
     },
     help: {
         margin: 'auto'
     },
     instructions: {
-        marginBottom: theme.spacing.unit,
-        marginTop: theme.spacing.unit
+        marginBottom: theme.spacing(1),
+        marginTop: theme.spacing(1)
     },
     mobileDivContainer: {
         left: "50%",
         position: "absolute",
-        top: theme.spacing.unit * 3 * 5,
+        top: theme.spacing(3 * 5),
         transform: "translate(-50%)",
         width: "85%",
         zIndex: 200
@@ -191,7 +191,7 @@ class HelpCard extends Component {
                         scroll="paper"
                         TransitionComponent={Transition}
                     >
-                        <ClickAwayListener classeName={classes.click} onClickAway={this.close}>
+                        <ClickAwayListener onClickAway={this.close}>
                             <div>
 
                                 <DialogTitle style={{ padding: "12px 48px" }}>
@@ -200,7 +200,7 @@ class HelpCard extends Component {
                                     </Typography>
                                 </DialogTitle>
 
-                                <DialogContent style={{ padding: "12px 48px", minHeight: 250, maxWidth: 350 }}>
+                                <DialogContent style={{ padding: "12px 48px", minHeight: 250 }}>
 
                                     {activeStep === 0 ?
                                         < NavigationHelp translate={translate} />

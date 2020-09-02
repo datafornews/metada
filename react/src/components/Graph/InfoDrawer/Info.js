@@ -23,7 +23,7 @@ const styles = theme => ({
         minWidth: 275
     },
     container: {
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing(2)
     },
     pos: {
         color: theme.palette.text.secondary,

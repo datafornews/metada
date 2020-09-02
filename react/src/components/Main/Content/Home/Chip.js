@@ -41,8 +41,9 @@ const styles = theme => ({
         display: "flex",
         flexFlow: "column",
         height: "100%",
-        maxWidth: 200,
-        position: 'relative'
+        maxWidth: 250,
+        position: 'relative',
+        marginBottom: 32
     },
     chip: {
         '&:hover': {
@@ -101,7 +102,7 @@ const styles = theme => ({
         backgroundColor: colors['m']
     },
     margin: {
-        margin: theme.spacing.unit * 2
+        margin: theme.spacing(2)
     },
     pointer: {
         '&:hover': {
@@ -147,11 +148,11 @@ class Chip extends Component {
         this.props.handleChipClick(this.props.entity)
     }
 
-    
+
     componentWillUnmount() {
         this.prevent = true;
     }
-    
+
 
 
     componentWillReceiveProps(nextProps) {
@@ -220,7 +221,7 @@ class Chip extends Component {
                                 </Typography>
                                 {this.state.image ? <div className={classes.imgDiv}> <img src={this.state.image} alt={`${entity.name}-logo`} className={classes.img} /> </div> : this.getPlaceholder()}
 
-                                <Typography className={classes.subtitle} variant="subheading" component="h4" color="textSecondary">
+                                <Typography className={classes.subtitle} variant="subtitle2" component="h4" color="textSecondary">
                                     {entity.long_name || <div style={{ height: this.props.clientType === "mobile" ? 0 : 19 }}></div>}
                                 </Typography>
                             </div>

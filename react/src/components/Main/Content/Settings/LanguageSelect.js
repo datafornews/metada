@@ -13,11 +13,11 @@ const styles = theme => ({
         flexWrap: 'wrap'
     },
     formControl: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         minWidth: 100
     },
     selectEmpty: {
-        marginTop: theme.spacing.unit
+        marginTop: theme.spacing(1)
     }
 });
 

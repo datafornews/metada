@@ -46,7 +46,7 @@ const styles = theme => ({
     textLoader: {
         color: theme.palette.secondary.main,
         left: "50%",
-        maxWidth: theme.spacing.unit * 7,
+        maxWidth: theme.spacing(7),
         position: 'absolute',
         textAlign: 'center',
         transform: "translate(-50%)"
@@ -71,7 +71,7 @@ class Home extends Component {
                 if (component.props.dataIsAvailable) {
                     const entity = check_website(component.props.data, url);
                     if (entity && !sessionStorage['default_' + entity.id]) {
-                        // an entity was found and it is the first time 
+                        // an entity was found and it is the first time
                         // the Extension sees this entity for this session
                         // (It is assumed that if the user re-clicks on the Extension
                         // during the session they intend to access the whole Extension)
@@ -99,7 +99,7 @@ class Home extends Component {
             !noClassesProps.isRehydrated ? '' :
                 <Container isMain={true} {...noClassesProps}>
                     <div className={classes.container}>
-                        <Grid container spacing={16}>
+                        <Grid container spacing={2}>
                             <Grid item xs={12} md={8}>
                                 <Grid item xs={12} >
                                     <Title clientType={this.props.clientType} translate={this.props.translate} />

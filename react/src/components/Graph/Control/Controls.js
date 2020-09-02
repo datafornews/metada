@@ -16,11 +16,13 @@ import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
 
 function Transition(props) {
-    return <Slide direction="up" {...props} />;
+    return <Slide direction="up" { ...props } />;
 }
 
-const styles = theme => (
-   {
+const styles = theme => {
+    console.log(theme);
+
+    return {
         actionButton: {
             backgroundColor: "white",
             color: theme.palette.primary.main,
@@ -28,9 +30,9 @@ const styles = theme => (
             fontWeight: 800,
             minWidth: "7rem®"
         },
-        boldText: {
-            fontSize: theme.typography.title.fontSize
-        },
+        // boldText: {
+        //     fontSize: theme.typography.title.fontSize
+        // },
         buttons: {
             alignItems: 'center',
             display: "flex",
@@ -43,10 +45,10 @@ const styles = theme => (
             width: '100%'
         },
         dialogContent: {
-            marginTop: theme.spacing.unit
+            marginTop: theme.spacing(1)
         },
         entity: {
-            marginBottom: theme.spacing.unit / 2,
+            marginBottom: theme.spacing(0.5),
             textAlign: "center"
         },
         entityName: {
@@ -54,21 +56,21 @@ const styles = theme => (
                 fontSize: 20
             },
             [theme.breakpoints.only('md')]: {
-                marginTop: 2 * theme.spacing.unit
+                marginTop: 2 * theme.spacing(1)
             }
         },
         shiftLeft: {
-            marginLeft: theme.spacing.unit * 2
+            marginLeft: theme.spacing(2)
         },
         spacer: {
-            minWidth: theme.spacing.unit * 2
+            minWidth: theme.spacing(2)
         },
         wrapper: {
             display: 'inline-block',
             margin: 'auto'
         }
     }
-);
+};
 
 class Controls extends Component {
 
@@ -131,87 +133,96 @@ class Controls extends Component {
         const entity = data.entities.ids[infoBox.entity];
         return (
             <div
-                className={classes.container}
+                className={ classes.container }
             >
 
                 <GraphHistoryNavigation
-                    clientType={clientType}
-                    translate={translate}
-                    routerLocations={routerLocations}
-                    goToPreviousGraph={goToPreviousGraph}
-                    goToNextGraph={goToNextGraph}
-                    updateEntityInfoBox={updateEntityInfoBox}
-                    history={history}
-                    show={show}
+                    clientType={ clientType }
+                    translate={ translate }
+                    routerLocations={ routerLocations }
+                    goToPreviousGraph={ goToPreviousGraph }
+                    goToNextGraph={ goToNextGraph }
+                    updateEntityInfoBox={ updateEntityInfoBox }
+                    history={ history }
+                    show={ show }
                 />
-                <div className={classes.wrapper}>
+                <div className={ classes.wrapper }>
 
-                    <div className={classes.entity} style={{
-                        color: selectedIsRepresented ? colors[entity.category] : colors.accent
-                    }}>
-                        {entity && <Typography className={classes.entityName} style={clientType === "extension" ? { maxWidth: '270px' } : {}} variant="display1">{entity.name}</Typography>}
+                    <div className={ classes.entity } style={
+                        {
+                            color: selectedIsRepresented ? colors[entity.category] : colors.accent
+                        }
+                    }>
+                        {
+                            entity && <Typography
+                                className={ classes.entityName }
+                                style={ clientType === "extension" ? { maxWidth: '270px' } : {} }
+                                variant="h3"
+                            >
+                                { entity.name }
+                            </Typography> }
                     </div>
-                    <div className={classes.buttons}>
+                    <div className={ classes.buttons }>
                         {
                             !show.drawer &&
-                            <Button className={classes.actionButton} variant="contained" classes={{ text: classes.text }} onClick={this.seeDescription}>
+                            <Button className={ classes.actionButton } variant="contained" classes={ { text: classes.text } } onClick={ this.seeDescription }>
                                 Description
                             </Button>
                         }
                         {
-                            !show.drawe && !selectedIsRepresented && <span className={classes.spacer}></span>
+                            !show.drawe && !selectedIsRepresented && <span className={ classes.spacer }></span>
                         }
                         {
                             selectedIsRepresented ? '' :
                                 <Button
-                                    className={classNames(
+                                    className={ classNames(
                                         classes.actionButton,
                                         !show.drawer && classes.actionButton
-                                    )}
+                                    ) }
                                     variant="contained"
-                                    classes={{ text: classes.text }}
-                                    onClick={this.goTo}>
+                                    classes={ { text: classes.text } }
+                                    onClick={ this.goTo }>
                                     Voir le Graph
                                 </Button>
                         }
                     </div>
                 </div>
                 <Dialog
-                    open={this.state.doubleClickHelp || this.state.longClickHelp}
-                    onClose={this.handleClose}
-                    TransitionComponent={Transition}
+                    open={ this.state.doubleClickHelp || this.state.longClickHelp }
+                    onClose={ this.handleClose }
+                    TransitionComponent={ Transition }
                 >
                     <DialogTitle>
-                        <Typography variant="display1">
-                            {"Le saviez vous?"}
+                        <Typography variant="h3">
+                            { "Le saviez vous?" }
                         </Typography>
                     </DialogTitle>
-                    <DialogContent className={classes.dialogContent}>
+                    <DialogContent className={ classes.dialogContent }>
                         <DialogContentText>
                             <Typography variant="body1">
-                                {this.state.doubleClickHelp && (
+                                { this.state.doubleClickHelp && (
                                     <span>
-                                        {translate("graph.helpCard.doubleTapBefore")}
-                                        <span className={classes.boldText}>
-                                            {translate("graph.helpCard.doubleTap")}
+                                        { translate("graph.helpCard.doubleTapBefore") }
+                                        <span className={ classes.boldText }>
+                                            { translate("graph.helpCard.doubleTap") }
                                         </span>
-                                        {translate("graph.helpCard.doubleTapAfter")}
+                                        { translate("graph.helpCard.doubleTapAfter") }
                                     </span>
-                                )}
+                                ) }
 
-                                {this.state.longClickHelp && (
+                                { this.state.longClickHelp && (
                                     <span>
-                                        <span className={classes.boldText}>
-                                            {translate('graph.helpCard.contextual')}
+                                        <span className={ classes.boldText }>
+                                            { translate('graph.helpCard.contextual') }
                                         </span>
-                                        {translate('graph.helpCard.contextualAfter')}
+                                        { translate('graph.helpCard.contextualAfter') }
                                     </span>
-                                )}
+                                ) }
                             </Typography>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={ this.handleClose } color="primary">
                             Compris!
                     </Button>
                     </DialogActions>

@@ -101,7 +101,7 @@ class WrappedDataPapers extends Component {
             >
                 <ReactResizeDetector refreshMode='debounce' refreshRate={500} skipOnMount handleWidth handleHeight onResize={this.resize} />
 
-                <Typography variant="display1" color="primary">
+                <Typography variant="h1" color="primary">
                     {this.props.translate('home.data.dataTitle')}
                 </Typography>
                 <ExpansionPanel

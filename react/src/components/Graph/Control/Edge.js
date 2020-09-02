@@ -47,7 +47,7 @@ class Edge extends Component {
                     direction="row"
                     justify="space-around"
                     alignItems="center"
-                    spacing={16}
+                    spacing={2}
                 >
                     <Grid item xs={12}>
                         <Grid container justify="center">

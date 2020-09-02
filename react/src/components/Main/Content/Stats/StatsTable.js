@@ -21,7 +21,7 @@ const actionsStyles = theme => ({
     root: {
         color: theme.palette.text.secondary,
         flexShrink: 0,
-        marginLeft: theme.spacing.unit * 2.5
+        marginLeft: theme.spacing(2.5)
     }
 });
 
@@ -98,19 +98,19 @@ const styles = theme => ({
     root: {
         color: theme.palette.text.secondary,
         flexShrink: 0,
-        marginLeft: theme.spacing.unit * 2.5,
-        marginTop: theme.spacing.unit * 3,
+        marginLeft: theme.spacing(2.5),
+        marginTop: theme.spacing(3),
         overflowX: 'auto',
         width: '100%'
     },
     table: {
-        minWidth: theme.spacing.unit * 12
+        minWidth: theme.spacing(12)
     },
     textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
         marginTop: 0,
-        width: theme.spacing.unit * 25
+        width: theme.spacing(25)
     }
 });
 

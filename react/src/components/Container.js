@@ -14,12 +14,12 @@ import Header from './Header/Header'
 const styles = theme => ({
     content: {
         flexGrow: 1,
-        maxHeight: `calc(100vh - ${theme.spacing.unit * 3 * 3})px`,
+        maxHeight: `calc(100vh - ${theme.spacing(3 * 3)})px`,
         // So the Typography noWrap works,
-        minHeight: `calc(100vh - ${theme.spacing.unit * 3 * 4}px)`,
+        minHeight: `calc(100vh - ${theme.spacing(3 * 4)}px)`,
         minWidth: 0,
         overflow: "scroll",
-        paddingTop: theme.spacing.unit * 3 * 3,
+        paddingTop: theme.spacing(3 * 3),
         position: "relative",
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -43,7 +43,7 @@ const styles = theme => ({
         marginLeft: "0px"
     },
     noPadding: {
-        padding: `${theme.spacing.unit * 3 * 3}px 0px 0px 0px`
+        padding: `${theme.spacing(3 * 3)}px 0px 0px 0px`
     },
     root: {
         display: 'flex',
@@ -54,7 +54,7 @@ const styles = theme => ({
         zIndex: 1
     },
     shiftMainDown: {
-        paddingTop: theme.spacing.unit * 3 * 4
+        paddingTop: theme.spacing(3 * 4)
     },
     shiftMainLeft: {
         [theme.breakpoints.only('xs')]: {

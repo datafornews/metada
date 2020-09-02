@@ -9,28 +9,28 @@ const styles = theme => ({
     root: {
         [theme.breakpoints.up('lg')]: {
             maxWidth: '900px',
-            padding: theme.spacing.unit * 8
+            padding: theme.spacing(8)
         },
         [theme.breakpoints.only('xs')]: {
-            maxWidth: '85%' // padding: theme.spacing.unit * 8,
+            maxWidth: '85%' // padding: theme.spacing(8),
 
         },
         margin: "auto",
         marginBottom: '30px',
-        marginTop: theme.spacing.unit * 4,
+        marginTop: theme.spacing(4),
         maxWidth: '75%'
     },
     typography: {
         [theme.breakpoints.only('md')]: {
-            padding: theme.spacing.unit * 8
+            padding: theme.spacing(8)
         },
         [theme.breakpoints.up('lg')]: {
-            paddingBottom: theme.spacing.unit * 8,
-            paddingLeft: theme.spacing.unit * 12,
-            paddingRight: theme.spacing.unit * 12,
-            paddingTop: theme.spacing.unit * 8
+            paddingBottom: theme.spacing(8),
+            paddingLeft: theme.spacing(12),
+            paddingRight: theme.spacing(12),
+            paddingTop: theme.spacing(8)
         },
-        padding: theme.spacing.unit * 4
+        padding: theme.spacing(4)
     }
 });
 

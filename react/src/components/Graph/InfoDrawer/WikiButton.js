@@ -9,9 +9,9 @@ const iconStyle = {
 }
 
 const textStyle = {
-    fontSize: '0.6rem',
+    fontSize: '0.8rem',
     padding: '8px',
-    fontWeight: 'bold'
+    margin: "4px"
 }
 
 class WikiButton extends Component {

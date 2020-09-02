@@ -14,7 +14,7 @@ const styles = theme => ({
         marginBottom: 6
     },
     pos: {
-        fontSize: 12,
+        // fontSize: 12,
         marginBottom: 8
     },
     primary: {
@@ -36,7 +36,7 @@ class NavigationHelp extends Component {
         return (
             <div>
 
-                <Typography variant="subheading" className={classes.subtitle} component="h4">
+                <Typography variant="subtitle2" className={classes.subtitle} component="h4">
                     {translate('graph.helpCard.navigation')}
                 </Typography>
 

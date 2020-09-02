@@ -54,8 +54,8 @@ const styles = theme => ({
             paddingLeft: 0,
             paddingRight: 0
         },
-        paddingLeft: theme.spacing.unit * 2,
-        paddingRight: theme.spacing.unit * 2
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2)
     }
 });
 

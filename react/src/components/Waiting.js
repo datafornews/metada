@@ -10,18 +10,18 @@ const styles = theme => ({
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        minHeight: theme.spacing.unit * 20,
+        minHeight: theme.spacing(20),
         position: 'relative'
     },
     icon: {
         color: theme.palette.secondary.main,
-        height: theme.spacing.unit * 3,
-        width: theme.spacing.unit * 3
+        height: theme.spacing(3),
+        width: theme.spacing(3)
     },
     textLoader: {
         color: theme.palette.secondary.main,
         left: "50%",
-        maxWidth: theme.spacing.unit * 8,
+        maxWidth: theme.spacing(8),
         position: 'absolute',
         textAlign: 'center',
         transform: "translate(-50%)"

@@ -9,19 +9,19 @@ import { AsyncComponents } from '../../index';
 const styles = theme => ({
     logo: {
         [theme.breakpoints.up('xs')]: {
-            height: theme.spacing.unit * 4,
-            width: theme.spacing.unit * 4
+            height: theme.spacing(4),
+            width: theme.spacing(4)
         },
         color: theme.palette.default,
-        height: theme.spacing.unit * 3,
-        width: theme.spacing.unit * 3
+        height: theme.spacing(3),
+        width: theme.spacing(3)
     },
     normal: {
         transition: "all 0.2s ease-in-out"
     },
     root: {
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing.unit * 6,
+            marginLeft: theme.spacing(6),
             padding: '12px 0px'
         },
         "&:hover": {
@@ -30,7 +30,7 @@ const styles = theme => ({
         alignItems: 'center',
         backgroundColor: theme.palette.secondary.main,
         display: 'flex',
-        marginLeft: theme.spacing.unit * 5,
+        marginLeft: theme.spacing(5),
         textAlign: 'center'
     },
     title: {
@@ -38,7 +38,7 @@ const styles = theme => ({
             fontSize: 22
         },
         color: theme.palette.default,
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
         textTransform: 'uppercase'
     }
 });

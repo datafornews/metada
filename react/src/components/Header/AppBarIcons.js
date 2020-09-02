@@ -9,7 +9,7 @@ import IssueIcon from 'react-icons/lib/fa/exclamation-circle';
 const styles = theme => ({
     iconButton: {
         margin: '0px 4px',
-        maxWidth: theme.spacing.unit * 6,
+        maxWidth: theme.spacing(6),
         width: '45%'
     }
 });

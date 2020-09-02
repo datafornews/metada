@@ -12,11 +12,11 @@ const styles = theme => ({
     containerDiv: {
         [theme.breakpoints.up('md')]: {
             // backgroundColor: 'red',
-            marginTop: theme.spacing.unit * 8
+            marginTop: theme.spacing(8)
         },
         display: 'block',
-        marginTop: theme.spacing.unit * 6,
-        padding: theme.spacing.unit * 8
+        marginTop: theme.spacing(6),
+        padding: theme.spacing(8)
     },
     label: {
         textTransform: 'capitalize'
@@ -255,7 +255,7 @@ class Example extends Component {
             <Paper className={classes.containerDiv} style={this.props.style}>
                 {this.props.clientType !== "mobile" && <FilterChips {...noClassesProps} />}
                 <div id="chips-div" style={{ textAlign: 'center', marginTop: 32, marginBottom: 100 }}>
-                    <Grid container spacing={32} alignItems="stretch" onMouseEnter={this.preloadGraph}>
+                    <Grid container spacing={4} alignItems="stretch" onMouseEnter={this.preloadGraph}>
                         {this.state.entities.map((v, k) => {
                             return <Grid key={k} item xs={12} sm={6} md={4} lg={3} >
                                 <Chip

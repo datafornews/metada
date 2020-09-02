@@ -9,18 +9,18 @@ const styles = theme => ({
     container: {
         [theme.breakpoints.only('xs')]: {
             // xs -> seach bar goes down
-            paddingTop: theme.spacing.unit * 3
+            paddingTop: theme.spacing(3)
         },
         [theme.breakpoints.up('md')]: {
-            paddingBottom: theme.spacing.unit * 2,
-            paddingTop: theme.spacing.unit * 4
+            paddingBottom: theme.spacing(2),
+            paddingTop: theme.spacing(4)
         },
         [theme.breakpoints.up('lg')]: {
-            paddingBottom: theme.spacing.unit * 4,
-            paddingTop: theme.spacing.unit * 6
+            paddingBottom: theme.spacing(4),
+            paddingTop: theme.spacing(6)
         },
-        paddingBottom: theme.spacing.unit * 2,
-        paddingTop: theme.spacing.unit * 2
+        paddingBottom: theme.spacing(2),
+        paddingTop: theme.spacing(2)
     },
     subtitle: {
         [theme.breakpoints.down(400)]: {
@@ -57,10 +57,10 @@ class Title extends Component {
         const { classes, translate } = this.props;
         return (
             <div className={classes.container}>
-                <Typography color='primary' variant={this.state.width > 800 ? "display2" : "display1"} gutterBottom className={classes.title}>
+                <Typography color='primary' variant="h3" gutterBottom className={classes.title}>
                     {translate('home.title')}
                 </Typography>
-                <Typography variant={this.state.width > 800 ? "headline" : "title"} color="default" gutterBottom className={classes.subtitle}>
+                <Typography variant="h5" gutterBottom className={classes.subtitle}>
                     {translate('home.subtitle')}
                 </Typography>
             </div>

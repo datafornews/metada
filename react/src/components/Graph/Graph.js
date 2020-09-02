@@ -22,10 +22,10 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     // maxHeight: 80,
-    minHeight: theme.spacing.unit * 10
+    minHeight: theme.spacing(10)
   },
   moveDown: {
-    paddingTop: theme.spacing.unit * 5
+    paddingTop: theme.spacing(5)
   }
 });
 
@@ -76,111 +76,111 @@ class Graph extends React.Component {
         : false;
 
     return <Container
-      clientType={clientType}
-      data={data}
-      dataIsAvailable={dataIsAvailable}
-      history={history}
-      infoBox={infoBox}
-      isRehydrated={isRehydrated}
-      match={match}
-      preventAutofocus={preventAutofocus}
-      reRenderGraph={reRenderGraph}
-      show={show}
-      startHelp={startHelp}
-      stopHelp={stopHelp}
-      toggleDrawer={toggleDrawer}
-      toggleIssue={toggleIssue}
-      translate={translate}
-      updateEntityInfoBox={updateEntityInfoBox}
-      isGraph={true}
-      drawer={<InfoDrawer
-        clientType={clientType}
-        data={data}
-        dataIsAvailable={dataIsAvailable}
-        currentLanguage={currentLanguage}
-        history={history}
-        infoBox={infoBox}
-        isRehydrated={isRehydrated}
-        match={match}
-        reRenderGraph={reRenderGraph}
-        show={show}
-        startHelp={startHelp}
-        stopHelp={stopHelp}
-        toggleDrawer={toggleDrawer}
-        translate={translate}
-      />}
+      clientType={ clientType }
+      data={ data }
+      dataIsAvailable={ dataIsAvailable }
+      history={ history }
+      infoBox={ infoBox }
+      isRehydrated={ isRehydrated }
+      match={ match }
+      preventAutofocus={ preventAutofocus }
+      reRenderGraph={ reRenderGraph }
+      show={ show }
+      startHelp={ startHelp }
+      stopHelp={ stopHelp }
+      toggleDrawer={ toggleDrawer }
+      toggleIssue={ toggleIssue }
+      translate={ translate }
+      updateEntityInfoBox={ updateEntityInfoBox }
+      isGraph={ true }
+      drawer={ <InfoDrawer
+        clientType={ clientType }
+        data={ data }
+        dataIsAvailable={ dataIsAvailable }
+        currentLanguage={ currentLanguage }
+        history={ history }
+        infoBox={ infoBox }
+        isRehydrated={ isRehydrated }
+        match={ match }
+        reRenderGraph={ reRenderGraph }
+        show={ show }
+        startHelp={ startHelp }
+        stopHelp={ stopHelp }
+        toggleDrawer={ toggleDrawer }
+        translate={ translate }
+      /> }
     >
-      {dataIsAvailable ?
+      { dataIsAvailable ?
         <div>
-          {/* <JoyRide /> */}
+          {/* <JoyRide /> */ }
           <div
-            className={classNames(
+            className={ classNames(
               classes.controlsContainer,
               moveDown && classes.moveDown
-            )}
+            ) }
           >
-            {!infoBox.share ? <Controls
-              clientType={clientType}
-              data={data}
-              history={history}
-              infoBox={infoBox}
-              match={match}
-              routerLocations={routerLocations}
-              show={show}
-              toggleDrawer={toggleDrawer}
-              translate={translate}
-              updateRouterLocation={updateRouterLocation}
-              goToPreviousGraph={goToPreviousGraph}
-              goToNextGraph={goToNextGraph}
-              updateEntityInfoBox={updateEntityInfoBox}
-              toggleDoubleClickHelp={toggleDoubleClickHelp}
-              toggleLongClickHelp={toggleLongClickHelp}
+            { !infoBox.share ? <Controls
+              clientType={ clientType }
+              data={ data }
+              history={ history }
+              infoBox={ infoBox }
+              match={ match }
+              routerLocations={ routerLocations }
+              show={ show }
+              toggleDrawer={ toggleDrawer }
+              translate={ translate }
+              updateRouterLocation={ updateRouterLocation }
+              goToPreviousGraph={ goToPreviousGraph }
+              goToNextGraph={ goToNextGraph }
+              updateEntityInfoBox={ updateEntityInfoBox }
+              toggleDoubleClickHelp={ toggleDoubleClickHelp }
+              toggleLongClickHelp={ toggleLongClickHelp }
             />
               :
               <Edge
-                clientType={clientType}
-                infoBox={infoBox}
-                data={data}
+                clientType={ clientType }
+                infoBox={ infoBox }
+                data={ data }
               />
 
             }
             <HelpSuggestion
-              isRehydrated={isRehydrated}
-              show={show}
-              toggleHelpSuggestion={toggleHelpSuggestion}
-              toggleHelp={toggleHelp}
-              clientType={clientType}
+              isRehydrated={ isRehydrated }
+              show={ show }
+              toggleHelpSuggestion={ toggleHelpSuggestion }
+              toggleHelp={ toggleHelp }
+              clientType={ clientType }
             />
           </div>
           <CytoContainer
-            clientType={this.props.clientType}
-            currentDisplay={this.props.currentDisplay}
-            data={this.props.data}
-            displayEntity={this.props.displayEntity}
-            history={this.props.history}
-            infoBox={this.props.infoBox}
-            isRehydrated={this.props.isRehydrated}
-            match={this.props.match}
-            reRenderGraph={this.props.reRenderGraph}
-            show={this.props.show}
-            stopHelp={this.props.stopHelp}
-            toggleDoubleClickHelp={this.props.toggleDoubleClickHelp}
-            toggleDrawer={this.props.toggleDrawer}
-            toggleLongClickHelp={this.props.toggleLongClickHelp}
-            translate={this.props.translate}
-            updateEntityInfoBox={this.props.updateEntityInfoBox}
-            updateRouterLocation={this.props.updateRouterLocation}
-            updateShareInfoBox={this.props.updateShareInfoBox}
+            clientType={ this.props.clientType }
+            currentDisplay={ this.props.currentDisplay }
+            data={ this.props.data }
+            displayEntity={ this.props.displayEntity }
+            history={ this.props.history }
+            infoBox={ this.props.infoBox }
+            isRehydrated={ this.props.isRehydrated }
+            match={ this.props.match }
+            reRenderGraph={ this.props.reRenderGraph }
+            show={ this.props.show }
+            stopHelp={ this.props.stopHelp }
+            toggleDoubleClickHelp={ this.props.toggleDoubleClickHelp }
+            toggleDrawer={ this.props.toggleDrawer }
+            toggleLongClickHelp={ this.props.toggleLongClickHelp }
+            translate={ this.props.translate }
+            updateEntityInfoBox={ this.props.updateEntityInfoBox }
+            updateRouterLocation={ this.props.updateRouterLocation }
+            updateShareInfoBox={ this.props.updateShareInfoBox }
           />
           <Issue
-            translate={translate}
-            clientType={clientType}
-            show={show}
-            toggleIssue={toggleIssue}
+            translate={ translate }
+            clientType={ clientType }
+            show={ show }
+            toggleIssue={ toggleIssue }
           />
         </div>
         :
-        <Waiting clientType={clientType} translate={translate} toTranslate='home.loadingData' />
+        <Waiting clientType={ clientType } translate={ translate } toTranslate='home.loadingData' />
       }
     </Container>
   }

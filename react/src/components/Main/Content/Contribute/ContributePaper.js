@@ -7,7 +7,7 @@ const styles = theme => ({
     container: {},
     headline: {
         fontWeight: 300,
-        marginBottom: theme.spacing.unit * 2
+        marginBottom: theme.spacing(2)
     },
     iframe: {
         height: '970px',
@@ -21,7 +21,7 @@ const styles = theme => ({
         fontStyle: 'italic'
     },
     li: {
-        marginBottom: theme.spacing.unit * 1.5
+        marginBottom: theme.spacing(1.5)
     },
     sep: {
         borderBottom: "1px solid grey",

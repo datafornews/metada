@@ -53,10 +53,10 @@ class Install extends Component {
         const val = is.firefox() ? 'Firefox' : 'Chrome';
 
         return (<div>
-            <Grid container spacing={16} className={classes.container}>
+            <Grid container spacing={2} className={classes.container}>
                 {this.props.clientType !== "extension" &&
                     <Grid item xs={12} style={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Typography variant="subheading" component="div">
+                        <Typography component="div">
                             {this.props.translate('home.install.disclaimer')}
                         </Typography>
                     </Grid>}
@@ -86,7 +86,10 @@ class Install extends Component {
                     </Grid>}
             </Grid>
             <br/>
-            {this.props.translate('home.install.comeHelp')} <Link to="/contribute">{this.props.translate('home.install.comeHelpLink')}</Link>
+            {this.props.translate('home.install.comeHelp')}
+            <Link to="/contribute">
+                {this.props.translate('home.install.comeHelpLink')}
+            </Link>
         </div>
         )
     }

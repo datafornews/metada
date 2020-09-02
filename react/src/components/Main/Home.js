@@ -16,7 +16,7 @@ class Home extends React.Component {
     return (
       <Container {...this.props}>
         <div style={{ margin: 'auto' }} ref='exampleDiv'>
-          {children}
+          {/* {children} */}
         </div>
       </Container>
     );

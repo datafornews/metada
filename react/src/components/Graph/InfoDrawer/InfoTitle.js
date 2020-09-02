@@ -9,7 +9,7 @@ import getImage from '../../../utils/getWikiImage';
 
 const styles = theme => ({
     img: {
-        borderRadius: theme.spacing.unit / 2,
+        borderRadius: theme.spacing(0.5),
         maxHeight: "100%",
         maxWidth: "-webkit-fill-available"
     },

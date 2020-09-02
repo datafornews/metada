@@ -209,7 +209,7 @@ class WrappedStatsPaper extends Component {
 
         return (
             <div className={classes.root}>
-                <Typography variant="display1" color="primary">
+                <Typography variant="h1" color="primary">
                     {this.props.translate('home.stats.statsTitle')}
                 </Typography>
                 <ExpansionPanel
